@@ -1,0 +1,33 @@
+
+.masthead h1, .masthead p {
+    text-align: center;
+}
+
+
+/* Quick links
+-------------------------------------------------- */
+.bs-links {
+ margin: 36px 0;
+}
+.quick-links {
+ min-height: 30px;
+ margin: 0;
+ padding: 5px 20px;
+ list-style: none;
+ text-align: center;
+ overflow: hidden;
+}
+.quick-links:first-child {
+ min-height: 0;
+}
+.quick-links li {
+ display: inline;
+ margin: 0 8px;
+ color: #999;
+}
+.quick-links .github-btn,
+.quick-links .tweet-btn,
+.quick-links .follow-btn {
+ position: relative;
+ top: 5px;
+}
