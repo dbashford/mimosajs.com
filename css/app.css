@@ -2,12 +2,49 @@
 .masthead h1, .masthead p {
     text-align: center;
 }
+.masthead h1 {
+    margin-bottom: 18px;
+}
+.jumbotron h1 {
+    font-size: 81px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 9px;
+}
 
+.jumbotron .btn-large {
+    border-radius: 6px 6px 6px 6px;
+    font-size: 20px;
+    font-weight: normal;
+    margin-right: 10px;
+    padding: 14px 24px;
+    color:white;
+}
+
+.masthead p {
+    font-size: 30px;
+    line-height: 36px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.jumbotron p {
+    font-weight: 300;
+    margin-bottom: 18px;
+}
+
+.inner {
+  border-radius: 0px 0px 15px 15px;
+  background-color:#eee;
+  padding:25px 0;
+
+}
 
 /* Quick links
 -------------------------------------------------- */
 .bs-links {
- margin: 36px 0;
+ margin: 30px 0;
 }
 .quick-links {
  min-height: 30px;
