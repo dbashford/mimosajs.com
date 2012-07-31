@@ -1,6 +1,7 @@
 body {
   font-size: 15px;
    font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+   background-image: url(../img/background_tile.jpg)
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -40,6 +41,11 @@ h2 {
   font-size:26px;
 }
 
+.container {
+  background-color:white;
+  padding:0 20px;
+}
+
 .masthead h1, .masthead p {
     text-align: center;
 }
@@ -52,6 +58,7 @@ h2 {
     letter-spacing: -1px;
     line-height: 1;
     margin-bottom: 9px;
+    text-shadow: 2px 2px #fff;
 }
 
 .jumbotron .btn-large {
@@ -73,12 +80,18 @@ h2 {
 .jumbotron p {
     font-weight: 300;
     margin-bottom: 18px;
+    text-shadow: 2px 2px #fff;
 }
 
 .inner {
   border-radius: 0px 0px 15px 15px;
-  background-color:#eee;
+  background-color:#e6e6e6;
   padding: 25px 8px;
+}
+
+.marketing h1, .marketing h2, .marketing h3 {
+  text-shadow: 1px 1px 2px #000 ;
+
 }
 
 /* Quick links
