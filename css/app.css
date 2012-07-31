@@ -80,6 +80,27 @@ h2 {
  top: 5px;
 }
 
+.marketing h1 {
+  font-size: 40px;
+  font-weight: 300;
+  margin: 36px 0 27px;
+  text-align: center;
+}
+
+.marketing .row {
+  margin-bottom:25px;
+}
+
+i {
+  float: left;
+  margin-right: 5px;
+  margin-top: 6px;
+}
+
+.span4 i {
+  margin-top: 9px;
+}
+
 /* Responsive Docs
 -------------------------------------------------- */
 @media (max-width: 480px) {
@@ -134,7 +155,7 @@ h2 {
 
   /* Don't space out quick links so much */
   .quick-links {
-    margin: 40px 0 0;
+    margin: 20px 0 0;
   }
   /* hide the bullets on mobile since our horizontal space is limited */
   .quick-links .divider {
@@ -156,6 +177,19 @@ h2 {
   .jumbotron .btn {
     margin-bottom: 10px;
   }
+
+  .marketing .row {
+    margin-bottom:0px;
+  }
+
+  h2, h3 {
+      margin-top: 6px;
+  }
+
+  h2 {
+      font-size: 20px;
+  }
+
 
 }
 
@@ -205,26 +239,5 @@ h2 {
     margin: 5px;
   }
 
-}
-
-.marketing h1 {
-  font-size: 40px;
-  font-weight: 300;
-  margin: 36px 0 27px;
-  text-align: center;
-}
-
-.marketing .row {
-  margin-bottom:25px;
-}
-
-i {
-  float: left;
-  margin-right: 5px;
-  margin-top: 6px;
-}
-
-.span4 i {
-  margin-top: 9px;
 }
 
