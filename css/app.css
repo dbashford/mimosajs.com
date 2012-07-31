@@ -1,3 +1,15 @@
+body {
+  font-family: FontAwesome;
+  font-size: 15px;
+}
+
+h3 {
+  font-size:20px;
+}
+
+h2 {
+  font-size:26px;
+}
 
 .masthead h1, .masthead p {
     text-align: center;
@@ -43,7 +55,7 @@
 /* Quick links
 -------------------------------------------------- */
 .bs-links {
- margin: 30px 0;
+ margin: 15px 0;
 }
 .quick-links {
  min-height: 30px;
@@ -193,5 +205,26 @@
     margin: 5px;
   }
 
+}
+
+.marketing h1 {
+  font-size: 40px;
+  font-weight: 300;
+  margin: 36px 0 27px;
+  text-align: center;
+}
+
+.marketing .row {
+  margin-bottom:25px;
+}
+
+i {
+  float: left;
+  margin-right: 5px;
+  margin-top: 6px;
+}
+
+.span4 i {
+  margin-top: 12px;
 }
 
