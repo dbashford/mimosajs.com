@@ -42,8 +42,11 @@ h2 {
 }
 
 .container {
-  background-color:white;
-  padding:0 20px;
+    background-color: white;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 1px 1px 9px #333333;
+    margin-bottom: 50px;
+    padding: 0 20px;
 }
 
 .masthead h1, .masthead p {
@@ -90,7 +93,7 @@ h2 {
 }
 
 .marketing h1, .marketing h2, .marketing h3 {
-  text-shadow: 1px 1px 2px #000 ;
+  text-shadow: 1px 1px 2px #999;
 }
 
 .marketing {
