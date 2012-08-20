@@ -1,15 +1,11 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<head>
+<head lang="en">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Mimosa</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <link rel="stylesheet" href="css/main.css"> -->
+
   <link rel="stylesheet" href="css/bootstrap.min.css" >
   <link rel="stylesheet" href="css/bootstrap-responsive.min.css" >
   <link rel="stylesheet" href="css/app.css">
@@ -20,10 +16,47 @@
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
   <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
 
-  <script src="js/vendor/modernizr-2.6.1.min.js"></script>
 </head>
-<body data-spy="scroll" data-target=".subnav" data-offset="50">    <!--[if lt IE 7]><p class="chromeframe">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-<div class="container">
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button"class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li class="active">
+              <a href="./index.html">Overview</a>
+            </li>
+            <li class="">
+              <a href="./commands.html">Commands</a>
+            </li>
+            <li class="">
+              <a href="./compilers.html">Compilers</a>
+            </li>
+            <li class="">
+              <a href="./server.html">Server</a>
+            </li>
+            <li class="">
+              <a href="./require.html">RequireJS + Optimization</a>
+            </li>
+            <li class="">
+              <a href="./misc.html">Misc Goodness</a>
+            </li>
+            <li class="">
+              <a href="./examples.html">Examples</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container main">
 
 <header class="jumbotron masthead">
   <div class="inner">
@@ -57,20 +90,11 @@
 </header>
 
 <div class="marketing">
-  <h1>Jammed with goodness</h1>
+  <h1>Jammed with Goodness</h1>
   <div class="row">
     <div class="span4">
-      <i class="icon-file"></i>
-      <h2>Watch assets</h2>
-      <p>
-        Everything happens when you save your code. Mimosa will keep track
-        of your assets and when you save something, kick off all sorts of
-        awesome.
-      </p>
-    </div>
-    <div class="span4">
       <i class="icon-fast-forward"></i>
-      <h2>Coding in seconds</h2>
+      <h2>Coding in Seconds</h2>
       <p>
          Use Mimosa's command line to build out a skeleton app that
          is ready to go with your desired meta-languages, a bit of
@@ -79,50 +103,50 @@
       </p>
     </div>
     <div class="span4">
-      <i class="icon-ok"></i>
-      <h2>We got compilers</h2>
+      <i class="icon-file"></i>
+      <h2>Watch Assets</h2>
       <p>
-        CoffeeScript. SASS. LESS. Stylus. Handlebars. Dust. Hogan.
-        Jade. We got all that, and more. And more to come.
+        Everything happens when you save your code. Mimosa will keep track
+        of your assets and when you save something, kick off all sorts of
+        awesome.
       </p>
     </div>
-  </div>
-  <div class="row">
-    <div class="span3">
-      <i class="icon-bullhorn"></i>
-      <h3>Immediate feedback</h3>
+    <div class="span4">
+      <i class="icon-ok"></i>
+      <h2>Immediate Feedback</h2>
       <p>
         Code doesn't compile?  You'll find out right away. When code breaks
         Mimosa will write big angry messages to the console and use Growl if
         you've got it installed.
       </p>
     </div>
-    <div class="span3">
-      <i class="icon-thumbs-up"></i>
-      <h3>Like RequireJS?</h3>
-      <p>
-        Good! Because it is baked in. Mimosa will keep track of your
-        dependency graph and alert you right away if you've mis-typed a path
-        referred to something that doesn't exist or have a circular
-        dependency.
-      </p>
-    </div>
-    <div class="span3">
+  </div>
+  <div class="row">
+    <div class="span4">
       <i class="icon-signal"></i>
-      <h3>Asset serving</h3>
+      <h2>Asset Serving</h2>
       <p>
         Mimosa will serve your assets for you if you'd like, or it will invoke
         your Express server (or the Express server it gave you) so that you
         only need a single process running to watch and serve.
       </p>
     </div>
-    <div class="span3">
+    <div class="span4">
       <i class="icon-list"></i>
-      <h3>Configurable, but not</h3>
+      <h2>Configurable, but Not</h2>
       <p>
-        Mimosa is heavily configurable, but don't worry about it. It starts
-        empty. Sane defaults keep you coding instead of figuring out config.
-        You may never look at or touch the stuff!
+        Mimosa is heavily configurable, but don't worry about it. The
+        configuration starts empty. Sane defaults keep you coding instead of
+        figuring out config. You may never look at or touch the stuff!
+      </p>
+    </div>
+    <div class="span4">
+      <i class="icon-arrow-down"></i>
+      <h2>Package Management</h2>
+      <p>
+        Mimosa wraps basic <a href="https://github.com/volojs/volo">Volo</a>
+        add functionality to allow you to easily pull in and install known
+        GitHub dependencies right to the directory you want them.
       </p>
     </div>
   </div>
@@ -164,14 +188,96 @@
       </p>
     </div>
   </div>
+  <h1>We got compilers</h1>
+  <div class="row">
+    <div class="span3">
+      <i class="icon-fire"></i>
+      <h3>JavaScript</h3>
+      <p>
+        Mimosa will compile your <a href="http://coffeescript.org/">CoffeeScript</a> and <a href="http://maxtaco.github.com/coffee-script/">Iced CoffeeScript</a>.
+      </p>
+    </div>
+    <div class="span3">
+      <i class="icon-picture"></i>
+      <h3>CSS</h3>
+      <p>
+         <a href="http://learnboost.github.com/stylus/">Stylus</a> w/<a
+         href="http://visionmedia.github.com/nib/">nib</a>. <a
+         href="http://sass-lang.com/">SASS</a> w/<a
+         href="http://compass-style.org/">Compass</a>. <a
+         href="http://lesscss.org/">LESS</a>. Mimosa won't bother
+         compiling your partials individually, but when your partials change
+         it'll compile whichever files at the root of your CSS tree need
+         compiling.
+      </p>
+    </div>
+    <div class="span3">
+      <i class="icon-list-alt"></i>
+      <h3>Micro-Templates</h3>
+      <p>
+        <a href="https://github.com/linkedin/dustjs/">Dust</a>. <a
+        href="http://handlebarsjs.com/">Handlebars</a>. <a
+        href="http://twitter.github.com/hogan.js/">Hogan</a>. <a
+        href="http://underscorejs.org/">Underscore</a>. <a
+        href="http://lodash.com/">LoDash</a>. <a
+        href="http://jade-lang.com/">Jade</a>. Just HTML.  Mimosa
+        will pre-compile all of your templates.
+      </p>
+    </div>
+    <div class="span3">
+      <i class="icon-glass"></i>
+      <h3>Meta-Languages? Pfft.</h3>
+      <p>
+        Plain JS, Plain CSS, no templates? You're a classic and Mimosa's cool
+        with that. Files that don't need compiling will just be copied, but
+        they'll still get the royal treatment, including linting and RequireJS
+        verification.
+      </p>
+    </div>
+  </div>
+  <h1>Like RequireJS?</h1>
+  <div class="row">
+    <div class="span4">
+      <i class="icon-bullhorn"></i>
+      <h3>Dependency Checking</h3>
+      <p>
+        Mimosa will keep track of your dependency graph and alert you right
+        away if you've mis-typed a path, referred to something that doesn't
+        exist, or have a circular dependency.
+      </p>
+    </div>
+    <div class="span4">
+      <i class="icon-bullhorn"></i>
+      <h3>Shim, Map, Plugins, Paths</h3>
+      <p>
+        Yep, yep, yep, yep. It'll check those too. Paths themselves, shims,
+        shim dependencies, map modules and map paths, and plugin paths.
+      </p>
+    </div>
+    <div class="span4">
+      <i class="icon-bullhorn"></i>
+      <h3>Optimization</h3>
+      <p>
+        If you use RequireJS, you know about <a
+        href="http://requirejs.org/docs/optimization.html">the optimizer</a>.
+        With the tick of a flag Mimosa will run the optimizer on every
+        successful JavaScript compile or copy. And you won't need to configure
+        a thing.
+      </p>
+    </div>
+  </div>
+
 </div>
 
+<p class="checkitout">Intrigued? Well, <a href="https://github.com/dbashford/mimosa#installation">try it out!</a>
 
 </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.7.2.min.js"><\/script>')</script>
 
+
+    <script src="js/vendor/bootstrap-collapse.js"></script>
     <!-- scripts concatenated and minified via build script -->
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
