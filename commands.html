@@ -38,7 +38,7 @@
             <li class="active">
               <a href="./commands.html">Commands</a>
             </li>
-            <li class="">
+   <!--         <li class="">
               <a href="./compilers.html">Compilers</a>
             </li>
             <li class="">
@@ -52,7 +52,7 @@
             </li>
             <li class="">
               <a href="./examples.html">Examples</a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
@@ -63,39 +63,493 @@
 
   <header class="jumbotron subhead" id="overview">
     <h1>Commands</h1>
-    <p class="lead">Mimosa has commands for </p>
+    <p class="lead">Interact with Mimosa via the command line with a large set of commands and options</p>
     <div class="subnav">
       <ul class="nav nav-pills">
-        <li><a href="#new">New Project</a></li>
-        <li><a href="#watch">Watch and Compile</a></li>
-        <li><a href="#server">Server</a></li>
-        <li><a href="#install">Install Dependencies</a></li>
-        <li><a href="#virgin">Just Watch</a></li>
-        <li><a href="#build">Bulid</a></li>
-        <li><a href="#config">Copy Config</a></li>
-        <li><a href="#update">Update Install</a></li>
+        <li><a href="#new" title="Create a new project">New Project</a></li>
+        <li><a href="#watch" title="Watch, compile and serve assets">Watch, Compile, Serve</a></li>
+        <li><a href="#clean" title="Clean compiled assets">Clean</a></li>
+        <li><a href="#build" title="One time asset compilation and optimization">Bulid</a></li>
+        <li><a href="#virgin" title="Compile, lint, feedback, noting else">Just Watch</a></li>
+        <li><a href="#install" title="Grab github project code and stick it where you need it">Install Dependencies</a></li>
+        <li><a href="#config" title="Copy Mimosa config to an existing project">Copy Config</a></li>
+        <li><a href="#update" title="Update project depedencies">Update</a></li>
       </ul>
     </div>
   </header>
 
+  <section class="command-list">
+    <section id="new">
+      <div class="page-header">
+        <h1>
+          New Project
+          <small><span class="mim">mimosa</span> <span class="command">new</span> <span class="options">[nameOfProject] [-d/--defaults] [-n/--noserver]</span></small>
+        </h1>
+      </div>
+    </section>
+    <div class="row">
+      <div class="span6">
+        <h2>new</h2>
+
+        <p>The best way to get started with Mimosa is to use it to create a new application/project structure for you. Create a new project like so:</p>
+
+        <pre>$ mimosa new nameOfApplicationHere</pre>
+
+        <p>This will kick off a series of prompts that will allow you to pick out the meta-languages and templating library you'd like to use. When you've finished picking, Mimosa will create a directory at your current location using the name provided as the name of the directory. Inside that directory Mimosa will populate an application skeleton with public and asset directories, as well as the bare essentials for a base <a href="http://expressjs.com/">Express</a> application. You'll have <a href="http://jade-lang.com/">Jade</a> template views, a simple Express <a href="http://expressjs.com/guide.html#routing">router</a> and a server.coffee file that will be used by Mimosa to get Express started.</p>
+
+        <p>The public directory will be empty; it is the destination for your compiled JavaScript and CSS. The assets directory has some example code -- chosen based on the selections you made via the prompts -- to get you started, and has a group of vendor scripts, like require.js.</p>
+
+        <p>The created directory will also contain the configuration file for Mimosa. Almost everything inside of it is commented out, but all the options and explanations for each option are present. The only things that will not be commented out will the javascript, css, and template compilers if you chose something other than the defaults.</p>
+
+        <h3>No Server (-n/--noserver)</h3>
+
+        <p>Should you not need all of the Express stuff, you can give Mimosa a <code class="option">--noserver</code> flag when you create the project. This will only give you the configuration file, the empty public directory, and the assets directory and all of its contents.</p>
+
+        <pre>$ mimosa new nameOfApplicationHere --noserver
+$ mimosa new nameOfApplicationHere -n</pre>
+
+        <h3>Pick the defaults (-d/--defaults)</h3>
+
+        <p>Should you be happy with the defaults (CoffeeScript, Handlebars, and SASS) you can bypass the prompts by providing a <code class="option">--defaults</code> flag.</p>
+
+        <pre>$ mimosa new nameOfApplicationHere --defaults
+$ mimosa new nameOfApplicationHere -d</pre>
+
+      </div>
+      <div class="span6 term">
+        <div class="inner">
+          <p class="prompt">Davids-MacBook-Pro:mim dbashford$ mimosa new foo</p>
+
+          <p class="inst">This is the Mimosa interactive project creation tool.  It will help you configure and set up your project. You will be prompted to pick the meta-languages you would like to use. Should your favorite not be listed, you can add a github issue and we'll look into adding it. (https://github.com/dbashford/mimosa/issues)</p>
+
+          <p class="inst">In case you are unsure which options to pick, the ones with asterisks are Mimosa favorites.</p>
+
+          <p class="inst">To start, please choose your JavaScript meta-language:</p>
+
+          <p>
+            1) None (Raw JS)<br/>
+            2) (*) CoffeeScript - http://coffeescript.org/<br/>
+            3) Iced CoffeeScript - http://maxtaco.github.com/coffee-script/<br/>
+            : 2
+          </p>
+
+          <p class="fb">
+            You chose (*) CoffeeScript - http://coffeescript.org/.
+          </p>
+
+          <p class="inst">
+            Now choose your CSS meta-language:
+          </p>
+
+          <p>
+            1) None (Raw CSS)<br/>
+            2) LESS - http://lesscss.org/<br/>
+            3) Stylus - http://learnboost.github.com/stylus/<br/>
+            4) (*) SASS - http://sass-lang.com/<br/>
+            : 2
+          </p>
+
+          <p class="fb">
+            You chose LESS - http://lesscss.org/.
+          </p>
+
+          <p class="inst">
+            And finally, choose your micro-templating language:
+          </p>
+
+          <p>
+            1) None (No Templating)<br/>
+            2) (*) Dust - https://github.com/linkedin/dustjs/<br/>
+            3) (*) Handlebars - http://handlebarsjs.com/<br/>
+            4) Hogan - http://twitter.github.com/hogan.js/<br/>
+            5) HTML - Just Plain HTML Snippets, no compiling<br/>
+            6) Jade - http://jade-lang.com/<br/>
+            7) LoDash - http://lodash.com/docs#template<br/>
+            8) Underscore - http://underscorejs.org/#template<br/>
+            : 2
+          </p>
+
+          <p class="fb">
+            You chose (*) Dust - https://github.com/linkedin/dustjs/.
+          </p>
+
+          <p class="inst">Creating and setting up your project...</p>
+
+          <p class="logs">
+            23:20:05 - Copying skeleton project into /Users/dbashford/mim/foo<br/>
+            <span class="inst">23:20:05 - Config changed to use selected compilers and to watch default extensions for those compilers.</span><br/>
+            <span class="inst">23:20:05 - You may want to check that the extensions Mimosa will watch match those you intend to use.</span><br/>
+            23:20:05 - Installing node modules<br/>
+            <span class="inst">23:20:09 - New project creation complete!</span><br/>
+            <span class="inst">23:20:09 - Execute 'mimosa watch --server' from inside your project to monitor the file system. then start coding!</span><br/>
+            Davids-MacBook-Pro:mim dbashford$
+          </p>
+        </div>
+      </div>
+    </div>
+    <section id="watch">
+      <div class="page-header">
+        <h1>
+          Watch, Compile, Serve
+          <small><span class="mim">mimosa</span> <span class="command">watch</span> <span class="options">[-s/--server] [-o/--optimize]</span></small>
+        </h1>
+      </div>
+    </section>
+    <div class="row">
+      <div class="span6">
+        <h2>watch</h2>
+
+        <p>Mimosa will watch the configured <code class='option'>watch.sourceDir</code>, by default the assets directory. When files are added, updated, or deleted, the configured compilers will perform necessary actions and keep the <code class='option'>watch.compiledDir</code> updated with compiled/copied assets.</p>
+
+        <p>To start watching, execute:</p>
+
+        <pre>$ mimosa watch</pre>
+
+        <p>When Mimosa starts up, it registers files in your <code class='option'>sourceDir</code> all at once. If you have a very large number of files, 1000 images to copy over for instance, Mimosa may open enough files to cause EMFILE issues. This means that Mimosa has opened up too many files at one time, more files than your system allows to be open at once.</p>
+
+        <p>To combat this, the <code class='option'>watch</code> config has a <code class='option'>throttle</code> property. <code class='option'>throttle</code> is the number of files Mimosa should handle every 100 milliseconds during the initial Mimosa startup and for subsequent file additions. For instance, if you set the number to 200, this means that if you have 1000 files, when Mimosa starts up it will process them in 5 chunks of 200, spaced 100 milliseconds apart. It will do the same if, after Mimosa has started, you add 1000 files with a single copy or paste.</p>
+
+        <p>You may still run into EMFILE issues after setting throttle, and it might take some playing around with the number to get things just right.</p>
+
+        <p>The default for <code class='option'>throttle</code> is 0. When <code class='option'>throttle</code> is set to 0, throttling is disabled and all files are processed immediately.</p>
+
+        <h3>Serve Assets (-s/--server)</h3>
+
+        <p>If you are not already running a server, and you need to serve your assets up, start Mimosa with the server flag.</p>
+
+        <pre>$ mimosa watch --server
+$ mimosa watch -s</pre>
+
+        <p>By default, this will look for and run an Express app located at <code class='option'>server.path</code>. If you used the Mimosa command line to build your new project, and you didn't provide the <code class='option'>--noserver</code> flag, you will have a <code class='option'>server.coffee</code> at the root of your file structure. Mimosa will run the <code class='option'>startServer</code> method in this file. You can leave this file as is if you are simply serving up assets, but this gives you the opportunity to build out an actual Express app should that be your desire.</p>
+
+        <p>You can change to using an embedded default (not-extendable) Express server by changing the <code class='option'>server.useDefaultServer</code> configuration to <code class='option'>true</code>. If you created a project using the <code class='option'>--noserver</code> flag, this will have already been done for you.</p>
+
+        <h3>Serve Optimized Assets (-o/--optimize)</h3>
+
+        <p>Start Mimosa watching with the <code class='option'>--optimize</code> flag turned on and Mimosa will run RequireJS's optimizer on start-up and with every javascript file change. So when you point at either the Express or default server's base URL with optimize flagged, you will be served the result of RequireJS's optimization, packaged with <a href="https://github.com/jrburke/almond">Almond</a>.</p>
+
+        <p>When <code class='option'>--optimize</code> is turned on, Mimosa will also minify your CSS.</p>
+
+        <p>To start up with optimization turned on, execute the following:</p>
+
+        <pre>$ mimosa watch [--server] --optimize
+$ mimosa watch [--server] -o</pre>
+
+      </div>
+      <div class="span6 term">
+        <div class="inner">
+
+          <p>
+            <span class="prompt">Davids-MacBook-Pro:foo dbashford$ mimosa watch --server --optimize</span><br/>
+            09:34:57 - Adding compiler: template/dust-compiler<br/>
+            09:34:57 - Adding compiler: css/less-compiler<br/>
+            09:34:57 - Adding compiler: javascript/coffee-compiler<br/>
+            09:34:57 - Watching /Users/dbashford/mim/foo/assets<br/>
+            <span class="inst">09:34:57 - Compiled/copied [[ /Users/dbashford/mim/foo/public/javascripts/main.js ]]</span><br/>
+            <span class="inst">09:34:57 - Compiled/copied [[ /Users/dbashford/mim/foo/public/stylesheets/style.css ]]</span><br/>
+            <span class="inst">09:34:57 - Compiled/copied [[ /Users/dbashford/mim/foo/public/javascripts/app/example-view.js ]]</span><br/>
+            <span class="inst">09:34:57 - Compiled/copied [[ /Users/dbashford/mim/foo/public/javascripts/vendor/jquery.js ]]</span><br/>
+            <span class="inst">09:34:57 - Compiled/copied [[ /Users/dbashford/mim/foo/public/javascripts/templates.js ]]</span><br/>
+            <span class="inst">09:34:57 - Compiled/copied [[ /Users/dbashford/mim/foo/public/javascripts/vendor/require.js ]]</span><br/>
+            09:34:57 - Beginning requirejs optimization for module [[ main ]]<br/>
+            <span class="inst">09:34:59 - The compiled file [[ /Users/dbashford/mim/foo/public/javascripts/main-built.js ]] is ready for use.</span><br/>
+            09:34:59 - Requirejs optimization complete.<br/>
+            <span class="inst">09:34:59 - Mimosa is starting your server: /Users/dbashford/mim/foo/server.coffee</span><br/>
+               info  - socket.io started<br/>
+          </p>
+        </div>
+      </div>
+    </div>
+    <section id="clean">
+      <div class="page-header">
+        <h1>
+          Clean Compiled Assets
+          <small><span class="mim">mimosa</span> <span class="command">clean</span></small>
+        </h1>
+      </div>
+    </section>
+    <div class="row">
+      <div class="span6">
+        <h2>clean</h2>
+
+        <p>This command will wipe out any files it is responsible for placing into the <code class="option">compiledDir</code>. It makes a pass to clean out the files, and once done, it makes a pass to clean out any directories that are now empty. If for some reason there are files in your <code class="option">compiledDir</code> directory structure that Mimosa didn't place there, they'll be left in place.</p>
+
+        <pre>$ mimosa clean</pre>
+
+      </div>
+      <div class="span6 term">
+        <div class="inner">
+          <p>
+            Davids-MacBook-Pro:foo dbashford$ mimosa clean<br/>
+            <span class="inst">09:45:55 - /Users/dbashford/mim/foo/public has been cleaned.</span><br/>
+            Davids-MacBook-Pro:foo dbashford$
+          </p>
+        </div>
+      </div>
+    </div>
+    <section id="build">
+      <div class="page-header">
+        <h1>
+          One Time Asset Build
+          <small><span class="mim">mimosa</span> <span class="command">build</span> <span class="options">[-o/--optimize] [-r/--removeCombined] [-j/--jade]</span></small>
+        </h1>
+      </div>
+    </section>
+    <div class="row">
+      <div class="span6">
+        <h2>build</h2>
+
+        <p>If you just want to compile a set of assets, and you don't want to start up a watching process to do it, you can use Mimosa's build command.</p>
+
+        <pre>$ mimosa build</pre>
+
+        <p>This will run through your assets and compile any that need compiling, deliver the results to the public directory, and then exit.</p>
+
+        <h3>Optimized Build (-o/--optimize)</h3>
+
+        <p>If you want to build with optimization, provide a <code class="option">--optimize</code> flag. This will compile all the assets, create the requirejs optimized files, and minify your compiled CSS.</p>
+
+        <pre>$ mimosa build --optimize
+$ mimosa build -o</pre>
+
+        <h3>Remove Leftover Files (-r/--removeCombined)</h3>
+
+        <p>When used in conjunction with <code class="option">--optimize</code> the <code class="option">--removeCombined</code> flag will clean up after the optimization. If, when the optimization is complete, you only want the combined optimized files left behind, this is the flag for you. This flag is a simple pass-through to the r.js compiler, which takes a <code class="option">removeCombined</code> flag of its own.</p>
+
+        <p>This must be used with <code class="option">--optimize</code> or Mimosa will error out.</p>
+
+        <pre>$ mimosa build --optimize --removeCombined
+$ mimose build -o -r</pre>
+
+        <h3>Compile the Provided Jade Template (-j/--jade)</h3>
+
+        <p>Should you not be deploying a node/Express app, and you need an .html version of the <code class="option">index.jade</code> that Mimosa provides with its new command, the <code class="option">--jade</code> flag will provide that. The <code class="option">--jade</code> flag will attempt to compile the <code class="option">index.jade</code> file by feeding the template production level settings. <code class="option">env</code> will be set to <code class="option">production</code>. <code class="option">reload</code> set to <code class="option">false</code>. <code class="option">optimize</code> will be set to <code class="option">true</code> if you also provide the optimize flag. <code class="option">title</code> will be set to <code class="option">Mimosa</code>. It is suggested you remove the <code class="option">title</code> variable and hard code your <code class="option">title</code>.</p>
+
+        <p>If the index.jade file is changed to take different variables, or removed or renamed, the jade compilation will fail with warnings explaining the failures.</p>
+
+        <pre>$ mimosa build --jade
+$ mimosa build -j</pre>
+
+      </div>
+      <div class="span6 term">
+        <div class="inner">
+          <p>
+            Davids-MacBook-Pro:foo dbashford$ mimosa build --optimize --removeCombined --jade<br/>
+            10:13:33 - Beginning build<br/>
+            10:13:33 - Attempting to compile index.jade<br/>
+            <span class="inst">10:13:33 - Successfully compiled and wrote compiled index.html file.</span><br/>
+            <span class="inst">10:13:33 - Compiled/copied [[ /Users/dbashford/mim/foo/public/index.html ]]</span><br/>
+            <span class="inst">10:13:33 - Compiled/copied [[ /Users/dbashford/mim/foo/public/javascripts/main.js ]]</span><br/>
+            <span class="inst">10:13:33 - Compiled/copied [[ /Users/dbashford/mim/foo/public/stylesheets/style.css ]]</span><br/>
+            <span class="inst">10:13:33 - Compiled/copied [[ /Users/dbashford/mim/foo/public/javascripts/app/example-view.js ]]</span><br/>
+            <span class="inst">10:13:33 - Compiled/copied [[ /Users/dbashford/mim/foo/public/javascripts/vendor/require.js ]]</span><br/>
+            <span class="inst">10:13:33 - Compiled/copied [[ /Users/dbashford/mim/foo/public/javascripts/vendor/jquery.js ]]</span><br/>
+            <span class="inst">10:13:33 - Compiled/copied [[ /Users/dbashford/mim/foo/public/javascripts/templates.js ]]</span><br/>
+            10:13:33 - Beginning requirejs optimization for module [[ main ]]<br/>
+            <span class="inst">10:13:35 - The compiled file [[ /Users/dbashford/mim/foo/public/javascripts/main-built.js ]] is ready for use.</span><br/>
+            10:13:35 - Requirejs optimization complete.<br/>
+            <span class="inst">10:13:35 - Finished build</span><br/>
+            Davids-MacBook-Pro:foo dbashford$
+          </p>
+        </div>
+      </div>
+    </div>
+    <section id="virgin">
+      <div class="page-header">
+        <h1>
+          Just Watch, Nothing Else
+          <small><span class="mim">mimosa</span> <span class="command">virgin</span></small>
+        </h1>
+      </div>
+    </section>
+    <div class="row">
+      <div class="span6">
+        <h2>virgin</h2>
+
+        <p>Because, after all, a virgin mimosa is just orange juice.</p>
+
+        <pre>$ mimosa virgin</pre>
+
+        <p>This command is just the watching, compiling, linting and notifications. No server, no optimizations, no writing the output. Use this if you've already got an application framework, you don't need files served, and you don't need optimizations. But you do want to know if something doesn't compile before you reload the page, and you do want to introduce linting to your workflow.</p>
+
+      </div>
+      <div class="span6 term">
+        <div class="inner">
+          <p>
+            Davids-MacBook-Pro:foo dbashford$ mimosa virgin<br/>
+            10:19:56 - Adding compiler: template/dust-compiler<br/>
+            10:19:56 - Adding compiler: css/less-compiler<br/>
+            10:19:56 - Adding compiler: javascript/coffee-compiler<br/>
+            10:19:56 - Watching /Users/dbashford/mim/foo/assets<br/>
+            <span class="inst">10:19:56 - Compiled [[ /Users/dbashford/mim/foo/public/index.html ]]</span><br/>
+            <span class="inst">10:19:56 - Compiled [[ /Users/dbashford/mim/foo/public/javascripts/main.js ]]</span><br/>
+            <span class="inst">10:19:56 - Compiled [[ /Users/dbashford/mim/foo/public/stylesheets/style.css ]]</span><br/>
+            <span class="inst">10:19:56 - Compiled [[ /Users/dbashford/mim/foo/public/javascripts/vendor/jquery.js ]]</span><br/>
+            <span class="inst">10:19:56 - Compiled [[ /Users/dbashford/mim/foo/public/javascripts/vendor/require.js ]]</span><br/>
+            <span class="inst">10:19:56 - Compiled [[ /Users/dbashford/mim/foo/public/javascripts/app/example-view.js ]]</span><br/>
+            <span class="inst">10:19:56 - Compiled [[ /Users/dbashford/mim/foo/public/javascripts/templates.js ]]</span><br/>
+          </p>
+        </div>
+      </div>
+    </div>
+    <section id="install">
+      <div class="page-header">
+        <h1>
+          Install Dependencies
+          <small><span class="mim">mimosa</span> <span class="command">install</span> <span class="options">[-n/--noamd]</span></small>
+        </h1>
+      </div>
+    </section>
+    <div class="row">
+      <div class="span6">
+        <h2>install</h2>
+
+        <pre>$ mimosa install [libraryName]</pre>
+
+        <p>The <code class="option">install</code> command will use Volo to install dependencies for you. Mimosa will first ask where you want to place the dependency, then it will use <a href="http://volojs.org/">Volo</a> to go fetch it from GitHub. See the <a href="https://github.com/volojs/volo">Volo documentation</a> for more details.</p>
+
+        <pre>$ mimosa install jquery</pre>
+
+        <h3>Install Non-AMD dependencies (-n/--noamd)</h3>
+
+        <p>The only Volo option exposed by Mimosa at this time is the ability to turn on and off whether you are looking for an AMD or non-AMD version. By default Mimosa will set the install to AMD. But if you wish a non-AMD version of a library, provide a <code class="option">--noamd</code> flag.</p>
+
+        <pre>$ mimosa install backbone --noamd</pre>
+
+      </div>
+      <div class="span6 term">
+        <div class="inner">
+          <p>
+            Davids-MacBook-Pro:foo dbashford$ mimosa install backbone
+          </p>
+
+          <p class="inst">
+            In which directory would you like to install this library?
+          </p>
+
+          <p>
+            1) javascripts<br/>
+            2) javascripts/app<br/>
+            3) javascripts/app/template<br/>
+            4) javascripts/vendor<br/>
+            : 4
+          </p>
+
+          <p class="fb">
+            You chose javascripts/vendor.
+          </p>
+
+          <p>
+            10:47:57 - Beginning install...<br/>
+            Using github repo "amdjs/backbone" for "backbone"...<br/>
+            Downloading: https://raw.github.com/amdjs/backbone/0.9.2/backbone.js<br/>
+            Using github repo "jquery/jquery" for "jquery"...<br/>
+            Downloading: http://code.jquery.com/jquery-1.8.0.js<br/>
+            Using github repo "amdjs/underscore" for "underscore"...<br/>
+            Downloading: https://nodeload.github.com/amdjs/underscore/zipball/1.3.3<br/>
+            10:48:09 -
+            <span class="inst">Installed github:jquery/jquery/1.8.0 at javascripts/vendor/jquery.js</span><br/>
+            <span class="inst">AMD dependency name: vendor/jquery</span><br/>
+            <span class="inst">Installed github:amdjs/underscore/1.3.3 at javascripts/vendor/underscore.js</span><br/>
+            <span class="inst">AMD dependency name: vendor/underscore</span><br/>
+            <span class="inst">Installed github:amdjs/backbone/0.9.2 at javascripts/vendor/backbone.js</span><br/>
+            <span class="inst">AMD dependency name: vendor/backbone</span><br/>
+            <span class="inst">Install Complete!</span><br/>
+            Davids-MacBook-Pro:foo dbashford$
+          </p>
+        </div>
+      </div>
+    </div>
+    <section id="config">
+      <div class="page-header">
+        <h1>
+          Copy Config
+          <small><span class="mim">mimosa</span> <span class="command">config</span></small>
+        </h1>
+      </div>
+    </section>
+    <div class="row">
+      <div class="span6">
+        <h2>config</h2>
+
+        <pre>$ mimosa config</pre>
+
+        <p>If you've already got a project and want to use Mimosa with it, this command will copy the default configuration into whatever directory you are in. You'll likely have some configuration to update to point Mimosa at your source and compiled directories.</p>
+
+      </div>
+      <div class="span6 term">
+        <div class="inner">
+          <p>
+            Davids-MacBook-Pro:bar dbashford$ mimosa config<br/>
+            <span class="inst">10:41:34 - Copied default config file into current directory.</span><br/>
+            Davids-MacBook-Pro:bar dbashford$
+          </p>
+        </div>
+      </div>
+    </div>
+    <section id="update">
+      <div class="page-header">
+        <h1>
+          Update Project Dependencies
+          <small><span class="mim">mimosa</span> <span class="command">update</span></small>
+        </h1>
+      </div>
+    </section>
+    <div class="row">
+      <div class="span6">
+        <h2>update</h2>
+
+        <p>If you installed an application using the <code class="option">new</code> command, you may want to keep your application up to date with the Mimosa skeleton as it evolves and advances.</p>
+
+        <p>Use the <code class="option">install</code> command to update the node packages that Mimosa installed inside your application when it was created and to get any new libraries it has included. This command saves you needing to update and keep current the packages installed at the outset.</p>
+
+        <p>For now Mimosa will not attempt to update any of the other assets it delivers (routes, example skeleton files, etc) because many of them may have significantly changed from when they were created.</p>
+
+        <p>Mimosa will first run <code class="option">npm uninstall</code> for each of the skeleton libraries already in place in your project, and then it will follow up with an <code class="option">npm install</code> on each removed library and each new library that wasn't there originally.</p>
+
+        <pre>$ mimosa update</pre>
+
+      </div>
+      <div class="span6 term">
+        <div class="inner">
+          <p>
+            Davids-MacBook-Pro:foo dbashford$ mimosa update<br/>
+            11:14:09 - Un-installing node package. express:3.0.0beta4<br/>
+            11:14:09 - Un-installing node package. jade:>= 0.0.1<br/>
+            11:14:09 - Un-installing node package. watch-connect:0.3.4<br/>
+            11:14:09 - Un-installing node package. gzippo:git://github.com/dbashford/gzippo.git<br/>
+            <span class="inst">11:14:10 - Uninstalling successful</span><br/>
+            11:14:10 - Installing node package: express:3.0.0beta4<br/>
+            11:14:10 - Installing node package: jade:>= 0.0.1<br/>
+            11:14:10 - Installing node package: watch-connect:0.3.4<br/>
+            11:14:10 - Installing node package: gzippo:git://github.com/dbashford/gzippo.git<br/>
+            <span class="inst">11:14:14 - Installs successful</span><br/>
+            <span class="inst">11:14:14 - Finished.  You are all up to date!</span><br/>
+            Davids-MacBook-Pro:foo dbashford$
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.7.2.min.js"><\/script>')</script>
-    <script src="js/vendor/bootstrap-collapse.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.7.2.min.js"><\/script>')</script>
+<script src="js/vendor/bootstrap-collapse.js"></script>
+<script src="js/vendor/bootstrap-scrollspy.js"></script>
 
-    <!-- scripts concatenated and minified via build script -->
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
-    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-    <!-- end scripts -->
+<!-- scripts concatenated and minified via build script -->
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<!-- end scripts -->
 
-    <script>
-        var _gaq=[['_setAccount','UA-33737130-1'],['_trackPageview']];
-        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-        s.parentNode.insertBefore(g,s)}(document,'script'));
-    </script>
+<script>
+    var _gaq=[['_setAccount','UA-33737130-1'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
 
 </body>
 </html>
