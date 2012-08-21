@@ -536,3 +536,8 @@ i {
   color:blue;
   font-weight:bold;
 }
+
+.demoapps ul {
+  list-style: none;
+  margin-left: 0;
+}
