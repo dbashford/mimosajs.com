@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Getting Started - Mimosa</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="css/main.css"> -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" >
+  <link rel="stylesheet" href="css/bootstrap-responsive.min.css" >
+  <link rel="stylesheet" href="css/app.css">
+
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
+</head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li class="">
+              <a href="./index.html">Mimosa</a>
+            </li>
+            <li class="active">
+              <a href="./started.html">Getting Started</a>
+            </li>
+            <li class="">
+              <a href="./commands.html">Commands</a>
+            </li>
+   <!--         <li class="">
+              <a href="./compilers.html">Compilers</a>
+            </li>
+            <li class="">
+              <a href="./server.html">Server</a>
+            </li>
+            <li class="">
+              <a href="./require.html">RequireJS + Optimization</a>
+            </li>
+            <li class="">
+              <a href="./misc.html">Misc Goodness</a>
+            </li>
+            <li class="">
+              <a href="./examples.html">Examples</a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container main">
+
+  <header class="jumbotron subhead" id="overview">
+    <h1>Getting Started</h1>
+    <p class="lead">Installation, and first steps. You are just minutes away from coding.</p>
+    <div class="subnav">
+      <ul class="nav nav-pills">
+        <li><a href="#install" title="Create a new project">Install Mimosa</a></li>
+        <li><a href="#quick" title="Get started right now">Quick Start</a></li>
+        <li><a href="#demoapps" title="Use a demo app">Demo Apps</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="command-list">
+    <section id="install">
+      <div class="page-header">
+        <h1>
+          Installation
+          <small><span class="options">it's a piece of cake </span></small>
+        </h1>
+      </div>
+      <h2>1) node.js</h2>
+      <p>Mimosa is written in <a href="http://nodejs.org/">node.js</a> and you'll need to have it installed.  You'll want to <a href="http://nodejs.org/download/">download and install</a> the latest and greatest version.  Anything over 8.0 will do.  The node.js install comes with the <a href="https://npmjs.org/">Node Package Manager (npm)</a>.</p>
+      <h2>2) mimosa</h2>
+      <p>You use npm to install node packages.</p>
+      <pre>$ npm install -g mimosa</pre>
+      <p>The <code class="option">-g</code> flag installs Mimosa globally so it can be run from the command line anywhere.</p>
+      <h2>3) (You're done)</h2>
+    </section>
+    <section id="quick">
+      <div class="page-header">
+        <h1>
+          Quick Start
+          <small><span class="options">you'll be coding soon </span></small>
+        </h1>
+      </div>
+      <h2>1) Create a new application</h2>
+
+      <p>The easiest way to get started with Mimosa is to use it to create a new application skeleton. By default, Mimosa will create a basic <a href="http://expressjs.com/">Express</a> app configured to match your desired meta-langauges.</p>
+
+      <p>First navigate to a directory within which you want to place your application. Create the default app:</p>
+
+      <pre>$ mimosa new nameOfApplicationHere</pre>
+
+      <p>Follow the prompts and choose the meta-languages you'd like to use.  If you aren't sure which ones to choose, that's perfect.  Mimosa is a great tool to learn these languages.</p>
+
+      <h2>2) Start the server</h2>
+
+      <p>Change into the directory that was created and execute:</p>
+
+      <pre>$ mimosa watch --server</pre>
+
+      <p>In your browser navigate to <a href="http://localhost:3000">http://localhost:3000</a> to see the sample app.</p>
+
+      <p>Mimosa will watch the assets directory of your new project and compile the changes you make over to the public directory. The web app serves up the assets in the public directory.</p>
+
+      <h2>3) Start Coding
+
+    </section>
+    <section id="demoapps">
+      <div class="page-header">
+        <h1>
+          Demo Applications
+        </h1>
+      </div>
+      <p>Before starting your own application, play around with someone else's!  Download the source from github and use Mimosa's command line interface to play with the code and get comfy with both how Mimosa works and with the technologies inside the demo apps.
+      <h2>AngularFun <small>The <a href="https://github.com/dbashford/AngularFunMimosa">AngularFun</a> project is a mid-sized CoffeeScript, LESS, AngularJS, Bootstrap application.</small></h2>
+
+    </section>
+
+  </section>
+
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.7.2.min.js"><\/script>')</script>
+<script src="js/vendor/bootstrap-collapse.js"></script>
+<script src="js/vendor/bootstrap-scrollspy.js"></script>
+
+<!-- scripts concatenated and minified via build script -->
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<!-- end scripts -->
+
+<script>
+    var _gaq=[['_setAccount','UA-33737130-1'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+</body>
+</html>
