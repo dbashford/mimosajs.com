@@ -41,10 +41,10 @@
             <li class="active">
               <a href="./commands.html">Commands</a>
             </li>
-   <!--         <li class="">
+            <li class="">
               <a href="./compilers.html">Compilers</a>
             </li>
-            <li class="">
+   <!--        <li class="">
               <a href="./server.html">Server</a>
             </li>
             <li class="">
@@ -102,11 +102,11 @@
 
         <p>The public directory will be empty; it is the destination for your compiled JavaScript and CSS. The assets directory has some example code -- chosen based on the selections you made via the prompts -- to get you started, and has a group of vendor scripts, like require.js.</p>
 
-        <p>The created directory will also contain the configuration file for Mimosa. Almost everything inside of it is commented out, but all the options and explanations for each option are present. The only things that will not be commented out will the javascript, css, and template compilers if you chose something other than the defaults.</p>
+        <p>The created directory will also contain the configuration file for Mimosa. Almost everything inside of it is commented out, but all the options and explanations for each option are present. The only things that will not be commented out will be the javascript, css, and template compilers if you chose something other than the defaults.</p>
 
         <h3>No Server (-n/--noserver)</h3>
 
-        <p>Should you not need all of the Express stuff, you can give Mimosa a <code class="option">--noserver</code> flag when you create the project. This will only give you the configuration file, the empty public directory, and the assets directory and all of its contents.</p>
+        <p>Should you not need a server, you can give Mimosa a <code class="option">--noserver</code> flag when you create the project. This will only give you the configuration file, the empty public directory, and the assets directory and all of its contents.  But it will not give you any of the Express artifacts.</p>
 
         <pre>$ mimosa new nameOfApplicationHere --noserver
 $ mimosa new nameOfApplicationHere -n</pre>
@@ -202,15 +202,15 @@ $ mimosa new nameOfApplicationHere -d</pre>
       <div class="span6">
         <h2>watch</h2>
 
-        <p>Mimosa will watch the configured <code class='option'>watch.sourceDir</code>, by default the assets directory. When files are added, updated, or deleted, the configured compilers will perform necessary actions and keep the <code class='option'>watch.compiledDir</code> updated with compiled/copied assets.</p>
+        <p>Mimosa will watch the configured <code class='option'>watch.sourceDir</code>, by default the <code class='option'>assets</code> directory. When files are added, updated, or deleted, the configured compilers will execute Mimosa's workflow and keep the <code class='option'>watch.compiledDir</code> updated with compiled/copied assets.</p>
 
         <p>To start watching, execute:</p>
 
         <pre>$ mimosa watch</pre>
 
-        <p>When Mimosa starts up, it registers files in your <code class='option'>sourceDir</code> all at once. If you have a very large number of files, 1000 images to copy over for instance, Mimosa may open enough files to cause EMFILE issues. This means that Mimosa has opened up too many files at one time, more files than your system allows to be open at once.</p>
+        <p>When Mimosa starts up, it registers files in your <code class='option'>sourceDir</code> all at once. If you have a very large number of files, 1000 images to copy over for instance, Mimosa may open enough files to cause <a href="http://lists.apple.com/archives/darwin-kernel/2005/Mar/msg00002.html">EMFILE</a> issues. This means that Mimosa has opened up too many files at one time, more files than your system allows to be open at once.</p>
 
-        <p>To combat this, the <code class='option'>watch</code> config has a <code class='option'>throttle</code> property. <code class='option'>throttle</code> is the number of files Mimosa should handle every 100 milliseconds during the initial Mimosa startup and for subsequent file additions. For instance, if you set the number to 200, this means that if you have 1000 files, when Mimosa starts up it will process them in 5 chunks of 200, spaced 100 milliseconds apart. It will do the same if, after Mimosa has started, you add 1000 files with a single copy or paste.</p>
+        <p>To combat this, the <code class='option'>watch</code> config has a <code class='option'>throttle</code> property. <code class='option'>throttle</code> is the number of files Mimosa should handle every 100 milliseconds during the initial Mimosa startup and for subsequent file additions. For instance, if you set the number to 200, and if you have 1000 files, when Mimosa starts up it will process them in 5 chunks of 200, spaced 100 milliseconds apart. It will do the same if, after Mimosa has started, you add 1000 files with a single copy/paste.</p>
 
         <p>You may still run into EMFILE issues after setting throttle, and it might take some playing around with the number to get things just right.</p>
 
@@ -223,9 +223,9 @@ $ mimosa new nameOfApplicationHere -d</pre>
         <pre>$ mimosa watch --server
 $ mimosa watch -s</pre>
 
-        <p>By default, this will look for and run an Express app located at <code class='option'>server.path</code>. If you used the Mimosa command line to build your new project, and you didn't provide the <code class='option'>--noserver</code> flag, you will have a <code class='option'>server.coffee</code> at the root of your file structure. Mimosa will run the <code class='option'>startServer</code> method in this file. You can leave this file as is if you are simply serving up assets, but this gives you the opportunity to build out an actual Express app should that be your desire.</p>
+        <p>By default, this will look for and run a piece of code located at <code class='option'>server.path</code>. If you used the Mimosa command line to build your new project, and you didn't provide the <code class='option'>--noserver</code> flag, you will have a <code class='option'>server.coffee</code> at the root of your file structure that will start up an Express app. Mimosa will run the <code class='option'>startServer</code> method in this file. You can leave this file as is if you are simply serving up assets, but this gives you the opportunity to build out a much larger app, with numerous routes and views, should that be your goal.</p>
 
-        <p>You can change to using an embedded default (not-extendable) Express server by changing the <code class='option'>server.useDefaultServer</code> configuration to <code class='option'>true</code>. If you created a project using the <code class='option'>--noserver</code> flag, this will have already been done for you.</p>
+        <p>You can change to using an embedded default (non-extendable) Express server by changing the <code class='option'>server.useDefaultServer</code> configuration to <code class='option'>true</code>. If you created a project using the <code class='option'>--noserver</code> flag, this setting will have already been changed for you.</p>
 
         <h3>Serve Optimized Assets (-o/--optimize)</h3>
 
@@ -317,9 +317,9 @@ $ mimosa build -o</pre>
 
         <h3>Remove Leftover Files (-r/--removeCombined)</h3>
 
-        <p>When used in conjunction with <code class="option">--optimize</code> the <code class="option">--removeCombined</code> flag will clean up after the optimization. If, when the optimization is complete, you only want the combined optimized files left behind, this is the flag for you. This flag is a simple pass-through to the r.js compiler, which takes a <code class="option">removeCombined</code> flag of its own.</p>
+        <p>When used in conjunction with <code class="option">--optimize</code> the <code class="option">--removeCombined</code> flag will clean up after the optimization. If, when the optimization is complete, you only want the combined optimized files left behind, this is the flag for you. This flag is a simple pass-through to the <a href="https://github.com/jrburke/r.js/blob/master/build/example.build.js#L244">r.js compiler</a>, which takes a <code class="option">removeCombined</code> flag of its own.</p>
 
-        <p>This must be used with <code class="option">--optimize</code> or Mimosa will error out.</p>
+        <p>The <code class="option">--removeCombined</code> flag must be used with the <code class="option">--optimize</code> flag or Mimosa will error out.</p>
 
         <pre>$ mimosa build --optimize --removeCombined
 $ mimose build -o -r</pre>
@@ -409,7 +409,7 @@ $ mimosa build -j</pre>
 
         <pre>$ mimosa install [libraryName]</pre>
 
-        <p>The <code class="option">install</code> command will use Volo to install dependencies for you. Mimosa will first ask where you want to place the dependency, then it will use <a href="http://volojs.org/">Volo</a> to go fetch it from GitHub. See the <a href="https://github.com/volojs/volo">Volo documentation</a> for more details.</p>
+        <p>The <code class="option">install</code> command will use <a href="https://github.com/volojs/volo">Volo</a> to install dependencies for you. Mimosa will first ask where you want to place the dependency, then it will use Volo to go fetch it from GitHub. See the Volo documentation for more details.</p>
 
         <pre>$ mimosa install jquery</pre>
 
@@ -504,7 +504,7 @@ $ mimosa build -j</pre>
 
         <p>If you installed an application using the <code class="option">new</code> command, you may want to keep your application up to date with the Mimosa skeleton as it evolves and advances.</p>
 
-        <p>Use the <code class="option">update</code> command to update the node packages that Mimosa installed inside your application when it was created and to get any new libraries it has included. This command saves you needing to update and keep current the packages installed at the outset.</p>
+        <p>Use the <code class="option">update</code> command to update the node packages that Mimosa installed inside your application when it was created and to get any new libraries it has included. This command saves you the trouble of needing to keep track of versions of libraries yourself and ensures you'll keep up to date with the versions Mimosa uses.</p>
 
         <p>For now Mimosa will not attempt to update any of the other assets it delivers (routes, example skeleton files, etc) because many of them may have significantly changed from when they were created.</p>
 

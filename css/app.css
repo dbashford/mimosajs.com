@@ -464,6 +464,10 @@ i {
 
 }
 
+.command-list {
+  padding-bottom:20px;
+}
+
 .command-list .command {
   color:red;
 }
@@ -490,6 +494,9 @@ i {
   margin-bottom:15px;
 }
 
+.compilers  .command {
+  color:orange;
+}
 
 .term {
   background-color: #F5F5F5;
@@ -540,6 +547,14 @@ i {
 .term .fb {
   color:blue;
   font-weight:bold;
+}
+
+.term .warn {
+  color:#FF9933;
+}
+
+.compilers .term {
+  margin-top:0;
 }
 
 .demoapps ul {
