@@ -521,6 +521,11 @@ i {
   .term {
     margin: 0px;
   }
+
+  .page-header {
+    margin-bottom:5px;
+  }
+
 }
 
 
