@@ -187,7 +187,72 @@
           Micro-Template Compilers
         </h1>
       </div>
-      TBD
+      <p>Listed below are the different micro-templating libraries Mimosa has built in. For performance reasons, it is best to pre-compile your templates on the server, and serve up those pre-compiled templates. Mimosa will pre-compile your templates for you. As with the CSS and JavaScript meta-languages, your micro-templates will be compiled when saved.
+
+      <p>In all cases, the resulting compiled templates will be merged into a single file for use in the client. Within that file will be @sourceUrl like information to allow you to easily track errors back to specific files in your codebase. The name and location of that single file is configurable <code class="option">(compilers.template.outputFileName)</code>, but by default it is kept at <code class="option">javascripts/templates.js</code>. When this file is injected via require, the behavior differs per library, see below.
+
+      <p>For each templating langauge, the injected javascript file provides a JSON object of templates, keyed by the name of the the template originated in.</p>
+
+      <p>Most of the libraries require a client side version to run the compiled templates. Mimosa will handle including that library for you. It will place an AMD wrapped version of the library inside the javascripts/vendor library and reference it from the compile template file.</p>
+
+      <h2>Handlebars <small><span class="mim">handlebars</span> <span class="command">["hbs", "handlebars"]</span></small></h2>
+      <p><a href="http://handlebarsjs.com/">Handlebars</a> is the default templating langauge. To access a Handlebars template originating from a file named "example.hbs", do this...</p>
+
+      <pre>var html = templates.example({})</pre>
+
+      <p>...passing in JSON data the template needs to render.</p>
+
+      <p>Handlebars also provides the ability to code reusable helper methods in pure JavaScript. You can code those in the meta-language of your choosing inside the <code class="option">compilers.template.helperFiles</code> files. The helpers and the templates are all pulled together via requirejs.</p>
+
+      <p>Because all of the templates are compiled together, partials, <code class="option">{{example-partial}}</code>, are immediately available without any extra work.</p>
+
+      <h2>Dust <small><span class="mim">dust</span> <span class="command">["dust"]</span></small></h2>
+
+      <p>To access a <a href="https://github.com/linkedin/dustjs/">Dust</a> template originating from a file named "example.dust", do this...</p>
+
+      <pre>templates.render('example', {}, (err, html) -> $(element).append(html))</pre>
+
+      <p>You can reference dust partials, <code class="option">{>example_partial/}</code>, and they will be available because all the templates are merged together.</p>
+
+      <h2>Hogan <small><span class="mim">hogan</span> <span class="command">["hog", "hogan"]</span></small></h2>
+
+      <p>To access a <a href="http://twitter.github.com/hogan.js/">Hogan</a> template originating from a file named "example.hogan", do this...</p>
+
+      <pre>templates.example.render({}, templates)</pre>
+
+      <p>Note the passing of the templates object into the render method. This isn't necessary, but if you use partials, it is all you'll need to do to make partials work since all partials are included in the compiled template file.  Hogan's partials are available as normal, <code class="option">{{>example-partial}}</code>.
+      </p>
+
+      <h2>Jade <small><span class="mim">jade</span> <span class="command">["jade"]</span></small></h2>
+
+      <p>To access a <a href="http://jade-lang.com/">Jade</a> template originating from a file named "example.jade", do this...</p>
+
+      <pre>var html = templates.example({})</pre>
+
+      <p>Including a partial is a piece of cake: <code class="option">include example-partial</code>.
+
+      <h2>Underscore <small><span class="mim">underscore</span> <span class="command">["tpl", "underscore"]</span></small></h2>
+
+      <p>To access an <a href="http://underscorejs.org/">Underscore</a> template originating from a file named "example.tpl", do this...</p>
+
+      <pre>var html = templates.example({})</pre>
+
+      <h2>Lodash <small><span class="mim">lodash</span> <span class="command">["tpl", "lodash"]</span></small></h2>
+
+      <p>To access a <a href="http://lodash.com/">LoDash</a> template originating from a file named "example.lodash", do this...</p>
+
+      <pre>var html = templates.example({})</pre>
+
+      <h2>HTML <small><span class="mim">html</span> <span class="command">["template"]</span></small></h2>
+
+      <p>If you just want to use plain HTML templates, you can do that too.</p>
+
+      <p>To access a plain HTML template originating from a file named "example.template", do this...</p>
+
+      <pre>var html = templates.example</pre>
+
+      <p>Full disclosure: Mimosa uses Underscore under the hood to handle getting your plain HTML templates to the browser as strings. In this case, the Underscore compiler has been made so that it'll not understand it's usual delimiters for code or interpolation, and the resulting compiled Underscore templates are delivered as self-executing.</p>
+
     </section>
     <section id="copy">
       <div class="page-header">
