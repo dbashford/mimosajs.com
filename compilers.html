@@ -192,10 +192,17 @@
     <section id="copy">
       <div class="page-header">
         <h1>
-          Copy "Compiler"
+          Copy "Compiler" <small><span class="command">["js", "css", "png", "jpg", "jpeg", "gif", "html", "eot", "svg", "ttf", "woff", "otf", "yaml"] </span></small>
         </h1>
       </div>
-      TBD
+      <p>Have some legacy JavaScript code that you don't have the time to convert to CoffeeScript? Or maybe you are using jQuery UI and have all sorts of images embedded within your stylesheet directories? Mimosa maintains a list of extensions that it will simply copy from your assets directory to your public directory.  Because of the copy compiler, your images, plain JavaScript, CSS and more can live in the same place as the rest of your code and you do not have to worry about those files being left out.</p>
+
+      <p>Additionally, the CSS and JavaScript (.css and .js) that the copy compiler picks up will be run through <a href="http://www.jshint.com/">jshint</a> and <a href="http://csslint.net/">csslint</a> just like your compiled code does. Linting for copied assets can be turned on and off separately from compiled assets.  Also, often the .css and .js are vendor assets, and those also have their own configuration separate from both the compiled and copied assets.  Any assets contained in a <code class="option">vendor</code> directory are treated as vendor assets.
+      </p>
+
+      <p>If you find yourself needing to update the default list of extensions for the copy compiler, consider <a href="https://github.com/dbashford/mimosa/issues">submitting an issue</a> to have your new extensions added to Mimosa's defaults.
+      </p>
+
     </section>
     <section id="more">
       <div class="page-header">
