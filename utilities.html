@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Utilities - Mimosa</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="css/main.css"> -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" >
+  <link rel="stylesheet" href="css/bootstrap-responsive.min.css" >
+  <link rel="stylesheet" href="css/app.css">
+
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
+</head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li class="">
+              <a href="./index.html">Mimosa</a>
+            </li>
+            <li class="">
+              <a href="./started.html">Getting Started</a>
+            </li>
+            <li class="">
+              <a href="./commands.html">Commands</a>
+            </li>
+            <li class="">
+              <a href="./compilers.html">Compilers</a>
+            </li>
+            <li class="active">
+              <a href="./utilities.html">Utilities</a>
+            </li>
+   <!--     <li class="">
+              <a href="./require.html">RequireJS + Optimization</a>
+            </li>
+            <li class="">
+              <a href="./examples.html">Examples</a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container main">
+
+  <header class="jumbotron subhead" id="overview">
+    <h1>Utilities</h1>
+    <p class="lead">All the little things that add up to win.</p>
+    <div class="subnav">
+      <ul class="nav nav-pills">
+        <li><a href="#lint" title="Lint your assets">Linting</a></li>
+        <li><a href="#reload" title="Never refresh your browser again">Live Reload</a></li>
+        <li><a href="#notify" title="Find out right away when thigs go horribly wrong">Notifications</a></li>
+        <li><a href="#gzip" title="Keep your assets nice and small">GZip</a></li>
+        <li><a href="#cache" title="Keep your assets nice and small">Cache Busting</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="command-list">
+    <section id="install">
+      <div class="page-header">
+        <h1>
+          Linting
+          <small><span class="options">keep your code idiomatic</span></small>
+        </h1>
+      </div>
+      <div class="row">
+        <div class="span8">
+          <p>To 'lint' your code is to check it for common mistakes or variances from the idiom. Mimosa will automatically lint all of the CSS and JavaScript it moves from your source directories to your compiled directories. Any errors or warnings that come out of that linting will be printed to the console but will not stop or fail the compilation. Inside the <code class="option">mimosa-config</code> is the snippet to the right which controls the linting. As with all of the default config, this is entirely commented out as the defaults are already enforced.</p>
+
+          <h2>Linting Compiled Assets</h2>
+
+          <p>The <code class="option">compiled</code> block controls whether or not linting is enabled for compiled code. So if you've written SASS, LESS or Stylus, when Mimosa compiles it, Mimosa will send the resulting CSS through a linting process. Similarly for the JavaScript meta-languages, Mimosa will lint the resulting JavaScript.</p>
+
+          <h2>Linting Copied Assets</h2>
+
+          <p>If you've chosen to code js/css by hand, or if you've included a library written in js/css, the <code class="option">copied</code> settings determine whether or not to lint those files.</p>
+
+        </div>
+
+        <div class="span4">
+<pre># lint:
+  # compiled:
+    # javascript:true
+    # css:true
+  # copied:
+    # javascript: true
+    # css: true
+  # vendor:
+    # javascript: false
+    # css: false
+  # rules:
+    # js:
+      # plusplus: true
+    # css:
+      # floats: false</pre>
+        </div>
+      </div>
+
+      <h2>Linting Vendor Assets</h2>
+
+      <p>Mimosa also allows you to control the linting of code contained in your <code class="option">vendor</code> directory. Linting is, by default, disabled for vendor assets, that is, those assets living inside a <code class="option">/vendor/</code> directory. Vendor libraries often break from the idiom, or use hacks, to solve complex browser issues for you. For example, when run through CSSLint Bootstrap causes 400+ warnings.</p>
+
+      <p>If you want vendor asset hinting turned on, simply enable the setting and switch the flags to true.</p>
+
+      <h2>Lint Rules</h2>
+
+      <p>The <code class="option">rules</code> block is your opportunity to override and change the linting rules for each of the linting tools. Example overrides are provided in the default configuration. Those are examples, they are not actually overrides.</p>
+
+      <h2>JSHint, CSSLint</h2>
+
+      <p>Both of the lint/hinters come with default configurations that Mimosa uses. Here are links to the tools, as well as to the configuration for those tools.</p>
+
+      <ul>
+        <li><a href="http://www.jshint.com/">JSHint</a>, <a href="http://www.jshint.com/">JSHint Rules Definitions</a></li>
+        <li><a href="http://csslint.net/">CSSLint</a>, <a href="https://github.com/stubbornella/csslint/wiki/Rules">CSSLint Rules Definitions</a></li>
+      </ul>
+
+    </section>
+    <section id="quick">
+      <div class="page-header">
+        <h1>
+          Live Reload
+          <small><span class="options">so simple, such a time saver</span></small>
+        </h1>
+      </div>
+
+      <p>The default application you are provided comes built with live reload included. Live reload will immediately reload your web page any time an asset is compiled or one of your views changes. So, for instance, if you change some LESS code, the instant it is compiled, and the compiled .css file is written to your <code class="option">compiledDir</code>, your browser will update and your CSS updates will be displayed.</p>
+
+      <p>This sounds like a fairly small nice-to-have feature, but it quickly becomes one of the handiest time savers in your workflow.  Mimosa and Live Reload are often fast enough to get the page reloaded before you have the opportunity to get back over to the browser.</p>
+
+      <p>For those using the server code delivered to them via <code class="option">mimosa new</code>, you have the ability to tweak how the reload works in the <code class="option">server.coffee</code>. The library used for providing the live reload functionality is <a href="https://github.com/Filirom1/watch-connect">watch-connect</a>, and the GitHub page has an explanation of the options you can pass in. By default the reload will fire whenever the code in the <code class="option">watch.compiledDir</code> changes, and whenever the code in the <code class="option">view</code> directory of the application changes. You have the ability to add more directories, and to exclude files from causing a reload using regexes.</p>
+
+      <p>To perform the live reload, the default application is built to include two extra libraries, including socket.io, to talk to the server and determine when to reload the page. If you wish to turn this off, and thereby not include the two extra files, go into the <code class="option">mimosa-config.coffee</code> file and update <code class="option">server.useReload</code> to <code class="option">false</code>. These two extra files do not get wrapped up by RequireJS whether you are using live reload or not.</p>
+
+    </section>
+    <section id="notify">
+      <div class="page-header">
+        <h1>
+          Notifications - Immediate Feedback
+          <small><span class="options">don't find out later something is broken</span></small>
+        </h1>
+      </div>
+
+      <p>Compilation of your assets is kicked off as soon as a file is saved. Mimosa will write to the console the outcome of every compilation event. Should compilation fail, the reason will be included in the log message.</p>
+
+      <div class="row">
+        <div class="span8">
+          <h2>Growl</h2>
+
+          <p>If you have <a href="http://growl.info/">Growl</a> installed and turned on, for each failure or successful compile of your meta-CSS/JS/Templates, you'll get a Growl notification. In the event Growl gets too spammy for you, you can turn off Growl notifications for successful compiles. Growl has its own setting in Mimosa, the defaults are to the right.</p>
+
+          <p>If you <a href="./commands.html#clean">clean</a> your project and then start up the <a href="./commands.html#watch">watcher</a>, Mimosa will compile every asset you have. If you have dozens or hundreds of assets, you may not want Growl notifications for each successful compile during this startup. Startup success notifications are off by default. You can turn on by uncommenting the config and setting the <code class="option">growl.onStartup</code> flag to true.</p>
+
+        </div>
+        <div class="span4">
+<pre># growl:
+  # onStartup: false
+  # onSuccess:
+    # javascript: true
+    # css: true
+    # template: true
+    # copy: true</pre>
+        </div>
+      </div>
+
+      <p>You can also choose to turn off post-startup success notifications for compiled javascript, css, and templates, as well as for copied assets by altering the <code class="option">growl.onSuccess</code> flats. These notifications are on by default.</p>
+
+    </section>
+
+    <section id="gzip">
+      <div class="page-header">
+        <h1>
+          GZip Your Assets
+          <small><span class="options">because size matters</span></small>
+        </h1>
+      </div>
+      <p>All your static assets will be served up <a href="http://en.wikipedia.org/wiki/Gzip">GZip</a>-ed! 'nuff said.</p>
+    </section>
+    <section id="cache" >
+      <div class="page-header">
+        <h1>
+          Cache Busting
+          <small><span class="options">no more shift-f5 and pray</span></small>
+        </h1>
+      </div>
+      <p>No forcing a refresh to bypass caching issues. All JavaScript and CSS files are cache-busted while you are developing.</p>
+    </section>
+  </section>
+
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.7.2.min.js"><\/script>')</script>
+<script src="js/vendor/bootstrap-collapse.js"></script>
+<script src="js/vendor/bootstrap-scrollspy.js"></script>
+
+<!-- scripts concatenated and minified via build script -->
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<!-- end scripts -->
+
+<script>
+    var _gaq=[['_setAccount','UA-33737130-1'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+</body>
+</html>

@@ -561,3 +561,13 @@ i {
   list-style: none;
   margin-left: 0;
 }
+
+.term .help {
+  padding-left:20px;
+}
+
+.help .command {
+  color:blue;
+  font-weight:bold;
+  padding-left:10px;
+}

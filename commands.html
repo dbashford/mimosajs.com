@@ -44,17 +44,14 @@
             <li class="">
               <a href="./compilers.html">Compilers</a>
             </li>
-   <!--        <li class="">
-              <a href="./server.html">Server</a>
-            </li>
             <li class="">
+              <a href="./utilities.html">Utilities</a>
+            </li>
+  <!--      <li class="">
               <a href="./require.html">RequireJS + Optimization</a>
             </li>
             <li class="">
-              <a href="./misc.html">Misc Goodness</a>
-            </li>
-            <li class="">
-              <a href="./examples.html">Examples</a>
+             <a href="./examples.html">Examples</a>
             </li> -->
           </ul>
         </div>
@@ -75,8 +72,8 @@
         <li><a href="#build" title="One time asset compilation and optimization">Build</a></li>
         <li><a href="#virgin" title="Compile, lint, feedback, noting else">Just Watch</a></li>
         <li><a href="#install" title="Grab github project code and stick it where you need it">Install Dependencies</a></li>
-        <li><a href="#config" title="Copy Mimosa config to an existing project">Copy Config</a></li>
         <li><a href="#update" title="Update project depedencies">Update</a></li>
+        <li><a href="#misc" title="Copy Mimosa config to an existing project">Misc</a></li>
       </ul>
     </div>
   </header>
@@ -463,33 +460,6 @@ $ mimosa build -j</pre>
         </div>
       </div>
     </div>
-    <section id="config">
-      <div class="page-header">
-        <h1>
-          Copy Config
-          <small><span class="mim">mimosa</span> <span class="command">config</span></small>
-        </h1>
-      </div>
-    </section>
-    <div class="row">
-      <div class="span6">
-        <h2>config</h2>
-
-        <pre>$ mimosa config</pre>
-
-        <p>If you've already got a project and want to use Mimosa with it, this command will copy the default configuration into whatever directory you are in. You'll likely have some configuration to update to point Mimosa at your source and compiled directories.</p>
-
-      </div>
-      <div class="span6 term">
-        <div class="inner">
-          <p>
-            Davids-MacBook-Pro:bar dbashford$ mimosa config<br/>
-            <span class="inst">10:41:34 - Copied default config file into current directory.</span><br/>
-            Davids-MacBook-Pro:bar dbashford$
-          </p>
-        </div>
-      </div>
-    </div>
     <section id="update">
       <div class="page-header">
         <h1>
@@ -531,6 +501,103 @@ $ mimosa build -j</pre>
             Davids-MacBook-Pro:foo dbashford$
           </p>
         </div>
+      </div>
+    </div>
+    <section id="misc">
+      <div class="page-header">
+        <h1>
+          Miscellaneous Commands and Options
+        </h1>
+      </div>
+    </section>
+    <div class="row">
+      <div class="span6">
+        <h2>config</h2>
+
+        <pre>$ mimosa config</pre>
+
+        <p>If you've already got a project and want to use Mimosa with it, this command will copy the default configuration into whatever directory you are in. You'll likely have some configuration to update to point Mimosa at your source and compiled directories.</p>
+
+      </div>
+      <div class="span6 term">
+        <div class="inner">
+          <p>
+            Davids-MacBook-Pro:bar dbashford$ mimosa config<br/>
+            <span class="inst">10:41:34 - Copied default config file into current directory.</span><br/>
+            Davids-MacBook-Pro:bar dbashford$
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span6">
+        <h3>-h/--help</h3>
+
+        <p>Mimosa includes extensive help documentation on the command line for each of the commands. Give them a peek if you can't remember an option or can't remember what a command does. Use --help or -h to bring up help. </p>
+
+        <pre>$ mimosa --help
+$ mimosa new --help
+$ mimosa [command] --help</pre>
+
+      </div>
+      <div class="span6 term">
+        <div class="inner">
+          <p>Davids-MacBook-Pro:foo dbashford$ mimosa new --help</p>
+
+          <div class="help">
+            <p>Usage: new [options] [name]</p>
+
+            <p>Options:</p>
+
+            <div style="padding-left:10px">
+                -h, --help      output usage information<br/>
+                -n, --noserver  do not include express in the application setup<br/>
+                -d, --defaults  bypass prompts and go with Mimosa defaults (CoffeeScript, SASS, Handlebars)<br/>
+                -D, --debug     run in debug mode<br/>
+            </div>
+
+            <br/>
+
+            <p class="inst">The new command will take you through a series of questions regarding what meta-lanauges/compilers you would like in your project.  Once you have answered the questions, Mimosa will create a directory using the name provided, and place a project skeleton inside of it.  That project skeleton will by default include a basic Express app, with sample routes and views.  It will also include some sample assets for the meta-lanauges/compilers you selected.</p>
+
+            <p class="command">$ mimosa new [nameOfProject]</p>
+
+            <p class="inst">If you wish to copy the project skeleton into your current directory instead of into a new one leave off the then leave off name.</p>
+
+            <p class="command">$ mimosa new</p>
+
+            <p class="inst">Pass a 'noserver' flag to not include the basic Express app.  With this set up, if you choose to have Mimosa serve up your assets, it will do so with an embedded Mimosa Express app, and not with one inside your project.</p>
+
+            <p class="command">
+                $ mimosa new [name] --noserver<br/>
+                $ mimosa new --noserver<br/>
+                $ mimosa new [name] -n<br/>
+                $ mimosa new -n
+            </p>
+
+            <p class="inst">If you are happy with the defaults (CoffeeScript, SASS, Handlebars), you can bypass the prompts by providing a 'defaults' flag.</p>
+
+            <p class="command">
+                $ mimosa new [name] --defaults<br/>
+                $ mimosa new [name] -d
+            </p>
+          </div>
+          <p>Davids-MacBook-Pro:foo dbashford$</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span6">
+        <h3>-D/--debug</h3>
+
+        <p>All Mimosa commands have a debug mode that will print detailed logs to the console for everything Mimosa is doing.</p>
+
+        <pre>$ mimosa [command] --debug
+$ mimosa [command] -D</pre>
+
+      </div>
+      <div class="span6">
+
       </div>
     </div>
   </section>
