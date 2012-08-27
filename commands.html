@@ -191,7 +191,7 @@ $ mimosa new nameOfApplicationHere -d</pre>
       <div class="page-header">
         <h1>
           Watch, Compile, Serve
-          <small><span class="mim">mimosa</span> <span class="command">watch</span> <span class="options">[-s/--server] [-o/--optimize]</span></small>
+          <small><span class="mim">mimosa</span> <span class="command">watch</span> <span class="options">[-s/--server] [-o/--optimize] [-m/--minify]</span></small>
         </h1>
       </div>
     </section>
@@ -212,30 +212,8 @@ $ mimosa new nameOfApplicationHere -d</pre>
         <p>You may still run into EMFILE issues after setting throttle, and it might take some playing around with the number to get things just right.</p>
 
         <p>The default for <code class='option'>throttle</code> is 0. When <code class='option'>throttle</code> is set to 0, throttling is disabled and all files are processed immediately.</p>
-
-        <h3>Serve Assets (-s/--server)</h3>
-
-        <p>If you are not already running a server, and you need to serve your assets up, start Mimosa with the server flag.</p>
-
-        <pre>$ mimosa watch --server
-$ mimosa watch -s</pre>
-
-        <p>By default, this will look for and run a piece of code located at <code class='option'>server.path</code>. If you used the Mimosa command line to build your new project, and you didn't provide the <code class='option'>--noserver</code> flag, you will have a <code class='option'>server.coffee</code> at the root of your file structure that will start up an Express app. Mimosa will run the <code class='option'>startServer</code> method in this file. You can leave this file as is if you are simply serving up assets, but this gives you the opportunity to build out a much larger app, with numerous routes and views, should that be your goal.</p>
-
-        <p>You can change to using an embedded default (non-extendable) Express server by changing the <code class='option'>server.useDefaultServer</code> configuration to <code class='option'>true</code>. If you created a project using the <code class='option'>--noserver</code> flag, this setting will have already been changed for you.</p>
-
-        <h3>Serve Optimized Assets (-o/--optimize)</h3>
-
-        <p>Start Mimosa watching with the <code class='option'>--optimize</code> flag turned on and Mimosa will run RequireJS's optimizer on start-up and with every javascript file change. So when you point at either the Express or default server's base URL with optimize flagged, you will be served the result of RequireJS's optimization, packaged with <a href="https://github.com/jrburke/almond">Almond</a>.</p>
-
-        <p>When <code class='option'>--optimize</code> is turned on, Mimosa will also minify your CSS.</p>
-
-        <p>To start up with optimization turned on, execute the following:</p>
-
-        <pre>$ mimosa watch [--server] --optimize
-$ mimosa watch [--server] -o</pre>
-
       </div>
+
       <div class="span6 term">
         <div class="inner">
 
@@ -260,6 +238,49 @@ $ mimosa watch [--server] -o</pre>
         </div>
       </div>
     </div>
+
+    <h3>Serve Assets (-s/--server)</h3>
+
+    <p>If you are not already running a server, and you need to serve your assets up, start Mimosa with the server flag.</p>
+
+    <pre>$ mimosa watch --server
+$ mimosa watch -s</pre>
+
+    <p>By default, this will look for and run a piece of code located at <code class='option'>server.path</code>. If you used the Mimosa command line to build your new project, and you didn't provide the <code class='option'>--noserver</code> flag, you will have a <code class='option'>server.coffee</code> at the root of your file structure that will start up an Express app. Mimosa will run the <code class='option'>startServer</code> method in this file. You can leave this file as is if you are simply serving up assets, but this gives you the opportunity to build out a much larger app, with numerous routes and views, should that be your goal.</p>
+
+    <p>You can change to using an embedded default (non-extendable) Express server by changing the <code class='option'>server.useDefaultServer</code> configuration to <code class='option'>true</code>. If you created a project using the <code class='option'>--noserver</code> flag, this setting will have already been changed for you.</p>
+
+    <h3>Serve Optimized Assets (-o/--optimize)</h3>
+
+    <p>Start Mimosa watching with the <code class='option'>--optimize</code> flag turned on and Mimosa will run RequireJS's optimizer on start-up and with every javascript file change. So when you point at either the Express or default server's base URL with optimize flagged, you will be served the result of RequireJS's optimization, packaged with <a href="https://github.com/jrburke/almond">Almond</a>.</p>
+
+    <p>When <code class='option'>--optimize</code> is turned on, Mimosa will also minify your CSS.</p>
+
+    <p>To start up with optimization turned on, execute the following:</p>
+
+    <pre>$ mimosa watch [--server] --optimize
+$ mimosa watch [--server] -o</pre>
+
+    <h3>Minify Assets (-m/--minify)</h3>
+
+    <p>Start Mimosa watching with the <code class='option'>--minify</code> flag turned on and Mimosa will use <a href="https://github.com/mishoo/UglifyJS">Uglify</a> to compress your JavaScript files as they are compiled and before they are written.  <code class='option'>--minify</code> has its own setting in the <code class='option'>mimosa-config</code> file for choosing which files to exclude from minification.</p>
+
+    <p>To start up with minification turned on, execute the following:</p>
+
+    <pre>$ mimosa watch [--server] --minify
+$ mimosa watch [--server] -m</pre>
+
+    <h3>Minify and Optimize Assets (-mo/--minify --optimize)</h3>
+
+    <pre>$ mimosa watch [--server] --minify --optimize
+$ mimosa watch [--server] -mo</pre>
+
+    <p>When combined, the <code class='option'>--minify</code> and <code class='option'>--optimize</code> options give you powerful control over the minification strategy of your application.  The RequireJS optimizer by itself is often good enough to handle minifying, compressing and pulling your modules into single files; however, the occasional file does not take kindly to being run through Uglify and will be broken when compressed.  The RequireJS optimizer is all or none, you cannot choose to omit a file that isn't being compressed correctly. So if your application doesn't run because of errors in Uglifying, you are forced to inject other steps into your project's life cycle to use both the optimizer and have minified files.
+
+    <p>When <code class='option'>--minify</code> and <code class='option'>--optimize</code> are used together, RequireJS minification is turned off and the RequireJS optimizer is just used to pull all of your application's files together into the same file.  Mimosa will Uglify your files itself first, before calling the optimizer, and Mimosa gives you the opportunity to not Uglify whatever files are not making it through Uglifying in working order.</p>
+
+    <p>The <a href="https://github.com/dbashford/AngularFunMimosa">AngularFunMimosa</a> demo project is a perfect example of a project that benefits from this functionality. <a href="https://github.com/dbashford/AngularFunMimosa/commit/1816016a3444ab960dd79c2f65b63c6bf9fdc488#L1L9">This commit</a> from that project shows the effect of the minify+optimize feature being added to Mimosa. Previously optimization was turned off via Mimosa's RequireJS overrides, because when RequireJS Uglified the code, it also broke it. When this Mimosa feature was added, the RequireJS override was removed, and the file that was not surviving Uglifying, <code class='option'>main.js</code>, was simply omitted from minification.  What comes out the other side is a fully RequireJS optimized and zipped up file that is fully compressed with the exception of the file that cannot be minified.</p>
+
     <section id="clean">
       <div class="page-header">
         <h1>
@@ -291,7 +312,7 @@ $ mimosa watch [--server] -o</pre>
       <div class="page-header">
         <h1>
           One Time Asset Build
-          <small><span class="mim">mimosa</span> <span class="command">build</span> <span class="options">[-o/--optimize] [-r/--removeCombined] [-j/--jade]</span></small>
+          <small><span class="mim">mimosa</span> <span class="command">build</span> <span class="options">[-o/--optimize] [-m/--minify] [-r/--removeCombined] [-j/--jade]</span></small>
         </h1>
       </div>
     </section>
@@ -312,23 +333,10 @@ $ mimosa watch [--server] -o</pre>
         <pre>$ mimosa build --optimize
 $ mimosa build -o</pre>
 
-        <h3>Remove Leftover Files (-r/--removeCombined)</h3>
+        <h3>Minify Assets (-m/--minify)</h3>
 
-        <p>When used in conjunction with <code class="option">--optimize</code> the <code class="option">--removeCombined</code> flag will clean up after the optimization. If, when the optimization is complete, you only want the combined optimized files left behind, this is the flag for you. This flag is a simple pass-through to the <a href="https://github.com/jrburke/r.js/blob/master/build/example.build.js#L244">r.js compiler</a>, which takes a <code class="option">removeCombined</code> flag of its own.</p>
+        <p>If you want to build with minified code, run the <code class='option'>build</code> command with the <code class='option'>--minify</code> flag turned on. Mimosa will use <a href="https://github.com/mishoo/UglifyJS">Uglify</a> to compress your JavaScript files as they are compiled and before they are written.  <code class='option'>--minify</code> has its own setting in the <code class='option'>mimosa-config</code> file for choosing which files to exclude from minification.</p>
 
-        <p>The <code class="option">--removeCombined</code> flag must be used with the <code class="option">--optimize</code> flag or Mimosa will error out.</p>
-
-        <pre>$ mimosa build --optimize --removeCombined
-$ mimose build -o -r</pre>
-
-        <h3>Compile the Provided Jade Template (-j/--jade)</h3>
-
-        <p>Should you not be deploying a node/Express app, and you need an .html version of the <code class="option">index.jade</code> that Mimosa provides with its new command, the <code class="option">--jade</code> flag will provide that. The <code class="option">--jade</code> flag will attempt to compile the <code class="option">index.jade</code> file by feeding the template production level settings. <code class="option">env</code> will be set to <code class="option">production</code>. <code class="option">reload</code> set to <code class="option">false</code>. <code class="option">optimize</code> will be set to <code class="option">true</code> if you also provide the optimize flag. <code class="option">title</code> will be set to <code class="option">Mimosa</code>. It is suggested you remove the <code class="option">title</code> variable and hard code your <code class="option">title</code>.</p>
-
-        <p>If the index.jade file is changed to take different variables, or removed or renamed, the jade compilation will fail with warnings explaining the failures.</p>
-
-        <pre>$ mimosa build --jade
-$ mimosa build -j</pre>
 
       </div>
       <div class="span6 term">
@@ -354,6 +362,31 @@ $ mimosa build -j</pre>
         </div>
       </div>
     </div>
+
+   <h3>Minify and Optimize Assets (-mo/--minify --optimize)</h3>
+
+    <pre>$ mimosa build --minify --optimize
+$ mimosa build -mo</pre>
+
+    <p>Need a bit more control over the minification strategy of your application?  Check the section above under <code class='option'>watch</code> to see the benefit of using <code class='option'>--minify</code> and <code class='option'>--optimize</code> together.
+
+    <h3>Remove Leftover Files (-r/--removeCombined)</h3>
+
+    <p>When used in conjunction with <code class="option">--optimize</code> the <code class="option">--removeCombined</code> flag will clean up after the optimization. If, when the optimization is complete, you only want the combined optimized files left behind, this is the flag for you. This flag is a simple pass-through to the <a href="https://github.com/jrburke/r.js/blob/master/build/example.build.js#L244">r.js compiler</a>, which takes a <code class="option">removeCombined</code> flag of its own.</p>
+
+    <p>The <code class="option">--removeCombined</code> flag must be used with the <code class="option">--optimize</code> flag or Mimosa will error out.</p>
+
+    <pre>$ mimosa build --optimize --removeCombined
+$ mimosa build -o -r</pre>
+
+   <h3>Compile the Provided Jade Template (-j/--jade)</h3>
+
+    <p>Should you not be deploying a node/Express app, and you need an .html version of the <code class="option">index.jade</code> that Mimosa provides with its new command, the <code class="option">--jade</code> flag will provide that. The <code class="option">--jade</code> flag will attempt to compile the <code class="option">index.jade</code> file by feeding the template production level settings. <code class="option">env</code> will be set to <code class="option">production</code>. <code class="option">reload</code> set to <code class="option">false</code>. <code class="option">optimize</code> will be set to <code class="option">true</code> if you also provide the optimize flag. <code class="option">title</code> will be set to <code class="option">Mimosa</code>. It is suggested you remove the <code class="option">title</code> variable and hard code your <code class="option">title</code>.</p>
+
+    <p>If the index.jade file is changed to take different variables, or removed or renamed, the jade compilation will fail with warnings explaining the failures.</p>
+
+    <pre>$ mimosa build --jade
+$ mimosa build -j</pre>
     <section id="virgin">
       <div class="page-header">
         <h1>
