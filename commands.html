@@ -83,7 +83,7 @@
       <div class="page-header">
         <h1>
           New Project
-          <small><span class="mim">mimosa</span> <span class="command">new</span> <span class="options">[nameOfProject] [-d/--defaults] [-n/--noserver]</span></small>
+          <small><span class="mim">mimosa</span> <span class="command">new</span> <span class="options">[nameOfProject] [-d/--defaults]</span></small>
         </h1>
       </div>
     </section>
@@ -95,18 +95,15 @@
 
         <pre>$ mimosa new nameOfApplicationHere</pre>
 
-        <p>This will kick off a series of prompts that will allow you to pick out the meta-languages and templating library you'd like to use. When you've finished picking, Mimosa will create a directory at your current location using the name provided as the name of the directory. Inside that directory Mimosa will populate an application skeleton with public and asset directories, as well as the bare essentials for a base <a href="http://expressjs.com/">Express</a> application. You'll have <a href="http://jade-lang.com/">Jade</a> template views, a simple Express <a href="http://expressjs.com/guide.html#routing">router</a> and a server.coffee file that will be used by Mimosa to get Express started.</p>
+        <p>This will kick off a series of prompts that will allow you to pick out the meta-languages, templating library and server you'd like to use. When you've finished picking, Mimosa will create a directory at your current location using the name provided as the name of the directory. Inside that directory Mimosa will populate an application skeleton with public and asset directories. The skeleton will include JavaScript, CSS, and template web assets for the selections you made.</p>
 
-        <p>The public directory will be empty; it is the destination for your compiled JavaScript and CSS. The assets directory has some example code -- chosen based on the selections you made via the prompts -- to get you started, and has a group of vendor scripts, like require.js.</p>
+        <p>If you chose to have a server stack of your own, it will also include the bare essentials for a base <a href="http://expressjs.com/">Express</a> application, including <a href="http://jade-lang.com/">Jade</a> template views, a simple <a href="http://expressjs.com/guide.html#routing">router</a> and a file that will be used by Mimosa to get Express started. That code will be also be delivered in meta-language of your choice.</p>
+
+        <p>If you choose to not have a server of your own, Mimosa will serve your assets for you.  Mimosa provides some configuration options for its embedded server to make not having your own server a little less painful than it would be otherwise.</p>
+
+        <p>The public directory that is created for you will be empty; it is the destination for your compiled JavaScript and CSS. The assets directory has some example code to get you started, and has a group of vendor scripts, like require.js.</p>
 
         <p>The created directory will also contain the configuration file for Mimosa. Almost everything inside of it is commented out, but all the options and explanations for each option are present. The only things that will not be commented out will be the javascript, css, and template compilers if you chose something other than the defaults.</p>
-
-        <h3>No Server (-n/--noserver)</h3>
-
-        <p>Should you not need a server, you can give Mimosa a <code class="option">--noserver</code> flag when you create the project. This will only give you the configuration file, the empty public directory, and the assets directory and all of its contents.  But it will not give you any of the Express artifacts.</p>
-
-        <pre>$ mimosa new nameOfApplicationHere --noserver
-$ mimosa new nameOfApplicationHere -n</pre>
 
         <h3>Pick the defaults (-d/--defaults)</h3>
 
@@ -120,17 +117,19 @@ $ mimosa new nameOfApplicationHere -d</pre>
         <div class="inner">
           <p class="prompt">Davids-MacBook-Pro:mim dbashford$ mimosa new foo</p>
 
-          <p class="inst">This is the Mimosa interactive project creation tool.  It will help you configure and set up your project. You will be prompted to pick the meta-languages you would like to use. Should your favorite not be listed, you can add a github issue and we'll look into adding it. (https://github.com/dbashford/mimosa/issues)</p>
+          <p class="inst">Mimosa will guide you through project creation. You will be prompted to pick the JavaScript meta-language, CSS meta-language, and micro-templating library you would like to use. For more about those choices, see http://mimosajs.com/compilers.html.  You will also be prompted to pick the server you would like to use. If you pick no server, Mimosa will serve your assets for you.</p>
 
-          <p class="inst">In case you are unsure which options to pick, the ones with asterisks are Mimosa favorites.</p>
+          <p class="inst">For all of the technologies, if your favorite is not an option, you can add a GitHub issue and we'll look into adding it. (https://github.com/dbashford/mimosa/issues)</p>
+
+          <p class="inst">If you are unsure which options to pick, the ones with asterisks are Mimosa favorites. Feel free to hit the web to research your selections, Mimosa will be here when you get back.</p>
 
           <p class="inst">To start, please choose your JavaScript meta-language:</p>
 
           <p>
-            1) None (Raw JS)<br/>
-            2) (*) CoffeeScript - http://coffeescript.org/<br/>
-            3) Iced CoffeeScript - http://maxtaco.github.com/coffee-script/<br/>
-            : 2
+            1) (*) CoffeeScript - http://coffeescript.org/<br/>
+            2) Iced CoffeeScript - http://maxtaco.github.com/coffee-script/<br/>
+            3) None (Raw JavaScript)<br/>
+            : 1
           </p>
 
           <p class="fb">
@@ -142,35 +141,49 @@ $ mimosa new nameOfApplicationHere -d</pre>
           </p>
 
           <p>
-            1) None (Raw CSS)<br/>
-            2) LESS - http://lesscss.org/<br/>
-            3) Stylus - http://learnboost.github.com/stylus/<br/>
-            4) (*) SASS - http://sass-lang.com/<br/>
-            : 2
+            1) LESS - http://lesscss.org/<br/>
+            2) None (Raw CSS)<br/>
+            3) (*) SASS - http://sass-lang.com/<br/>
+            4) Stylus - http://learnboost.github.com/stylus/<br/>
+            : 4
           </p>
 
           <p class="fb">
-            You chose LESS - http://lesscss.org/.
+            You chose Stylus - http://learnboost.github.com/stylus/.
           </p>
 
           <p class="inst">
-            And finally, choose your micro-templating language:
+            And choose your micro-templating language:
           </p>
 
           <p>
-            1) None (No Templating)<br/>
-            2) (*) Dust - https://github.com/linkedin/dustjs/<br/>
-            3) (*) Handlebars - http://handlebarsjs.com/<br/>
-            4) Hogan - http://twitter.github.com/hogan.js/<br/>
-            5) HTML - Just Plain HTML Snippets, no compiling<br/>
-            6) Jade - http://jade-lang.com/<br/>
-            7) LoDash - http://lodash.com/docs#template<br/>
+            1) (*) Dust - https://github.com/linkedin/dustjs/<br/>
+            2) (*) Handlebars - http://handlebarsjs.com/<br/>
+            3) Hogan - http://twitter.github.com/hogan.js/<br/>
+            4) HTML - Just Plain HTML Snippets, no compiling<br/>
+            5) Jade - http://jade-lang.com/<br/>
+            6) LoDash - http://lodash.com/docs#template<br/>
+            7) None (No Templating)<br/>
             8) Underscore - http://underscorejs.org/#template<br/>
-            : 2
+            : 3
           </p>
 
           <p class="fb">
-            You chose (*) Dust - https://github.com/linkedin/dustjs/.
+            You chose Hogan - http://twitter.github.com/hogan.js/.
+          </p>
+
+          <p class="inst">
+            And finally choose your server technology:
+          </p>
+
+          <p>
+            1) (*) Express - http://expressjs.com/<br/>
+            2) None - Mimosa will serve your application for you<br/>
+            : 1
+          </p>
+
+          <p class="fb">
+            You chose (*) Express - http://expressjs.com/.
           </p>
 
           <p class="inst">Creating and setting up your project...</p>

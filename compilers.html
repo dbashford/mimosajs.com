@@ -132,7 +132,7 @@
           </div>
         </div>
       </div>
-      <p>Mimosa currently supports the following JavaScript Meta-Languages:</p>
+      <p>Mimosa currently supports the following JavaScript Meta-Languages.  Next to the name of each is the mimosa-config setting and the list of default extensions Mimosa recognizes.</p>
 
       <h2>CoffeeScript <small><span class="mim">coffee</span> <span class="command">['coffee']</span></small></h2>
       <p><a href="http://coffeescript.org/">CoffeeScript</a> is the Mimosa default. If you do not alter Mimosa's configuration, Mimosa will look for files ending in .coffee and treat them as CoffeeScript files.</p>
@@ -169,6 +169,8 @@
 
       <p>For the most part this isn't an Earth-shattering feature, and for most of the compilers, compilation time is so fast it doesn't matter.  Users of SASS via JRuby will be greatly appreciative though, that Mimosa isn't going to recompile everything every time they save their SASS code.</p>
 
+      <p>The list of CSS compilers follows.  Next to the name of each is the mimosa-config setting and the list of default extensions Mimosa recognizes.</p>
+
       <h2>SASS w/Compass <small><span class="mim">sass</span> <span class="command">["scss", "sass"]</span></small></h2>
       <p><a href="http://sass-lang.com/">SASS</a> w/<a href="http://compass-style.org/">Compass</a> is the Mimosa default. If you do not alter Mimosa's configuration, Mimosa will look for files ending in .sass or .scss and treat them as SASS files.  SASS <a href="http://sass-lang.com/">(install)</a> and Compass <a href="http://compass-style.org/install/">(install)</a> are Ruby gems and there isn't yet a full implementation of them in nodejs, so Mimosa is dependent on you having installed them yourself.  Compass isn't a necessary install, but Mimosa will quickly complain if you attempt to configure it to use SASS and do not have it installed.</p>
 
@@ -192,6 +194,8 @@
 
       <p>Most of the libraries require a client side version to run the compiled templates. Mimosa will handle including that library for you. It will place an AMD wrapped version of the library inside the javascripts/vendor library and reference it from the compiled template file.</p>
 
+      <p>Next to the name of each is the mimosa-config setting and the list of default extensions Mimosa recognizes.</p>
+
       <h2>Handlebars <small><span class="mim">handlebars</span> <span class="command">["hbs", "handlebars"]</span></small></h2>
       <p><a href="http://handlebarsjs.com/">Handlebars</a> is the default templating langauge. To access a Handlebars template originating from a file named "example.hbs", do this...</p>
 
@@ -203,6 +207,8 @@
 
       <p>Because all of the templates are compiled together, partials, <code class="option">{{example-partial}}</code>, are immediately available without any extra work.</p>
 
+      <p>Mimosa keeps an AMD wrapped version of Handlebars that it writes to   <code class="option">assets/javascripts/vendor/handlebars.js</code> directory as part of compilation, so there is no need to include the library yourself.</p>
+
       <h2>Dust <small><span class="mim">dust</span> <span class="command">["dust"]</span></small></h2>
 
       <p>To access a <a href="https://github.com/linkedin/dustjs/">Dust</a> template originating from a file named "example.dust", do this...</p>
@@ -210,6 +216,8 @@
       <pre>templates.render('example', {}, (err, html) -> $(element).append(html))</pre>
 
       <p>You can reference dust partials, <code class="option">{>example_partial/}</code>, and they will be available because all the templates are merged together.</p>
+
+      <p>Mimosa keeps an AMD wrapped version of Dust that it writes to <code class="option">assets/javascripts/vendor/dust.js</code> directory as part of compilation, so there is no need to include the library yourself.</p>
 
       <h2>Hogan <small><span class="mim">hogan</span> <span class="command">["hog", "hogan"]</span></small></h2>
 
@@ -220,6 +228,8 @@
       <p>Note the passing of the templates object into the render method. This isn't necessary, but if you use partials, it is all you'll need to do to make partials work since all partials are included in the compiled template file.  Hogan's partials are available as normal, <code class="option">{{>example-partial}}</code>.
       </p>
 
+      <p>Mimosa keeps an AMD wrapped version of Hogan that it writes to <code class="option">assets/javascripts/vendor/hogan-template.js</code> directory as part of compilation, so there is no need to include the library yourself.</p>
+
       <h2>Jade <small><span class="mim">jade</span> <span class="command">["jade"]</span></small></h2>
 
       <p>To access a <a href="http://jade-lang.com/">Jade</a> template originating from a file named "example.jade", do this...</p>
@@ -228,17 +238,23 @@
 
       <p>Including a partial is a piece of cake: <code class="option">include example-partial</code>.
 
+      <p>Mimosa keeps an AMD wrapped version of Jade that it writes to <code class="option">assets/javascripts/vendor/jade-runtime.js</code> directory as part of compilation, so there is no need to include the library yourself.</p>
+
       <h2>Underscore <small><span class="mim">underscore</span> <span class="command">["tpl", "underscore"]</span></small></h2>
 
       <p>To access an <a href="http://underscorejs.org/">Underscore</a> template originating from a file named "example.tpl", do this...</p>
 
       <pre>var html = templates.example({})</pre>
 
+      <p>Mimosa keeps an AMD wrapped version of Underscore that it writes to <code class="option">assets/javascripts/vendor/underscore.js</code> directory as part of compilation, so there is no need to include the library yourself if you are just using it for templating.  However, Underscore is a popular library for reasons other than templating, and it is often included in the requirejs <code class="option">config.paths</code> as something like this <code class="option">underscore:'vendor/underscore'</code>.  If you have done this and are using Underscore templating too, this will cause issues with requirejs loading your depedencies. See <a href="https://github.com/dbashford/mimosa/issues/48">this issue</a> for help.
+
       <h2>Lodash <small><span class="mim">lodash</span> <span class="command">["tpl", "lodash"]</span></small></h2>
 
       <p>To access a <a href="http://lodash.com/">LoDash</a> template originating from a file named "example.lodash", do this...</p>
 
       <pre>var html = templates.example({})</pre>
+
+      <p>Mimosa keeps an AMD wrapped version of Lodash that it writes to <code class="option">assets/javascripts/vendor/lodash.js</code> directory as part of compilation, so there is no need to include the library yourself.
 
       <h2>HTML <small><span class="mim">html</span> <span class="command">["template"]</span></small></h2>
 
