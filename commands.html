@@ -95,7 +95,7 @@
 
         <pre>$ mimosa new nameOfApplicationHere</pre>
 
-        <p>This will kick off a series of prompts that will allow you to pick out the meta-languages, templating library and server you'd like to use. When you've finished picking, Mimosa will create a directory at your current location using the name provided as the name of the directory. Inside that directory Mimosa will populate an application skeleton with public and asset directories. The skeleton will include JavaScript, CSS, and template web assets for the selections you made.</p>
+        <p>This will kick off a series of prompts that will allow you to pick out the meta-languages, templating library and server you'd like to use. When you've finished picking, Mimosa will create a directory at your current location using the name provided as the name of the directory. Inside that directory Mimosa will populate an application skeleton inside an asset directory. The skeleton will include JavaScript, CSS, and template web assets for the selections you made.</p>
 
         <p>If you chose to have a server stack of your own, it will also include the bare essentials for a base <a href="http://expressjs.com/">Express</a> application, including <a href="http://jade-lang.com/">Jade</a> template views, a simple <a href="http://expressjs.com/guide.html#routing">router</a> and a file that will be used by Mimosa to get Express started. That code will be also be delivered in meta-language of your choice.</p>
 
@@ -204,7 +204,7 @@ $ mimosa new nameOfApplicationHere -d</pre>
       <div class="page-header">
         <h1>
           Watch, Compile, Serve
-          <small><span class="mim">mimosa</span> <span class="command">watch</span> <span class="options">[-s/--server] [-o/--optimize] [-m/--minify]</span></small>
+          <small><span class="mim">mimosa</span> <span class="command">watch</span> <span class="options">[-s/--server] [-c/--clean] [-o/--optimize] [-m/--minify]</span></small>
         </h1>
       </div>
     </section>
@@ -263,6 +263,10 @@ $ mimosa watch -s</pre>
 
     <p>You can change to using an embedded default (non-extendable) Express server by changing the <code class='option'>server.useDefaultServer</code> configuration to <code class='option'>true</code>. If you created a project using the <code class='option'>--noserver</code> flag, this setting will have already been changed for you.</p>
 
+    <h3>Clean Compiled Assets First (-c/--clean)</h3>
+
+    <p>Use the <code class='option'>--clean</code> flag to clean out the compiled directory before watching starts. This has the effect of forcing a recompile and recopy of all of your assets.</p>
+
     <h3>Serve Optimized Assets (-o/--optimize)</h3>
 
     <p>Start Mimosa watching with the <code class='option'>--optimize</code> flag turned on and Mimosa will run RequireJS's optimizer on start-up and with every javascript file change. So when you point at either the Express or default server's base URL with optimize flagged, you will be served the result of RequireJS's optimization, packaged with <a href="https://github.com/jrburke/almond">Almond</a>.</p>
@@ -298,7 +302,7 @@ $ mimosa watch [--server] -mo</pre>
       <div class="page-header">
         <h1>
           Clean Compiled Assets
-          <small><span class="mim">mimosa</span> <span class="command">clean</span></small>
+          <small><span class="mim">mimosa</span> <span class="command">clean</span> <span class="options">[-f/--force]</span></small>
         </h1>
       </div>
     </section>
@@ -306,9 +310,7 @@ $ mimosa watch [--server] -mo</pre>
       <div class="span6">
         <h2>clean</h2>
 
-        <p>This command will wipe out any files it is responsible for placing into the <code class="option">compiledDir</code>. It makes a pass to clean out the files, and once done, it makes a pass to clean out any directories that are now empty. If for some reason there are files in your <code class="option">compiledDir</code> directory structure that Mimosa didn't place there, they'll be left in place.</p>
-
-        <pre>$ mimosa clean</pre>
+        <p>This command will wipe out any file from the <code class="option">compiledDir</code> that is currently in the <code class="option">sourceDir</code>. Any assets in the <code class="option">compiledDir</code> that are not in the <code class="option">sourceDir</code> are left alone in case they were placed there purposefully. Mimosa makes a pass to clean out the files, and once done, it makes a pass to clean out any directories that are now empty.</p>
 
       </div>
       <div class="span6 term">
@@ -321,6 +323,15 @@ $ mimosa watch [--server] -mo</pre>
         </div>
       </div>
     </div>
+
+    <pre>$ mimosa clean</pre>
+
+    <h3>Force Asset Deletion (-f/--force)</h3>
+
+    <p>Because the clean command will not remove anything in your <code class="option">compiledDir</code> that isn't in your <code class="option">sourceDir</code>, Mimosa may leave behind code that has been renamed.  If <code class="option">mimosa watch</code> is running and you delete or rename a file, Mimosa cleans out the compiled version of that file, but if Mimosa is not running and you delete or remove a file, the clean command has no way of knowing the files left behind are safe for cleaning. </p>
+
+    <p>Enter the <code class="option">--force</code> flag.  When included, the <code class="option">--force</code> flag will remove the entire compiled directory and all of its contents, no questions asked.</p>
+
     <section id="build">
       <div class="page-header">
         <h1>

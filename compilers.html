@@ -190,7 +190,7 @@
 
       <p>In all cases, the resulting compiled templates will be merged into a single file for use in the client. Within that file will be @sourceUrl like information to allow you to easily track errors back to specific files in your codebase. The name and location of that single file is configurable <code class="option">(compilers.template.outputFileName)</code>, but by default it is kept at <code class="option">javascripts/templates.js</code>. When this file is injected via require, the behavior differs per library, see below.
 
-      <p>For each templating langauge, the injected javascript file provides a JSON object of templates, keyed by the name of the the template originated in.</p>
+      <p>For each templating langauge, the injected javascript file provides a JSON object of templates, keyed by the name of the the template originated in. This means that despite what directory your templates are in, each template needs to have a unique name.  Should you violate this, Mimosa will let you know you are in danger of template collision issues.</p>
 
       <p>Most of the libraries require a client side version to run the compiled templates. Mimosa will handle including that library for you. It will place an AMD wrapped version of the library inside the javascripts/vendor library and reference it from the compiled template file.</p>
 
@@ -205,7 +205,7 @@
 
       <p>Handlebars also provides the ability to code reusable helper methods in pure JavaScript. You can code those in the meta-language of your choosing inside the <code class="option">compilers.template.helperFiles</code> files. The helpers and the templates are all pulled together via requirejs.</p>
 
-      <p>Because all of the templates are compiled together, partials, <code class="option">{{example-partial}}</code>, are immediately available without any extra work.</p>
+      <p>Because all of the templates are compiled together, helpers, <code class="option">{{example-helper}}</code>, are immediately available without any extra work.  Also, partials do not require Handlebars.registerPartial to be called.  The output <code class="option">template.js</code> file is modified to access the entire list of templates when attempting to insert a partial.</p>
 
       <p>Mimosa keeps an AMD wrapped version of Handlebars that it writes to   <code class="option">assets/javascripts/vendor/handlebars.js</code> directory as part of compilation, so there is no need to include the library yourself.</p>
 
