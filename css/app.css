@@ -571,3 +571,9 @@ i {
   font-weight:bold;
   padding-left:10px;
 }
+
+#requirejs .term {
+  margin-left: 0px;
+  color:red;
+  margin-bottom: 15px;
+}

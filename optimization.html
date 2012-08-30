@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Optimization - Mimosa</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="css/main.css"> -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" >
+  <link rel="stylesheet" href="css/bootstrap-responsive.min.css" >
+  <link rel="stylesheet" href="css/app.css">
+
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
+</head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li class="">
+              <a href="./index.html">Mimosa</a>
+            </li>
+            <li class="">
+              <a href="./started.html">Getting Started</a>
+            </li>
+            <li class="">
+              <a href="./commands.html">Commands</a>
+            </li>
+            <li class="">
+              <a href="./compilers.html">Compilers</a>
+            </li>
+            <li class="">
+              <a href="./utilities.html">Utilities</a>
+            </li>
+            <li class="active">
+              <a href="./optimization.html">Optimization</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container main">
+
+  <header class="jumbotron subhead" id="overview">
+    <h1>Optimization</h1>
+    <p class="lead">Mimosa utilizes RequireJS and Uglify to make your code production ready when you need it to be</p>
+    <div class="subnav">
+      <ul class="nav nav-pills">
+        <li><a href="#opt" title="Optimization">Optimization</a></li>
+        <li><a href="#require" title="using the r.js optimizer">RequireJS Optimization</a></li>
+        <li><a href="#min" title="Keep your assets nice and small">Minify</a></li>
+        <li><a href="#minopt" title="both is good">Minify + Optimize</a></li>
+        <li><a href="#css" title="Minify your CSS too">CSS</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="command-list">
+    <section id="opt">
+      <div class="page-header">
+        <h1>
+          Optimization Explained
+          <small><span class="options" title="O no!">zip it up, flip it, compress it down</span></small>
+        </h1>
+      </div>
+      <p>In the normal course of development you want to have your assets loaded individually rather than in one merged file.  And you certainly don't want your assets minified or mangled. This all makes for easier debugging.</p>
+
+      <p>But when you take your application to production, you want to include all the performance improvements that come with merging, optimizing, and minifying your assets. For both the <code class="option">build</code> and <code class="option">watch</code> commands, Mimosa provides <code class="option">--optimize</code> and <code class="option">--minify</code> flags that combine to provide you both the ability to fully optimize your application, and to have a bit of control over what gets optimized.</p>
+
+      <p>Mimosa uses the <a href="https://github.com/jrburke/r.js/">r.js optimizer</a> which is perfect for optimizing RequireJS applications. Underneath the hood, that optimizer is using <a href="https://github.com/mishoo/UglifyJS">Uglify</a> to shrink your codebase down as tiny as possible. Mimosa also comes bundled with Uglify itself, and can use it to individually shrink your assets.  And Mimosa's Uglify and the r.js optimizer can be combined to provide more fine-grained control of your minification strategy.</p>
+
+    </section>
+    <section id="require">
+      <div class="page-header">
+        <h1>
+          RequireJS Optimization
+          <small><span class="options">with the r.js optimizer automatically included in your workflow</span></small>
+        </h1>
+      </div>
+      <h2>Optimizer Defaults</h2>
+
+    </section>
+    <section id="min">
+      <div class="page-header">
+        <h1>
+          Minify
+          <small><span class="options">shrink down assets but keep them apart</span></small>
+        </h1>
+      </div>
+    </section>
+    <section id="minopt">
+      <div class="page-header">
+        <h1>
+          Minify + Optimize
+          <small><span class="options">customize your minification strategy</span></small>
+        </h1>
+      </div>
+    </section>
+    <section id="css">
+      <div class="page-header">
+        <h1>
+          CSS
+          <small><span class="options">it gets minified too</span></small>
+        </h1>
+      </div>
+      <p>When the <code class="option">--optimize</code> flag is used, Mimosa will minify all of your compiled CSS files. And that about covers that.</p>
+    </section>
+  </section>
+
+
+
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.7.2.min.js"><\/script>')</script>
+<script src="js/vendor/bootstrap-collapse.js"></script>
+<script src="js/vendor/bootstrap-scrollspy.js"></script>
+
+<!-- scripts concatenated and minified via build script -->
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<!-- end scripts -->
+
+<script>
+    var _gaq=[['_setAccount','UA-33737130-1'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+</body>
+</html>

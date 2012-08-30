@@ -47,12 +47,9 @@
             <li class="active">
               <a href="./utilities.html">Utilities</a>
             </li>
-   <!--     <li class="">
-              <a href="./require.html">RequireJS + Optimization</a>
-            </li>
             <li class="">
-              <a href="./examples.html">Examples</a>
-            </li> -->
+              <a href="./optimization.html">Optimization</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -66,6 +63,7 @@
     <p class="lead">All the little things that add up to win.</p>
     <div class="subnav">
       <ul class="nav nav-pills">
+        <li><a href="#requirejs" title="Lint your assets">RequireJS Support</a></li>
         <li><a href="#lint" title="Lint your assets">Linting</a></li>
         <li><a href="#reload" title="Never refresh your browser again">Live Reload</a></li>
         <li><a href="#notify" title="Find out right away when thigs go horribly wrong">Notifications</a></li>
@@ -76,7 +74,50 @@
   </header>
 
   <section class="command-list">
-    <section id="install">
+    <section id="requirejs" >
+      <div class="page-header">
+        <h1>
+          RequireJS Support
+          <small><span class="options">maps and shims and paths, o my</span></small>
+        </h1>
+      </div>
+      <div class="row">
+        <div class="span6">
+          <p>Mimosa comes with a bunch of AMD/RequireJS support.  Mimosa will...</p>
+
+          <ul>
+             <li>Verify your module paths when your JavaScript meta-language (or JS itself) successfully compiles. Mimosa will follow relative paths for dependencies, and also use your config paths whether they resolve to an actual dependency, <code class="option">jquery: 'vendor/jquery'</code>, or they resolve to a module, <code class="option">moduleX:'a/path/to/module/x'</code>.
+            <li>Verify map and shim paths, and keep track of your map config and use it for path verification.</li>
+            <li>Alert you when paths are broken. An unresolved path is as crucial as a compiler error; code is broken. Should a path not be resolved, Mimosa will both write to the console and alert via Growl.</li>
+            <li>Catch when you have a circular dependency in your application and notify you on the console.</li>
+            <li>Catch when you have failed to wrap a non-vendor piece of compiled JavaScript in <code class="option">require</code> or <code class="option">define</code> and notify you on the console.</li>
+            <li>Run RequireJS' optimizer when the <code class="option">optimize</code> flag is enabled for <code class="option">mimosa build</code>, and on every file change for <code class="option">mimosa watch</code>.</li>
+            <li>Need no config at all for the optimizer, which typically takes some time to configure. Mimosa will keep track of your dependencies and build a vanilla optimizer configuration for you.
+            <li>Handle multiple RequireJS modules just fine</li>
+            <li>Only compile those modules that need compiling based on the code that just changed when running in optimized mode</li>
+            <li>Bundle your optimized JavaScript with <a href="https://github.com/jrburke/almond">Almond</a></li>
+          </ul>
+
+
+        </div>
+        <div class="span6">
+          <div class="term">
+            <div class="inner">
+              18:59:06 - RequireJS dependency [[ controller ]] for path alias [[ c ]], inside file [[ /Users/dbashford/mygithub/AngularFunMimosa/public/javascripts/main.js ]], cannot be found.<br/>
+              18:59:22 - RequireJS shim [[ ang ]] inside file [[ /Users/dbashford/mygithub/AngularFunMimosa/public/javascripts/main.js ]] refers to a dependency that cannot be found [[ vendo/modernizr ]].<br/>
+              18:59:33 - RequireJS dependency [[ c/gitHu ]], inside file [[ /Users/dbashford/mygithub/AngularFunMimosa/public/javascripts/main.js ]], cannot be found.<br/>
+              18:59:43 - RequireJS mapping inside file [[ /Users/dbashford/mygithub/AngularFunMimosa/public/javascripts/main.js ]], for module [[ * ]] has path that cannot be found [[ vendor/angular-resourc ]].
+            </div>
+          </div>
+<pre># require:
+  # verify:
+    # enabled: true</pre>
+
+        </div>
+      </div>
+      <p> You can turn off path verification using the configuration above.  Just set enabled to <code class="option">false</code>. For information about how Mimosa uses RequireJS to optimize your application, check out the <a href="file:///Users/dbashford/mygithub/mimosajs.com/optimization.html">Optimization</a> tab.</p>
+    </section>
+    <section id="lint">
       <div class="page-header">
         <h1>
           Linting
@@ -136,7 +177,7 @@
       </ul>
 
     </section>
-    <section id="quick">
+    <section id="reload">
       <div class="page-header">
         <h1>
           Live Reload
