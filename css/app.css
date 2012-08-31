@@ -473,7 +473,7 @@ i {
 }
 
 .command-list .options {
-  color:orange;
+  color:#FF7722;
 }
 
 .command-list h2 {
@@ -483,11 +483,11 @@ i {
 
 .command-list h3 {
   margin:15px 0;
-  color:orange;
+  color:#FF7722;
 }
 
 .command-list .option {
-  color:orange;
+  color:#FF7722;
 }
 
 .command-list pre {
@@ -575,5 +575,5 @@ i {
 #requirejs .term {
   margin-left: 0px;
   color:red;
-  margin-bottom: 15px;
+  margin-bottom: 15px#FF7722;
 }
