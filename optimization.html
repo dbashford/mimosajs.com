@@ -133,6 +133,9 @@
           <small><span class="options">shrink down assets but keep them apart</span></small>
         </h1>
       </div>
+
+      <p>For both the <code class="option">build</code> and <code class="option">watch</code> commands, Mimosa provides an <code class="option">--minify</code> flag that will run <a href="https://github.com/mishoo/UglifyJS">Uglify</a> over your compiled JavaScript assets.  You have the ability in the mimosa-config to exclude certain files from this minification using the <code class="option">minify.excludes</code> setting.  By default any file already possessing <code class="option">.min.</code> in the path name will be excluded as it is assumed to already be minified.</p>
+
     </section>
     <section id="minopt">
       <div class="page-header">
@@ -141,6 +144,15 @@
           <small><span class="options">customize your minification strategy</span></small>
         </h1>
       </div>
+
+      <p>For either the <code class="option">build</code> or <code class="option">watch</code> commands, using the <code class="option">--minify</code> and <code class="option">--optimize</code> flags together gives you increased control over the optimization workflow.</p>
+
+      <p>The r.js optimizer by itself is often good enough to handle minifying, compressing and pulling your modules into single files; however, the occasional file does not take kindly to being run through Uglify and will be broken when compressed. The r.js optimizer is all or none, you cannot choose to omit a file that isn't being compressed correctly. So if your application doesn't run because of errors in Uglifying, you are forced to inject other steps into your project's life cycle to both use the optimizer and have minified files.</p>
+
+      <p>When both minifying and optimizing, r.js minification is turned off. Specifically the <code class="option">optimize</code> setting of r.js is set to <code class="option">none</code>. The optimizer is still used to pull all of your application's files together into the same file and wrap it in Almond. But Mimosa will Uglify your files itself first, before calling the optimizer, and Mimosa gives you the opportunity to not Uglify whatever files are not making it through Uglifying in working order.</p>
+
+      <p>The <a href="https://github.com/dbashford/AngularFunMimosa">AngularFunMimosa</a> demo project is a perfect example of a project that benefits from this functionality. <a href="https://github.com/dbashford/AngularFunMimosa/commit/1816016a3444ab960dd79c2f65b63c6bf9fdc488#L1L9">This commit</a> from that project shows the effect of the minify+optimize feature being added to Mimosa. Previously optimization was turned off via Mimosa's r.js overrides, because when r.js Uglified the code, it also broke the application. When this Mimosa feature was added, the r.js override was removed, and the file that was not surviving Uglifying, <code class='option'>main.js</code>, was simply omitted from minification.  What comes out the other side is a fully r.js optimized and zipped up file that is fully compressed with the exception of the file that cannot be minified.</p>
+
     </section>
     <section id="css">
       <div class="page-header">
