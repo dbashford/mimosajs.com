@@ -119,6 +119,9 @@
         </div>
       </div>
       <p> You can turn off path verification using the configuration above.  Just set enabled to <code class="option">false</code>. For information about how Mimosa uses RequireJS to optimize your application, check out the <a href="file:///Users/dbashford/mygithub/mimosajs.com/optimization.html">Optimization</a> tab.</p>
+
+      <p>Path verification is always disabled for vendor assets, that is, assets located inside a <code class="option">vendor</code> library.  Vendor assets often use creative means to turn themselves into AMD modules that prove hard to verify.  That said, if you choose to place vendor assets outside a vendor folder, Mimosa is coded to handle some of the methods vendor assets are AMDed.  But you may see Mimosa complain that some of your vendor assets are throwing errors or are not properly wrapped.</p>
+
     </section>
     <section id="lint">
       <div class="page-header">
