@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Configuration - Mimosa</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="css/main.css"> -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" >
+  <link rel="stylesheet" href="css/bootstrap-responsive.min.css" >
+  <link rel="stylesheet" href="css/app.css">
+
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
+</head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li class="">
+              <a href="./index.html">Mimosa</a>
+            </li>
+            <li>
+              <a href="./started.html">Getting Started</a>
+            </li>
+            <li class="">
+              <a href="./commands.html">Commands</a>
+            </li>
+            <li  class="">
+              <a href="./compilers.html">Compilers</a>
+            </li>
+            <li class="">
+              <a href="./utilities.html">Utilities</a>
+            </li>
+            <li class="">
+              <a href="./optimization.html">Optimization</a>
+            </li>
+            <li class="active">
+              <a href="./configuration.html">Configuration</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container main">
+
+  <header class="jumbotron subhead" id="overview">
+    <h1>Configuration</h1>
+    <p class="lead">The keys to the kingdom, when Mimosa's defaults aren't quite cutting it</p>
+    <div class="subnav">
+      <ul class="nav nav-pills">
+        <li><a href="#config" title="How it all works">Overview</a></li>
+        <li><a href="#watch" title="What to watch and where">Watching</a></li>
+        <li><a href="#compilers" title="Compiler selection and tweaks">Compilers</a></li>
+        <li><a href="#copy" title="What files will Mimosa copy">File Copying</a></li>
+        <li><a href="#server" title="Micro-Templates galore">Server</a></li>
+        <li><a href="#require" title="Copy JS/CSS and other assets like images">RequireJS</a></li>
+        <li><a href="#minify" title="Use a demo app">Minification</a></li>
+        <li><a href="#growl" title="Use a demo app">Growl</a></li>
+        <li><a href="#lint" title="Use a demo app">Lint</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="command-list">
+    <section id="config">
+      <div class="page-header">
+        <h1>
+          Overview <small><span class="options">how it all works</span></small>
+        </h1>
+      </div>
+    </section>
+
+    <p>TBD</p>
+
+    <section id="watch">
+      <div class="page-header">
+        <h1>
+          Watching the File System <small><span class="command">watch</span></small>
+        </h1>
+      </div>
+    </section>
+
+    <div class="row">
+      <div class="span6">
+        TBD
+      </div>
+      <div class="span6">
+<pre># watch:
+  # sourceDir: "assets"
+  # compiledDir: "public"
+  # ignored: [".sass-cache"]
+  # throttle: 0</pre>
+      </div>
+    </div>
+
+    <section id="compilers">
+      <div class="page-header">
+        <h1>
+          Compiling your Meta-Languages <small><span class="command">compilers</span></small>
+        </h1>
+      </div>
+    </section>
+
+    <div class="row">
+      <div class="span6">
+        TBD
+      </div>
+      <div class="span6">
+<pre># compilers:
+  # javascript:
+    # directory: "javascripts"
+      # compileWith: "coffee"
+      # extensions: ["coffee"]
+    # template:
+      # compileWith: "handlebars"
+      # extensions: ["hbs", "handlebars"]
+      # outputFileName: "javascripts/templates"
+      # helperFiles:["javascripts/app/template/handlebars-helpers"]
+    # css:
+      # compileWith: "sass"
+      # extensions: ["scss", "sass"]</pre>
+      </div>
+    </div>
+
+    <section id="copy">
+      <div class="page-header">
+        <h1>
+          Copying Everything Else <small><span class="command">copy</span></small>
+        </h1>
+      </div>
+    </section>
+
+    <div class="row">
+      <div class="span6">
+        TBD
+      </div>
+      <div class="span6">
+<pre># copy:
+    # extensions: ["js","css","png","jpg","jpeg","gif","html","eot","svg","ttf","woff","otf","yaml","kml"]</pre>
+      </div>
+    </div>
+
+    <section id="server">
+      <div class="page-header">
+        <h1>
+          Server Setup <small><span class="command">server</span></small>
+        </h1>
+      </div>
+    </section>
+
+    <div class="row">
+      <div class="span6">
+        TBD
+      </div>
+      <div class="span6">
+<pre># server:
+  # useDefaultServer: false
+  # useReload: true
+  # path: 'server.coffee'
+  # port: 3000
+  # base: '/app'</pre>
+      </div>
+    </div>
+
+    <section id="require">
+      <div class="page-header">
+        <h1>
+          RequireJS Verification and Optimization <small><span class="command">require</span></small>
+        </h1>
+      </div>
+    </section>
+
+    <div class="row">
+      <div class="span6">
+        TBD
+      </div>
+      <div class="span6">
+<pre># require:
+  # verify:
+    # enabled: true
+  # optimize :
+    # inferConfig:true
+    # overrides:
+</pre>
+      </div>
+    </div>
+
+    <section id="minify">
+      <div class="page-header">
+        <h1>
+          Asset Minification <small><span class="command">minify</span></small>
+        </h1>
+      </div>
+    </section>
+
+    <div class="row">
+      <div class="span6">
+        TBD
+      </div>
+      <div class="span6">
+<pre># minify:
+  # exclude:["\.min\."]</pre>
+      </div>
+    </div>
+
+    <section id="growl">
+      <div class="page-header">
+        <h1>
+          When to Growl <small><span class="command">growl</span></small>
+        </h1>
+      </div>
+    </section>
+
+    <div class="row">
+      <div class="span6">
+        TBD
+      </div>
+      <div class="span6">
+<pre># growl:
+  # onStartup: false
+  # onSuccess:
+    # javascript: true
+    # css: true
+    # template: true
+    # copy: true</pre>
+      </div>
+    </div>
+
+    <section id="lint">
+      <div class="page-header">
+        <h1>
+          Linting <small><span class="command">lint</span></small>
+        </h1>
+      </div>
+    </section>
+
+    <div class="row">
+      <div class="span6">
+        TBD
+      </div>
+      <div class="span6">
+<pre># lint:
+  # compiled:
+    # javascript:true
+    # css:true
+  # copied:
+    # javascript: true
+    # css: true
+  # vendor:
+    # javascript: false
+    # css: false
+  # rules:
+    # javascript:
+    # css:</pre>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.7.2.min.js"><\/script>')</script>
+<script src="js/vendor/bootstrap-collapse.js"></script>
+<script src="js/vendor/bootstrap-scrollspy.js"></script>
+
+<!-- scripts concatenated and minified via build script -->
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<!-- end scripts -->
+
+<script>
+    var _gaq=[['_setAccount','UA-33737130-1'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+</body>
+</html>
