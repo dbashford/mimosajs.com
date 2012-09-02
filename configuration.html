@@ -88,7 +88,26 @@
       </div>
     </section>
 
-    <p>TBD</p>
+    <p>When Mimosa starts up, it expects to find a <code class="option">mimosa-config.coffee</code> file in the directory you are in, or in one of the directories above the directory you are in.  The <code class="option">mimosa-config</code> file configures all that Mimosa does.
+
+    <h2>How to get it?</h2>
+
+    <p>There are two ways to be given a config file by Mimosa: when you create a new project with <code class="option">mimosa new</code>, or when you run <code class="option">mimosa config</code>.  For <code class="option">mimosa new</code>, the <code class="option">mimosa-config</code> will be altered to match the selections you made during project creation.  For <code class="option">mimosa config</code> the entire config file is commented out.  </p>
+
+    <p>There is also nothing stopping you from simply copying the <a href="https://github.com/dbashford/mimosa/blob/master/lib/skeleton/mimosa-config.coffee">config file straight from GitHub</a>. If you stick with the default options (CoffeeScript, Handlebars, SASS, Express) the configuration will be entirely commented out.</p>
+
+    <h2>Wait, it is all commented out?</h2>
+
+    <p>One of Mimosa's goals was to have you spending as little time fiddling with config as possible.  The more time you spend looking at config, the more time you spend understanding it, and playing with it, and the less time you spend actually writing code.  To that end, while highly configurable, Mimosa comes set up with a really sane set of defaults/conventions built-in.</p>
+
+    <p>However, rather than deliver you an empty text file for your config, the <code class="option">mimosa-config</code> comes with all of the configurable options listed out and explained, but commented out.  Each commented out option also lists its default.  Options, defaults, and explanation...when you do need to change config, all you need to know is right there in the file.</p>
+
+    <h2>But when you want to change the config...</h2>
+
+    <p>First stop and consider if there is any way Mimosa can help you with what you need.  We'd rather build more smarts into Mimosa than to force you into the config.  For instance, if you think that certain jshint options should be enabled by default for CoffeeScript applications, or if you have another file extension to add to the <a href="./compilers.html#copy">copy compiler, then <a href="https://github.com/dbashford/mimosa/issues">let us know</a>!</p>
+
+    <p>But if, for instance, you just don't want your compiled code in a directory named <code class="option">public</code>, you'll want to make sure you uncomment all the right lines.  You have to uncomment all the way back to the root of the config.  Don't just uncomment the <code class="option">compiledDir</code>, uncomment <code class="option">compiledDir</code> and <code class="option">watch</code>.
+    </p>
 
     <section id="watch">
       <div class="page-header">
