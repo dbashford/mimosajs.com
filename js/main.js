@@ -26,4 +26,32 @@
       $nav.removeClass('subnav-fixed')
     }
   }
+
+  function doCodeHighlight(el) {
+    name = $(el).attr('class').split(" ")[1];
+    $('span.' + name).toggleClass('hilight')
+    if (name != 'top')
+      $('span.' + name).parent().find('.top').toggleClass('hilight')
+  }
+
+  function doTextHighlight(el) {
+    name = $(el).attr('class')
+    console.log(name)
+    $('p.' + name).toggleClass('hilight')
+    $('h4.' + name).toggleClass('hilight')
+
+  }
+
+  $('.config .hi').mouseover(function(){
+    doCodeHighlight(this)
+  }).mouseout(function(){
+    doCodeHighlight(this)
+  })
+
+  $('.config pre span').mouseover(function(){
+    doTextHighlight(this)
+  }).mouseout(function(){
+    doTextHighlight(this)
+  })
+
 }(window.jQuery)

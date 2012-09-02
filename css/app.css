@@ -579,3 +579,11 @@ i {
   color:red;
   margin-bottom: 15px;
 }
+
+.config h4 {
+  color: purple;
+}
+
+.hilight {
+  background-color: yellow;
+}

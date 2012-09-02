@@ -79,7 +79,7 @@
     </div>
   </header>
 
-  <section class="command-list">
+  <section class="command-list config">
     <section id="config">
       <div class="page-header">
         <h1>
@@ -119,16 +119,37 @@
 
     <div class="row">
       <div class="span6">
-        TBD
+
+        <p class="hi top">The <code class="option">watch</code> section of the config contains information about what directories to watch, what files to ignore, and how fast to process added files.</p>
+
+        <h4 class="hi sourceDir">sourceDir</h4>
+
+        <p class="hi sourceDir">The <code class="option">sourceDir</code> property is the path, relative to the <code class="option">mimosa-config</code>, where your assets are located. This is the directory Mimosa will watch for changes to kick off the compiler workflow.</p>
+
       </div>
       <div class="span6">
-<pre># watch:
-  # sourceDir: "assets"
-  # compiledDir: "public"
-  # ignored: [".sass-cache"]
-  # throttle: 0</pre>
+<pre><span class="top"># watch:</span>
+  <span class="sourceDir"># sourceDir: "assets"</span>
+  <span class="compiledDir"># compiledDir: "public"</span>
+  <span class="ignored"># ignored: [".sass-cache"]</span>
+  <span class="throttle"># throttle: 0</span></pre>
       </div>
     </div>
+
+    <h4 class="hi compiledDir">compiledDir</h4>
+
+    <p class="hi compiledDir">The <code class="option">compiledDir</code> property is the path, relative to the <code class="option">mimosa-config</code>, where your compiled assets will be delivered. If your <code class="option">compiledDir</code> does not exist, Mimosa will create it for you. Mimosa will mimic the same folder/directory structure in the <code class="option">compiledDir</code> that it finds in the <code class="option">sourceDir</code></p>
+
+    <h4 class="hi ignored">ignored</h4>
+
+    <p class="hi ignored">The <code class="option">ignored</code> property is an array of strings. When one of the strings is present in a file found in your <code class="option">sourceDir</code>, Mimosa will ignore the file.</p>
+
+    <h4 class="hi throttle">throttle</h4>
+
+    <p class="hi throttle">The <code class="option">throttle</code> property represents how many files Mimosa will process every 100 milliseconds. Setting this property will slow down processing of file additions. This is necessary when you have a very large project with thousands of files. Mimosa processes them so fast that it quickly hits your system's open file limit. When this setting is set to 0, no throttling will take place. But if you have hundreds of files and begin running into EMFILE issues, try playing with the throttle. It may take a few minutes to get the throttle setting right, so that Mimosa is still processing files quickly, but not so quickly it crashes.</p>
+
+    <p class="hi throttle">
+
 
     <section id="compilers">
       <div class="page-header">
