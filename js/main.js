@@ -34,12 +34,6 @@
       $('span.' + name).parent().find('.top').toggleClass('hilight')
   }
 
-  function doTextHighlight(el) {
-    name = $(el).attr('class')
-    $('p.' + name).toggleClass('hilight')
-    $('h4.' + name).toggleClass('hilight')
-
-  }
 
   $('.config .hi').mouseover(function(){
     doCodeHighlight(this)
@@ -47,10 +41,5 @@
     doCodeHighlight(this)
   })
 
-  $('.config pre span').mouseover(function(){
-    doTextHighlight(this)
-  }).mouseout(function(){
-    doTextHighlight(this)
-  })
 
 }(window.jQuery)
