@@ -36,7 +36,6 @@
 
   function doTextHighlight(el) {
     name = $(el).attr('class')
-    console.log(name)
     $('p.' + name).toggleClass('hilight')
     $('h4.' + name).toggleClass('hilight')
 
