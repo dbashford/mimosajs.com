@@ -91,7 +91,7 @@
           <ul>
              <li>Verify your module paths when your JavaScript meta-language (or JS itself) successfully compiles. Mimosa will follow relative paths for dependencies, and also use your config paths whether they resolve to an actual dependency, <code class="option">jquery: 'vendor/jquery'</code>, or they resolve to a module, <code class="option">moduleX:'a/path/to/module/x'</code>.
             <li>Verify map and shim paths, and keep track of your map config and use it for path verification.</li>
-            <li>Alert you when paths are broken. An unresolved path is as crucial as a compiler error; code is broken. Should a path not be resolved, Mimosa will both write to the console and alert via Growl.</li>
+            <li>Alert you when paths are broken. An unresolved path is as crucial as a compiler error: code is broken. Should a path not be resolved, Mimosa will both write to the console and alert via Growl.</li>
             <li>Catch when you have a circular dependency in your application and notify you on the console.</li>
             <li>Catch when you have failed to wrap a non-vendor piece of compiled JavaScript in <code class="option">require</code> or <code class="option">define</code> and notify you on the console.</li>
             <li>Run RequireJS' optimizer when the <code class="option">optimize</code> flag is enabled for <code class="option">mimosa build</code>, and on every file change for <code class="option">mimosa watch</code>.</li>

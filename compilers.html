@@ -90,11 +90,11 @@
 
       <h2>2) compile</h2>
 
-      <p>When Mimosa detects changes in your <code class="option">watch.sourceDir</code>, it checks to see if the extension is one it recognizes as associated with your configured compilers.  If it doesn't recognize the file extension, Mimosa lets you know on the console.  If it does recognize it, Mimosa compiles the changed files to their destination format.</p>
+      <p>When Mimosa detects changes in your <code class="option">watch.sourceDir</code>, it checks to see if the extension for the changed file is one it recognizes as associated with your configured compilers.  If it doesn't recognize the file extension, Mimosa lets you know on the console.  If it does recognize it, Mimosa compiles the changed files to their destination format.</p>
 
       <p>If a compile fails, you will be notified immediately, both via <a href="http://growl.info/">Growl</a> (if you have it installed), and on the terminal console where you started Mimosa.  When compilation fails, Mimosa will go no further with the workflow.</p>
 
-      <p>Mimosa has three sets of compilers.  JavaScript, CSS, and Templates.  Each compiler has its own section of config in the mimosa-config.coffee file under <code class="option">compilers</code>.  All three share two configuration parameters: <code class="option">compileWith</code> and <code class="option">extensions</code>.  <code class="option">compileWith</code> is a string that indicates which compiler you want to use.  <code class="option">extensions</code> is an array of extensions to associate with that compiler. Each compiler has a default setting for <code class="option">extensions</code>  In the sections below detailing each of the compilers, the <code class="option">compileWith</code> strings are listed, along with the default <code class="option">extensions</code>.
+      <p>Mimosa has three sets of compilers.  JavaScript, CSS, and Templates.  Each compiler has its own section of config in the mimosa-config.coffee file under <code class="option">compilers</code>.  All three share two configuration parameters: <code class="option">compileWith</code> and <code class="option">extensions</code>.  <code class="option">compileWith</code> is a string that indicates which compiler you want to use.  <code class="option">extensions</code> is an array of extensions to associate with that compiler. Each compiler has a default setting for <code class="option">extensions</code>.  In the sections below detailing each of the compilers, the <code class="option">compileWith</code> strings are listed, along with the default <code class="option">extensions</code>.
 
       <h2>3) lint</h2>
 
@@ -120,7 +120,7 @@
           <p>After successful compilation of your JavaScript meta-language files, Mimosa will run those files through <a href="http://www.jshint.com/">jshint</a>. jshint will run the compiled JavaScript though a <a href="http://www.jshint.com/docs/">number of checks</a> to validate it against what jshint considers idiomatic JavaScript.  Any rules that get broken will be written to the console as warnings.
           </p>
           <p>
-            The mimosa-config has an entire section devoted to linting.  It will let you configure lint rules using the <a href="http://www.jshint.com/docs/">jslint configuration</a> and it will let you turn off jslint for your compiled code entirely if it becomes too distracting.
+            The <code class="option">mimosa-config</code> has an entire section devoted to linting.  It will let you configure lint rules using the <a href="http://www.jshint.com/docs/">jshint configuration</a> and it will let you turn off jslint for your compiled code entirely if it becomes too distracting.
           </p>
         </div>
         <div class="span6 term">
@@ -132,7 +132,7 @@
           </div>
         </div>
       </div>
-      <p>Mimosa currently supports the following JavaScript Meta-Languages.  Next to the name of each is the mimosa-config setting and the list of default extensions Mimosa recognizes.</p>
+      <p>Mimosa currently supports the following JavaScript Meta-Languages.  Next to the name of each is the <code class="option">mimosa-config</code> setting and the list of default extensions Mimosa recognizes.</p>
 
       <h2>CoffeeScript <small><span class="mim">coffee</span> <span class="command">['coffee']</span></small></h2>
       <p><a href="http://coffeescript.org/">CoffeeScript</a> is the Mimosa default. If you do not alter Mimosa's configuration, Mimosa will look for files ending in .coffee and treat them as CoffeeScript files.</p>
@@ -152,7 +152,7 @@
           <p>After successful compilation of your CSS meta-language files, Mimosa will run those files through <a href="http://csslint.net/">csslint</a>. csslint will run the compiled CSS though a <a href="https://github.com/stubbornella/csslint/wiki/Rules">number of checks</a> to validate it against what csslint considers idiomatic CSS.  Any rules that get broken will be written to the console as warnings.
           </p>
           <p>
-            The mimosa-config has an entire section devoted to linting.  It will let you configure lint rules using the <a href="https://github.com/stubbornella/csslint/wiki/Rules">csshint configuration</a> and it will let you turn off csshint for your compiled code entirely if it becomes too distracting.
+            The <code class="option">mimosa-config</code> has an entire section devoted to linting.  It will let you configure lint rules using the <a href="https://github.com/stubbornella/csslint/wiki/Rules">csslint configuration</a> and it will let you turn off csshint for your compiled code entirely if it becomes too distracting.
           </p>
         </div>
         <div class="span6 term">
@@ -167,15 +167,15 @@
       <br/>
       <p>Mimosa does a little bit of extra work with your CSS meta-langauges.  It will take care to not compile files that do not need compiling.  If all of your CSS gets included back through a single base CSS file, changing a file deep down the tree of includes will only trigger a compile of that single base file and not the changed file itself.  Similarly if you have multiple base files, changing a file that is included in two places will trigger the recompile of those two files.</p>
 
-      <p>For the most part this isn't an Earth-shattering feature, and for most of the compilers, compilation time is so fast it doesn't matter.  Users of SASS via JRuby will be greatly appreciative though, that Mimosa isn't going to recompile everything every time they save their SASS code.</p>
+      <p>This isn't an Earth-shattering feature, and for most of the compilers, compilation time is so fast it doesn't matter.  Users of SASS via JRuby will be greatly appreciative though, that Mimosa is selective about which files to compile.</p>
 
       <p>The list of CSS compilers follows.  Next to the name of each is the mimosa-config setting and the list of default extensions Mimosa recognizes.</p>
 
-      <h2>SASS w/Compass <small><span class="mim">sass</span> <span class="command">["scss", "sass"]</span></small></h2>
-      <p><a href="http://sass-lang.com/">SASS</a> w/<a href="http://compass-style.org/">Compass</a> is the Mimosa default. If you do not alter Mimosa's configuration, Mimosa will look for files ending in .sass or .scss and treat them as SASS files.  SASS <a href="http://sass-lang.com/">(install)</a> and Compass <a href="http://compass-style.org/install/">(install)</a> are Ruby gems and there isn't yet a full implementation of them in nodejs, so Mimosa is dependent on you having installed them yourself.  Compass isn't a necessary install, but Mimosa will quickly complain if you attempt to configure it to use SASS and do not have it installed.</p>
-
       <h2>Stylus w/nib <small><span class="mim">stylus</span> <span class="command">["styl"]</span></small></h2>
-      <p>Mimosa will compile your <a href="http://learnboost.github.com/stylus/">Stylus</a> and will include <a href="http://visionmedia.github.com/nib/">nib</a> in the compilation, so all of nib's functionality is available to you.  Stylus (and nib) is a node library, so there is no need to install anything to use it, and Stylus compiles will be speedy.</p>
+      <p><a href="http://learnboost.github.com/stylus/">Stylus</a> with <a href="http://visionmedia.github.com/nib/">nib</a> is the Mimosa default. If you do not alter Mimosa's configuration, Mimosa will look for files ending in .styl and treat them as Stylus files. Stylus is a node library (as is nib), so there is no need to install anything to use it, and Stylus compiles will be speedy.</p>
+
+      <h2>SASS w/Compass <small><span class="mim">sass</span> <span class="command">["scss", "sass"]</span></small></h2>
+      <p><a href="http://sass-lang.com/">SASS</a> w/<a href="http://compass-style.org/">Compass</a> is another Mimosa option.  SASS <a href="http://sass-lang.com/">(install)</a> and Compass <a href="http://compass-style.org/install/">(install)</a> are Ruby gems and there isn't yet a full implementation of them in nodejs, so Mimosa is dependent on you having installed them yourself.  Compass isn't a necessary install, but Mimosa will quickly complain if you attempt to configure it to use SASS and do not have SASS installed.</p>
 
       <h2>LESS <small><span class="mim">less</span> <span class="command">["less"]</span></small></h2>
       <p>Mimosa will happily compile your <a href="http://lesscss.org/">LESS</a>.  LESS is a node library, so there is no need to install anything to use it, and LESS compiles will be speedy.</p>
@@ -190,11 +190,11 @@
 
       <p>In all cases, the resulting compiled templates will be merged into a single file for use in the client. Within that file will be @sourceUrl like information to allow you to easily track errors back to specific files in your codebase. The name and location of that single file is configurable <code class="option">(compilers.template.outputFileName)</code>, but by default it is kept at <code class="option">javascripts/templates.js</code>. When this file is injected via require, the behavior differs per library, see below.
 
-      <p>For each templating langauge, the injected javascript file provides a JSON object of templates, keyed by the name of the the template originated in. This means that despite what directory your templates are in, each template needs to have a unique name.  Should you violate this, Mimosa will let you know you are in danger of template collision issues.</p>
+      <p>For each templating langauge, the injected javascript file provides a JSON object of templates, keyed by the name of the the template originated in. This means that despite what directory your templates are in, each template needs to have a unique name.  Should you violate this, Mimosa will let you know you have template collision issues.</p>
 
       <p>Most of the libraries require a client side version to run the compiled templates. Mimosa will handle including that library for you. It will place an AMD wrapped version of the library inside the javascripts/vendor library and reference it from the compiled template file.</p>
 
-      <p>Next to the name of each is the mimosa-config setting and the list of default extensions Mimosa recognizes.</p>
+      <p>Next to the name of each is the <code class="option">mimosa-config</code> setting and the list of default extensions Mimosa recognizes.</p>
 
       <h2>Handlebars <small><span class="mim">handlebars</span> <span class="command">["hbs", "handlebars"]</span></small></h2>
       <p><a href="http://handlebarsjs.com/">Handlebars</a> is the default templating langauge. To access a Handlebars template originating from a file named "example.hbs", do this...</p>
@@ -219,7 +219,7 @@
 
       <p>Mimosa keeps an AMD wrapped version of Dust that it writes to <code class="option">assets/javascripts/vendor/dust.js</code> directory as part of compilation, so there is no need to include the library yourself.</p>
 
-      <h2>Hogan <small><span class="mim">hogan</span> <span class="command">["hog", "hogan"]</span></small></h2>
+      <h2>Hogan <small><span class="mim">hogan</span> <span class="command">["hog", "hogan", "hjs"]</span></small></h2>
 
       <p>To access a <a href="http://twitter.github.com/hogan.js/">Hogan</a> template originating from a file named "example.hogan", do this...</p>
 
