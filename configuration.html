@@ -306,22 +306,16 @@
     <div class="row">
       <div class="span6">
         <h4 class="hi require">require</h4>
-        <p class="hi require"></p>
+        <p class="hi require">Mimosa's configuration for AMD/RequireJS path verification and the r.js optimizer.</p>
 
         <h4 class="hi verify require">require.verify</h4>
-        <p class="hi verify require"></p>
+        <p class="hi verify require">Settings for AMD/RequireJS path verification.</p>
 
         <h4 class="hi verifyenabled verify require">require.verify.enabled</h4>
-        <p class="hi verifyenabled verify require"></p>
+        <p class="hi verifyenabled verify require">Whether or not Mimosa will perform AMD/RequireJS path verification.</p>
 
         <h4 class="hi optimize require">require.optimize</h4>
-        <p class="hi optimize require"></p>
-
-        <h4 class="hi inferConfig optimize require">require.optimize.inferConfig</h4>
-        <p class="hi inferConfig optimize require"></p>
-
-        <h4 class="hi overrides optimize require">require.optimize.overrides</h4>
-        <p class="hi overrides optimize require"></p>
+        <p class="hi optimize require">Settings for asset optimization via the r.js optimizer.</p>
 
       </div>
       <div class="span6">
@@ -334,6 +328,12 @@
 </pre>
       </div>
     </div>
+
+    <h4 class="hi inferConfig optimize require">require.optimize.inferConfig</h4>
+    <p class="hi inferConfig optimize require">Mimosa figures out all you'd need for a simple r.js optimizer run. If you rather Mimosa not do that, set <code class="option">inferConfig</code> to <code class="option">false</code> and provide your config in the <code class="option">overrides</code> section. Check out the <a href="./optimization.html#require">Optimization tab</a> to see what inferences Mimosa makes for r.js execution.</p>
+
+    <h4 class="hi overrides optimize require">require.optimize.overrides</h4>
+    <p class="hi overrides optimize require">If you need to make tweaks to the r.js configuration for your asset optimization, uncomment this line and add the <a href="http://requirejs.org/docs/optimization.html#options">r.js config</a> as new parameters inside the <code class="option">require.optimize.overrides</code> object. To just unset a Mimosa defaults, set the property to null.</p>
 
     <section id="minify">
       <div class="page-header">
