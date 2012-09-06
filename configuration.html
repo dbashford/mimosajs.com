@@ -120,9 +120,11 @@
     <div class="row">
       <div class="span6">
 
+        <h4 class="hi watch">watch</h4>
+
         <p class="hi watch">The <code class="option">watch</code> section of the config contains information about what directories to watch, what files to ignore, and how fast to process added files.</p>
 
-        <h4 class="hi sourceDir watch">sourceDir</h4>
+        <h4 class="hi sourceDir watch">watch.sourceDir</h4>
 
         <p class="hi sourceDir watch">The <code class="option">sourceDir</code> property is the path, relative to the <code class="option">mimosa-config</code>, where your assets are located. This is the directory Mimosa will watch for changes to kick off the compiler workflow.</p>
 
@@ -136,15 +138,15 @@
       </div>
     </div>
 
-    <h4 class="hi compiledDir watch">compiledDir</h4>
+    <h4 class="hi compiledDir watch">watch.compiledDir</h4>
 
     <p class="hi compiledDir watch">The <code class="option">compiledDir</code> property is the path, relative to the <code class="option">mimosa-config</code>, where your compiled assets will be delivered. If your <code class="option">compiledDir</code> does not exist, Mimosa will create it for you. Mimosa will mimic the same folder/directory structure in the <code class="option">compiledDir</code> that it finds in the <code class="option">sourceDir</code></p>
 
-    <h4 class="hi ignored watch">ignored</h4>
+    <h4 class="hi ignored watch">watch.ignored</h4>
 
     <p class="hi ignored watch">The <code class="option">ignored</code> property is an array of strings. When one of the strings is present in a file found in your <code class="option">sourceDir</code>, Mimosa will ignore the file.</p>
 
-    <h4 class="hi throttle watch">throttle</h4>
+    <h4 class="hi throttle watch">watch.throttle</h4>
 
     <p class="hi throttle watch">The <code class="option">throttle</code> property represents how many files Mimosa will process every 100 milliseconds. Setting this property will slow down processing of file additions. This is necessary when you have a very large project with thousands of files. Mimosa processes them so fast that it quickly hits your system's open file limit. When this setting is set to 0, no throttling will take place. But if you have hundreds of files and begin running into EMFILE issues, try playing with the throttle. It may take a few minutes to get the throttle setting right, so that Mimosa is still processing files quickly, but not so quickly it crashes.</p>
 
@@ -158,7 +160,45 @@
 
     <div class="row">
       <div class="span6">
-        TBD
+        <h4 class="hi compilers">compilers</h4>
+        <p class="hi compilers"></p>
+
+        <h4 class="hi javascript compilers">compilers.javascript</h4>
+        <p class="hi javascript compilers"></p>
+
+        <h4 class="hi javascriptdirectory javascript compilers">compilers.javascript.directory</h4>
+        <p class="hi javascriptdirectory javascript compilers"></p>
+
+        <h4 class="hi javascriptcompileWith javascript compilers">compilers.javascript.compileWith</h4>
+        <p class="hi javascriptcompileWith javascript compilers"></p>
+
+        <h4 class="hi javascriptextensions javascript compilers">compilers.javascript.extensions</h4>
+        <p class="hi javascriptextensions javascript compilers"></p>
+
+        <h4 class="hi template compilers">compilers.template</h4>
+        <p class="hi template compilers"></p>
+
+        <h4 class="hi templatecompileWith template compilers">compilers.template.compileWith</h4>
+        <p class="hi templatecompileWith template compilers"></p>
+
+        <h4 class="hi templateextensions template compilers">compilers.template.extensions</h4>
+        <p class="hi templateextensions template compilers"></p>
+
+        <h4 class="hi outputFileName template compilers">compilers.template.outputFileName</h4>
+        <p class="hi outputFileName template compilers"></p>
+
+        <h4 class="hi helperFiles template compilers">compilers.template.helperFiles</h4>
+        <p class="hi helperFiles template compilers"></p>
+
+        <h4 class="hi css compilers">compilers.css</h4>
+        <p class="hi css compilers"></p>
+
+        <h4 class="hi csscompileWith css compilers">compilers.css.compileWith</h4>
+        <p class="hi csscompileWith css compilers"></p>
+
+        <h4 class="hi cssextensions css compilers">compilers.css.extensions</h4>
+        <p class="hi cssextensions css compilers"></p>
+
       </div>
       <div class="span6">
 <pre><span class="compilers"># compilers:</span>
@@ -187,7 +227,11 @@
 
     <div class="row">
       <div class="span6">
-        TBD
+        <h4 class="hi copy">copy</h4>
+        <p class="hi copy"></p>
+
+        <h4 class="hi copyextensions copy">copy.extensions</h4>
+        <p class="hi copyextensions copy"></p>
       </div>
       <div class="span6">
 <pre><span class="copy"># copy:</span>
@@ -205,10 +249,38 @@
 
     <div class="row">
       <div class="span6">
-        TBD
+        <h4 class="hi server">server</h4>
+        <p class="hi server"></p>
+
+        <h4 class="hi useDefaultServer server">server.useDefaultServer</h4>
+        <p class="hi useDefaultServer server"></p>
+
+        <h4 class="hi useReload server">server.useReload</h4>
+        <p class="hi useReload server"></p>
+
+        <h4 class="hi path server">server.path</h4>
+        <p class="hi path server"></p>
+
+        <h4 class="hi port server">server.port</h4>
+        <p class="hi port server"></p>
+
+        <h4 class="hi base server">server.base</h4>
+        <p class="hi base server"></p>
+
+        <h4 class="hi views server">server.views</h4>
+        <p class="hi views server"></p>
+
+        <h4 class="hi viewscompileWith views server">server.views.compileWith</h4>
+        <p class="hi viewscompileWith views server"></p>
+
+        <h4 class="hi viewsextension views server">server.views.extension</h4>
+        <p class="hi viewsextension views server"></p>
+
+        <h4 class="hi viewspath views server">server.views.path</h4>
+        <p class="hi viewspath views server"></p>
       </div>
       <div class="span6">
-<pre><span class="useDefaultServer"># server:</span>
+<pre><span class="server"># server:</span>
   <span class="useDefaultServer"># useDefaultServer: false</span>
   <span class="useReload"># useReload: true</span>
   <span class="path"># path: 'server.coffee'</span>
@@ -232,7 +304,24 @@
 
     <div class="row">
       <div class="span6">
-        TBD
+        <h4 class="hi require">require</h4>
+        <p class="hi require"></p>
+
+        <h4 class="hi verify require">require.verify</h4>
+        <p class="hi verify require"></p>
+
+        <h4 class="hi verifyenabled verify require">require.verify.enabled</h4>
+        <p class="hi verifyenabled verify require"></p>
+
+        <h4 class="hi optimize require">require.optimize</h4>
+        <p class="hi optimize require"></p>
+
+        <h4 class="hi inferConfig optimize require">require.optimize.inferConfig</h4>
+        <p class="hi inferConfig optimize require"></p>
+
+        <h4 class="hi overrides optimize require">require.optimize.overrides</h4>
+        <p class="hi overrides optimize require"></p>
+
       </div>
       <div class="span6">
 <pre><span class="require"># require:</span>
@@ -255,7 +344,12 @@
 
     <div class="row">
       <div class="span6">
-        TBD
+        <h4 class="hi minify">minify</h4>
+        <p class="hi minify"></p>
+
+        <h4 class="hi exclude minify">minify.exclude</h4>
+        <p class="hi exclude minify"></p>
+
       </div>
       <div class="span6">
 <pre><span class="minify"># minify:</span>
@@ -273,7 +367,27 @@
 
     <div class="row">
       <div class="span6">
-        TBD
+        <h4 class="hi growl">growl</h4>
+        <p class="hi growl"></p>
+
+        <h4 class="hi onStartup growl">growl.onStartup</h4>
+        <p class="hi onStartup growl"></p>
+
+        <h4 class="hi onSuccess growl">growl.onSuccess</h4>
+        <p class="hi onSuccess growl"></p>
+
+        <h4 class="hi growljavascript onSuccess growl">growl.onSuccess.javascript</h4>
+        <p class="hi growljavascript onSuccess growl"></p>
+
+        <h4 class="hi growlcss onSuccess growl">growl.onSuccess.css</h4>
+        <p class="hi growlcss onSuccess growl"></p>
+
+        <h4 class="hi growltemplate onSuccess growl">growl.onSuccess.template</h4>
+        <p class="hi growltemplate onSuccess growl"></p>
+
+        <h4 class="hi growlcopy onSuccess growl">growl.onSuccess.copy</h4>
+        <p class="hi growlcopy onSuccess growl"></p>
+
       </div>
       <div class="span6">
 <pre><span class="growl"># growl:</span>
@@ -296,7 +410,45 @@
 
     <div class="row">
       <div class="span6">
-        TBD
+        <h4 class="hi lint">lint</h4>
+        <p class="hi lint"></p>
+
+        <h4 class="hi compiled lint">lint.compiled</h4>
+        <p class="hi compiled lint"></p>
+
+        <h4 class="hi compiledjavascript compiled lint">lint.compiled.javascript</h4>
+        <p class="hi compiledjavascript compiled lint"></p>
+
+        <h4 class="hi compiledcss compiled lint">lint.compiled.css</h4>
+        <p class="hi compiledcss compiled lint"></p>
+
+        <h4 class="hi copied lint">lint.copied</h4>
+        <p class="hi copied lint"></p>
+
+        <h4 class="hi copiedjavascript copied lint">lint.copied.javascript</h4>
+        <p class="hi copiedjavascript copied lint"></p>
+
+        <h4 class="hi copiedcss copied lint">lint.copied.css</h4>
+        <p class="hi copiedcss copied lint"></p>
+
+        <h4 class="hi vendor lint">lint.vendor</h4>
+        <p class="hi vendor lint"></p>
+
+        <h4 class="hi vendorjavascript vendor lint">lint.vendor.javascript</h4>
+        <p class="hi vendorjavascript lint"></p>
+
+        <h4 class="hi vendorcss vendor lint">lint.vendor.css</h4>
+        <p class="hi vendorcss vendor lint"></p>
+
+        <h4 class="hi rules lint">lint.rules</h4>
+        <p class="hi rules lint"></p>
+
+        <h4 class="hi rulesjavascript rules lint">lint.rules.javascript</h4>
+        <p class="hi rulesjavascript rules lint"></p>
+
+        <h4 class="hi rulescss rules lint">lint.rules.css</h4>
+        <p class="hi rulescss rules lint"></p>
+
       </div>
       <div class="span6">
 <pre><span class="lint"># lint:</span>
