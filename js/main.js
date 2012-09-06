@@ -28,12 +28,10 @@
   }
 
   function doCodeHighlight(el) {
-    name = $(el).attr('class').split(" ")[1];
-    $('span.' + name).toggleClass('hilight')
-    if (name != 'top')
-      $('span.' + name).parent().find('.top').toggleClass('hilight')
+    names = $(el).attr('class').split(" ");
+    names.shift()
+    $('span.' + names.join(', span.')).toggleClass('hilight')
   }
-
 
   $('.config .hi').mouseover(function(){
     doCodeHighlight(this)

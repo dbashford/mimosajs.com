@@ -120,15 +120,15 @@
     <div class="row">
       <div class="span6">
 
-        <p class="hi top">The <code class="option">watch</code> section of the config contains information about what directories to watch, what files to ignore, and how fast to process added files.</p>
+        <p class="hi watch">The <code class="option">watch</code> section of the config contains information about what directories to watch, what files to ignore, and how fast to process added files.</p>
 
-        <h4 class="hi sourceDir">sourceDir</h4>
+        <h4 class="hi sourceDir watch">sourceDir</h4>
 
-        <p class="hi sourceDir">The <code class="option">sourceDir</code> property is the path, relative to the <code class="option">mimosa-config</code>, where your assets are located. This is the directory Mimosa will watch for changes to kick off the compiler workflow.</p>
+        <p class="hi sourceDir watch">The <code class="option">sourceDir</code> property is the path, relative to the <code class="option">mimosa-config</code>, where your assets are located. This is the directory Mimosa will watch for changes to kick off the compiler workflow.</p>
 
       </div>
       <div class="span6">
-<pre><span class="top"># watch:</span>
+<pre><span class="watch"># watch:</span>
   <span class="sourceDir"># sourceDir: "assets"</span>
   <span class="compiledDir"># compiledDir: "public"</span>
   <span class="ignored"># ignored: [".sass-cache"]</span>
@@ -136,20 +136,17 @@
       </div>
     </div>
 
-    <h4 class="hi compiledDir">compiledDir</h4>
+    <h4 class="hi compiledDir watch">compiledDir</h4>
 
-    <p class="hi compiledDir">The <code class="option">compiledDir</code> property is the path, relative to the <code class="option">mimosa-config</code>, where your compiled assets will be delivered. If your <code class="option">compiledDir</code> does not exist, Mimosa will create it for you. Mimosa will mimic the same folder/directory structure in the <code class="option">compiledDir</code> that it finds in the <code class="option">sourceDir</code></p>
+    <p class="hi compiledDir watch">The <code class="option">compiledDir</code> property is the path, relative to the <code class="option">mimosa-config</code>, where your compiled assets will be delivered. If your <code class="option">compiledDir</code> does not exist, Mimosa will create it for you. Mimosa will mimic the same folder/directory structure in the <code class="option">compiledDir</code> that it finds in the <code class="option">sourceDir</code></p>
 
-    <h4 class="hi ignored">ignored</h4>
+    <h4 class="hi ignored watch">ignored</h4>
 
-    <p class="hi ignored">The <code class="option">ignored</code> property is an array of strings. When one of the strings is present in a file found in your <code class="option">sourceDir</code>, Mimosa will ignore the file.</p>
+    <p class="hi ignored watch">The <code class="option">ignored</code> property is an array of strings. When one of the strings is present in a file found in your <code class="option">sourceDir</code>, Mimosa will ignore the file.</p>
 
-    <h4 class="hi throttle">throttle</h4>
+    <h4 class="hi throttle watch">throttle</h4>
 
-    <p class="hi throttle">The <code class="option">throttle</code> property represents how many files Mimosa will process every 100 milliseconds. Setting this property will slow down processing of file additions. This is necessary when you have a very large project with thousands of files. Mimosa processes them so fast that it quickly hits your system's open file limit. When this setting is set to 0, no throttling will take place. But if you have hundreds of files and begin running into EMFILE issues, try playing with the throttle. It may take a few minutes to get the throttle setting right, so that Mimosa is still processing files quickly, but not so quickly it crashes.</p>
-
-    <p class="hi throttle">
-
+    <p class="hi throttle watch">The <code class="option">throttle</code> property represents how many files Mimosa will process every 100 milliseconds. Setting this property will slow down processing of file additions. This is necessary when you have a very large project with thousands of files. Mimosa processes them so fast that it quickly hits your system's open file limit. When this setting is set to 0, no throttling will take place. But if you have hundreds of files and begin running into EMFILE issues, try playing with the throttle. It may take a few minutes to get the throttle setting right, so that Mimosa is still processing files quickly, but not so quickly it crashes.</p>
 
     <section id="compilers">
       <div class="page-header">
@@ -164,19 +161,19 @@
         TBD
       </div>
       <div class="span6">
-<pre># compilers:
-  # javascript:
-    # directory: "javascripts"
-      # compileWith: "coffee"
-      # extensions: ["coffee"]
-    # template:
-      # compileWith: "handlebars"
-      # extensions: ["hbs", "handlebars"]
-      # outputFileName: "javascripts/templates"
-      # helperFiles:["javascripts/app/template/handlebars-helpers"]
-    # css:
-      # compileWith: "sass"
-      # extensions: ["scss", "sass"]</pre>
+<pre><span class="compilers"># compilers:</span>
+  <span class="javascript"># javascript:</span>
+    <span class="javascriptdirectory"># directory: "javascripts"</span>
+    <span class="javascriptcompileWith"># compileWith: "coffee"</span>
+    <span class="javascriptextensions"># extensions: ["coffee"]</span>
+  <span class="template"># template:</span>
+    <span class="templatecompileWith"># compileWith: "handlebars"</span>
+    <span class="templateextensions"># extensions: ["hbs", "handlebars"]</span>
+    <span class="outputFileName"># outputFileName: "javascripts/templates"</span>
+    <span class="helperFiles"># helperFiles:["javascripts/app/template/handlebars-helpers"]</span>
+  <span class="css"># css:</span>
+    <span class="csscompileWith"># compileWith: "stylus"</span>
+    <span class="cssextensions"># extensions: ["styl"]</span></pre>
       </div>
     </div>
 
@@ -193,8 +190,8 @@
         TBD
       </div>
       <div class="span6">
-<pre># copy:
-    # extensions: ["js","css","png","jpg","jpeg","gif","html","eot","svg","ttf","woff","otf","yaml","kml"]</pre>
+<pre><span class="copy"># copy:</span>
+    <span class="copyextensions"># extensions: ["js","css","png","jpg","jpeg","gif","html","eot","svg","ttf","woff","otf","yaml","kml"]</span></pre>
       </div>
     </div>
 
@@ -211,14 +208,19 @@
         TBD
       </div>
       <div class="span6">
-<pre># server:
-  # useDefaultServer: false
-  # useReload: true
-  # path: 'server.coffee'
-  # port: 3000
-  # base: '/app'</pre>
+<pre><span class="useDefaultServer"># server:</span>
+  <span class="useDefaultServer"># useDefaultServer: false</span>
+  <span class="useReload"># useReload: true</span>
+  <span class="path"># path: 'server.coffee'</span>
+  <span class="port"># port: 3000</span>
+  <span class="base"># base: ''</span>
+  <span class="views"># views:</span>
+    <span class="viewscompileWith"># compileWith: 'jade'</span>
+    <span class="viewsextension"># extension: 'jade'</span>
+    <span class="viewspath"># path: 'views'</span></pre>
       </div>
     </div>
+
 
     <section id="require">
       <div class="page-header">
@@ -233,12 +235,12 @@
         TBD
       </div>
       <div class="span6">
-<pre># require:
-  # verify:
-    # enabled: true
-  # optimize :
-    # inferConfig:true
-    # overrides:
+<pre><span class="require"># require:</span>
+  <span class="verify"># verify:</span>
+    <span class="verifyenabled"># enabled: true</span>
+  <span class="optimize"># optimize :</span>
+    <span class="inferConfig"># inferConfig:true</span>
+    <span class="overrides"># overrides:</span>
 </pre>
       </div>
     </div>
@@ -256,8 +258,8 @@
         TBD
       </div>
       <div class="span6">
-<pre># minify:
-  # exclude:["\.min\."]</pre>
+<pre><span class="minify"># minify:</span>
+  <span class="exclude"># exclude:["\.min\."]</span></pre>
       </div>
     </div>
 
@@ -274,13 +276,13 @@
         TBD
       </div>
       <div class="span6">
-<pre># growl:
-  # onStartup: false
-  # onSuccess:
-    # javascript: true
-    # css: true
-    # template: true
-    # copy: true</pre>
+<pre><span class="growl"># growl:</span>
+  <span class="onStartup"># onStartup: false</span>
+  <span class="onSuccess"># onSuccess:</span>
+    <span class="growljavascript"># javascript: true</span>
+    <span class="growlcss"># css: true</span>
+    <span class="growltemplate"># template: true</span>
+    <span class="growlcopy"># copy: true</span></pre>
       </div>
     </div>
 
@@ -297,19 +299,19 @@
         TBD
       </div>
       <div class="span6">
-<pre># lint:
-  # compiled:
-    # javascript:true
-    # css:true
-  # copied:
-    # javascript: true
-    # css: true
-  # vendor:
-    # javascript: false
-    # css: false
-  # rules:
-    # javascript:
-    # css:</pre>
+<pre><span class="lint"># lint:</span>
+  <span class="compiled"># compiled:</span>
+    <span class="compiledjavascript"># javascript:true</span>
+    <span class="compiledcss"># css:true</span>
+  <span class="copied"># copied:</span>
+    <span class="copiedjavascript"># javascript: true</span>
+    <span class="copiedcss"># css: true</span>
+  <span class="vendor"># vendor:</span>
+    <span class="vendorjavascript"># javascript: false</span>
+    <span class="vendorcss"># css: false</span>
+  <span class="rules"># rules:</span>
+    <span class="rulesjavascript"># javascript:</span>
+    <span class="rulescss"># css:</span></pre>
       </div>
     </div>
 
