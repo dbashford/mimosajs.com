@@ -251,34 +251,14 @@
     <div class="row">
       <div class="span6">
         <h4 class="hi server">server</h4>
-        <p class="hi server"></p>
+        <p class="hi server">Configuration for embedded and/or delivered server. Many of the settings below are targeted primarily at configuring Mimosa's embedded server. When you are running your own server, you are welcome to not use all of the settings passed to you. You can set your own port, for instance, rather than use the port passed to your server by Mimosa. But the server delivered via <code class="option">mimosa new</code> will reference the settings below.</p>
 
         <h4 class="hi useDefaultServer server">server.useDefaultServer</h4>
-        <p class="hi useDefaultServer server"></p>
+        <p class="hi useDefaultServer server"><code class="option">server.useDefaultServer</code> determines whether Mimosa will start a default server or attempt to use a server in your own code base. When set to <code class="option">true</code>, Mimosa will run its own embedded Express, pointed either at your views or a default views.</p>
 
         <h4 class="hi useReload server">server.useReload</h4>
-        <p class="hi useReload server"></p>
 
-        <h4 class="hi path server">server.path</h4>
-        <p class="hi path server"></p>
 
-        <h4 class="hi port server">server.port</h4>
-        <p class="hi port server"></p>
-
-        <h4 class="hi base server">server.base</h4>
-        <p class="hi base server"></p>
-
-        <h4 class="hi views server">server.views</h4>
-        <p class="hi views server"></p>
-
-        <h4 class="hi viewscompileWith views server">server.views.compileWith</h4>
-        <p class="hi viewscompileWith views server"></p>
-
-        <h4 class="hi viewsextension views server">server.views.extension</h4>
-        <p class="hi viewsextension views server"></p>
-
-        <h4 class="hi viewspath views server">server.views.path</h4>
-        <p class="hi viewspath views server"></p>
       </div>
       <div class="span6">
 <pre><span class="server"># server:</span>
@@ -294,6 +274,28 @@
       </div>
     </div>
 
+    <p class="hi useReload server">This property determines whether or not Live Reload is enabled. Mimosa strictly controls the enabling of Live Reload for its embedded server. And if you create a project using <code class="option">mimosa new</code>, the delivered project has everything necessary to take advantage of Live Reload, no changes necessary. When Live Reload is enabled, a few javascript files are to the layout of the dev version of the app. See the <a href="utilities.html#reload">Utilities tab</a> to read more on this functionality.</p>
+
+    <h4 class="hi path server">server.path</h4>
+    <p class="hi path server">When <code class="option">useDefaultServer</code> is set to <code class="option">false</code>, <code class="option">server.port</code> is the path to your server code. That piece of code must export a <code class="option">startServer</code> method.  Mimosa will pass that method a copy of the mimosa-config, including all the defaults for each setting, and including extra fields inserted by Mimosa upon startup.</p>
+
+    <h4 class="hi port server">server.port</h4>
+    <p class="hi port server">The port on which Mimosa starts the server.</p>
+
+    <h4 class="hi base server">server.base</h4>
+    <p class="hi base server">The base path of the application.  By default this is set to blank, so your application is served up at http://localhost:3000, but set to <code class="option">base</code> to 'app' and the server would be served at http://localhost:3000/app.</p>
+
+    <h4 class="hi views server">server.views</h4>
+    <p class="hi views server">Configuration for the views for your application.</p>
+
+    <h4 class="hi viewscompileWith views server">server.views.compileWith</h4>
+    <p class="hi viewscompileWith views server">The language/library of your server views.  Valid values: <code class="option">jade</code>, <code class="option">hogan</code> and <code class="option">none</code>.  If set to <code class="option">none</code> Mimosa will point at its own set of default views. Those views are static and require you to stick to certain names for your files, and replace the DOM on initialization.  It's best to have views of your own. <code class="option">none</code> is only valid when <code class="option">useDefaultServer</code> is set to true, so, if you have your own server, you need your own views.</p>
+
+    <h4 class="hi viewsextension views server">server.views.extension</h4>
+    <p class="hi viewsextension views server">Extension of your server views.</p>
+
+    <h4 class="hi viewspath views server">server.views.path</h4>
+    <p class="hi viewspath views server">The path to your server views.</p>
 
     <section id="require">
       <div class="page-header">
