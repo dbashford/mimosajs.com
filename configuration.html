@@ -371,25 +371,12 @@
     <div class="row">
       <div class="span6">
         <h4 class="hi growl">growl</h4>
-        <p class="hi growl"></p>
+        <p class="hi growl">Settings for whether and when to send Growl notifications.  By default any error in compilation will send a Growl message, and turning that off is not configurable.</p>
 
         <h4 class="hi onStartup growl">growl.onStartup</h4>
-        <p class="hi onStartup growl"></p>
+        <p class="hi onStartup growl">Controls whether or not to Growl when assets successfully compile/copy on startup. If you've got 100 CoffeeScript files, and you do a clean and then start watching, you'll get 100 Growl notifications. This is set to false be default to prevent that.</p>
 
         <h4 class="hi onSuccess growl">growl.onSuccess</h4>
-        <p class="hi onSuccess growl"></p>
-
-        <h4 class="hi growljavascript onSuccess growl">growl.onSuccess.javascript</h4>
-        <p class="hi growljavascript onSuccess growl"></p>
-
-        <h4 class="hi growlcss onSuccess growl">growl.onSuccess.css</h4>
-        <p class="hi growlcss onSuccess growl"></p>
-
-        <h4 class="hi growltemplate onSuccess growl">growl.onSuccess.template</h4>
-        <p class="hi growltemplate onSuccess growl"></p>
-
-        <h4 class="hi growlcopy onSuccess growl">growl.onSuccess.copy</h4>
-        <p class="hi growlcopy onSuccess growl"></p>
 
       </div>
       <div class="span6">
@@ -403,6 +390,21 @@
       </div>
     </div>
 
+    <p class="hi onSuccess growl">Various settings controlling whether or not you get Growl messages when things are successful post-startup.</p>
+
+     <h4 class="hi growljavascript onSuccess growl">growl.onSuccess.javascript</h4>
+     <p class="hi growljavascript onSuccess growl">Controls whether or not you will get a Growl message upon successful compilation of your JavaScript meta-language files.</p>
+
+     <h4 class="hi growlcss onSuccess growl">growl.onSuccess.css</h4>
+     <p class="hi growlcss onSuccess growl">Controls whether or not you will get a Growl message upon successful compilation of your CSS meta-language files.</p>
+
+     <h4 class="hi growltemplate onSuccess growl">
+       growl.onSuccess.template</h4>
+     <p class="hi growltemplate onSuccess growl">Controls whether or not you will get a Growl message upon successful compilation of your template file(s).</p>
+
+     <h4 class="hi growlcopy onSuccess growl">growl.onSuccess.copy</h4>
+     <p class="hi growlcopy onSuccess growl">Controls whether or not you will get a Growl message upon successful copying of your copied assets, like images, plain JavaScript, and plain CSS.</p>
+
     <section id="lint">
       <div class="page-header">
         <h1>
@@ -414,10 +416,10 @@
     <div class="row">
       <div class="span6">
         <h4 class="hi lint">lint</h4>
-        <p class="hi lint"></p>
+        <p class="hi lint">Settings for CSS and JS linting/hinting, including what files should be linted and rule overrides to use when running linting.</p>
 
         <h4 class="hi compiled lint">lint.compiled</h4>
-        <p class="hi compiled lint"></p>
+        <p class="hi compiled lint">Settings for assets Mimosa has compiled, like CoffeeScript or Stylus.</p>
 
         <h4 class="hi compiledjavascript compiled lint">lint.compiled.javascript</h4>
         <p class="hi compiledjavascript compiled lint"></p>
@@ -426,7 +428,7 @@
         <p class="hi compiledcss compiled lint"></p>
 
         <h4 class="hi copied lint">lint.copied</h4>
-        <p class="hi copied lint"></p>
+        <p class="hi copied lint">Settings for assets Mimosa has copied, like plain JavaScript and CSS.</p>
 
         <h4 class="hi copiedjavascript copied lint">lint.copied.javascript</h4>
         <p class="hi copiedjavascript copied lint"></p>
@@ -435,7 +437,7 @@
         <p class="hi copiedcss copied lint"></p>
 
         <h4 class="hi vendor lint">lint.vendor</h4>
-        <p class="hi vendor lint"></p>
+        <p class="hi vendor lint">Settings for vendor assets, both vendor CSS and vendor JS.</p>
 
         <h4 class="hi vendorjavascript vendor lint">lint.vendor.javascript</h4>
         <p class="hi vendorjavascript lint"></p>
@@ -444,7 +446,7 @@
         <p class="hi vendorcss vendor lint"></p>
 
         <h4 class="hi rules lint">lint.rules</h4>
-        <p class="hi rules lint"></p>
+        <p class="hi rules lint">Rule overrides for the lint/hinters.</p>
 
         <h4 class="hi rulesjavascript rules lint">lint.rules.javascript</h4>
         <p class="hi rulesjavascript rules lint"></p>
