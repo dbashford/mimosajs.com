@@ -94,7 +94,7 @@
 
     <p>There are two ways to be given a config file by Mimosa: when you create a new project with <code class="option">mimosa new</code>, or when you run <code class="option">mimosa config</code>.  For <code class="option">mimosa new</code>, the <code class="option">mimosa-config</code> will be altered to match the selections you made during project creation.  For <code class="option">mimosa config</code> the entire config file is commented out.  </p>
 
-    <p>There is also nothing stopping you from simply copying the <a href="https://github.com/dbashford/mimosa/blob/master/lib/skeleton/mimosa-config.coffee">config file straight from GitHub</a>. If you stick with the default options (CoffeeScript, Handlebars, SASS, Express) the configuration will be entirely commented out.</p>
+    <p>There is also nothing stopping you from simply copying the <a href="https://github.com/dbashford/mimosa/blob/master/lib/skeleton/mimosa-config.coffee">config file straight from GitHub</a>. If you stick with the default options (CoffeeScript, Handlebars, Stylus, Express, Jade) the configuration will be entirely commented out.</p>
 
     <h2>Wait, it is all commented out?</h2>
 
@@ -170,7 +170,7 @@
         <p class="hi javascriptcompileWith javascript compilers">The name of the compiler chosen to compile your JavaScript meta-language.  Valid values are: <code class="option">"iced"</code>, <code class="option">"none"</code> and <code class="option">"coffee"</code>. Picking <code class="option">"none"</code> means you will be coding straight JavaScript and no compilation is necessary. See the <a href="./compilers.html#js">compilers tab</a> for more about these JavaScript compiler options.</p>
 
         <h4 class="hi javascriptextensions javascript compilers">compilers.javascript.extensions</h4>
-        <p class="hi javascriptextensions javascript compilers">An array of strings representing the extensions to compile for your JavaScript meta-language.</p>
+        <p class="hi javascriptextensions javascript compilers">An array of strings representing the extensions to compile for your JavaScript meta-language. If <code class="option">compilers.javascript.compileWith</code> is set to <code class="option">none</code>, this setting is ignored and does not need to be set.</p>
 
       </div>
       <div class="span6">
@@ -200,13 +200,13 @@
     <p class="hi templatecompileWith template compilers">The name of the compiler chosen to compile your micro-templating code.  Values are: <code class="option">"handlebars"</code>, <code class="option">"dust"</code>, <code class="option">"jade"</code>, <code class="option">"hogan"</code>, <code class="option">"underscore"</code>, <code class="option">"lodash"</code>, <code class="option">"html"</code> and <code class="option">"none"</code>. Picking <code class="option">"none"</code> means you will be coding without templates, or not using Mimosa templating functionality. See the <a href="./compilers.html#mt">compilers tab</a> for more about the micro-templaters.</p>
 
     <h4 class="hi templateextensions template compilers">compilers.template.extensions</h4>
-    <p class="hi templateextensions template compilers">An array of strings representing the extensions to compile for your micro-templating code.</p>
+    <p class="hi templateextensions template compilers">An array of strings representing the extensions to compile for your micro-templating code.  If <code class="option">compilers.template.compileWith</code> is set to <code class="option">none</code>, this setting is ignored and does not need to be set.</p>
 
     <h4 class="hi outputFileName template compilers">compilers.template.outputFileName</h4>
     <p class="hi outputFileName template compilers">The path of the file all of your templates are compiled into. See the <a href="./compilers.html#mt">compilers tab</a> for more info.</p>
 
     <h4 class="hi helperFiles template compilers">compilers.template.helperFiles</h4>
-    <p class="hi helperFiles template compilers">Only relevant for <code class="option">compilers.template.compileWith:"handlebars"</code>. An array of paths the paths from <code class="option">watch.sourceDir</code> to the files containing handlebars helper registrations. The default can be left alone if you have no helpers as the paths will be ignored if they do not exist.</p>
+    <p class="hi helperFiles template compilers">Only relevant for <code class="option">compilers.template.compileWith:"handlebars"</code>. An array of paths from <code class="option">watch.sourceDir</code> to the files containing handlebars helper registrations. The default can be left alone if you have no helpers as the paths will be ignored if they do not exist.</p>
 
     <h4 class="hi css compilers">compilers.css</h4>
     <p class="hi css compilers">Contains all of the configuration for the Mimosa CSS compiler.</p>
@@ -215,7 +215,7 @@
     <p class="hi csscompileWith css compilers">The name of the compiler chosen to compile your CSS meta-language.  Valid values are: <code class="option">"stylus"</code>, <code class="option">"less"</code>, <code class="option">"sass"</code> and <code class="option">"none"</code>. Picking <code class="option">"none"</code> means you will be coding straight CSS and no compilation is necessary. See the <a href="./compilers.html#css">compilers tab</a> for more about these CSS compiler options.</p>
 
     <h4 class="hi cssextensions css compilers">compilers.css.extensions</h4>
-    <p class="hi cssextensions css compilers">An array of strings representing the extensions to compile for your CSS code.</p>
+    <p class="hi cssextensions css compilers">An array of strings representing the extensions to compile for your CSS code. If <code class="option">compilers.css.compileWith</code> is set to <code class="option">none</code>, this setting is ignored and does not need to be set.</p>
 
     <section id="copy">
       <div class="page-header">
@@ -274,22 +274,22 @@
       </div>
     </div>
 
-    <p class="hi useReload server">This property determines whether or not Live Reload is enabled. Mimosa strictly controls the enabling of Live Reload for its embedded server. And if you create a project using <code class="option">mimosa new</code>, the delivered project has everything necessary to take advantage of Live Reload, no changes necessary. When Live Reload is enabled, a few javascript files are to the layout of the dev version of the app. See the <a href="utilities.html#reload">Utilities tab</a> to read more on this functionality.</p>
+    <p class="hi useReload server">This property determines whether or not Live Reload is enabled. Mimosa strictly controls the enabling of Live Reload for its embedded server. And if you create a project using <code class="option">mimosa new</code>, the delivered project has everything necessary to take advantage of Live Reload, no changes necessary. When Live Reload is enabled, a few javascript files are added to the layout of the dev version of the app. See the <a href="utilities.html#reload">Utilities tab</a> to read more on this functionality.</p>
 
     <h4 class="hi path server">server.path</h4>
-    <p class="hi path server">When <code class="option">useDefaultServer</code> is set to <code class="option">false</code>, <code class="option">server.port</code> is the path to your server code. That piece of code must export a <code class="option">startServer</code> method.  Mimosa will pass that method a copy of the mimosa-config, including all the defaults for each setting, and including extra fields inserted by Mimosa upon startup.</p>
+    <p class="hi path server">When <code class="option">useDefaultServer</code> is set to <code class="option">false</code>, <code class="option">server.path</code> is the path to your server code. That piece of code must export a <code class="option">startServer</code> method.  Mimosa will pass that method a copy of the mimosa-config, including all the defaults for each setting, and including extra fields inserted by Mimosa upon startup.</p>
 
     <h4 class="hi port server">server.port</h4>
     <p class="hi port server">The port on which Mimosa starts the server.</p>
 
     <h4 class="hi base server">server.base</h4>
-    <p class="hi base server">The base path of the application.  By default this is set to blank, so your application is served up at http://localhost:3000, but set to <code class="option">base</code> to 'app' and the server would be served at http://localhost:3000/app.</p>
+    <p class="hi base server">The base path of the application.  By default this is set to blank, so your application is served up at http://localhost:3000, but set <code class="option">base</code> to 'app' and your code would be served at http://localhost:3000/app.</p>
 
     <h4 class="hi views server">server.views</h4>
     <p class="hi views server">Configuration for the views for your application.</p>
 
     <h4 class="hi viewscompileWith views server">server.views.compileWith</h4>
-    <p class="hi viewscompileWith views server">The language/library of your server views.  Valid values: <code class="option">jade</code>, <code class="option">hogan</code> and <code class="option">none</code>.  If set to <code class="option">none</code> Mimosa will point at its own set of default views. Those views are static and require you to stick to certain names for your files, and replace the DOM on initialization.  It's best to have views of your own. <code class="option">none</code> is only valid when <code class="option">useDefaultServer</code> is set to true, so, if you have your own server, you need your own views.</p>
+    <p class="hi viewscompileWith views server">The language/library of your server views.  Valid values: <code class="option">jade</code>, <code class="option">hogan</code> and <code class="option">none</code>.  If set to <code class="option">none</code> Mimosa will point at its own set of default views. Those views are static and require you to stick to certain names for your files, and replace the DOM on initialization.  See Mimosa's <a href="https://github.com/dbashford/mimosa/blob/master/lib/skeleton/view/jade/views/layout.jade">embedded layout.jade</a> to get a feeling for what assets need to be in place and where. It's best to have views of your own. <code class="option">none</code> is only valid when <code class="option">useDefaultServer</code> is set to true, so, if you have your own server, you need your own views.</p>
 
     <h4 class="hi viewsextension views server">server.views.extension</h4>
     <p class="hi viewsextension views server">Extension of your server views.</p>
