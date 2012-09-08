@@ -99,7 +99,7 @@
 
         <p>If you chose to have a server stack of your own, it will also include the bare essentials for a base <a href="http://expressjs.com/">Express</a> application, including  a simple <a href="http://expressjs.com/guide.html#routing">router</a> and a file that will be used by Mimosa to get Express started. That code will be also be delivered in meta-language of your choice.</p>
 
-        <p>Lastly, you will be given a starter group of views for an index page in the view templating language you chose.  You can choose to not have views delivered to you, but only if you also did not choose to have a server.</p>
+        <p>Lastly, you will be given a starter group of views for an index page in the view templating language you chose.</p>
 
         <p>If you choose to not have a server of your own, Mimosa will serve your assets for you.  Mimosa provides some configuration options for its embedded server to make not having your own server a little less painful than it would be otherwise.</p>
 
@@ -418,7 +418,7 @@ $ mimosa build -or</pre>
 
    <h3>Compile the Provided Jade Template (-j/--jade)</h3>
 
-    <p>Should you not be deploying a node/Express app, the <code class="option">--jade</code> flag will compile an .html version of the <code class="option">index.jade</code> that Mimosa provides with its new command. The <code class="option">--jade</code> flag will attempt to compile the <code class="option">index.jade</code> file by feeding the template production level settings. <code class="option">cachebust</code> will be turned off. <code class="option">reload</code> set to <code class="option">false</code>. <code class="option">optimize</code> will be set to <code class="option">true</code> if you also provide the optimize flag. <code class="option">title</code> will be set to <code class="option">Mimosa</code>. It is suggested you remove the <code class="option">title</code> variable and hard code your <code class="option">title</code>.</p>
+    <p>Should you not be deploying a node/Express app, the <code class="option">--jade</code> flag will compile an .html version of the <code class="option">index.jade</code> that Mimosa provides with its new command. The <code class="option">--jade</code> flag will attempt to compile the <code class="option">index.jade</code> file by feeding the template production level settings. <code class="option">cachebust</code> will be turned off. <code class="option">reload</code> set to <code class="option">false</code>. <code class="option">optimize</code> will be set to <code class="option">true</code> if you also provide the optimize flag.</p>
 
     <p>If the index.jade file is changed to take different variables, or removed or renamed, the jade compilation will fail with warnings explaining the failures. This makes the command somewhat inflexible and if that causes problems for enough folks then some flexibility can be built in.  Just <a href="https://github.com/dbashford/mimosa/issues">file an issue!</a></p>
 
