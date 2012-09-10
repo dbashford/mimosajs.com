@@ -181,14 +181,16 @@
     <p>Each of the client libraries has a string that you would use to configure <code class="option">server.views.compileWith</code> to determine which view technology will be used, and each library has a default extension. When you chose one of the client libraries during <code class="option">mimosa new</code>, Mimosa will modify the <code class="option">mimosa-config</code> with these values. The <code class="option">server.views.compileWith</code> values are listed below next to the name of each technology. The default extensions are listed as well.</p>
 
     <h2>Jade <small><span class="mim">jade</span> <span class="command">.jade</span></small></h2>
-
-    <p><a href="http://jade-lang.com/">Jade</a> is the default server templating language. </p>
+    <p><a href="http://jade-lang.com/">Jade</a> is the default server templating language. The project that <code class="option">mimosa new</code> gives you will include simple layout and index pages.</p>
 
     <h2>EJS <small><span class="mim">ejs</span> <span class="command">.ejs</span></small></h2>
+    <p><a href="https://github.com/visionmedia/ejs">EJS</a> is also available, and <code class="option">mimosa new</code> delivers you a single <code class="option">index.ejs</code> file.</p>
 
     <h2>Hogan <small><span class="mim">hogan</span> <span class="command">.hjs</span></small></h2>
+    <p><a href="https://github.com/visionmedia/ejs">Hogan</a> is available, and <code class="option">mimosa new</code> delivers you a single <code class="option">index.hjs</code> file.</p>
 
     <h2>HTML <small><span class="mim">html</span> <span class="command">.html</span></small></h2>
+    <p>You can choose to code plain HTML templates on the server too.  Mimosa actually uses <a href="https://github.com/visionmedia/ejs">EJS</a> behind the scenes (see above), as EJS allows you to code plain HTML pages.  To accommodate the fact that plain HTML isn't dynamic, if you choose to use plain HTML templating, <code class="option">mimosa new</code> will give you two templates, one each for when you are running with and without the <code class="option">optimize</code> flag.  The Express routes know how to toggle between the two.  Also, the delivered server has a switch in its options for Live Reload that will allow plain HTML pages to work just fine, so not having that dynamic toggle in your view will not cause any trouble.</p>
 
   </section>
 
