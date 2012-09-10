@@ -147,7 +147,15 @@
       </div>
     </section>
 
-    TBD
+    <p>If you've got a moderately complex app, you may want the flexibility of having your own server. If <code class="option">server.useDefaultServer</code> is set to <code class="option">false</code>, Mimosa will look for a piece of node.js code located at <code class="option">server.path</code>, and execute the startServer method of that code (so that function must be exported). That function will be passed the entire resolved and enriched <code class="option">mimosa-config</code> for use within your server.</p>
+
+    <p>The server code delivered by <code class="option">mimosa new</code> will use all of the configuration from the <code class="option">mimosa-config</code> <code class="option">server</code> block. You could easily choose to remove the usage of the <code class="option">mimosa-config</code> entries from the delivered code. For instance, in the following code, all of the bolded entries could be replaced with their actual values, but this of course means Mimosa will be less capable of controlling behavior of your app.</p>
+
+<pre>app.configure ->
+  app.set 'port', <b>config.server.port</b>
+  app.set 'views', <b>config.server.views.path</b>
+  app.engine <b>config.server.views.extension</b>, engines[<b>config.server.views.compileWith</b>]
+  app.set 'view engine', <b>config.server.views.extension</b></pre>
 
     <section id="yours">
       <div class="page-header">
@@ -158,7 +166,23 @@
       </div>
     </section>
 
-    TBD
+    <p>Inside the route Mimosa delivers via <code class="option">mimosa new</code>, and in Mimosa's embedded Express, Mimosa will pass a small set of properties into your server view.</p>
+
+    <ul>
+      <li><code class="option">reload</code> is set to the value of <code class="option">config.server.useReload</code>. This boolean is used to toggle the use of the Live Reload scripts in the client.</li>
+      <li><code class="option">optimize</code> is set to <code class="option">true</code> if the <code class="option">optimize</code> flag is used when starting Mimosa.  Otherwise it is false.</li>
+      <li><code class="option">cachebust</code> is set to either blank or a cachebusting string to be used to bust your CSS cache.  It will not be set if <code class="option">NODE_ENV</code> is set to production.</li>
+    </ul>
+
+    <p>As with the server code delivered to you, the view code and routes are built to be flexible enough to work in several scenarios.  You may wish to remove some conditionals, or to hard-code some properties, but this will mean Mimosa will have less control over your application behavior.</p>
+
+    <h2>Jade</h2>
+
+    <h2>EJS</h2>
+
+    <h2>Hogan</h2>
+
+    <h2>HTML</h2>
 
   </section>
 
