@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Server Options and Setup - Mimosa</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="css/main.css"> -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" >
+  <link rel="stylesheet" href="css/bootstrap-responsive.min.css" >
+  <link rel="stylesheet" href="css/app.css">
+
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
+</head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li class="">
+              <a href="./index.html">Mimosa</a>
+            </li>
+            <li class="">
+              <a href="./started.html">Getting Started</a>
+            </li>
+            <li class="">
+              <a href="./commands.html">Commands</a>
+            </li>
+            <li class="">
+              <a href="./compilers.html">Compilers</a>
+            </li>
+            <li class="active">
+              <a href="./server.html">Server</a>
+            </li>
+            <li class="">
+              <a href="./utilities.html">Utilities</a>
+            </li>
+            <li class="">
+              <a href="./optimization.html">Optimization</a>
+            </li>
+            <li class="">
+              <a href="./configuration.html">Configuration</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container main">
+
+  <header class="jumbotron subhead" id="overview">
+    <h1>Server Resources</h1>
+    <p class="lead">Mimosa jump starts and integrates your server development </p>
+    <div class="subnav">
+      <ul class="nav nav-pills">
+        <li><a href="#overview" title="How Mimosa's server resources work">Overview</a></li>
+        <li><a href="#new" title="What Mimosa delivers">Via 'mimosa new'</a></li>
+        <li><a href="#mimosas" title="Mimosa's embedded server">Mimosa's Server</a></li>
+        <li><a href="#yours" title="How Mimosa invokes your server">Your Server</a></li>
+        <li><a href="#views" title="View options">Views</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="command-list">
+    <section id="overview">
+      <div class="page-header">
+        <h1>
+          Overview
+          <small><span class="options"></span></small>
+        </h1>
+      </div>
+    </section>
+
+    <h2>No server necessary</h2>
+    <p>With <code class="option">mimosa watch</code> you don't need to use Mimosa to serve up your assets.  You might have a server already.  You might be running Derby, Sinatra, Spring MVC, whatever it might be, you might have serving your assets covered.  <code class="option">mimosa watch</code> is good with that.  It'll run the lifecycle, compile your code, lint it, write it, and let you handle it from there.</p>
+
+    <p><code class="option">mimosa virgin</code> is even less intrusive.  It will not write your code anywhere, it'll just run the lifecycle steps pre-write.  You might have an "asset pipeline" that pulls your assets right out of your source code.</p>
+
+    <h2>But if you want one...</h2>
+    <p>Toss a <code class="option">-s/--server</code> onto your <code class="option">mimosa watch</code> and Mimosa will invoke a server.  Which server Mimosa invokes depends on what you have in your mimosa-config.  Mimosa could start its own server and point it at your views and assets.  Or Mimosa could start the server it gave you if you ran <code class="option">mimosa new</code>.  Or Mimosa could execute a server you had previously using a simple exports hook.</p>
+
+    <p>All options are nodejs-based.  Mimosa does not have the ability to start your Rails server or your Tomcat.</p>
+
+    <section id="new">
+      <div class="page-header">
+        <h1>
+          Mimosa Delivered Server Assets
+          <small><span class="options">what 'mimosa new' gives you</span></small>
+        </h1>
+      </div>
+    </section>
+
+    <h2>Server</h2>
+
+    <p><code class="option">mimosa new</code> will give you the option to have a server of your own or to have Mimosa serve up your application.  If you choose not to have a server of your own, Mimosa will not deliver any sort of server code.</p>
+
+    <p>If you choose the Express option, you will be given a single file, written in the JavaScript meta-language you chose during the <code class="option">mimosa new</code> prompting (<code class="option">server.coffee</code>, for example), that Mimosa will use to start your server. You will also be given a simple router, also in the JavaScript meta-language you chose.</p>
+
+    <h2>Views</h2>
+
+    <p><code class="option">mimosa new</code> will give you the option to select the server view technology you would like to use.  You can use plain HTML if you wish, or use any of a number of dynamic templating options. Mimosa does not allow you to choose to have no views. Depending on the technology you choose, you will get one or two view templates for your starter app.</p>
+
+    <section id="mimosas">
+      <div class="page-header">
+        <h1>
+          Mimosa's Embedded Server
+          <small><span class="options">mimosa can host your app</span></small>
+        </h1>
+      </div>
+    </section>
+
+    TBD
+
+    <section id="yours">
+      <div class="page-header">
+        <h1>
+          Hooked Into Your Server
+          <small><span class="options">mimosa can start your app</span></small>
+        </h1>
+      </div>
+    </section>
+
+    TBD
+
+    <section id="yours">
+      <div class="page-header">
+        <h1>
+          Server Views
+          <small><span class="options">you've got a few options</span></small>
+        </h1>
+      </div>
+    </section>
+
+    TBD
+
+  </section>
+
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.7.2.min.js"><\/script>')</script>
+<script src="js/vendor/bootstrap-collapse.js"></script>
+<script src="js/vendor/bootstrap-scrollspy.js"></script>
+
+<!-- scripts concatenated and minified via build script -->
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<!-- end scripts -->
+
+<script>
+    var _gaq=[['_setAccount','UA-33737130-1'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+</body>
+</html>
