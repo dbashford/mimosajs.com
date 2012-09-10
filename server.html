@@ -126,7 +126,17 @@
       </div>
     </section>
 
-    TBD
+    <p>Mimosa comes bundled with its own Express server.  If you have <code class="option">server.useDefaultServer</code> set to <code class="option">true</code> in your <code class="option">mimosa-config</code>, then when you run <code class="option">mimosa watch</code> with the <code class="option">--server</code> flag, Mimosa will run its embedded server. When running Mimosa's Express, all of the settings in the <code class="option">server</code> portion of the <code class="option">mimosa-config</code> become very important.</p>
+
+    <ul>
+      <li><code class="option">server.port</code> is used to determine which port to start the server on.  It defaults to 3000.</li>
+      <li><code class="option">server.base</code> will host your application behind a given path.  It defaults to blank, so your application will be available via localhost, but if you were, for instance, to provide 'app' instead, your index page would be available at localhost/app.</li>
+      <li><code class="option">server.views.compileWith</code> lets Mimosa know what kind of views you have.</li>
+      <li><code class="option">server.views.extension</code> informs Mimosa's Express which files to register your <code class="option">server.views.compileWith</code> against. This gives you the chance to use "html" as an extension for all your views if you wish.</li>
+      <li><code class="option">server.views.path</code> points Mimosa to the location of your views.</li>
+    </ul>
+
+    <p>Mimosa's Express will do a few things for you in addition to serving up your application.  Assuming <code class="option">server.useReload</code> is set to <code class="option">true</code> (default), you'll have Live Reload functionality for your codebase.  Mimosa will reload your browser whenever a file in <code class="option">server.views.path</code> (default '/views') or <code class="option">config.watch.compiledDir</code> (default '/public') changes. Mimosa will also serve up your static assets gzipped.
 
     <section id="yours">
       <div class="page-header">
