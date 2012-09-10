@@ -496,7 +496,7 @@ i {
   margin-bottom:15px;
 }
 
-.compilers  .command {
+.compilers .command, .server-list .command {
   color:orange;
 }
 

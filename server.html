@@ -78,7 +78,7 @@
     </div>
   </header>
 
-  <section class="command-list">
+  <section class="command-list server-list">
     <section id="overview">
       <div class="page-header">
         <h1>
@@ -147,7 +147,7 @@
       </div>
     </section>
 
-    <p>If you've got a moderately complex app, you may want the flexibility of having your own server. If <code class="option">server.useDefaultServer</code> is set to <code class="option">false</code>, Mimosa will look for a piece of node.js code located at <code class="option">server.path</code>, and execute the startServer method of that code (so that function must be exported). That function will be passed the entire resolved and enriched <code class="option">mimosa-config</code> for use within your server.</p>
+    <p>If you've got a moderately complex app, you may want the flexibility of having your own server. Delivering you an Express server is the <code class="option">mimosa new</code> default. If <code class="option">server.useDefaultServer</code> is set to <code class="option">false</code>, Mimosa will look for a piece of node.js code located at <code class="option">server.path</code>, and execute the startServer method of that code (so that function must be exported). That function will be passed the entire resolved and enriched <code class="option">mimosa-config</code> for use within your server.</p>
 
     <p>The server code delivered by <code class="option">mimosa new</code> will use all of the configuration from the <code class="option">mimosa-config</code> <code class="option">server</code> block. You could easily choose to remove the usage of the <code class="option">mimosa-config</code> entries from the delivered code. For instance, in the following code, all of the bolded entries could be replaced with their actual values, but this of course means Mimosa will be less capable of controlling behavior of your app.</p>
 
@@ -176,13 +176,19 @@
 
     <p>As with the server code delivered to you, the view code and routes are built to be flexible enough to work in several scenarios.  You may wish to remove some conditionals, or to hard-code some properties, but this will mean Mimosa will have less control over your application behavior.</p>
 
-    <h2>Jade</h2>
+    <p>Mimosa uses <a href="https://github.com/visionmedia/consolidate.js">consolidate</a>, both internally and within the delivered Express, to easily toggle between different view templating libraries. If you choose to have your own server, consolidate will be installed in your project. Also installed will be the library for the templating library you choose.</p>
 
-    <h2>EJS</h2>
+    <p>Each of the client libraries has a string that you would use to configure <code class="option">server.views.compileWith</code> to determine which view technology will be used, and each library has a default extension. When you chose one of the client libraries during <code class="option">mimosa new</code>, Mimosa will modify the <code class="option">mimosa-config</code> with these values. The <code class="option">server.views.compileWith</code> values are listed below next to the name of each technology. The default extensions are listed as well.</p>
 
-    <h2>Hogan</h2>
+    <h2>Jade <small><span class="mim">jade</span> <span class="command">.jade</span></small></h2>
 
-    <h2>HTML</h2>
+    <p><a href="http://jade-lang.com/">Jade</a> is the default server templating language. </p>
+
+    <h2>EJS <small><span class="mim">ejs</span> <span class="command">.ejs</span></small></h2>
+
+    <h2>Hogan <small><span class="mim">hogan</span> <span class="command">.hjs</span></small></h2>
+
+    <h2>HTML <small><span class="mim">html</span> <span class="command">.html</span></small></h2>
 
   </section>
 
