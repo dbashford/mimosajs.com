@@ -108,7 +108,7 @@
 
         <p>The assets directory has some example code to get you started, and has a group of vendor scripts, like require.js.</p>
 
-        <p>The created directory will also contain the configuration file for Mimosa. Almost everything inside of it is commented out, but all the options and explanations for each option are present. The only things that will not be commented out will changes to the configuration for the javascript, css, and template compilers, as well as the server config if you chose something other than the defaults.</p>
+        <p>The created directory will also contain the configuration file for Mimosa. Almost everything inside of it is commented out, but all the options and explanations for each option are present. The only things that will not be commented out will changes to the server config if you chose something other than the defaults.</p>
 
         <h3>Pick the defaults (-d/--defaults)</h3>
 
@@ -206,8 +206,6 @@ $ mimosa new nameOfApplicationHere -d</pre>
 
           <p class="logs">
             23:20:05 - Copying skeleton project into /Users/dbashford/mim/foo<br/>
-            <span class="inst">23:20:05 - Config changed to use selected compilers and to watch default extensions for those compilers.</span><br/>
-            <span class="inst">23:20:05 - You may want to check that the extensions Mimosa will watch match those you intend to use.</span><br/>
             23:20:05 - Installing node modules<br/>
             <span class="inst">23:20:09 - New project creation complete!</span><br/>
             <span class="inst">23:20:09 - Execute 'mimosa watch --server' from inside your project to monitor the file system. then start coding!</span><br/>
@@ -360,7 +358,7 @@ $ mimosa watch [--server] -mo</pre>
       <div class="span6">
         <h2>build</h2>
 
-        <p>If you want to compile a set of assets, and you don't want to start up a watching process to do it, you can use Mimosa's build command.</p>
+        <p>If you want to compile a set of assets, and you don't want to start up a watching process to do it, you can use Mimosa's <code class="option">build</code> command.</p>
 
         <pre>$ mimosa build</pre>
 
@@ -423,7 +421,7 @@ $ mimosa build -or</pre>
 
     <p>Should you not be deploying a node/Express app, the <code class="option">--jade</code> flag will compile an .html version of the <code class="option">index.jade</code> that Mimosa provides with its new command. The <code class="option">--jade</code> flag will attempt to compile the <code class="option">index.jade</code> file by feeding the template production level settings. <code class="option">cachebust</code> will be turned off. <code class="option">reload</code> set to <code class="option">false</code>. <code class="option">optimize</code> will be set to <code class="option">true</code> if you also provide the optimize flag.</p>
 
-    <p>If the index.jade file is changed to take different variables, or removed or renamed, the jade compilation will fail with warnings explaining the failures. This makes the command somewhat inflexible and if that causes problems for enough folks then some flexibility can be built in.  Just <a href="https://github.com/dbashford/mimosa/issues">file an issue!</a></p>
+    <p>If the index.jade file is changed to take different variables, or removed or renamed, the jade compilation will fail with warnings explaining the failures. This makes this flag somewhat inflexible and if that causes problems for enough folks then some flexibility can be built in.  Just <a href="https://github.com/dbashford/mimosa/issues">file an issue!</a></p>
 
     <pre>$ mimosa build --jade
 $ mimosa build -j</pre>
@@ -549,7 +547,7 @@ $ mimosa build -j</pre>
 
         <p>Use the <code class="option">update</code> command to update the node packages that Mimosa installed inside your application when it was created and to get any new libraries it has included. This command saves you the trouble of needing to keep track of versions of libraries yourself and ensures you'll keep up to date with the versions Mimosa uses.</p>
 
-        <p>For now Mimosa will not attempt to update any of the other assets it delivers (routes, example skeleton files, etc) because many of them may have significantly changed from when they were created.</p>
+        <p>Mimosa will not attempt to update any of the other assets it delivers (routes, example skeleton files, etc) because many of them may have significantly changed from when they were created.</p>
 
         <p>Mimosa will first run <code class="option">npm uninstall</code> for each of the skeleton libraries already in place in your project, and then it will follow up with an <code class="option">npm install</code> on each removed library and each new library that wasn't there originally.</p>
 
@@ -624,7 +622,6 @@ $ mimosa [command] --help</pre>
 
             <div style="padding-left:10px">
                 -h, --help      output usage information<br/>
-                -n, --noserver  do not include express in the application setup<br/>
                 -d, --defaults  bypass prompts and go with Mimosa defaults (CoffeeScript, SASS, Handlebars)<br/>
                 -D, --debug     run in debug mode<br/>
             </div>
@@ -639,15 +636,6 @@ $ mimosa [command] --help</pre>
 
             <p class="command">$ mimosa new</p>
 
-            <p class="inst">Pass a 'noserver' flag to not include the basic Express app.  With this set up, if you choose to have Mimosa serve up your assets, it will do so with an embedded Mimosa Express app, and not with one inside your project.</p>
-
-            <p class="command">
-                $ mimosa new [name] --noserver<br/>
-                $ mimosa new --noserver<br/>
-                $ mimosa new [name] -n<br/>
-                $ mimosa new -n
-            </p>
-
             <p class="inst">If you are happy with the defaults (CoffeeScript, SASS, Handlebars), you can bypass the prompts by providing a 'defaults' flag.</p>
 
             <p class="command">
@@ -659,19 +647,12 @@ $ mimosa [command] --help</pre>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="span6">
-        <h3>-D/--debug</h3>
+    <h3>-D/--debug</h3>
 
-        <p>All Mimosa commands have a debug mode that will print detailed logs to the console for everything Mimosa is doing.</p>
+    <p>All Mimosa commands have a debug mode that will print detailed logs to the console for everything Mimosa is doing. As you'll find out the first time you execute a Mimosa command with the <code class="option">--debug</code> flag, Mimosa logs quite a bit of what it does, so this is only useful when doing deep debugging, it is not something to use regularly just to see what Mimosa is up to.</p>
 
-        <pre>$ mimosa [command] --debug
+    <pre>$ mimosa [command] --debug
 $ mimosa [command] -D</pre>
-
-      </div>
-      <div class="span6">
-
-      </div>
     </div>
   </section>
 </div>

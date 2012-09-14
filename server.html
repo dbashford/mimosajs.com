@@ -94,7 +94,7 @@
     <p><code class="option">mimosa virgin</code> is even less intrusive.  It will not write your code anywhere, it'll just run the lifecycle steps pre-write.  You might have an "asset pipeline" that pulls your assets right out of your source code.</p>
 
     <h2>But if you want one...</h2>
-    <p>Toss a <code class="option">-s/--server</code> onto your <code class="option">mimosa watch</code> and Mimosa will invoke a server.  Which server Mimosa invokes depends on what you have in your mimosa-config.  Mimosa could start its own server and point it at your views and assets.  Or Mimosa could start the server it gave you if you ran <code class="option">mimosa new</code>.  Or Mimosa could execute a server you had previously using a simple exports hook.</p>
+    <p>Toss a <code class="option">-s/--server</code> onto your <code class="option">mimosa watch</code> and Mimosa will invoke a server.  Which server Mimosa invokes depends on what you have in your <code class="option">mimosa-config</code>.  Mimosa could start its own server and point it at your views and assets.  Or Mimosa could start the server it gave you when you ran <code class="option">mimosa new</code>.  Or Mimosa could execute a server you had previously using a simple exports hook.</p>
 
     <p>All options are nodejs-based.  Mimosa does not have the ability to start your Rails server or your Tomcat.</p>
 
@@ -115,13 +115,13 @@
 
     <h2>Views</h2>
 
-    <p><code class="option">mimosa new</code> will give you the option to select the server view technology you would like to use.  You can use plain HTML if you wish, or use any of a number of dynamic templating options. Mimosa does not allow you to choose to have no views. Depending on the technology you choose, you will get one or two view templates for your starter app.</p>
+    <p><code class="option">mimosa new</code> will give you the option to select the server view technology you would like to use.  You can use plain HTML if you wish, or any of a number of dynamic templating options. Mimosa does not allow you to choose to have no views. Depending on the technology you choose, you will get one or two view templates for your starter app.</p>
 
     <section id="mimosas">
       <div class="page-header">
         <h1>
           Mimosa's Embedded Server
-          <small><span class="options">mimosa can host your app</span></small>
+          <small><span class="options">mimosa can serve your app</span></small>
         </h1>
       </div>
     </section>

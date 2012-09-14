@@ -587,3 +587,7 @@ i {
 .hilight {
   background-color: #ffff7e;
 }
+
+.page-header {
+  margin-top: 30px;
+}

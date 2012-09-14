@@ -71,13 +71,14 @@
       <ul class="nav nav-pills">
         <li><a href="#config" title="How it all works">Overview</a></li>
         <li><a href="#watch" title="What to watch and where">Watching</a></li>
-        <li><a href="#compilers" title="Compiler selection and tweaks">Compilers</a></li>
-        <li><a href="#copy" title="What files will Mimosa copy">File Copying</a></li>
+        <li><a href="#compilers" title="Compiler tweaks">Compiler Overrides</a></li>
+        <li><a href="#template" title="Template config">Templates</a></li>
+        <li><a href="#copy" title="What files will Mimosa copy"> Copying</a></li>
         <li><a href="#server" title="Micro-Templates galore">Server</a></li>
         <li><a href="#require" title="Copy JS/CSS and other assets like images">RequireJS</a></li>
-        <li><a href="#minify" title="Use a demo app">Minification</a></li>
-        <li><a href="#growl" title="Use a demo app">Growl</a></li>
-        <li><a href="#lint" title="Use a demo app">Lint</a></li>
+        <li><a href="#minify" title="Which schtuff to not minify">Minification</a></li>
+        <li><a href="#growl" title="To Growl or not to Growl">Growl</a></li>
+        <li><a href="#lint" title="To Lint or not to Lint">Lint</a></li>
       </ul>
     </div>
   </header>
@@ -136,6 +137,7 @@
 <pre><span class="watch"># watch:</span>
   <span class="sourceDir"># sourceDir: "assets"</span>
   <span class="compiledDir"># compiledDir: "public"</span>
+  <span class="javascriptDir"># javascriptDir: "javascripts"</span>
   <span class="ignored"># ignored: [".sass-cache"]</span>
   <span class="throttle"># throttle: 0</span></pre>
       </div>
@@ -144,6 +146,9 @@
     <h4 class="hi compiledDir watch">watch.compiledDir</h4>
 
     <p class="hi compiledDir watch">The <code class="option">compiledDir</code> property is the path, relative to the <code class="option">mimosa-config</code>, where your compiled assets will be delivered. If your <code class="option">compiledDir</code> does not exist, Mimosa will create it for you. Mimosa will mimic the same folder/directory structure in the <code class="option">compiledDir</code> that it finds in the <code class="option">sourceDir</code></p>
+
+    <h4 class="hi javascriptDir javascript compilers">watch.javascriptDir</h4>
+    <p class="hi javascriptDir javascript compilers">Location of the JavaScript code inside the <code class="option">watch.sourceDir</code> directory and therefore also the location of the compiled JavaScript in the <code class="option">watch.compiledDir</code>.</p>
 
     <h4 class="hi ignored watch">watch.ignored</h4>
 
@@ -163,62 +168,39 @@
 
     <div class="row">
       <div class="span6">
-        <h4 class="hi compilers">compilers</h4>
-        <p class="hi compilers">The <code class="option">compilers</code> config block contains compiler selections for each of the three compiler types: JavaScript, CSS, and micro-templating.</p>
 
-        <h4 class="hi javascript compilers">compilers.javascript</h4>
-        <p class="hi javascript compilers">Contains all of the configuration for the Mimosa JavaScript compiler.</p>
-
-        <h4 class="hi javascriptcompileWith javascript compilers">compilers.javascript.compileWith</h4>
-        <p class="hi javascriptcompileWith javascript compilers">The name of the compiler chosen to compile your JavaScript meta-language.  Valid values are: <code class="option">"iced"</code>, <code class="option">"none"</code> and <code class="option">"coffee"</code>. Picking <code class="option">"none"</code> means you will be coding straight JavaScript and no compilation is necessary. See the <a href="./compilers.html#js">compilers tab</a> for more about these JavaScript compiler options.</p>
-
-        <h4 class="hi javascriptextensions javascript compilers">compilers.javascript.extensions</h4>
-        <p class="hi javascriptextensions javascript compilers">An array of strings representing the extensions to compile for your JavaScript meta-language. If <code class="option">compilers.javascript.compileWith</code> is set to <code class="option">none</code>, this setting is ignored and does not need to be set.</p>
+        <h4 class="hi compilers extensionOverrides">compilers.extensionOverrides</h4>
+        <p class="hi compilers extensionOverrides">The <code class="option">compilers.extensionOverrides</code> config block contains nothing by default. This property allows you to configure certain extensions to be processed by a specific compiler.  Each Mimosa compiler is already configured to process files with certain extensions, but this configuration allows you to both override and amplify those default extensions. To use this, map a compiler name to an array of extensions.  For example, <code class="option">extensionOverrides:{coffee: ["coff", "coffee"]}</code> will add the "coff" extension to the already-default "coffee" extension..</p>
 
       </div>
       <div class="span6">
-<pre><span class="compilers"># compilers:</span>
-  <span class="javascript"># javascript:</span>
-    <span class="javascriptcompileWith"># compileWith: "coffee"</span>
-    <span class="javascriptextensions"># extensions: ["coffee"]</span>
-    <span class="javascriptdirectory"># directory: "javascripts"</span>
-  <span class="template"># template:</span>
-    <span class="templatecompileWith"># compileWith: "handlebars"</span>
-    <span class="templateextensions"># extensions: ["hbs", "handlebars"]</span>
-    <span class="outputFileName"># outputFileName: "javascripts/templates"</span>
-    <span class="helperFiles"># helperFiles:["javascripts/app/template/handlebars-helpers"]</span>
-  <span class="css"># css:</span>
-    <span class="csscompileWith"># compileWith: "stylus"</span>
-    <span class="cssextensions"># extensions: ["styl"]</span></pre>
+<pre><span class="compilers">compilers:</span>
+  <span class="extensionOverrides">extensionOverrides:</span></pre>
       </div>
     </div>
 
-    <h4 class="hi javascriptdirectory javascript compilers">compilers.javascript.directory</h4>
-    <p class="hi javascriptdirectory javascript compilers">Location of the JavaScript code inside the <code class="option">watch.sourceDir</code> directory and therefore also the location of the compiled JavaScript in the <code class="option">watch.compiledDir</code>. For now this is only used by optimization. The rest of Mimosa doesn't care where you put your JavaScript (as long as it is inside the <code class="option">watch.sourceDir</code>).</p>
+    <section id="templates">
+      <div class="page-header">
+        <h1>
+          Templates <small><span class="command">template</span></small>
+        </h1>
+      </div>
+    </section>
 
-    <h4 class="hi template compilers">compilers.template</h4>
-    <p class="hi template compilers">Contains all of the configuration for the Mimosa micro-templating compiler.</p>
+    <div class="row">
+      <div class="span6">
+        <h4 class="hi outputFileName template">template.outputFileName</h4>
+        <p class="hi outputFileName template">The path of the file all of your templates are compiled into. If you are using multiple templating languages at once, instead of being a single string, this setting should be a map of Mimosa template compiler name to file path.  Like <code class="option">hogan:"javascripts/hogan-templates", dust:"javascripts/dust-templates"</code>. See the <a href="./compilers.html#mt">compilers tab</a> for more info.</p>
+      </div>
+      <div class="span6">
+<pre><span class="template">template:</span>
+  <span class="outputFileName">outputFileName: "javascripts/templates"</span>
+  <span class="helperFiles">helperFiles: ["javascripts/app/template/handlebars-helpers"]</span></pre>
+      </div>
+    </div>
 
-    <h4 class="hi templatecompileWith template compilers">compilers.template.compileWith</h4>
-    <p class="hi templatecompileWith template compilers">The name of the compiler chosen to compile your micro-templating code.  Values are: <code class="option">"handlebars"</code>, <code class="option">"dust"</code>, <code class="option">"jade"</code>, <code class="option">"hogan"</code>, <code class="option">"underscore"</code>, <code class="option">"lodash"</code>, <code class="option">"html"</code> and <code class="option">"none"</code>. Picking <code class="option">"none"</code> means you will be coding without templates, or not using Mimosa templating functionality. See the <a href="./compilers.html#mt">compilers tab</a> for more about the micro-templaters.</p>
-
-    <h4 class="hi templateextensions template compilers">compilers.template.extensions</h4>
-    <p class="hi templateextensions template compilers">An array of strings representing the extensions to compile for your micro-templating code.  If <code class="option">compilers.template.compileWith</code> is set to <code class="option">none</code>, this setting is ignored and does not need to be set.</p>
-
-    <h4 class="hi outputFileName template compilers">compilers.template.outputFileName</h4>
-    <p class="hi outputFileName template compilers">The path of the file all of your templates are compiled into. See the <a href="./compilers.html#mt">compilers tab</a> for more info.</p>
-
-    <h4 class="hi helperFiles template compilers">compilers.template.helperFiles</h4>
-    <p class="hi helperFiles template compilers">Only relevant for <code class="option">compilers.template.compileWith:"handlebars"</code>. An array of paths from <code class="option">watch.sourceDir</code> to the files containing handlebars helper registrations. The default can be left alone if you have no helpers as the paths will be ignored if they do not exist.</p>
-
-    <h4 class="hi css compilers">compilers.css</h4>
-    <p class="hi css compilers">Contains all of the configuration for the Mimosa CSS compiler.</p>
-
-    <h4 class="hi csscompileWith css compilers">compilers.css.compileWith</h4>
-    <p class="hi csscompileWith css compilers">The name of the compiler chosen to compile your CSS meta-language.  Valid values are: <code class="option">"stylus"</code>, <code class="option">"less"</code>, <code class="option">"sass"</code> and <code class="option">"none"</code>. Picking <code class="option">"none"</code> means you will be coding straight CSS and no compilation is necessary. See the <a href="./compilers.html#css">compilers tab</a> for more about these CSS compiler options.</p>
-
-    <h4 class="hi cssextensions css compilers">compilers.css.extensions</h4>
-    <p class="hi cssextensions css compilers">An array of strings representing the extensions to compile for your CSS code. If <code class="option">compilers.css.compileWith</code> is set to <code class="option">none</code>, this setting is ignored and does not need to be set.</p>
+    <h4 class="hi helperFiles template">template.helperFiles</h4>
+    <p class="hi helperFiles template">Only relevant for Handlebars templates. An array of paths from <code class="option">watch.sourceDir</code> to the files containing handlebars helper registrations. The default can be left alone if you have no helpers because the paths will be ignored if they do not exist.</p>
 
     <section id="copy">
       <div class="page-header">
