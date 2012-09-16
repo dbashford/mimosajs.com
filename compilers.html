@@ -254,8 +254,6 @@
       <p>One very feasible use case for this is to be able to use Twitter Bootstrap's source LESS code alongside your own Stylus code. Mimosa will happily compile Bootstrap for you, with all the changes and modifications that you'd care to make to it included.  And it'll compile your Stylus files too.</p>
     </section>
 
-
-
     <section id="js">
       <div class="page-header">
         <h1>
@@ -335,11 +333,48 @@
       </div>
       <p>Listed below are the different micro-templating libraries Mimosa has built in. For performance reasons, it is best to pre-compile your templates on the server, and serve up those pre-compiled templates. Mimosa will pre-compile your templates for you. As with the CSS and JavaScript meta-languages, your micro-templates will be compiled when saved.
 
-      <p>In all cases, the resulting compiled templates will be merged into a single file for use in the client. Within that file will be @sourceUrl like information to allow you to easily track errors back to specific files in your codebase. The name and location of that single file is configurable <code class="option">(compilers.template.outputFileName)</code>, but by default it is kept at <code class="option">javascripts/templates.js</code>. When this file is injected via require, the behavior differs per library, see below.
+      <p>In all cases, the resulting compiled templates will be merged into a single file for use in the client. Within that file will be @sourceUrl like information to allow you to easily track errors back to specific files in your codebase. The name and location of that single file is configurable <code class="option">(compilers.template.outputFileName)</code>, but by default it is kept at <code class="option">javascripts/templates.js</code>. When this file is injected via require, the behavior differs per library, see below.</p>
 
       <p>For each templating langauge, the injected javascript file provides a JSON object of templates, keyed by the name of the the template originated in. This means that despite what directory your templates are in, each template needs to have a unique name.  Should you violate this, Mimosa will let you know you have template collision issues.</p>
 
-      <p>Most of the libraries require a client side version to run the compiled templates. Mimosa will handle including that library for you. It will place an AMD wrapped version of the library inside the javascripts/vendor library and reference it from the compiled template file.</p>
+      <p>Most of the libraries require a client side version to run the compiled templates. Mimosa will handle including that library for you. It will place an AMD wrapped version of the library inside the <code class="option">watch.javascriptDir</code>/<code class="option">vendor</code> library and reference it from the compiled template file. If you have already provided a library that matches Mimosa's version of the library in name, Mimosa will not overwrite your version. Also, if you have a requirejs path alias set up pointing at the library, like <code class="option">underscore:"vendor/underscore"</code>, Mimosa will use the path. The following are the names of the libraries Mimosa places in your <code class="option">watch.javascriptDir</code>/<code class="option">vendor</code> directory.</p>
+
+      <p>
+        <table class="table table-striped table-bordered table-condensed">
+           <thead>
+             <tr>
+               <th>Name</th>
+               <th>Library Name</th>
+             </tr>
+           </thead>
+           <tbody>
+             <tr>
+               <td>Handlebars</td>
+               <td>handlebars</td>
+             </tr>
+             <tr>
+               <td>Dust</td>
+               <td>dust</td>
+             </tr>
+             <tr>
+               <td>Hogan</td>
+               <td>hogan-template</td>
+             </tr>
+             <tr>
+               <td>Jade</td>
+               <td>jade-runtime</td>
+             </tr>
+             <tr>
+               <td>Underscore</td>
+               <td>underscore</td>
+             </tr>
+             <tr>
+               <td>Lodash</td>
+               <td>lodash</td>
+             </tr>
+           </tbody>
+         </table>
+      </p>
 
       <p>As with the CSS and JavaScript compilers, you can choose to use multiple templating libraries at once, but to do so properly, there is some additional config you have to provide Mimosa. Mimosa bundles all of your templates into the same file, but you really don't want templates from different libraries in the same file. So if you are using multiple libraries, you should provide Mimosa, via the <code class="option">mimosa-config</code>, a map/hash of compiler name to output file name.  You would do this with the <code class="option">template.outputFileName</code> property.  The <code class="option">mimosa-config</code> includes a commented out example.</p>
 
@@ -395,7 +430,7 @@
 
       <pre>var html = templates.example({})</pre>
 
-      <p>Mimosa keeps an AMD wrapped version of Underscore that it writes to <code class="option">assets/javascripts/vendor/underscore.js</code> directory as part of compilation, so there is no need to include the library yourself if you are just using it for templating.  However, Underscore is a popular library for reasons other than templating, and it is often included in the requirejs <code class="option">config.paths</code> as something like this <code class="option">underscore:'vendor/underscore'</code>.  If you have done this and are using Underscore templating too, this will cause issues with requirejs loading your depedencies. See <a href="https://github.com/dbashford/mimosa/issues/48">this issue</a> for help.
+      <p>Mimosa keeps an AMD wrapped version of Underscore that it writes to <code class="option">assets/javascripts/vendor/underscore.js</code> directory as part of compilation, so there is no need to include the library yourself if you are just using it for templating.</p>
 
       <h2>Lodash <small><span class="mim">lodash</span> <span class="command">["tmpl", "lodash"]</span></small></h2>
 

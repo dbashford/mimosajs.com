@@ -190,17 +190,17 @@
     <div class="row">
       <div class="span6">
         <h4 class="hi outputFileName template">template.outputFileName</h4>
-        <p class="hi outputFileName template">The path of the file all of your templates are compiled into. If you are using multiple templating languages at once, instead of being a single string, this setting should be a map of Mimosa template compiler name to file path.  Like <code class="option">hogan:"javascripts/hogan-templates", dust:"javascripts/dust-templates"</code>. See the <a href="./compilers.html#mt">compilers tab</a> for more info.</p>
+        <p class="hi outputFileName template">The path of the file all of your templates are compiled into. The path is relative to <code class="option">watch.javascriptDir</code>. If you are using multiple templating languages at once, instead of being a single string, this setting should be a map of Mimosa template compiler name to file path.  Like <code class="option">hogan:"hogan-templates", dust:"dust-templates"</code>. See the <a href="./compilers.html#mt">compilers tab</a> for more info.</p>
       </div>
       <div class="span6">
 <pre><span class="template">template:</span>
-  <span class="outputFileName">outputFileName: "javascripts/templates"</span>
-  <span class="helperFiles">helperFiles: ["javascripts/app/template/handlebars-helpers"]</span></pre>
+  <span class="outputFileName">outputFileName: "templates"</span>
+  <span class="helperFiles">helperFiles: ["app/template/handlebars-helpers"]</span></pre>
       </div>
     </div>
 
     <h4 class="hi helperFiles template">template.helperFiles</h4>
-    <p class="hi helperFiles template">Only relevant for Handlebars templates. An array of paths from <code class="option">watch.sourceDir</code> to the files containing handlebars helper registrations. The default can be left alone if you have no helpers because the paths will be ignored if they do not exist.</p>
+    <p class="hi helperFiles template">Only relevant for Handlebars templates. An array of paths from <code class="option">watch.javascriptDir</code> to the files containing handlebars helper registrations. The default can be left alone if you have no helpers because the paths will be ignored if they do not exist.</p>
 
     <section id="copy">
       <div class="page-header">
