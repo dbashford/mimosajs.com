@@ -70,7 +70,8 @@
     <div class="subnav">
       <ul class="nav nav-pills">
         <li><a href="#install" title="Create a new project">Install Mimosa</a></li>
-        <li><a href="#quick" title="Get started right now">Quick Start</a></li>
+        <li><a href="#exist" title="Get started right now">Quick Start - Existing App</a></li>
+        <li><a href="#new" title="Get started right now">Quick Start - New App</a></li>
         <li><a href="#demoapps" title="Use a demo app">Demo Apps</a></li>
       </ul>
     </div>
@@ -92,16 +93,50 @@
       <p>The <code class="option">-g</code> flag installs Mimosa globally so it can be run from the command line anywhere.  You may need to use sudo to install this depending on the setup of your system.</p>
       <h2>3) All done!</h2>
     </section>
-    <section id="quick">
+    <section id="exist">
       <div class="page-header">
         <h1>
-          Quick Start
-          <small><span class="options">you'll be coding soon </span></small>
+          Quick Start - Existing App
+          <small><span class="options">easy to wire up</span></small>
         </h1>
       </div>
+
+      <h2>1) mimosa config</h2>
+
+      <p>Simply execute <code class="option">mimosa config</code> from the root of your application and Mimosa will place a <code class="option">mimosa-config.coffee</code> file there. This file controls everything Mimosa does, but it is entirely commented out.</p>
+
+      <h2>2) Tweak the config</h2>
+
+      <p>From here its a matter of either changing your codebase around a little to match Mimosa's defaults, or changing Mimosa's config to work with your setup. The <code class="option">mimosa-config</code> is self-documenting. So all you need to understand each config setting is inside the file. But you can also breeze through the <a href="./configuration.html">configuration options</a> to understand all that you have control over.</p>
+
+      <p>The most important settings in the config, to get you started, are inside the top <code class="option">watch</code> setting.  Make sure that <code class="option">sourceDir</code>, <code class="option">compiledDir</code>, and <code class="option">javascriptDir</code> all point to the right place in your codebase.</p>
+
+      <h2>3) Fire it up</h2>
+
+      <p>Execute <code class="option">mimosa watch</code> and Mimosa will start keeping track of your assets and do its thing when you change them.  Mimosa will tell you if you've done anything wrong, or if it can't find the important things it needs to find.</p>
+
+      <h2>4) Next steps?</h2>
+
+      <ul>
+        <li>Get familiar with Mimosa's <a href="./commands.html">commands</a></li>
+        <li>Writing plain CSS or JS?  Not using templating?  Browse the list of <a href="./compilers.html">compilers</a> to see what your options are there.</li>
+        <li>Check out how Mimosa can help <a href="./server.html#mimosas">serve your assets</a> or <a href="./server.html#yours">start your server</a>.</li>
+        <li>Learn how Mimosa can <a href="./optimization.html">optimize</a> your code.</li>
+        <li>Having trouble? Hit the <a href="https://groups.google.com/forum/#!forum/mimosajs">Google group</a> to find a solution.</li>
+      </ul>
+
+    </section>
+    <section id="exist">
+      <div class="page-header">
+        <h1>
+          Quick Start - New App
+          <small><span class="options">you'll be coding soon</span></small>
+        </h1>
+      </div>
+
       <h2>1) Create a new application</h2>
 
-      <p>The easiest way to get started with Mimosa is to use it to create a new application skeleton. First navigate to a directory within which you want to place your application and use <code class="option">mimosa new</code> to create an app.</p>
+      <p>Navigate to a directory within which you want to place your application and use <code class="option">mimosa new</code> to create an app.</p>
 
       <pre>$ mimosa new nameOfApplicationHere</pre>
 
