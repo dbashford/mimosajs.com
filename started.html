@@ -91,7 +91,6 @@
       <p>You use npm to install node packages.</p>
       <pre>$ npm install -g mimosa</pre>
       <p>The <code class="option">-g</code> flag installs Mimosa globally so it can be run from the command line anywhere.  You may need to use sudo to install this depending on the setup of your system.</p>
-      <h2>3) All done!</h2>
     </section>
     <section id="exist">
       <div class="page-header">
@@ -103,11 +102,11 @@
 
       <h2>1) mimosa config</h2>
 
-      <p>Simply execute <code class="option">mimosa config</code> from the root of your application and Mimosa will place a <code class="option">mimosa-config.coffee</code> file there. This file controls everything Mimosa does, but it is entirely commented out.</p>
+      <p>Execute <code class="option">mimosa config</code> from the root of your application and Mimosa will place a <code class="option">mimosa-config.coffee</code> file there. This file controls everything Mimosa does. For now its contents will be entirely commented out.</p>
 
       <h2>2) Tweak the config</h2>
 
-      <p>From here its a matter of either changing your codebase around a little to match Mimosa's defaults, or changing Mimosa's config to work with your setup. The <code class="option">mimosa-config</code> is self-documenting. So all you need to understand each config setting is inside the file. But you can also breeze through the <a href="./configuration.html">configuration options</a> to understand all that you have control over.</p>
+      <p>From here its a matter of either changing your codebase around a little to match Mimosa's defaults, or changing Mimosa's config to work with your setup. The <code class="option">mimosa-config</code> is self-documenting. So all you need to understand each config setting is inside the file. But you can also breeze through the <a href="./configuration.html">configuration options</a> on the site to understand all that you have control over.</p>
 
       <p>The most important settings in the config, to get you started, are inside the top <code class="option">watch</code> setting.  Make sure that <code class="option">sourceDir</code>, <code class="option">compiledDir</code>, and <code class="option">javascriptDir</code> all point to the right place in your codebase.</p>
 
