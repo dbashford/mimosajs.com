@@ -124,9 +124,9 @@ $ mimosa new nameOfApplicationHere -d</pre>
 
           <p class="inst">Determining system capabilities...</p>
 
-          <p class="inst">Mimosa will guide you through project creation. You will be prompted to pick the JavaScript meta-language, CSS meta-language, and micro-templating library you would like to use. For more about those choices, see http://mimosajs.com/compilers.html.  You will also be prompted to pick the server you would like to use. If you pick no server, Mimosa will serve your assets for you.</p>
+          <p class="inst">Mimosa will guide you through project creation. You will be prompted to pick the JavaScript meta-language, CSS meta-language, and micro-templating library you would like to use. For more about those choices, see http://mimosajs.com/compilers.html. You will also be prompted to pick the server and server-side view technologies you would like to use. If you pick no server, Mimosa will serve your assets for you.</p>
 
-          <p class="inst">For all of the technologies, if your favorite is not an option, you can add a GitHub issue and we'll look into adding it. (https://github.com/dbashford/mimosa/issues)</p>
+          <p class="inst">For all of the technologies, if your favorite is not an option, you can add a GitHub issue and we'll look into adding it.</p>
 
           <p class="inst">If you are unsure which options to pick, the ones with asterisks are Mimosa favorites. Feel free to hit the web to research your selections, Mimosa will be here when you get back.</p>
 
@@ -135,7 +135,8 @@ $ mimosa new nameOfApplicationHere -d</pre>
           <p>
             1) (*) CoffeeScript - http://coffeescript.org/<br/>
             2) Iced CoffeeScript - http://maxtaco.github.com/coffee-script/<br/>
-            3) None (Raw JavaScript)<br/>
+            3) LiveScript - http://gkz.github.com/LiveScript/<br/>
+            4) None (Raw JavaScript)<br/>
             : 1
           </p>
 
@@ -150,8 +151,8 @@ $ mimosa new nameOfApplicationHere -d</pre>
           <p>
             1) LESS - http://lesscss.org/<br/>
             2) None (Raw CSS)<br/>
-            3) (*) SASS - http://sass-lang.com/<br/>
-            4) Stylus - http://learnboost.github.com/stylus/<br/>
+            3) SASS - http://sass-lang.com/<br/>
+            4) (*) Stylus - http://learnboost.github.com/stylus/<br/>
             : 4
           </p>
 
@@ -184,8 +185,8 @@ $ mimosa new nameOfApplicationHere -d</pre>
           </p>
 
           <p>
-            1) (*) Express - http://expressjs.com/<br/>
-            2) None - Mimosa will serve your application for you<br/>
+            1) None - You don't need a server, or you'd like Mimosa to serve your application for you.<br/>
+            2) (*) Express - http://expressjs.com/<br/>
             : 1
           </p>
 
@@ -198,8 +199,14 @@ $ mimosa new nameOfApplicationHere -d</pre>
           </p>
 
           <p>
-          1) Hogan - http://twitter.github.com/hogan.js/<br/>
-          2) (*) Jade - http://jade-lang.com/
+            1) (*) Jade - http://jade-lang.com/<br/>
+            2) Hogan - http://twitter.github.com/hogan.js/<br/>
+            3) Plain HTML<br/>
+            4) Embedded JavaScript Templates (EJS) - https://github.com/visionmedia/ejs<br/>
+          </p>
+
+          <p class="fb">
+            You chose (*) Jade - http://jade-lang.com/.
           </p>
 
           <p class="inst">Creating and setting up your project...</p>
@@ -207,8 +214,7 @@ $ mimosa new nameOfApplicationHere -d</pre>
           <p class="logs">
             23:20:05 - Copying skeleton project into /Users/dbashford/mim/foo<br/>
             23:20:05 - Installing node modules<br/>
-            <span class="inst">23:20:09 - New project creation complete!</span><br/>
-            <span class="inst">23:20:09 - Execute 'mimosa watch --server' from inside your project to monitor the file system. then start coding!</span><br/>
+            <span class="inst">23:20:09 - New project creation complete! Execute 'mimosa watch --server' from inside your project to monitor the file system. Then start coding!</span><br/>
             Davids-MacBook-Pro:mim dbashford$
           </p>
         </div>
@@ -246,9 +252,6 @@ $ mimosa new nameOfApplicationHere -d</pre>
 
           <p>
             <span class="prompt">Davids-MacBook-Pro:foo dbashford$ mimosa watch --server --optimize</span><br/>
-            09:34:57 - Adding compiler: template/dust-compiler<br/>
-            09:34:57 - Adding compiler: css/less-compiler<br/>
-            09:34:57 - Adding compiler: javascript/coffee-compiler<br/>
             09:34:57 - Watching /Users/dbashford/mim/foo/assets<br/>
             <span class="inst">09:34:57 - Compiled/copied [[ /Users/dbashford/mim/foo/public/javascripts/main.js ]]</span><br/>
             <span class="inst">09:34:57 - Compiled/copied [[ /Users/dbashford/mim/foo/public/stylesheets/style.css ]]</span><br/>
@@ -326,25 +329,37 @@ $ mimosa watch [--server] -mo</pre>
 
         <p>This command will wipe out any file from the <code class="option">compiledDir</code> that is currently in the <code class="option">sourceDir</code>. Any assets in the <code class="option">compiledDir</code> that are not in the <code class="option">sourceDir</code> are left alone in case they were placed there purposefully. Mimosa makes a pass to clean out the files, and once done, it makes a pass to clean out any directories that are now empty.</p>
 
+        <pre>$ mimosa clean</pre>
+
+        <h3>Force Asset Deletion (-f/--force)</h3>
+
+        <p>Because the clean command will not remove anything in your <code class="option">compiledDir</code> that isn't in your <code class="option">sourceDir</code>, Mimosa may leave behind code that has been renamed.  If <code class="option">mimosa watch</code> is running and you delete or rename a file, Mimosa cleans out the compiled version of that file, but if Mimosa is not running and you delete or remove a file, Mimosa has no way of knowing the files left behind are safe for cleaning. </p>
+
+        <p>Enter the <code class="option">--force</code> flag.  When included, the <code class="option">--force</code> flag will remove the entire compiled directory and all of its contents, no questions asked.</p>
+
       </div>
       <div class="span6 term">
         <div class="inner">
           <p>
             Davids-MacBook-Pro:foo dbashford$ mimosa clean<br/>
-            <span class="inst">09:45:55 - /Users/dbashford/mim/foo/public has been cleaned.</span><br/>
+            <span class="inst">13:46:45 - Deleted file [[ /Users/dbashford/mim/foo/public/javascripts/main.js ]]</span><br/>
+            <span class="inst">13:46:45 - Deleted file [[ /Users/dbashford/mim/foo/public/stylesheets/style.css ]]</span><br/>
+            <span class="inst">13:46:45 - Deleted file [[ /Users/dbashford/mim/foo/public/javascripts/app/example-view.js ]]</span><br/>
+            <span class="inst">13:46:45 - Deleted file [[ /Users/dbashford/mim/foo/public/javascripts/vendor/jquery.js ]]</span><br/>
+            <span class="inst">13:46:45 - Deleted file [[ /Users/dbashford/mim/foo/public/javascripts/vendor/require.js ]]</span><br/>
+            <span class="inst">13:46:45 - Deleted file [[ /Users/dbashford/mim/foo/public/javascripts/vendor/dust.js ]]</span><br/>
+            <span class="inst">13:46:45 - Deleted file [[ /Users/dbashford/mim/foo/public/javascripts/templates.js ]]</span><br/>
+            <span class="inst">13:46:45 - Deleted file [[ /Users/dbashford/mim/foo/public/javascripts/main-built.js ]]</span><br/>
+            <span class="inst">13:46:45 - Deleted empty directory [[ /Users/dbashford/mim/foo/public/javascripts/vendor ]]</span><br/>
+            <span class="inst">13:46:45 - Deleted empty directory [[ /Users/dbashford/mim/foo/public/javascripts/app ]]</span><br/>
+            <span class="inst">13:46:45 - Deleted empty directory [[ /Users/dbashford/mim/foo/public/stylesheets ]]</span><br/>
+            <span class="inst">13:46:45 - Deleted empty directory [[ /Users/dbashford/mim/foo/public/javascripts ]]</span><br/>
+            <span class="inst">13:46:45 - [[ /Users/dbashford/mimosaplay/foo/public ]] has been cleaned.</span><br/>
             Davids-MacBook-Pro:foo dbashford$
           </p>
         </div>
       </div>
     </div>
-
-    <pre>$ mimosa clean</pre>
-
-    <h3>Force Asset Deletion (-f/--force)</h3>
-
-    <p>Because the clean command will not remove anything in your <code class="option">compiledDir</code> that isn't in your <code class="option">sourceDir</code>, Mimosa may leave behind code that has been renamed.  If <code class="option">mimosa watch</code> is running and you delete or rename a file, Mimosa cleans out the compiled version of that file, but if Mimosa is not running and you delete or remove a file, Mimosa has no way of knowing the files left behind are safe for cleaning. </p>
-
-    <p>Enter the <code class="option">--force</code> flag.  When included, the <code class="option">--force</code> flag will remove the entire compiled directory and all of its contents, no questions asked.</p>
 
     <section id="build">
       <div class="page-header">
@@ -448,17 +463,11 @@ $ mimosa build -j</pre>
         <div class="inner">
           <p>
             Davids-MacBook-Pro:foo dbashford$ mimosa virgin<br/>
-            10:19:56 - Adding compiler: template/dust-compiler<br/>
-            10:19:56 - Adding compiler: css/less-compiler<br/>
-            10:19:56 - Adding compiler: javascript/coffee-compiler<br/>
             10:19:56 - Watching /Users/dbashford/mim/foo/assets<br/>
-            <span class="inst">10:19:56 - Compiled [[ /Users/dbashford/mim/foo/public/index.html ]]</span><br/>
-            <span class="inst">10:19:56 - Compiled [[ /Users/dbashford/mim/foo/public/javascripts/main.js ]]</span><br/>
-            <span class="inst">10:19:56 - Compiled [[ /Users/dbashford/mim/foo/public/stylesheets/style.css ]]</span><br/>
-            <span class="inst">10:19:56 - Compiled [[ /Users/dbashford/mim/foo/public/javascripts/vendor/jquery.js ]]</span><br/>
-            <span class="inst">10:19:56 - Compiled [[ /Users/dbashford/mim/foo/public/javascripts/vendor/require.js ]]</span><br/>
-            <span class="inst">10:19:56 - Compiled [[ /Users/dbashford/mim/foo/public/javascripts/app/example-view.js ]]</span><br/>
-            <span class="inst">10:19:56 - Compiled [[ /Users/dbashford/mim/foo/public/javascripts/templates.js ]]</span><br/>
+            <span class="inst">13:50:52 - Compiled/copied [[ /Users/dbashford/mimosaplay/foo/public/javascripts/main.js ]]</span><br/>
+            <span class="inst">13:50:52 - Compiled/copied [[ /Users/dbashford/mimosaplay/foo/public/javascripts/app/example-view.js ]]</span><br/>
+            <span class="inst">13:50:52 - Compiled/copied [[ /Users/dbashford/mimosaplay/foo/public/stylesheets/style.css ]]</span><br/>
+            <span class="inst">13:50:52 - All templates compiled successfully.</span><br/>
           </p>
         </div>
       </div>
@@ -558,17 +567,17 @@ $ mimosa build -j</pre>
         <div class="inner">
           <p>
             Davids-MacBook-Pro:foo dbashford$ mimosa update<br/>
-            11:14:09 - Un-installing node package. express:3.0.0beta4<br/>
-            11:14:09 - Un-installing node package. jade:>= 0.0.1<br/>
-            11:14:09 - Un-installing node package. watch-connect:0.3.4<br/>
-            11:14:09 - Un-installing node package. gzippo:git://github.com/dbashford/gzippo.git<br/>
-            <span class="inst">11:14:10 - Uninstalling successful</span><br/>
-            11:14:10 - Installing node package: express:3.0.0beta4<br/>
-            11:14:10 - Installing node package: jade:>= 0.0.1<br/>
-            11:14:10 - Installing node package: watch-connect:0.3.4<br/>
-            11:14:10 - Installing node package: gzippo:git://github.com/dbashford/gzippo.git<br/>
-            <span class="inst">11:14:14 - Installs successful</span><br/>
-            <span class="inst">11:14:14 - Finished.  You are all up to date!</span><br/>
+            13:57:15 - Un-installing node package. express:3.0.0rc4<br/>
+            13:57:15 - Un-installing node package. jade:0.27.3<br/>
+            13:57:15 - Un-installing node package. watch-connect:0.3.4<br/>
+            13:57:15 - Un-installing node package. consolidate:0.4.0<br/>
+            <span class="inst">13:57:16 - Uninstall successful</span><br/>
+            13:57:16 - Installing node package: express:3.0.0rc4<br/>
+            13:57:16 - Installing node package: jade:0.27.3<br/>
+            13:57:16 - Installing node package: watch-connect:0.3.4<br/>
+            13:57:16 - Installing node package: consolidate:0.4.0<br/>
+            <span class="inst">13:57:20 - Install successful</span><br/>
+            <span class="inst">13:57:20 - Finished.  You are all up to date!</span><br/>
             Davids-MacBook-Pro:foo dbashford$
           </p>
         </div>
@@ -628,15 +637,15 @@ $ mimosa [command] --help</pre>
 
             <br/>
 
-            <p class="inst">The new command will take you through a series of questions regarding what meta-lanauges/compilers you would like in your project.  Once you have answered the questions, Mimosa will create a directory using the name provided, and place a project skeleton inside of it.  That project skeleton will by default include a basic Express app, with sample routes and views.  It will also include some sample assets for the meta-lanauges/compilers you selected.</p>
+            <p class="inst">The new command will take you through a series of questions regarding what JavaScript meta-language, CSS meta-language, micro-templating library, server and server view technology you would like to use to build your project. Once you have answered the questions, Mimosa will create a directory using the name you provided, and place a project skeleton inside of it.  That project skeleton will by default include a basic application using the technologies you selected.</p>
 
             <p class="command">$ mimosa new [nameOfProject]</p>
 
-            <p class="inst">If you wish to copy the project skeleton into your current directory instead of into a new one leave off the then leave off name.</p>
+            <p class="inst">If you wish to copy the project skeleton into your current directory instead of into a new one leave off the name.</p>
 
             <p class="command">$ mimosa new</p>
 
-            <p class="inst">If you are happy with the defaults (CoffeeScript, SASS, Handlebars), you can bypass the prompts by providing a 'defaults' flag.</p>
+            <p class="inst">If you are happy with the defaults (CoffeeScript, Stylus, Handlebars, Express, Jade), you can bypass the prompts by providing a 'defaults' flag.</p>
 
             <p class="command">
                 $ mimosa new [name] --defaults<br/>
