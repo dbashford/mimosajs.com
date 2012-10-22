@@ -36,7 +36,7 @@
               <a href="./index.html">Mimosa</a>
             </li>
             <li>
-              <a href="./started.html">Getting Started</a>
+              <a href="./started.html">Get Started</a>
             </li>
             <li class="">
               <a href="./commands.html">Commands</a>
@@ -45,7 +45,7 @@
               <a href="./compilers.html">Compilers</a>
             </li>
             <li class="">
-              <a href="./server.html">Server</a>
+              <a href="./server.html">Serve</a>
             </li>
             <li class="">
               <a href="./utilities.html">Utilities</a>
@@ -136,7 +136,7 @@
   <span class="sourceDir"># sourceDir: "assets"</span>
   <span class="compiledDir"># compiledDir: "public"</span>
   <span class="javascriptDir"># javascriptDir: "javascripts"</span>
-  <span class="ignored"># ignored: [".sass-cache"]</span>
+  <span class="exclude"># exclude: ["[/\\\\]\\.\\w+$"]</span>
   <span class="throttle"># throttle: 0</span></pre>
       </div>
     </div>
@@ -148,9 +148,9 @@
     <h4 class="hi javascriptDir javascript compilers">watch.javascriptDir</h4>
     <p class="hi javascriptDir javascript compilers">Location of the JavaScript code inside the <code class="option">watch.sourceDir</code> directory and therefore also the location of the compiled JavaScript in the <code class="option">watch.compiledDir</code>.</p>
 
-    <h4 class="hi ignored watch">watch.ignored</h4>
+    <h4 class="hi exclude watch">watch.exclude</h4>
 
-    <p class="hi ignored watch">The <code class="option">ignored</code> property is an array of strings. When one of the strings is present in a file found in your <code class="option">sourceDir</code>, Mimosa will ignore the file.</p>
+    <p class="hi exclude watch">The <code class="option">exclude</code> property is an array of strings. When one of the strings is present in a file found in your <code class="option">sourceDir</code>, Mimosa will ignore the file. By default this property is set such that all dotFiles (.gitignore, .DS_Store, .foo) are ignored.</p>
 
     <h4 class="hi throttle watch">watch.throttle</h4>
 

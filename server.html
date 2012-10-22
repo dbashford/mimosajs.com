@@ -36,7 +36,7 @@
               <a href="./index.html">Mimosa</a>
             </li>
             <li class="">
-              <a href="./started.html">Getting Started</a>
+              <a href="./started.html">Get Started</a>
             </li>
             <li class="">
               <a href="./commands.html">Commands</a>
@@ -45,7 +45,7 @@
               <a href="./compilers.html">Compilers</a>
             </li>
             <li class="active">
-              <a href="./server.html">Server</a>
+              <a href="./server.html">Serve</a>
             </li>
             <li class="">
               <a href="./utilities.html">Utilities</a>
@@ -166,15 +166,7 @@
       </div>
     </section>
 
-    <p>Inside the route Mimosa delivers via <code class="option">mimosa new</code>, and in Mimosa's embedded Express, Mimosa will pass a small set of properties into your server view.</p>
-
-    <ul>
-      <li><code class="option">reload</code> is set to the value of <code class="option">config.server.useReload</code>. This boolean is used to toggle the use of the Live Reload scripts in the client.</li>
-      <li><code class="option">optimize</code> is set to <code class="option">true</code> if the <code class="option">optimize</code> flag is used when starting Mimosa.  Otherwise it is false.</li>
-      <li><code class="option">cachebust</code> is set to either blank or a cachebusting string to be used to bust your CSS cache.  It will not be set if <code class="option">NODE_ENV</code> is set to production.</li>
-    </ul>
-
-    <p>As with the server code delivered to you, the view code and routes are built to be flexible enough to work in several scenarios.  You may wish to remove some conditionals, or to hard-code some properties, but this will mean Mimosa will have less control over your application behavior.</p>
+    <p>As with the server code delivered to you, the view code and routes are built to be flexible enough to work in several scenarios.  You may wish to remove some conditionals, or to hard-code some properties where it makes sense. You may not need the flexibility.</p>
 
     <p>Mimosa uses <a href="https://github.com/visionmedia/consolidate.js">consolidate</a>, both internally and within the delivered Express, to easily toggle between different view templating libraries. If you choose to have your own server, consolidate will be installed in your project. Also installed will be the library for the templating library you choose.</p>
 

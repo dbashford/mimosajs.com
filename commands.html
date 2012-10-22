@@ -36,7 +36,7 @@
               <a href="./index.html">Mimosa</a>
             </li>
             <li class="">
-              <a href="./started.html">Getting Started</a>
+              <a href="./started.html">Get Started</a>
             </li>
             <li class="active">
               <a href="./commands.html">Commands</a>
@@ -45,7 +45,7 @@
               <a href="./compilers.html">Compilers</a>
             </li>
             <li class="">
-              <a href="./server.html">Server</a>
+              <a href="./server.html">Serve</a>
             </li>
             <li class="">
               <a href="./utilities.html">Utilities</a>
@@ -100,11 +100,11 @@
 
         <p>This will kick off a series of prompts that will allow you to pick out the meta-languages, templating library, server, and server templater you'd like to use. When you've finished picking, Mimosa will create a directory at your current location using the name provided as the name of the directory. Inside that directory Mimosa will populate an application skeleton inside an asset directory. The skeleton will include JavaScript, CSS, and micro-template web assets for the selections you made.</p>
 
-        <p>If you chose to have a server stack of your own, it will also include the bare essentials for a base <a href="http://expressjs.com/">Express</a> application, including  a simple <a href="http://expressjs.com/guide.html#routing">router</a> and a file that will be used by Mimosa to get Express started. That code will be also be delivered in meta-language of your choice.</p>
+        <p>If you chose to have a server stack of your own, it will also include the bare essentials for a base <a href="http://expressjs.com/">Express</a> application, including  a simple <a href="http://expressjs.com/guide.html#routing">router</a> and a file that will be used by Mimosa to get Express started. That code will be also be delivered in the meta-language of your choice.</p>
 
         <p>Lastly, you will be given a starter group of views for an index page in the view templating language you chose.</p>
 
-        <p>If you choose to not have a server of your own, Mimosa will serve your assets for you.  Mimosa provides some configuration options for its embedded server to make not having your own server a little less painful than it would be otherwise.</p>
+        <p>If you chose to not have a server of your own, Mimosa will serve your assets for you.  Mimosa provides some configuration options for its embedded server to make not having your own server a little less painful than it would be otherwise.</p>
 
         <p>The assets directory has some example code to get you started, and has a group of vendor scripts, like require.js.</p>
 
@@ -276,7 +276,7 @@ $ mimosa new nameOfApplicationHere -d</pre>
     <pre>$ mimosa watch --server
 $ mimosa watch -s</pre>
 
-    <p>By default, this will look for and run a piece of code located at <code class='option'>server.path</code>. If you used the Mimosa command line to build your new project, and you chose to have a server of your own, you will have a <code class='option'>server.coffee (.iced/.js)</code> at the root of your file structure that will start up an Express app. Mimosa will run the <code class='option'>startServer</code> method in this file. You can leave this file as is if you are simply serving up assets, but this gives you the opportunity to build out a much larger app, with numerous routes and views, should that be your goal.</p>
+    <p>By default, this will look for and run a piece of code located at <code class='option'>server.path</code>. If you used the Mimosa command line to build your new project, and you chose to have a server of your own, you will have a <code class='option'>server.coffee (.iced/.js/.ls)</code> at the root of your file structure that will start up an Express app. Mimosa will run the <code class='option'>startServer</code> method in this file and pass it the full <code class='option'>mimosa-config</code>. You can leave this file as is if you are simply serving up assets, but this gives you the opportunity to build out a much larger app, with numerous routes and views, should that be your goal.</p>
 
     <p>You can change to using an embedded default (non-extendable) Express server by changing the <code class='option'>server.useDefaultServer</code> configuration to <code class='option'>true</code>. If you chose to not have a server during project creation this setting will have already been changed for you.</p>
 
