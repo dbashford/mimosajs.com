@@ -394,7 +394,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
 
     <h2>Lifecycle Types <small><span class="options">buildFile, buildExtension, buildDone, add, update, remove</span></small></h2>
 
-    <p>A lifecycle type represents a workflow an asset, a group of assets, or your application can go through.  <code class="options">add</code>, <code class="options">update</code>, and <code class="options">remove</code> are all different lifecycle types, in this case for individual assets, and as such they each have their own workflow that Mimosa runs through.</p>
+    <p>A lifecycle type represents a workflow an asset, a group of assets, or your application can go through.  For example, <code class="options">add</code>, <code class="options">update</code>, and <code class="options">remove</code> are lifecycle types, in this case for individual assets, and as such they each have their own workflow that Mimosa runs through.</p>
 
     <p>There are six lifecycle types and they are essentially broken up into two groups.  There are those types that apply to Mimosa's startup, and those that apply to post-startup.</p>
 
@@ -409,7 +409,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
     <p>Some assets, like micro-templates files and pre-compiler CSS files (like SASS or LESS) are not processed during this step as they, during startup, need to be dealt with as a group rather than individually.</p>
 
     <h4>buildExtension</h4>
-    <p>After all of the assets are processed individually, <code class="options">buildExtension</code> makes another pass through all your assets, but this time allows for extension-wide processing. </p>
+    <p>After all of the assets are processed individually, <code class="options">buildExtension</code> makes another pass through all your assets, but this time for extension-wide processing. </p>
 
     <p>For instance, during <code class="options">buildFile</code> Mimosa doesn't process your micro-templates at all. There's no point. Their handling during startup is an extension-wide event. Mimosa needs to compile all of a given type of template at once and push them into a single file.</p>
 
