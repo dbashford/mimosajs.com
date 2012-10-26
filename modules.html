@@ -385,8 +385,8 @@ exports.validate = (config) ->
     <ol>
       <li>A list of lifecycle types, an array of strings. Pick one-to-many types depending on the sort of task your module accomplishes. Possible values: buildFile, buildExtension, buildDone, add, update, remove.  These are explained below.</li>
       <li>A lifecycle step, a string. A lifecycle step for the selected lifecycle types. For example, for the type 'update', you might choose to have your module code executed 'afterCompile'.  The list of steps for each type is explained below.</li>
-      <li>Your module callback, a function. This is the module function to call when Mimosa reaches the type(s) and step called out in the previous parameters.</li>
-      <li>An optional array of extensions upon which to execute the callback. If the file or extension being processed doesn't match one of these extensions, the callback will not be executed. The extensions refer to the original extension of the file being processed, so in the case of a CoffeeScript file it would be 'coffee' and not 'js'. The passed in mimosaConfig object has an extensions object you can use to cover all of the desired extensions. The extensions object has 4 properties: javascript, css, template, and copy. If no extensions are provided, Mimosa will send all files/extensions through the module.</li>
+      <li>Your module callback, a function. This is the module function to call when Mimosa's processing reaches the type(s) and step called out in the previous parameters.</li>
+      <li>An optional array of extensions upon which to execute the callback. If the file or extension being processed doesn't match one of these extensions, the callback will not be executed. The extensions refer to the original extension of the file being processed, so in the case of a CoffeeScript file it would be 'coffee' and not 'js'. The passed in <code class='option'>mimosaConfig</code> object has an <code class='option'>extensions</code> object you can use to cover all of the desired extensions. The <code class='option'>extensions</code> object has 4 properties: <code class='option'>javascript</code>, <code class='option'>css</code>, <code class='option'>template</code>, and <code class='option'>copy</code>. If no extensions are provided, Mimosa will send all files/extensions through the module.</li>
     </ol>
 
     <pre>register ['add','update','buildFile'],      'afterCompile', _minifyJS,  [e.javascript...]
@@ -394,11 +394,13 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
 
     <h2>Lifecycle Types <small><span class="options">buildFile, buildExtension, buildDone, add, update, remove</span></small></h2>
 
+    <p>A lifecycle type represents a workflow an asset, a group of assets, or your application can go through.  <code class="options">add</code>, <code class="options">update</code>, and <code class="options">remove</code> are all different lifecycle types, in this case for individual assets, and as such they each have their own workflow that Mimosa runs through.</p>
+
     <p>There are six lifecycle types and they are essentially broken up into two groups.  There are those types that apply to Mimosa's startup, and those that apply to post-startup.</p>
 
     <h3>Startup Types</h3>
 
-    <p>The startup types are all prefixed with 'build', and they all occur in order.  <code class="options">buildFile</code> occurs first, <code class="options">buildExtension</code> second, and lastly <code class="options">buildDone</code>.
+    <p>The startup types are all prefixed with 'build', and they all occur in order during Mimosa's startup.  <code class="options">buildFile</code> occurs first, <code class="options">buildExtension</code> second, and lastly <code class="options">buildDone</code>.
     </p>
 
     <h4>buildFile</h4>
