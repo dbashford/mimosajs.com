@@ -411,9 +411,9 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
     <h4>buildExtension</h4>
     <p>After all of the assets are processed individually, <code class="options">buildExtension</code> makes another pass through all your assets, but this time for extension-wide processing. </p>
 
-    <p>For instance, during <code class="options">buildFile</code> Mimosa doesn't process your micro-templates at all. There's no point. Their handling during startup is an extension-wide event. Mimosa needs to compile all of a given type of template at once and push them into a single file.</p>
+    <p>Why extension processing?  Well, as an example, during <code class="options">buildFile</code> Mimosa doesn't process your micro-templates at all. There's no point. Their handling during startup is an extension-wide event. Mimosa needs to compile all of a given type of template at once and push them into a single file.</p>
 
-    <p>Same thing for CSS. If a project uses something like SASS, then it might have 20 includes/partials that are sucked into 2 top-level files. There's no point in Mimosa compiling each partial, so instead Mimosa deals with all SASS files at once during extension processing, compiling just the base files.</p>
+    <p>Same thing for CSS. If a project uses something like SASS, then it might have 20 includes/partials that result in 2 top-level files actually being compiled. There's no point in Mimosa compiling each partial, so instead Mimosa deals with all SASS files at once during extension processing, compiling just the base files.</p>
 
     <h4>buildDone</h4>
 
@@ -436,27 +436,27 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
 
     <h2>Lifecycle Steps <small><span class="options">a list of processing steps for each lifecycle type</span></small></h2>
 
-    <p>The previous section covered each different lifecycle type.  Within each lifecycle type are many steps to cover the workflow for the type.  An example is the best way to illustrate how this works.</p>
+    <p>The previous section covered each different lifecycle type.  Within each lifecycle type are many steps to the the workflow.  An example is the best way to illustrate how this works.</p>
 
-    <p>The easiest lifecycle type to understand is the <code class="options">update</code> type.  Lets say you save a CoffeeScript file inside your <code class="options">watch.sourceDir</code> while Mimosa is running.  Here's what happens:</p>
+    <p>The simplest lifecycle type is <code class="options">update</code>.  Lets say you save a CoffeeScript file inside your <code class="options">watch.sourceDir</code> while Mimosa is running.  Here's what happens:</p>
 
     <ol>
       <li>The first step executed is <code class="options">init</code>. During the <code class="options">init</code> step, Mimosa will generate some information about the asset to be used by future steps. For instance it will set a flag into the <code class="options">options</code> object (discussed in the next section) to indicate that the file is a JavaScript file, and it will set flags to indicate if the file is a vendor file or not.</li>
       <li>During a step named <code class="options">read</code> the modified CoffeeScript file is read in.</li>
       <li>The <code class="options">compile</code> step is next.  Here the CoffeeScript gets compiled to JavaScript.</li>
-      <li>Next is <code class="options">afterCompile</code>.  Here the compiled JavaScript is linted to judge code quality.</li>
+      <li>Next is <code class="options">afterCompile</code>.  Here the compiled JavaScript is linted to get feedback regarding code quality.</li>
       <li>If minification was selected, <code class="options">beforeWrite</code> is where the compiled JavaScript would be minified.</li>
       <li>During the <code class="options">write</code> step the compiled JavaScript is written to the <code class="options">watch.compiledDir</code></li>
       <li>You'd think we'd be done now, but not so fast!  The <code class="options">afterWrite</code> step is where optimization takes place if you have that selected.</li>
     </ol>
 
-    <p>And there are many steps in this example that have no functionality registered against them.  The <code class="options">beforeRead</code>, <code class="options">afterRead</code>, <code class="options">beforeCompile</code>, and <code class="options">complete</code> steps for the <code class="options">update</code> lifecycle have no modules that execute against them, but they are there in the event a module comes along that needs that space.</p>
+    <p>And there are many steps in this example that have no functionality registered against them.  The <code class="options">beforeRead</code>, <code class="options">afterRead</code>, <code class="options">beforeCompile</code>, and <code class="options">complete</code> steps for the <code class="options">update</code> lifecycle have no modules that execute against them, but they are there in the event a module comes along that logically have tasks to perform in those workflow areas.</p>
 
     <p>Also, many modules can register to be execute for the same type and step, they'll just be executed in order that they get registered.</p>
 
     <p>When building a module, you need to decide which step is the right place to execute your code.  For instance, if you are building a module that will run <a href="http://www.coffeelint.org/">CoffeeLint</a> over your CoffeeScript to determine CoffeeScript code quality, then you probably want to do that as part of the <code class="options">afterRead</code> step.  If you do it as part of the <code class="options">beforeRead</code> step, then Mimosa will have not yet read in the file, and you'll have nothing to run CoffeeLint on.</p>
 
-    <p>Below is the exhaustive list of all of the steps by type.  Use the checkbox to toggle on and off indications for each type and step that the default Mimosa modules are registered.</p>
+    <p>Below is the exhaustive list of all of the steps by type.  Use the checkbox to toggle on and off indications for each type and step that the default Mimosa modules are registered against.</p>
 
     <br/>
 
