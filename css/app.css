@@ -591,3 +591,19 @@ i {
 .page-header {
   margin-top: 30px;
 }
+
+.lifecycle-steps ul {
+  list-style-type:none;
+  margin-left:0px;
+  border: 1px solid #E5E5E5;
+  border-radius: 4px 4px 4px 4px;
+}
+
+.lifecycle-steps ul > li:first-child {
+  border-top:none;
+}
+
+.lifecycle-steps li {
+  padding:11px 12px;
+  border-top: 1px solid #E5E5E5;
+}
