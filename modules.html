@@ -466,103 +466,293 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
       <div class="span2">
         <h3>buildFile</h3>
         <ul>
-          <li>init</li>
-          <li>beforeRead</li>
-          <li>read</li>
-          <li>afterRead</li>
-          <li>beforeCompile</li>
-          <li>compile</li>
-          <li>afterCompile</li>
-          <li>beforeWrite</li>
-          <li>write</li>
-          <li>afterWrite</li>
-          <li>complete</li>
+          <li>
+            <div class="step">init</div>
+            <div class="module">For JavaScript and copy extensions, options.files array initialized with single file with inputFileName and outputFileName</div>
+          </li>
+          <li>
+            <div class="step">beforeRead</div>
+            <div class="module">File module determines if copy extension file or JavaScript file needs to be processed</div>
+          </li>
+          <li>
+            <div class="step">read</div>
+          </li>
+          <li>
+            <div class="step">afterRead</div>
+          </li>
+          <li>
+            <div class="step">beforeCompile</div>
+          </li>
+          <li>
+            <div class="step">compile</div>
+            <div class="module">Copy compiler moves file.inputFileText to file.outputFileText for copy extensions</div>
+            <div class="module">JavaScript compiler compiles file, saves result in file.outputFileText</div>
+          </li>
+          <li>
+            <div class="step">afterCompile</div>
+          </li>
+          <li>
+            <div class="step">beforeWrite</div>
+          </li>
+          <li>
+            <div class="step">write</div>
+          </li>
+          <li>
+            <div class="step">afterWrite</div>
+          </li>
+          <li>
+            <div class="step">complete</div>
+          </li>
         </ul>
       </div>
       <div class="span2">
+
         <h3>buildExtension</h3>
         <ul>
-          <li>init</li>
-          <li>beforeRead</li>
-          <li>read</li>
-          <li>afterRead</li>
-          <li>beforeCompile</li>
-          <li>compile</li>
-          <li>afterCompile</li>
-          <li>beforeWrite</li>
-          <li>write</li>
-          <li>afterWrite</li>
-          <li>complete</li>
+          <li>
+            <div class="step">init</div>
+            <div class="module">CSS compiler processes source directory to determine base files and determines which base files need to be compiled, places those files into options.files</div>
+            <div class="module">Template compiler gathers together a list of files that may need to be compiled, creates options.files array, no outputFileName set (as template files are never written)</div>
+          </li>
+          <li>
+            <div class="step">beforeRead</div>
+            <div class="module">Template compiler checks all the templates to see if templates need to be compiled, if not, sets options.files to empty array</div>
+          </li>
+          <li>
+            <div class="step">read</div>
+          </li>
+          <li>
+            <div class="step">afterRead</div>
+          </li>
+          <li>
+            <div class="step">beforeCompile</div>
+          </li>
+          <li>
+            <div class="step">compile</div>
+            <div class="module">CSS compiler compiles base files, places output in options.files[]. outputFileText</div>
+            <div class="module">Template compiler compiles each template, places results in options.files[]. outputFileText</div>
+          </li>
+          <li>
+            <div class="step">afterCompile</div>
+            <div class="module">Template compiler merges compiled templates into single file, adds result as file to options.files</div>
+            <div class="module">Template compiler reads in vendor library and adds it to options.files</div>
+          </li>
+          <li>
+            <div class="step">beforeWrite</div>
+          </li>
+          <li>
+            <div class="step">write</div>
+          </li>
+          <li>
+            <div class="step">afterWrite</div>
+          </li>
+          <li>
+            <div class="step">complete</div>
+            <div class="module">Compiler module determines if different template libraries are being used without handling that in config</div>
+          </li>
         </ul>
       </div>
       <div class="span2">
         <h3>buildDone</h3>
         <ul>
-          <li>init</li>
-          <li>beforeOptimize</li>
-          <li>optimize</li>
-          <li>afterOptimize</li>
-          <li>beforeServer</li>
-          <li>server</li>
-          <li>afterServer</li>
-          <li>beforePackage</li>
-          <li>package</li>
-          <li>afterPackage</li>
-          <li>beforeInstall</li>
-          <li>install</li>
-          <li>afterInstall</li>
-          <li>complete</li>
+          <li>
+            <div class="step">init</div>
+          </li>
+          <li>
+            <div class="step">beforeOptimize</div>
+          </li>
+          <li>
+            <div class="step">optimize</div>
+          </li>
+          <li>
+            <div class="step">afterOptimize</div>
+          </li>
+          <li>
+            <div class="step">beforeServer</div>
+          </li>
+          <li>
+            <div class="step">server</div>
+          </li>
+          <li>
+            <div class="step">afterServer</div>
+          </li>
+          <li>
+            <div class="step">beforePackage</div>
+          </li>
+          <li>
+            <div class="step">package</div>
+          </li>
+          <li>
+            <div class="step">afterPackage</div>
+          </li>
+          <li>
+            <div class="step">beforeInstall</div>
+          </li>
+          <li>
+            <div class="step">install</div>
+          </li>
+          <li>
+            <div class="step">afterInstall</div>
+          </li>
+          <li>
+            <div class="step">complete</div>
+          </li>
         </ul>
       </div>
       <div class="span2">
         <h3>add</h3>
         <ul>
-          <li>init</li>
-          <li>beforeRead</li>
-          <li>read</li>
-          <li>afterRead</li>
-          <li>beforeCompile</li>
-          <li>compile</li>
-          <li>afterCompile</li>
-          <li>beforeWrite</li>
-          <li>write</li>
-          <li>afterWrite</li>
-          <li>complete</li>
+          <li>
+            <div class="step">init</div>
+            <div class="module">CSS compiler processes source directory to determine base files and determines which base files need to be compiled, places those files into options.files</div>
+            <div class="module">Template compiler gathers together a list of files that may need to be compiled, creates options.files array, no outputFileName set (as template files are never written)</div>
+            <div class="module">For JavaScript and copy extensions, options.files array initialized with single file with inputFileName and outputFileName</div>
+          </li>
+          <li>
+            <div class="step">beforeRead</div>
+            <div class="module">Template compiler checks all the templates to see if templates need to be compiled, if not, sets options.files to empty array</div>
+            <div class="module">File module determines if copy extension file or JavaScript file needs to be processed</div>
+          </li>
+          <li>
+            <div class="step">read</div>
+          </li>
+          <li>
+            <div class="step">afterRead</div>
+          </li>
+          <li>
+            <div class="step">beforeCompile</div>
+          </li>
+          <li>
+            <div class="step">compile</div>
+            <div class="module">Copy compiler moves file.inputFileText to file.outputFileText for copy extensions</div>
+            <div class="module">CSS compiler compiles base files, places output in options.files[]. outputFileText</div>
+            <div class="module">Template compiler compiles each template, places results in options.files[]. outputFileText</div>
+            <div class="module">JavaScript compiler compiles file, saves result in file.outputFileText</div>
+          </li>
+          <li>
+            <div class="step">afterCompile</div>
+            <div class="module">Template compiler merges compiled templates into single file</div>
+            <div class="module">Template compiler reads in vendor library and adds it to options.files</div>
+          </li>
+          <li>
+            <div class="step">beforeWrite</div>
+          </li>
+          <li>
+            <div class="step">write</div>
+          </li>
+          <li>
+            <div class="step">afterWrite</div>
+          </li>
+          <li>
+            <div class="step">complete</div>
+          </li>
         </ul>
       </div>
       <div class="span2">
         <h3>update</h3>
         <ul>
-          <li>init</li>
-          <li>beforeRead</li>
-          <li>read</li>
-          <li>afterRead</li>
-          <li>beforeCompile</li>
-          <li>compile</li>
-          <li>afterCompile</li>
-          <li>beforeWrite</li>
-          <li>write</li>
-          <li>afterWrite</li>
-          <li>complete</li>
+          <li>
+            <div class="step">init</div>
+            <div class="module">CSS compiler determines which base files need to be compiled, places those files into options.files</div>
+            <div class="module">Template compiler gathers together a list of files that may need to be compiled, creates options.files array, no outputFileName set (as template files are never written)</div>
+            <div class="module">For JavaScript and copy extensions, options.files array initialized with single file with inputFileName and outputFileName</div>
+          </li>
+          <li>
+            <div class="step">beforeRead</div>
+            <div class="module">Template compiler checks all the templates to see if templates need to be compiled, if not, sets options.files to empty array</div>
+            <div class="module">File module determines if copy extension file or JavaScript file needs to be processed</div>
+          </li>
+          <li>
+            <div class="step">read</div>
+          </li>
+          <li>
+            <div class="step">afterRead</div>
+          </li>
+          <li>
+            <div class="step">beforeCompile</div>
+          </li>
+          <li>
+            <div class="step">compile</div>
+            <div class="module">Copy compiler moves file.inputFileText to file.outputFileText for copy extensions</div>
+            <div class="module">CSS compiler compiles base files, places output in options.files[]. outputFileText</div>
+            <div class="module">Template compiler compiles each template, places results in options.files[]. outputFileText</div>
+            <div class="module">JavaScript compiler compiles file, saves result in file.outputFileText</div>
+          </li>
+          <li>
+            <div class="step">afterCompile</div>
+            <div class="module">CSS compiler processes source directory to redetermine base files</div>
+            <div class="module">Template compiler merges compiled templates into single file</div>
+            <div class="module">Template compiler reads in vendor library and adds it to options.files</div>
+          </li>
+          <li>
+            <div class="step">beforeWrite</div>
+          </li>
+          <li>
+            <div class="step">write</div>
+          </li>
+          <li>
+            <div class="step">afterWrite</div>
+          </li>
+          <li>
+            <div class="step">complete</div>
+          </li>
         </ul>
       </div>
       <div class="span2">
         <h3>remove</h3>
         <ul>
-          <li>init</li>
-          <li>beforeRead</li>
-          <li>read</li>
-          <li>afterRead</li>
-          <li>beforeDelete</li>
-          <li>delete</li>
-          <li>afterDelete</li>
-          <li>beforeCompile</li>
-          <li>compile</li>
-          <li>afterCompile</li>
-          <li>beforeWrite</li>
-          <li>write</li>
-          <li>afterWrite</li>
-          <li>complete</li>
+          <li>
+            <div class="step">init</div>
+            <div class="module">CSS compiler determines which base files need to be compiled</div>
+            <div class="module">During mimosa clean only, template compiler removes templates file and client vendor library</div>
+            <div class="module">Template compiler gathers together a list of files that may need to be compiled, creates options.files array, no outputFileName set (as template files are never written)</div>
+            <div class="module">Template compiler checks if any templates remain, if not, removes templates file and client vendor library</div>
+            <div class="module">For JavaScript and copy extensions, options.files array initialized with single file with inputFileName and outputFileName</div>
+          </li>
+          <li>
+            <div class="step">beforeRead</div>
+          </li>
+          <li>
+            <div class="step">read</div>
+          </li>
+          <li>
+            <div class="step">afterRead</div>
+          </li>
+          <li>
+            <div class="step">beforeDelete</div>
+          </li>
+          <li>
+            <div class="step">delete</div>
+            <div class="module">CSS compiler compiles base files, places output in options.files[]. outputFileText</div>
+            <div class="module">Template compiler compiles each template, places results in options.files[]. outputFileText</div>
+            <div class="module">Copy, JavaScript, CSS files removed from source directory are removed from compiled directory if they exist.</div>
+          </li>
+          <li>
+            <div class="step">afterDelete</div>
+          </li>
+          <li>
+            <div class="step">beforeCompile</div>
+          </li>
+          <li>
+            <div class="step">compile</div>
+          </li>
+          <li>
+            <div class="step">afterCompile</div>
+            <div class="module">CSS compiler processes source directory to redetermine base files</div>
+            <div class="module">Template compiler merges compiled templates into single file</div>
+          </li>
+          <li>
+            <div class="step">beforeWrite</div>
+          </li>
+          <li>
+            <div class="step">write</div>
+          </li>
+          <li>
+            <div class="step">afterWrite</div>
+          </li>
+          <li>
+            <div class="step">complete</div>
+          </li>
         </ul>
       </div>
     </div>
