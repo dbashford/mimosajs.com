@@ -91,13 +91,13 @@
       <div class="span6">
         <h2>mod:list</h2>
 
-        <p>Execute <code class='option'>mod:list</code> to see a list of all the Mimosa modules installed with your Mimosa.  The list that is displayed includes the name, the version, and a link to the website from which the module originated and which should include some sort of documentation covering the module.</p>
+        <p>Execute <code class='option'>mod:list</code> to see a list of all the Mimosa modules installed with your Mimosa.  The list that is displayed includes the name, the version, and the URL of the website from which the module originated.</p>
 
         <pre>$ mimosa mod:list</pre>
 
         <h3>Get more details (-v/--verbose)</h3>
 
-        <p>Include a <code class="option">--verbose</code> flag and Mimosa will include additional information including a short description and the list of dependencies the module has on other node.js modules.</p>
+        <p>Add a <code class="option">--verbose</code> flag and Mimosa will include additional information including a short description and the list of dependencies the module has on other node.js modules.</p>
 
         <pre>$ mimosa mod:list --verbose</pre>
 
@@ -137,7 +137,7 @@
 
         <h3>Get more details (-v/--verbose)</h3>
 
-        <p>Include a <code class="option">--verbose</code> flag and Mimosa will include additional information including a short description and the list of dependencies the module has on other node.js modules.</p>
+        <p>Add a <code class="option">--verbose</code> flag and Mimosa will include additional information including a short description and the list of dependencies the module has on other node.js modules.</p>
 
         <pre>$ mimosa mod:search --verbose</pre>
 
@@ -227,7 +227,7 @@
       <div class="span6">
         <h2>mod:uninstall</h2>
 
-        <p>Execute <code class='option'>mod:uninstall</code> to remove a module from Mimosa so it is unable to use it on any projects.</p>
+        <p>Execute <code class='option'>mod:uninstall</code> to remove a module from Mimosa so Mimosa is unable to use it on any projects.</p>
 
         <pre>$ mimosa mod:uninstall mimosa-server</pre>
 
@@ -248,7 +248,7 @@
     <div class="page-header">
        <h1>
          Initialize Your Own Module
-         <small><span class="mim">mimosa</span> <span class="command">mod:init</span><span class="options">[nameOfModule]</span></small>
+         <small><span class="mim">mimosa</span> <span class="command">mod:init</span> <span class="options">[nameOfModule]</span></small>
        </h1>
      </div>
      <div class="row">
@@ -285,29 +285,29 @@
 
     <p>So maybe Mimosa doesn't come with exactly what you need out of the box.  Maybe you need it to do a little something extra.  Maybe you want to use a different linter than Mimosa comes bundled with, or you want to kick off your testing suite on every file save.  There's a strong chance that what you need can be created as a new module, and the module can be included as part of Mimosa's workflow.</p>
 
-    <p>A Mimosa module is just a node.js project that, when installed inside Mimosa, can be used as part of Mimosa's workflow. Mimosa is able to use a module because modules obey a simple interface that Mimosa can access.</p>
+    <p>A Mimosa module is just a node.js project that, when installed inside Mimosa, can be used as part of Mimosa's workflow. Mimosa is able to use a module because modules implement a simple interface that Mimosa attempts to access.</p>
 
     <h2>Where to start?</h2>
 
-    <p>Mimosa can help you get off the ground with a module skeleton.  Discussed above, the <code class='option'>mod:init</code> command will create a skeleton for you and place it in the directory of your choice.  The only hard and fast rule with Mimosa modules is that when they are created they be prefixed with 'mimosa-'. This makes them easy to find if someone else wants to use them, but also differentiates modules from all of the libraries both in <a href="https://npmjs.org/">NPM</a> and inside Mimosa.</p>
+    <p>Mimosa can help you get off the ground with a module skeleton.  Discussed above, the <code class='option'>mod:init</code> command will create a skeleton for you and place it in the directory of your choice.  The only hard and fast rule with Mimosa modules is that when they are created they be prefixed with 'mimosa-'. This makes them easy to find if someone else wants to use them, but also differentiates Mimosa's modules from all of the libraries both in <a href="https://npmjs.org/">NPM</a> and inside Mimosa.</p>
 
-    <h2>What does that give me?</h2>
+    <h2>What does mod:init give me?</h2>
 
     <p><code class='option'>mod:init</code> gives you a group of files to get you started.</p>
 
     <ul>
-      <li><code class='option'>package.json</code>: If you aren't new to node, you know what this is.  This defines all sorts of metadata about your node project.  It's name, the dependencies, the repo location, a description, etc.  When you publish your module to <a href="https://npmjs.org/">NPM</a>, NPM expects the <code class='option'>package.json</code> to be present.  The file that Mimosa gives you needs some editing.  This may be one of the first things you want to do, go into this file and change a few of the things that need changing, or at least take out the placeholders.</li>
-      <li><code class='option'>index.coffee</code>: This highly commented file defines a module's interface to Mimosa.  Mimosa will pull this file in and use it to execute functions on a module.  This is a possible location for your module code, the code that actually performs your modules task.  Or you could put that code in a new file and pull it into the <code class='option'>index</code> file. That's up to you. How your module is structured is entirely up to you, as long as the functions Mimosa expects are made available in the <code class='option'>index</code>.</li>
+      <li><code class='option'>package.json</code>: If you are familiar with node.js, you know what this is.  This defines all sorts of metadata about your node project.  It's name, the dependencies, the repo location, a description, etc.  When you publish your module to <a href="https://npmjs.org/">NPM</a>, NPM expects the <code class='option'>package.json</code> to be present.  The <code class='option'>package.json</code> that Mimosa gives you needs some editing.  You will want to go into this file and change a few things, or at least take out the placeholders.</li>
+      <li><code class='option'>index.coffee</code>: This highly commented file defines a module's interface to Mimosa.  Mimosa will pull this file in and use it to execute a module's functions.  This is a possible location for your module code, the code that actually performs your modules task.  Or you could put that code in a new file and pull it into the <code class='option'>index</code> file. That's up to you. How your module is structured is entirely up to you, as long as the functions Mimosa expects are made available (exported in node speak) in the <code class='option'>index</code> file.</li>
       <li><code class='option'>config.coffee</code>: This highly commented file contains three functions for you to implement.  A function that returns the default configuration, a function that returns a string placeholder for the <code class='option'>mimosa-config</code>, and a function to validate a user's configuration for your module.  Mimosa calls these functions at different times.  If you have no configuration at all, you can remove the functions and the file.  Or leave it all and just comment the code out in case you might introduce configuration later.</li>
       <li>A <code class='option'>docs</code> folder: Using a tool called a <a href="http://jashkenas.github.com/docco/">Docco</a> the comments in the <code class='option'>config</code> and <code class='option'>index</code> files have been turned into easy to read web pages, with comments along side code. This is the real place to start.  Read through the the docco pages and get comfy with the concepts.</li>
     </ul>
 
-    <h2>A module's interface to Mimosa</h2>
+    <h2>Mimosa module interface</h2>
 
-    <p>At different times, Mimosa will attempt to call four different functions in your module.  All of the functions are optional.</p>
+    <p>At different times, Mimosa will attempt to call four different functions in a module.  All of the functions are optional.</p>
 
     <h3>defaults()</h3>
-    <p>A module's <code class='option'>defaults</code> function is called when Mimosa starts up and is used to assemble the configuration used by Mimosa.  <code class='option'>defaults</code> should return a JavaScript object that is the default configuration for the module.  That default configuration is merged with the user provided configuration to establish the full <code class='option'>mimosa-config</code>.  For example:</p>
+    <p>A module's <code class='option'>defaults</code> function is called when Mimosa starts up and is used to assemble the configuration used by Mimosa.  <code class='option'>defaults</code> should return a JavaScript object that is the default configuration for the module.  That default configuration is merged with the user provided configuration to establish the full <code class='option'>mimosa-config</code>.</p>
 
     <pre>exports.defaults = ->
   minify:
@@ -332,7 +332,7 @@
     <p>If your module doesn't have its own configuration, then this function does not need to be implemented.</p>
 
     <h3>validate(mimosaConfig)</h3>
-    <p>A module's <code class='option'>validate</code> function is called when Mimosa starts up and after Mimosa has put together the full <code class='option'>mimosa-config</code>.  That full config is passed to the validate method of all modules and each module has the opportunity to ensure that the config settings are ok. This method should return an array of strings. Each string represents an error with the config. If you return any errors, Mimosa will print your errors and exit to give the user a chance to update the config.</p>
+    <p>A module's <code class='option'>validate</code> function is called when Mimosa starts up and after Mimosa has put together the full <code class='option'>mimosa-config</code>.  That full config is passed to the validate method of all modules and each module has the opportunity to ensure that the config settings are ok. This method should return an array of strings. Each string represents an error that the module has found with the config. If you return any errors, Mimosa will print your errors and exit to give the user a chance to update the config.</p>
     <p>If there are no errors, return an empty array.  If there is no config to validate, then do not implement the method.</p>
     <p>This method is also an opportunity to transform the data if need be.  For example, you can take a list of strings and turn them into RegEx objects.</p>
 
@@ -359,11 +359,11 @@ exports.validate = (config) ->
 
     <h3>registration(mimosaConfig, register)</h3>
 
-    <p>The <code class='option'>registration</code> function is the key part of your module. This function is called during Mimosa's startup and it allows your module to bind to one or many steps in Mimosa's lifecycle.</p>
+    <p>The <code class='option'>registration</code> function is the key part of your module. This function is called during Mimosa's startup and it allows your module to bind to one or many steps in a Mimosa workflow.</p>
 
     <p>The arguments passed in are:</p>
     <ul>
-      <li>mimosaConfig: The full <code class='option'>mimosa-config</code> including added flags to indicate what sort of Mimosa command is being run (like isForceClean, or isVirgin), and an added list of extensions being used by the application. You may decide based on the flags in the config to not register anything, which is fine. In the case of the minification example, if the isMinify flag isn't turned on then the minification module code isn't registered.</li>
+      <li>mimosaConfig: The full <code class='option'>mimosa-config</code> including added flags to indicate what sort of Mimosa command is being run (like isForceClean, or isVirgin), and an added list of extensions being used by the application. You may decide based on the flags in the config to not register anything, which is fine. In the case of the minification example below, if the isMinify flag isn't turned on then the module doesn't register itself.</li>
       <li>register: This is a function handed to your module as a means to register your module with Mimosa.  More information about how to use this register function follows in the next section.</li>
     </ul>
 
@@ -383,9 +383,9 @@ exports.validate = (config) ->
     <p>As mentioned in the previous section, a module should implement a <code class='option'>registration</code> function that Mimosa calls when it starts up.  When it calls the module's <code class='option'>registration</code> function, Mimosa passes the enriched <code class='option'>mimosa-config</code> and a <code class='option'>register</code> callback.  The <code class='option'>register</code> callback is what a module uses to inform Mimosa what function in the module to call and under what circumstances to call it.  You call the <code class='option'>register</code> callback with the following four parameters:</p>
 
     <ol>
-      <li>A list of lifecycle types, an array of strings. Pick one-to-many types depending on the sort of task your module accomplishes. Possible values: buildFile, buildExtension, buildDone, add, update, remove.  These are explained below.</li>
-      <li>A lifecycle step, a string. A lifecycle step for the selected lifecycle types. For example, for the type 'update', you might choose to have your module code executed 'afterCompile'.  The list of steps for each type is explained below.</li>
-      <li>Your module callback, a function. This is the module function to call when Mimosa's processing reaches the type(s) and step called out in the previous parameters.</li>
+      <li>A list of workflow types, an array of strings. Pick one-to-many types depending on the sort of task your module accomplishes. Possible values: buildFile, buildExtension, buildDone, add, update, remove.  These are explained below.</li>
+      <li>A workflow step, a string. A workflow step for the selected workflow types. For example, for the type 'update', you might choose to have your module code executed 'afterCompile'.  The list of steps for each type is explained below.</li>
+      <li>Your module callback, a function. This is the module function Mimosa will call when processing reaches the type(s) and step called out in the previous parameters.</li>
       <li>An optional array of extensions upon which to execute the callback. If the file or extension being processed doesn't match one of these extensions, the callback will not be executed. The extensions refer to the original extension of the file being processed, so in the case of a CoffeeScript file it would be 'coffee' and not 'js'. The passed in <code class='option'>mimosaConfig</code> object has an <code class='option'>extensions</code> object you can use to cover all of the desired extensions. The <code class='option'>extensions</code> object has 4 properties: <code class='option'>javascript</code>, <code class='option'>css</code>, <code class='option'>template</code>, and <code class='option'>copy</code>. If no extensions are provided, Mimosa will send all files/extensions through the module.</li>
     </ol>
 
@@ -394,9 +394,9 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
 
     <h2>Lifecycle Types <small><span class="options">buildFile, buildExtension, buildDone, add, update, remove</span></small></h2>
 
-    <p>A lifecycle type represents a workflow an asset, a group of assets, or your application can go through.  For example, <code class="options">add</code>, <code class="options">update</code>, and <code class="options">remove</code> are lifecycle types, in this case for individual assets, and as such they each have their own workflow that Mimosa runs through.</p>
+    <p>A workflow type represents a workflow an asset, a group of assets, or your application can go through.  <code class="options">add</code>, <code class="options">update</code>, and <code class="options">remove</code> are workflow types, in this case for individual assets, and as such they each have their own workflow that Mimosa runs through.</p>
 
-    <p>There are six lifecycle types and they are essentially broken up into two groups.  There are those types that apply to Mimosa's startup, and those that apply to post-startup.</p>
+    <p>There are six workflow types and they are essentially broken up into two groups.  There are those types that apply to Mimosa's startup, and those that apply to post-startup.</p>
 
     <h3>Startup Types</h3>
 
@@ -421,24 +421,24 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
 
     <h3>Post-Startup Types</h3>
 
-    <p>If you are just running <code class="options">mimosa build</code>, then after <code class="options">buildDone</code> finishes, Mimosa exits.  If you are running <code class="options">mimosa virgin</code> or <code class="options">mimosa watch</code>, then Mimosa keeps running and waits for you to make changes to assets so it can kick off the post-startup lifecycle types.  These are very self-explanatory.</p>
+    <p>If you are just running <code class="options">mimosa build</code>, then after <code class="options">buildDone</code> finishes, Mimosa exits.  If you are running <code class="options">mimosa virgin</code> or <code class="options">mimosa watch</code>, then Mimosa keeps running and waits for you to make changes to assets so it can kick off the post-startup workflow types.  These are very self-explanatory.</p>
 
     <p>For Post-Startup Types there is no delineation between file and extension as it is unnecessary.  For each type only a single file is being processed at a time.  So modules like the CSS and micro-templates compilers perform extension wide tasks based on the single file that was updated.</p>
 
     <h4>add</h4>
-    <p>The <code class="options">add</code> lifecycle type is kicked off when a new file is dropped into your <code class="options">watch.sourceDir</code> directory.</p>
+    <p>The <code class="options">add</code> workflow type is kicked off when a new file is dropped into your <code class="options">watch.sourceDir</code> directory.</p>
 
     <h4>update</h4>
-    <p>The <code class="options">update</code> lifecycle type is kicked off when an existing file in your <code class="options">watch.sourceDir</code> directory is saved.</p>
+    <p>The <code class="options">update</code> workflow type is kicked off when an existing file in your <code class="options">watch.sourceDir</code> directory is saved.</p>
 
     <h4>remove</h4>
-    <p>The <code class="options">remove</code> lifecycle type is kicked off when a file in your <code class="options">watch.sourceDir</code> directory is deleted.</p>
+    <p>The <code class="options">remove</code> workflow type is kicked off when a file in your <code class="options">watch.sourceDir</code> directory is deleted.</p>
 
-    <h2>Lifecycle Steps <small><span class="options">a list of processing steps for each lifecycle type</span></small></h2>
+    <h2>Lifecycle Steps <small><span class="options">a list of processing steps for each workflow type</span></small></h2>
 
-    <p>The previous section covered each different lifecycle type.  Within each lifecycle type are many steps to the the workflow.  An example is the best way to illustrate how this works.</p>
+    <p>The previous section covered each different workflow type.  Within each workflow type are many steps to the the workflow.  An example is the best way to illustrate how this works.</p>
 
-    <p>The simplest lifecycle type is <code class="options">update</code>.  Lets say you save a CoffeeScript file inside your <code class="options">watch.sourceDir</code> while Mimosa is running.  Here's what happens:</p>
+    <p>The simplest workflow type is <code class="options">update</code>.  Lets say you save a CoffeeScript file inside your <code class="options">watch.sourceDir</code> while Mimosa is running.  Here's what happens:</p>
 
     <ol>
       <li>The first step executed is <code class="options">init</code>. During the <code class="options">init</code> step, Mimosa will generate some information about the asset to be used by future steps. For instance it will set a flag into the <code class="options">options</code> object (discussed in the next section) to indicate that the file is a JavaScript file, and it will set flags to indicate if the file is a vendor file or not.</li>
@@ -450,9 +450,9 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
       <li>You'd think we'd be done now, but not so fast!  The <code class="options">afterWrite</code> step is where optimization takes place if you have that selected.</li>
     </ol>
 
-    <p>And there are many steps in this example that have no functionality registered against them.  The <code class="options">beforeRead</code>, <code class="options">afterRead</code>, <code class="options">beforeCompile</code>, and <code class="options">complete</code> steps for the <code class="options">update</code> lifecycle have no modules that execute against them, but they are there in the event a module comes along that logically have tasks to perform in those workflow areas.</p>
+    <p>And there are many steps in this example that have no functionality registered against them.  The <code class="options">beforeRead</code>, <code class="options">afterRead</code>, <code class="options">beforeCompile</code>, and <code class="options">complete</code> steps for the <code class="options">update</code> workflow have no modules that execute against them, but they are there in the event a module comes along that logically has tasks to perform in those workflow areas.</p>
 
-    <p>Also, many modules can register to be execute for the same type and step, they'll just be executed in order that they get registered.</p>
+    <p>Also, many modules can register to be executed for the same type and step, they'll just be executed in order that they get registered.</p>
 
     <p>When building a module, you need to decide which step is the right place to execute your code.  For instance, if you are building a module that will run <a href="http://www.coffeelint.org/">CoffeeLint</a> over your CoffeeScript to determine CoffeeScript code quality, then you probably want to do that as part of the <code class="options">afterRead</code> step.  If you do it as part of the <code class="options">beforeRead</code> step, then Mimosa will have not yet read in the file, and you'll have nothing to run CoffeeLint on.</p>
 
@@ -462,7 +462,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
 
     <p><label for="details"><input id="details" type="checkbox" /> Toggle Mimosa Default Registration Details </label></p>
 
-    <div class="row lifecycle-steps">
+    <div class="row workflow-steps">
       <div class="span2">
         <h3>buildFile</h3>
         <ul>
@@ -779,12 +779,12 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
 
     <p>So you have registered your module's code to be called in the right spot in the workflow.  You've made sure that only the right extensions will flow through your code.  So what happens when Mimosa calls your callback?</p>
 
-    <p>Your lifecycle callback is handed 3 arguments.</p>
+    <p>Your workflow callback is handed 3 arguments.</p>
 
     <ol>
-      <li><code class="options">config</code>: The full <code class="options">mimosa-config</code> enriched with all sorts of useful data beyond the default mimosa-config. The <code class="options">mimosa-config</code> already contains things like the full path to both the source and compiled assets.  And the <code class="options">mimosa-config</code> will contain the settings for your own module as well.</li>
-      <li><code class="options">options</code>: An object that contains information about the asset(s)/extension currently being processed. Inside the options object is a 'files' array that is created early in the lifecycle. The array contains a list of file objects that are being processed. At different steps of the Mimosa lifecycle, those file objects are populated with the inputFileName, the outputFileName, the inputFileText, the outputFileText and some flags to indicate if the asset is a vendor asset, etc. The outputFileText is populated during the <code class="options">compile</code> step.</li>
-      <li><code class="options">next</code>: a lifecycle callback. This callback must be called when your module has finished processing. It tells Mimosa to execute the next step in the lifecycle. If for some reason your module decides that processing for the current asset/build step needs to stop, the callback can be called passing false. Ex: <code class="options">next(false)</code>. In most cases you do not want to shortcircuit the lifecycle.</li>
+      <li><code class="options">config</code>: The full <code class="options">mimosa-config</code> enriched with all sorts of useful data beyond the default mimosa-config. The <code class="options">mimosa-config</code> already contains things like the full path to both the source and compiled assets.  And the <code class="options">mimosa-config</code> will contain the config settings for your own module as well.</li>
+      <li><code class="options">options</code>: An object that contains information about the asset(s)/extension currently being processed. Inside the options object is a 'files' array that is created early in the workflow. The array contains a list of file objects that are being processed. At different steps of the a Mimosa workflow, those file objects are populated with the inputFileName, the outputFileName, the inputFileText, the outputFileText and some flags to indicate if the asset is a vendor asset, etc. The outputFileText is populated during the <code class="options">compile</code> step.</li>
+      <li><code class="options">next</code>: a workflow callback. This callback must be called when your module has finished processing. It tells Mimosa to execute the next step in the workflow. If for some reason your module decides that processing for the current asset/build step needs to stop, the callback can be called passing false. Ex: <code class="options">next(false)</code>. In most cases you do not want to short circuit the workflow.</li>
     </ol>
   </section>
 
