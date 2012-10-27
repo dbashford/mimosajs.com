@@ -599,11 +599,19 @@ i {
   border-radius: 4px 4px 4px 4px;
 }
 
-.lifecycle-steps ul > li:first-child {
+.lifecycle-steps ul > li:first-child > div {
   border-top:none;
 }
 
-.lifecycle-steps li {
-  padding:11px 12px;
+.lifecycle-steps li > div {
+  padding:8px 10px;
+}
+
+.lifecycle-steps li > .step {
   border-top: 1px solid #E5E5E5;
+}
+
+.lifecycle-steps .module {
+  background-color: #D8DFEA;
+  border-top: 1px solid #AAA !important;
 }
