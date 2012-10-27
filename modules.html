@@ -572,6 +572,16 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
         <small><span class="options">when the rubber hits the code</span></small>
       </h1>
     </div>
+
+    <p>So you have registered your module's code to be called in the right spot in the workflow.  You've made sure that only the right extensions will flow through your code.  So what happens when Mimosa calls your callback?</p>
+
+    <p>Your lifecycle callback is handed 3 arguments.</p>
+
+    <ol>
+      <li><code class="options">config</code>: The full <code class="options">mimosa-config</code> enriched with all sorts of useful data beyond the default mimosa-config. The <code class="options">mimosa-config</code> already contains things like the full path to both the source and compiled assets.  And the <code class="options">mimosa-config</code> will contain the settings for your own module as well.</li>
+      <li><code class="options">options</code>: An object that contains information about the asset(s)/extension currently being processed. Inside the options object is a 'files' array that is created early in the lifecycle. The array contains a list of file objects that are being processed. At different steps of the Mimosa lifecycle, those file objects are populated with the inputFileName, the outputFileName, the inputFileText, the outputFileText and some flags to indicate if the asset is a vendor asset, etc. The outputFileText is populated during the <code class="options">compile</code> step.</li>
+      <li><code class="options">next</code>: a lifecycle callback. This callback must be called when your module has finished processing. It tells Mimosa to execute the next step in the lifecycle. If for some reason your module decides that processing for the current asset/build step needs to stop, the callback can be called passing false. Ex: <code class="options">next(false)</code>. In most cases you do not want to shortcircuit the lifecycle.</li>
+    </ol>
   </section>
 
 
