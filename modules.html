@@ -248,18 +248,25 @@
     <div class="page-header">
        <h1>
          Initialize Your Own Module
-         <small><span class="mim">mimosa</span> <span class="command">mod:init</span> <span class="options">[nameOfModule]</span></small>
+         <small><span class="mim">mimosa</span> <span class="command">mod:init</span> <span class="options">[nameOfModule]</span> <span class="options">[-j/--javascript]</span></small>
        </h1>
      </div>
      <div class="row">
        <div class="span6">
          <h2>mod:init</h2>
 
-         <p>Execute <code class='option'>mod:init</code> and provide the command with a 'mimosa-' prefixed name for your module and Mimosa will create a directory using the name (or use one if it already exists), and place a module skeleton inside.  The skeleton contains heavily documented code to get you started, docco-generated documentation for that code, and a starter <code class='option'>package.json</code> to get you ready for deploying your module to <a href="https://npmjs.org/">NPM</a>.</p>
+         <p>Execute <code class='option'>mod:init</code> and provide the command with a 'mimosa-' prefixed name for your module and Mimosa will create a directory using the name (or use one if it already exists), and place a module skeleton inside.  The skeleton contains heavily documented CoffeeScript code to get you started, docco-generated documentation for that code, and a starter <code class='option'>package.json</code> to get you ready for deploying your module to <a href="https://npmjs.org/">NPM</a>.</p>
 
          <p>You'll want to go into the <code class='option'>package.json</code> and change all of the placeholders.  The following sections go into detail about how to create your own module.</p>
 
          <pre>$ mimosa mod:init mimosa-foo</pre>
+
+         <h3>Prefer JavaScript? (-j/--javascript)</h3>
+
+         <p>Add a <code class="option">--javascript</code> flag and Mimosa will give you a JavaScript skeleton instead of the CoffeeScript one.</p>
+
+         <pre>$ mimosa mod:search -j
+$ mimosa mod:search --javascript</pre>
 
        </div>
 
