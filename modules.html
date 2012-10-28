@@ -113,7 +113,7 @@
             <span class="inst">mimosa-require&nbsp;&nbsp;&nbsp;&nbsp;0.2.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://www.mimosajs.com</span><br/>
             <span class="inst">mimosa-minify&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.2.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://www.mimosajs.com</span><br/>
             <span class="inst">mimosa-lint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.2.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://www.mimosajs.com</span><br/><br/>
-            <span class="inst">To view more module details, execute 'mimosa mod:search -v' for 'verbose' logging. </span><br/><br/>
+            <span class="inst">To view more module details, execute 'mimosa mod:list -v' for 'verbose' logging. </span><br/><br/>
             Davids-MacBook-Pro:webapp dbashford$<br/>
           </p>
         </div>
@@ -265,8 +265,8 @@
 
          <p>Add a <code class="option">--javascript</code> flag and Mimosa will give you a JavaScript skeleton instead of the CoffeeScript one.</p>
 
-         <pre>$ mimosa mod:search -j
-$ mimosa mod:search --javascript</pre>
+         <pre>$ mimosa mod:init -j
+$ mimosa mod:init --javascript</pre>
 
        </div>
 
@@ -341,7 +341,7 @@ $ mimosa mod:search --javascript</pre>
     <h3>validate(mimosaConfig)</h3>
     <p>A module's <code class='option'>validate</code> function is called when Mimosa starts up and after Mimosa has put together the full <code class='option'>mimosa-config</code>.  That full config is passed to the validate method of all modules and each module has the opportunity to ensure that the config settings are ok. This method should return an array of strings. Each string represents an error that the module has found with the config. If you return any errors, Mimosa will print your errors and exit to give the user a chance to update the config.</p>
     <p>If there are no errors, return an empty array.  If there is no config to validate, then do not implement the method.</p>
-    <p>This method is also an opportunity to transform the data if need be.  For example, you can take a list of strings and turn them into RegEx objects.</p>
+    <p>This method is also an opportunity to transform the data if need be.  For example, you can take a list of strings and turn them into RegExp objects.</p>
 
     <pre>
 exports.validate = (config) ->
@@ -399,7 +399,7 @@ exports.validate = (config) ->
     <pre>register ['add','update','buildFile'],      'afterCompile', _minifyJS,  [e.javascript...]
 register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.template...]</pre>
 
-    <h2>Lifecycle Types <small><span class="options">buildFile, buildExtension, buildDone, add, update, remove</span></small></h2>
+    <h2>Workflow Types <small><span class="options">buildFile, buildExtension, buildDone, add, update, remove</span></small></h2>
 
     <p>A workflow type represents a workflow an asset, a group of assets, or your application can go through.  <code class="options">add</code>, <code class="options">update</code>, and <code class="options">remove</code> are workflow types, in this case for individual assets, and as such they each have their own workflow that Mimosa runs through.</p>
 
@@ -441,7 +441,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
     <h4>remove</h4>
     <p>The <code class="options">remove</code> workflow type is kicked off when a file in your <code class="options">watch.sourceDir</code> directory is deleted.</p>
 
-    <h2>Lifecycle Steps <small><span class="options">a list of processing steps for each workflow type</span></small></h2>
+    <h2>Workflow Steps <small><span class="options">a list of processing steps for each workflow type</span></small></h2>
 
     <p>The previous section covered each different workflow type.  Within each workflow type are many steps to the the workflow.  An example is the best way to illustrate how this works.</p>
 

@@ -592,26 +592,26 @@ i {
   margin-top: 30px;
 }
 
-.lifecycle-steps ul {
+.workflow-steps ul {
   list-style-type:none;
   margin-left:0px;
   border: 1px solid #E5E5E5;
   border-radius: 4px 4px 4px 4px;
 }
 
-.lifecycle-steps ul > li:first-child > div {
+.workflow-steps ul > li:first-child > div {
   border-top:none;
 }
 
-.lifecycle-steps li > div {
+.workflow-steps li > div {
   padding:8px 10px;
 }
 
-.lifecycle-steps li > .step {
+.workflow-steps li > .step {
   border-top: 1px solid #E5E5E5;
 }
 
-.lifecycle-steps .module {
+.workflow-steps .module {
   background-color: #D8DFEA;
   border-top: 1px solid #AAA !important;
 }
