@@ -3,7 +3,9 @@
     , $nav = $('.subnav')
     , navTop = $('.subnav').length && $('.subnav').offset().top - 40
     , isFixed = 0
-    , moduleDescriptors = $('.workflow-steps .module');
+    , moduleDescriptors = $('.workflow-steps .module')
+    , chosenModuleExtension = 'js'
+    , chosenModule = 'builtin';
 
   processScroll()
 
@@ -42,23 +44,24 @@
 
   if (moduleDescriptors.length > 0) {
 
-    function showModuleExtension(ext) {
-      $(moduleDescriptors).hide()
-      $(moduleDescriptors).filter('.' + ext).show()
+    function showModule() {
+      $(moduleDescriptors).hide();
+      console.log(chosenModuleExtension, chosenModule)
+      $(moduleDescriptors).filter('.' + chosenModuleExtension + '.' + chosenModule).show();
     }
 
-    $('[name="extension"]').click(function() {
-      showModuleExtension($(this).val())
-    }).attr('checked',false);
+    showModule()
 
-    showModuleExtension('js')
-    $('[name="extension"][value="js"]').attr('checked',true)
+    $('[name="extension"]').click(function() {
+      chosenModuleExtension = $(this).val();
+      showModule();
+    }).attr('checked',false).filter('[value="' + chosenModuleExtension + '"]').attr('checked',true)
+
+    $('[name="module"]').click(function() {
+      chosenModule = $(this).val();
+      showModule();
+    }).attr('checked',false).filter('[value="' + chosenModule + '"]').attr('checked',true);
 
   }
-
-
-
-
-
 
 }(window.jQuery)

@@ -615,3 +615,7 @@ i {
   background-color: #D8DFEA;
   border-top: 1px solid #AAA !important;
 }
+
+.radio-heading {
+  font-weight:bold;
+}

@@ -468,11 +468,15 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
     <br/>
 
     <p>
-      <input type="radio" name="module" value="js" checked> Mimosa's Built-In Compiler and File Modules
+      <span class="radio-heading">Modules: </span><input type="radio" name="module" value="builtin"> Mimosa's Built-In Compiler and File Modules
+      <input type="radio" name="module" value="server"> server
+      <input type="radio" name="module" value="require"> require
+      <input type="radio" name="module" value="minify"> minify
+      <input type="radio" name="module" value="lint"> lint
     </p>
 
     <p>
-      <input type="radio" name="extension" value="js" checked> JavaScript
+      <span class="radio-heading">File Types: </span><input type="radio" name="extension" value="js"> JavaScript
       <input type="radio" name="extension" value="css"> CSS
       <input type="radio" name="extension" value="template"> Micro-Templates
       <input type="radio" name="extension" value="copy"> Copied Files
@@ -508,9 +512,13 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">afterCompile</div>
+            <div class="module lint copy">(C) For copied (not compiled) CSS files, options.files. outputFileText is linted, errors printed to console</div>
+            <div class="module lint copy js">(JS, C) For JS and copied JS, options.files. outputFileText is linted, errors printed to console</div>
+            <div class="module require js">(JS) javascript dependencies in options.files. outputFileText registered with module for future validation</div>
           </li>
           <li>
             <div class="step">beforeWrite</div>
+            <div class="module minify js">(JS) If minified flag used, options.files. outputFileText is minified</div>
           </li>
           <li>
             <div class="step">write</div>
@@ -555,9 +563,12 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
             <div class="step">afterCompile</div>
             <div class="module builtin template">(T) compiled templates merged into single file, result added as new options.files entry</div>
             <div class="module builtin template">(T) vendor template library read and added to options.files</div>
+            <div class="module lint css">(CSS) For compiled CSS files, options.files. outputFileText is linted, errors printed to console</div>
+            <div class="module require template">(T) javascript dependencies in options.files. outputFileText registered with module for future validation</div>
           </li>
           <li>
             <div class="step">beforeWrite</div>
+            <div class="module minify css template">(CSS, T) If minified flag used, options.files. outputFileText is minified</div>
           </li>
           <li>
             <div class="step">write</div>
@@ -580,9 +591,11 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">beforeOptimize</div>
+            <div class="module require not">Require module performs codebase path verification for all registered files (templates and js)</div>
           </li>
           <li>
             <div class="step">optimize</div>
+            <div class="module require not">If optimize flag used, entire project optimized by r.js</div>
           </li>
           <li>
             <div class="step">afterOptimize</div>
@@ -592,6 +605,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">server</div>
+            <div class="module server not">If server flag used, server is started</div>
           </li>
           <li>
             <div class="step">afterServer</div>
@@ -653,9 +667,13 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
             <div class="step">afterCompile</div>
             <div class="module builtin template">(T) options.files. outputFileText merged into single string and placed into options.files as new file with outputFileName (so will be written)</div>
             <div class="module builtin template">(T) vendor template library name and file text added to options.files</div>
+            <div class="module lint css copy">(CSS, C) options.files. outputFileText is linted, errors printed to console</div>
+            <div class="module lint copy js">(JS, C) For JS and copied JS, options.files. outputFileText is linted, errors printed to console</div>
+            <div class="module require template js">(JS, T) javascript dependencies in options.files. outputFileText registered with module for future validation</div>
           </li>
           <li>
             <div class="step">beforeWrite</div>
+            <div class="module minify js css template">(JS, CSS, T) If minified flag used, options.files. outputFileText is minified</div>
           </li>
           <li>
             <div class="step">write</div>
@@ -663,6 +681,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">afterWrite</div>
+            <div class="module require js template">(JS, T) If optimize flag used, base files relating to originally changed file are optimized by r.js</div>
           </li>
           <li>
             <div class="step">complete</div>
@@ -704,15 +723,21 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
             <div class="module builtin css">(CSS) source directory analyzed to redetermine base files</div>
             <div class="module builtin template">(T) options.files. outputFileText merged into single string and placed into options.files as new file with outputFileName (so will be written)</div>
             <div class="module builtin template">(T) vendor template library name and file text added to options.files</div>
+            <div class="module lint css copy">(CSS, C) options.files. outputFileText is linted, errors printed to console</div>
+            <div class="module lint copy js">(JS, C) For JS and copied JS, options.files. outputFileText is linted, errors printed to console</div>
+            <div class="module require template js">(JS, T) javascript dependencies in options.files. outputFileText registered with module for future validation</div>
           </li>
           <li>
             <div class="step">beforeWrite</div>
+            <div class="module minify js css template">(JS, CSS, T) If minified flag used, options.files. outputFileText is minified</div>
           </li>
           <li>
             <div class="step">write</div>
+            <div class="module builtin js css template copy">(JS, CSS, T, C) options.files with an outputFileName and outputFileText written to compiledDir</div>
           </li>
           <li>
             <div class="step">afterWrite</div>
+            <div class="module require js template">(JS, T) If optimize flag used, base files relating to originally changed file are optimized by r.js</div>
           </li>
           <li>
             <div class="step">complete</div>
@@ -751,6 +776,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">afterDelete</div>
+            <div class="module require js">(JS) file removed from require module registry</div>
           </li>
           <li>
             <div class="step">beforeCompile</div>
@@ -772,6 +798,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">afterWrite</div>
+            <div class="module require js template">(JS, T) If optimize flag used, base files relating to originally changed file are optimized by r.js</div>
           </li>
           <li>
             <div class="step">complete</div>
