@@ -475,16 +475,15 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
         <ul>
           <li>
             <div class="step">init</div>
-            <div class="module">For JavaScript and copy extensions, options.files array initialized with single file with inputFileName and outputFileName</div>
+            <div class="module js copy builtin">(JS, C) options.files array created with single file with inputFileName and outputFileName</div>
           </li>
           <li>
             <div class="step">beforeRead</div>
-            <div class="module">For copy and JavaScript extensions, file module determines if file needs to be processed</div>
+            <div class="module js copy builtin">(JS, C) Determine if file needs to be processed, exit workflow if not</div>
           </li>
           <li>
             <div class="step">read</div>
-            <div class="module">For copy and JavaScript extensions, file module reads in all the files in the files array and stores text in file.inputFileText</div>
-            <div class="module">For copy and JavaScript extensions, file module reads in all the files in the files array and stores text in file.inputFileText</div>
+            <div class="module builtin copy js">(JS, C) Files in files array read into file.inputFileText</div>
           </li>
           <li>
             <div class="step">afterRead</div>
@@ -494,8 +493,8 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">compile</div>
-            <div class="module">For copy extensions, Copy compiler moves file.inputFileText to file.outputFileText</div>
-            <div class="module">For JavaScript extensions, JavaScript compiler compiles file, saves result in file.outputFileText</div>
+            <div class="module builtin copy">(C) options.files. inputFileText moved to options.files. outputFileText</div>
+            <div class="module builtin js">(JS) options.files. inputFileText compiled to options.files. outputFileText</div>
           </li>
           <li>
             <div class="step">afterCompile</div>
@@ -505,7 +504,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">write</div>
-            <div class="module">For JavaScript and copy extensions, options.files possessing an outputFileName and outputFileText are written to compiledDir</div>
+            <div class="module builtin js copy">(JS, C) options.files written to compiledDir</div>
           </li>
           <li>
             <div class="step">afterWrite</div>
@@ -516,22 +515,21 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
         </ul>
       </div>
       <div class="span2">
-
         <h3>buildExtension</h3>
         <ul>
           <li>
             <div class="step">init</div>
-            <div class="module">For CSS and template extensions, options set up with flags indicating isCSS, isTemplate, etc, and options. destinationFile created as function taking sourceDir file name and returning the compiledDir destination</div>
-            <div class="module">For CSS extensions, CSS compiler processes source directory to determine base files and determines which base files need to be compiled, places those files into options.files</div>
-            <div class="module">For template extensions, template compiler gathers together a list of files that may need to be compiled and places then in options.files array, no outputFileName set (as template files are never written)</div>
+            <div class="module builtin css template">(CSS, T) options set up with flags (isCSS, isTemplate, etc) and options. destinationFile function created, takes sourceDir file name and returns compiled file name</div>
+            <div class="module builtin css">(CSS) Base CSS files determined and base files that need compiling placed into options.files</div>
+            <div class="module builtin template">(T) Files gathered into options.files array, no outputFileName set (as template files are never written)</div>
           </li>
           <li>
             <div class="step">beforeRead</div>
-            <div class="module">For template extensions, template compiler checks all the templates to see if templates need to be compiled, if not, sets options.files to empty array</div>
+            <div class="module builtin template">(T) All templates checked to see if templates need compiling, if not, sets options.files to empty array</div>
           </li>
           <li>
             <div class="step">read</div>
-            <div class="module">For CSS and template extensions, file module reads in all the files in the files array and stores text in file.inputFileText</div>
+            <div class="module builtin css template">(CSS, T) options.files. inputFileName read and text stored in options.files. inputFileText</div>
           </li>
           <li>
             <div class="step">afterRead</div>
@@ -541,27 +539,27 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">compile</div>
-            <div class="module">For CSS extensions, CSS compiler compiles base files, places output in options.files[]. outputFileText</div>
-            <div class="module">For template extensions, template compiler compiles each template, places results in options.files[]. outputFileText</div>
+            <div class="module builtin css">(CSS) options.files. inputFileText compiled into options.files[]. outputFileText</div>
+            <div class="module builtin template">(T) templates compiled into options.files[]. outputFileText</div>
           </li>
           <li>
             <div class="step">afterCompile</div>
-            <div class="module">For template extensions, template compiler merges compiled templates into single file, adds result as file to options.files</div>
-            <div class="module">For template extensions, template compiler reads in vendor library and adds it to options.files</div>
+            <div class="module builtin template">(T) compiled templates merged into single file, result added as new options.files entry</div>
+            <div class="module builtin template">(T) vendor template library read and added to options.files</div>
           </li>
           <li>
             <div class="step">beforeWrite</div>
           </li>
           <li>
             <div class="step">write</div>
-            <div class="module">For template and CSS extensions, options.files possessing a outputFileName and outputFileText are written to compiledDir</div>
+            <div class="module builtin template css">(CSS, T) options.files with an outputFileName and outputFileText written to compiledDir</div>
           </li>
           <li>
             <div class="step">afterWrite</div>
           </li>
           <li>
             <div class="step">complete</div>
-            <div class="module">For template extensions, compiler module determines if different template libraries are being used without handling that in config</div>
+            <div class="module builtin template">(T) message user if different template libraries used without handling in config</div>
           </li>
         </ul>
       </div>
@@ -617,19 +615,19 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
         <ul>
           <li>
             <div class="step">init</div>
-            <div class="module">For CSS and template extensions, options set up with flags indicating isCSS, isTemplate, etc, and options. destinationFile created as function taking sourceDir file name and returning the compiledDir destination</div>
-            <div class="module">For CSS extensions, CSS compiler processes source directory to determine base files and determines which base files need to be compiled, places those files into options.files</div>
-            <div class="module">For template extensions, template compiler gathers together a list of files that may need to be compiled, creates options.files array, no outputFileName set (as template files are never written)</div>
-            <div class="module">For JavaScript and copy extensions, options.files array initialized with single file with inputFileName and outputFileName</div>
+            <div class="module builtin css template">(CSS, T) options set up with flags (isCSS, isTemplate, etc) and options. destinationFile function created, takes sourceDir file name and returns compiled file name</div>
+            <div class="module builtin css">(CSS) Base CSS files determined and base files that need compiling placed into options.files</div>
+            <div class="module builtin template">(T) Files gathered into options.files array, no outputFileName set (as template files are never written)</div>
+            <div class="module builtin js copy">(JS, C) options.files array created with single file with inputFileName and outputFileName</div>
           </li>
           <li>
             <div class="step">beforeRead</div>
-            <div class="module">For template extensions, template compiler checks all the templates to see if templates need to be compiled, if not, sets options.files to empty array</div>
-            <div class="module">For copy and JavaScript extensions, file module determines if file needs to be processed</div>
+            <div class="module builtin template">(T) All templates checked to see if templates need compiling, if not, sets options.files to empty array</div>
+            <div class="module js copy builtin">(JS, C) Determine if file needs to be processed, exit workflow if not</div>
           </li>
           <li>
             <div class="step">read</div>
-            <div class="module">For copy, JavaScript, CSS and template extensions, file module reads in all the files in the files array and stores text in file.inputFileText</div>
+            <div class="module builtin copy js css template">(JS, CSS, T, C) options.files. inputFileName read into file.inputFileText</div>
           </li>
           <li>
             <div class="step">afterRead</div>
@@ -639,22 +637,20 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">compile</div>
-            <div class="module">For copy extensions, Copy compiler moves file.inputFileText to file.outputFileText for copy extensions</div>
-            <div class="module">For CSS extensions, CSS compiler compiles base files, places output in options.files[]. outputFileText</div>
-            <div class="module">For template extensions, template compiler compiles each template, places results in options.files[]. outputFileText</div>
-            <div class="module">For JavaScript extensions, JavaScript compiler compiles file, saves result in file.outputFileText</div>
+            <div class="module builtin copy">(C) options.files[]. inputFileText moved to options.files[]. outputFileText</div>
+            <div class="module builtin css template js">(JS, CSS, T) options.files[]. inputFileText compiled into options.files[]. outputFileText</div>
           </li>
           <li>
             <div class="step">afterCompile</div>
-            <div class="module">For template extensions, template compiler merges compiled templates into single file</div>
-            <div class="module">For template extensions, template compiler reads in vendor library and adds it to options.files</div>
+            <div class="module builtin template">(T) options.files[]. outputFileText merged into single string and placed into options.files as new file with outputFileName (so will be written)</div>
+            <div class="module builtin template">(T) vendor template library name and file text added to options.files</div>
           </li>
           <li>
             <div class="step">beforeWrite</div>
           </li>
           <li>
             <div class="step">write</div>
-            <div class="module">For all configured extensions, options.files possessing an outputFileName and outputFileText are written to compiledDir</div>
+            <div class="module builtin js css template copy">(JS, CSS, T, C) options.files possessing outputFileName and outputFileText written to compiledDir</div>
           </li>
           <li>
             <div class="step">afterWrite</div>
@@ -669,19 +665,19 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
         <ul>
           <li>
             <div class="step">init</div>
-            <div class="module">For CSS and template extensions, options set up with flags indicating isCSS, isTemplate, etc, and options. destinationFile created as function taking sourceDir file name and returning the compiledDir destination</div>
-            <div class="module">For CSS extensions, CSS compiler determines which base files need to be compiled, places those files into options.files</div>
-            <div class="module">For template extensions, template compiler gathers together a list of files that may need to be compiled, creates options.files array, no outputFileName set (as template files are never written)</div>
-            <div class="module">For JavaScript and copy extensions, options.files array initialized with single file with inputFileName and outputFileName</div>
+            <div class="module builtin css template">(CSS, T) options set up with flags (isCSS, isTemplate, etc) and options. destinationFile function created, takes sourceDir file name and returns compiled file name</div>
+            <div class="module builtin css">(CSS) Base CSS files determined and base files that need compiling placed into options.files</div>
+            <div class="module builtin template">(T) Files gathered into options.files array, no outputFileName set (as template files are never written)</div>
+            <div class="module builtin js copy">(JS, C) options.files array created with single file with inputFileName and outputFileName</div>
           </li>
           <li>
             <div class="step">beforeRead</div>
-            <div class="module">For template extensions, template compiler checks all the templates to see if templates need to be compiled, if not, sets options.files to empty array</div>
-            <div class="module">For copy and JavaScript extensions, file module determines if file needs to be processed</div>
+            <div class="module builtin template">(T) All templates checked to see if templates need compiling, if not, sets options.files to empty array</div>
+            <div class="module js copy builtin">(JS, C) Determine if file needs to be processed, exit workflow if not</div>
           </li>
           <li>
             <div class="step">read</div>
-            <div class="module">For copy, JavaScript, CSS and template extensions, file module reads in all the files in the files array and stores text in file.inputFileText</div>
+            <div class="module builtin copy js css template">(JS, CSS, T, C) options.files. inputFileName read into file.inputFileText</div>
           </li>
           <li>
             <div class="step">afterRead</div>
@@ -691,16 +687,14 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">compile</div>
-            <div class="module">For copy extensions, copy compiler moves file.inputFileText to file.outputFileText for copy extensions</div>
-            <div class="module">For CSS extensions, CSS compiler compiles base files, places output in options.files[]. outputFileText</div>
-            <div class="module">For template extensions, template compiler compiles each template, places results in options.files[]. outputFileText</div>
-            <div class="module">For JavaScript extensions, JavaScript compiler compiles file, saves result in file.outputFileText</div>
+            <div class="module builtin copy">(C) options.files[]. inputFileText moved to options.files[]. outputFileText</div>
+            <div class="module builtin css template js">(JS, CSS, T) options.files[]. inputFileText compiled into options.files[]. outputFileText</div>
           </li>
           <li>
             <div class="step">afterCompile</div>
-            <div class="module">For CSS extensions, CSS compiler processes source directory to redetermine base files</div>
-            <div class="module">For template extensions, template compiler merges compiled templates into single file</div>
-            <div class="module">For template extensions, template compiler reads in vendor library and adds it to options.files</div>
+            <div class="module builtin css">(CSS) source directory analyzed to redetermine base files</div>
+            <div class="module builtin template">(T) options.files[]. outputFileText merged into single string and placed into options.files as new file with outputFileName (so will be written)</div>
+            <div class="module builtin template">(T) vendor template library name and file text added to options.files</div>
           </li>
           <li>
             <div class="step">beforeWrite</div>
@@ -721,19 +715,19 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
         <ul>
           <li>
             <div class="step">init</div>
-            <div class="module">For CSS and template extensions, options set up with flags indicating isCSS, isTemplate, etc, and options. destinationFile created as function taking sourceDir file name and returning the compiledDir destination</div>
-            <div class="module">For CSS extensions, CSS compiler determines which base files need to be compiled, places those files in options.files</div>
-            <div class="module">During mimosa clean only, for template extensions, template compiler removes templates file and client vendor library</div>
-            <div class="module">For template extensions, template compiler gathers together a list of files that may need to be compiled, creates options.files array, no outputFileName set (as template files are never written)</div>
-            <div class="module">For template extensions, Template compiler checks if any templates remain, if not, removes templates file and client vendor library</div>
-            <div class="module">For JavaScript and copy extensions, options.files array initialized with single file with inputFileName and outputFileName</div>
+            <div class="module builtin css template">(CSS, T) options set up with flags (isCSS, isTemplate, etc) and options. destinationFile function created, takes sourceDir file name and returns compiled file name</div>
+            <div class="module builtin css">(CSS) based files determined, base files that need compiling are placed into options.files</div>
+            <div class="module builtin template">(T) Files gathered into options.files array, no outputFileName set (as template files are never written)</div>
+            <div class="module builtin js copy">(JS, C) options.files array created with single file with inputFileName and outputFileName</div>
+            <div class="module builtin template">(T) During clean, template file and vendor library removed</div>
+            <div class="module builtin template">(T) if no templates remain template file and vendor library removed</div>
           </li>
           <li>
             <div class="step">beforeRead</div>
           </li>
           <li>
             <div class="step">read</div>
-            <div class="module">For CSS and template extensions, file module reads in all the files in the files array and stores text in file.inputFileText</div>
+            <div class="module builtin css template">(CSS, T) options.files. inputFileName read into file.inputFileText</div>
           </li>
           <li>
             <div class="step">afterRead</div>
@@ -743,9 +737,8 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">delete</div>
-            <div class="module">For CSS extensions, CSS compiler compiles base files, places output in options.files[]. outputFileText</div>
-            <div class="module">For template extensions, template compiler compiles each template, places results in options.files[]. outputFileText</div>
-            <div class="module">Copy, JavaScript, CSS files removed from source directory are removed from compiled directory if they exist.</div>
+            <div class="module builtin css template">(CSS, T) options.files[]. inputFileText compiled into options.files[]. outputFileText</div>
+            <div class="module builtin copy js css">(JS, CSS, C) files removed from source directory are removed from compiled directory if they exist</div>
           </li>
           <li>
             <div class="step">afterDelete</div>
@@ -758,15 +751,15 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">afterCompile</div>
-            <div class="module">For CSS extensions, CSS compiler processes source directory to redetermine base files</div>
-            <div class="module">For template extensions, Template compiler merges compiled templates into single file</div>
+            <div class="module builtin css">(CSS) source directory analyzed to redetermine base files</div>
+            <div class="module builtin template">(T) options.files[]. outputFileText merged into single string and placed into options.files as new file with outputFileName (so will be written)</div>
           </li>
           <li>
             <div class="step">beforeWrite</div>
           </li>
           <li>
             <div class="step">write</div>
-            <div class="module">For template and CSS extensions, options.files possessing a outputFileName and outputFileText are written to compiledDir</div>
+            <div class="module builtin template css">(CSS, T) options.files possessing outputFileName and outputFileText written to compiledDir</div>
           </li>
           <li>
             <div class="step">afterWrite</div>
