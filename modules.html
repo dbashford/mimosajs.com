@@ -503,6 +503,9 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
             <div class="step">afterRead</div>
           </li>
           <li>
+            <div class="step">betweenReadCompile</div>
+          </li>
+          <li>
             <div class="step">beforeCompile</div>
           </li>
           <li>
@@ -515,6 +518,9 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
             <div class="module lint copy">(C) For copied (not compiled) CSS files, options.files. outputFileText is linted, errors printed to console</div>
             <div class="module lint copy js">(JS, C) For JS and copied JS, options.files. outputFileText is linted, errors printed to console</div>
             <div class="module require js">(JS) javascript dependencies in options.files. outputFileText registered with module for future validation</div>
+          </li>
+          <li>
+            <div class="step">betweenCompileWrite</div>
           </li>
           <li>
             <div class="step">beforeWrite</div>
@@ -553,6 +559,9 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
             <div class="step">afterRead</div>
           </li>
           <li>
+            <div class="step">betweenReadCompile</div>
+          </li>
+          <li>
             <div class="step">beforeCompile</div>
           </li>
           <li>
@@ -565,6 +574,9 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
             <div class="module builtin template">(T) vendor template library read and added to options.files</div>
             <div class="module lint css">(CSS) For compiled CSS files, options.files. outputFileText is linted, errors printed to console</div>
             <div class="module require template">(T) javascript dependencies in options.files. outputFileText registered with module for future validation</div>
+          </li>
+          <li>
+            <div class="step">betweenCompileWrite</div>
           </li>
           <li>
             <div class="step">beforeWrite</div>
@@ -656,6 +668,9 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
             <div class="step">afterRead</div>
           </li>
           <li>
+            <div class="step">betweenReadCompile</div>
+          </li>
+          <li>
             <div class="step">beforeCompile</div>
           </li>
           <li>
@@ -670,6 +685,9 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
             <div class="module lint css copy">(CSS, C) options.files. outputFileText is linted, errors printed to console</div>
             <div class="module lint copy js">(JS, C) For JS and copied JS, options.files. outputFileText is linted, errors printed to console</div>
             <div class="module require template js">(JS, T) javascript dependencies in options.files. outputFileText registered with module for future validation</div>
+          </li>
+          <li>
+            <div class="step">betweenCompileWrite</div>
           </li>
           <li>
             <div class="step">beforeWrite</div>
@@ -711,6 +729,9 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
             <div class="step">afterRead</div>
           </li>
           <li>
+            <div class="step">betweenReadCompile</div>
+          </li>
+          <li>
             <div class="step">beforeCompile</div>
           </li>
           <li>
@@ -726,6 +747,9 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
             <div class="module lint css copy">(CSS, C) options.files. outputFileText is linted, errors printed to console</div>
             <div class="module lint copy js">(JS, C) For JS and copied JS, options.files. outputFileText is linted, errors printed to console</div>
             <div class="module require template js">(JS, T) javascript dependencies in options.files. outputFileText registered with module for future validation</div>
+          </li>
+          <li>
+            <div class="step">betweenCompileWrite</div>
           </li>
           <li>
             <div class="step">beforeWrite</div>
@@ -788,6 +812,9 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
             <div class="step">afterCompile</div>
             <div class="module builtin css">(CSS) source directory analyzed to redetermine base files</div>
             <div class="module builtin template">(T) options.files. outputFileText merged into single string and placed into options.files as new file with outputFileName (so will be written)</div>
+          </li>
+          <li>
+            <div class="step">betweenCompileWrite</div>
           </li>
           <li>
             <div class="step">beforeWrite</div>
