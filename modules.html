@@ -463,7 +463,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
 
     <p>When building a module, you need to decide which step is the right place to execute your code.  For instance, if you are building a module that will run <a href="http://www.coffeelint.org/">CoffeeLint</a> over your CoffeeScript to determine CoffeeScript code quality, then you probably want to do that as part of the <code class="options">afterRead</code> step.  If you do it as part of the <code class="options">beforeRead</code> step, then Mimosa will have not yet read in the file, and you'll have nothing to run CoffeeLint on.</p>
 
-    <p>Below is the exhaustive list of all of the steps by type.  Use the radio buttons to toggle between the different default Mimosa modules, and to toggle how different modules handle extensions.</p>
+    <p>Below is the exhaustive list of all of the steps by type.  Use the radio buttons to toggle between the different default Mimosa modules, and to toggle file types.  Some modules do things without regard to extension, usually during <code class="options">buildDone</code> and the last File Type option covers those instances.</p>
 
     <br/>
 
