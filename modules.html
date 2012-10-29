@@ -520,8 +520,8 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           <li>
             <div class="step">init</div>
             <div class="module builtin css template">(CSS, T) options set up with flags (isCSS, isTemplate, etc) and options. destinationFile function created, takes sourceDir file name and returns compiled file name</div>
-            <div class="module builtin css">(CSS) Base CSS files determined and base files that need compiling placed into options.files</div>
-            <div class="module builtin template">(T) Files gathered into options.files array, no outputFileName set (as template files are never written)</div>
+            <div class="module builtin css">(CSS) Base files determined and base file names that need compiling placed into options.files</div>
+            <div class="module builtin template">(T) File names gathered into options.files array, no outputFileName set (as template files are never written)</div>
           </li>
           <li>
             <div class="step">beforeRead</div>
@@ -529,7 +529,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">read</div>
-            <div class="module builtin css template">(CSS, T) options.files. inputFileName read and text stored in options.files. inputFileText</div>
+            <div class="module builtin css template">(CSS, T) options.files. inputFileName read into options.files. inputFileText</div>
           </li>
           <li>
             <div class="step">afterRead</div>
@@ -539,8 +539,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">compile</div>
-            <div class="module builtin css">(CSS) options.files. inputFileText compiled into options.files[]. outputFileText</div>
-            <div class="module builtin template">(T) templates compiled into options.files[]. outputFileText</div>
+            <div class="module builtin css template">(CSS, T) options.files. inputFileText compiled into options.files[]. outputFileText</div>
           </li>
           <li>
             <div class="step">afterCompile</div>
@@ -616,8 +615,8 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           <li>
             <div class="step">init</div>
             <div class="module builtin css template">(CSS, T) options set up with flags (isCSS, isTemplate, etc) and options. destinationFile function created, takes sourceDir file name and returns compiled file name</div>
-            <div class="module builtin css">(CSS) Base CSS files determined and base files that need compiling placed into options.files</div>
-            <div class="module builtin template">(T) Files gathered into options.files array, no outputFileName set (as template files are never written)</div>
+            <div class="module builtin css">(CSS) Base file names determined and base files that need compiling placed into options.files</div>
+            <div class="module builtin template">(T) File names gathered into options.files array, no outputFileName set (as template files are never written)</div>
             <div class="module builtin js copy">(JS, C) options.files array created with single file with inputFileName and outputFileName</div>
           </li>
           <li>
@@ -666,8 +665,8 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           <li>
             <div class="step">init</div>
             <div class="module builtin css template">(CSS, T) options set up with flags (isCSS, isTemplate, etc) and options. destinationFile function created, takes sourceDir file name and returns compiled file name</div>
-            <div class="module builtin css">(CSS) Base CSS files determined and base files that need compiling placed into options.files</div>
-            <div class="module builtin template">(T) Files gathered into options.files array, no outputFileName set (as template files are never written)</div>
+            <div class="module builtin css">(CSS) Base file names determined and base files that need compiling placed into options.files</div>
+            <div class="module builtin template">(T) File names gathered into options.files array, no outputFileName set (as template files are never written)</div>
             <div class="module builtin js copy">(JS, C) options.files array created with single file with inputFileName and outputFileName</div>
           </li>
           <li>
@@ -716,8 +715,8 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           <li>
             <div class="step">init</div>
             <div class="module builtin css template">(CSS, T) options set up with flags (isCSS, isTemplate, etc) and options. destinationFile function created, takes sourceDir file name and returns compiled file name</div>
-            <div class="module builtin css">(CSS) based files determined, base files that need compiling are placed into options.files</div>
-            <div class="module builtin template">(T) Files gathered into options.files array, no outputFileName set (as template files are never written)</div>
+            <div class="module builtin css">(CSS) base file names determined, base files that need compiling are placed into options.files</div>
+            <div class="module builtin template">(T) File names gathered into options.files array, no outputFileName set (as template files are never written)</div>
             <div class="module builtin js copy">(JS, C) options.files array created with single file with inputFileName and outputFileName</div>
             <div class="module builtin template">(T) During clean, template file and vendor library removed</div>
             <div class="module builtin template">(T) if no templates remain template file and vendor library removed</div>
