@@ -463,11 +463,21 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
 
     <p>When building a module, you need to decide which step is the right place to execute your code.  For instance, if you are building a module that will run <a href="http://www.coffeelint.org/">CoffeeLint</a> over your CoffeeScript to determine CoffeeScript code quality, then you probably want to do that as part of the <code class="options">afterRead</code> step.  If you do it as part of the <code class="options">beforeRead</code> step, then Mimosa will have not yet read in the file, and you'll have nothing to run CoffeeLint on.</p>
 
-    <p>Below is the exhaustive list of all of the steps by type.  Use the checkbox to toggle on and off indications for each type and step that the default Mimosa modules are registered against.</p>
+    <p>Below is the exhaustive list of all of the steps by type.  Use the radio buttons to toggle between the different default Mimosa modules, and to toggle how different modules handle extensions.</p>
 
     <br/>
 
-    <p><label for="details"><input id="details" type="checkbox" /> Toggle Mimosa Default Registration Details </label></p>
+    <p>
+      <input type="radio" name="module" value="js" checked> Mimosa's Built-In Compiler and File Modules
+    </p>
+
+    <p>
+      <input type="radio" name="extension" value="js" checked> JavaScript
+      <input type="radio" name="extension" value="css"> CSS
+      <input type="radio" name="extension" value="template"> Micro-Templates
+      <input type="radio" name="extension" value="copy"> Copied Files
+      <input type="radio" name="extension" value="not"> Not Extension Based
+    </p>
 
     <div class="row workflow-steps">
       <div class="span2">
@@ -483,7 +493,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">read</div>
-            <div class="module builtin copy js">(JS, C) Files in files array read into file.inputFileText</div>
+            <div class="module builtin copy js">(JS, C) options.files. inputFileName read into options.files. inputFileText</div>
           </li>
           <li>
             <div class="step">afterRead</div>
@@ -504,7 +514,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">write</div>
-            <div class="module builtin js copy">(JS, C) options.files written to compiledDir</div>
+            <div class="module builtin js copy">(JS, C) options.files. outputFileText written to compiledDir at options.files. outputFileName</div>
           </li>
           <li>
             <div class="step">afterWrite</div>
@@ -525,7 +535,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">beforeRead</div>
-            <div class="module builtin template">(T) All templates checked to see if templates need compiling, if not, sets options.files to empty array</div>
+            <div class="module builtin template">(T) All templates checked to see if any need compiling, if not, sets options.files to empty array</div>
           </li>
           <li>
             <div class="step">read</div>
@@ -539,7 +549,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">compile</div>
-            <div class="module builtin css template">(CSS, T) options.files. inputFileText compiled into options.files[]. outputFileText</div>
+            <div class="module builtin css template">(CSS, T) options.files. inputFileText compiled into options.files. outputFileText</div>
           </li>
           <li>
             <div class="step">afterCompile</div>
@@ -636,12 +646,12 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">compile</div>
-            <div class="module builtin copy">(C) options.files[]. inputFileText moved to options.files[]. outputFileText</div>
-            <div class="module builtin css template js">(JS, CSS, T) options.files[]. inputFileText compiled into options.files[]. outputFileText</div>
+            <div class="module builtin copy">(C) options.files. inputFileText moved to options.files. outputFileText</div>
+            <div class="module builtin css template js">(JS, CSS, T) options.files. inputFileText compiled into options.files. outputFileText</div>
           </li>
           <li>
             <div class="step">afterCompile</div>
-            <div class="module builtin template">(T) options.files[]. outputFileText merged into single string and placed into options.files as new file with outputFileName (so will be written)</div>
+            <div class="module builtin template">(T) options.files. outputFileText merged into single string and placed into options.files as new file with outputFileName (so will be written)</div>
             <div class="module builtin template">(T) vendor template library name and file text added to options.files</div>
           </li>
           <li>
@@ -649,7 +659,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">write</div>
-            <div class="module builtin js css template copy">(JS, CSS, T, C) options.files possessing outputFileName and outputFileText written to compiledDir</div>
+            <div class="module builtin js css template copy">(JS, CSS, T, C) options.files with an outputFileName and outputFileText written to compiledDir</div>
           </li>
           <li>
             <div class="step">afterWrite</div>
@@ -672,7 +682,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           <li>
             <div class="step">beforeRead</div>
             <div class="module builtin template">(T) All templates checked to see if templates need compiling, if not, sets options.files to empty array</div>
-            <div class="module js copy builtin">(JS, C) Determine if file needs to be processed, exit workflow if not</div>
+            <div class="module js copy builtin">(JS, C) Determine if file needs to be processed, if not exit workflow</div>
           </li>
           <li>
             <div class="step">read</div>
@@ -686,13 +696,13 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">compile</div>
-            <div class="module builtin copy">(C) options.files[]. inputFileText moved to options.files[]. outputFileText</div>
-            <div class="module builtin css template js">(JS, CSS, T) options.files[]. inputFileText compiled into options.files[]. outputFileText</div>
+            <div class="module builtin copy">(C) options.files. inputFileText moved to options.files. outputFileText</div>
+            <div class="module builtin css template js">(JS, CSS, T) options.files. inputFileText compiled into options.files. outputFileText</div>
           </li>
           <li>
             <div class="step">afterCompile</div>
             <div class="module builtin css">(CSS) source directory analyzed to redetermine base files</div>
-            <div class="module builtin template">(T) options.files[]. outputFileText merged into single string and placed into options.files as new file with outputFileName (so will be written)</div>
+            <div class="module builtin template">(T) options.files. outputFileText merged into single string and placed into options.files as new file with outputFileName (so will be written)</div>
             <div class="module builtin template">(T) vendor template library name and file text added to options.files</div>
           </li>
           <li>
@@ -715,7 +725,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           <li>
             <div class="step">init</div>
             <div class="module builtin css template">(CSS, T) options set up with flags (isCSS, isTemplate, etc) and options. destinationFile function created, takes sourceDir file name and returns compiled file name</div>
-            <div class="module builtin css">(CSS) base file names determined, base files that need compiling are placed into options.files</div>
+            <div class="module builtin css">(CSS) base file names determined, base files that need compiling placed into options.files</div>
             <div class="module builtin template">(T) File names gathered into options.files array, no outputFileName set (as template files are never written)</div>
             <div class="module builtin js copy">(JS, C) options.files array created with single file with inputFileName and outputFileName</div>
             <div class="module builtin template">(T) During clean, template file and vendor library removed</div>
@@ -736,7 +746,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">delete</div>
-            <div class="module builtin css template">(CSS, T) options.files[]. inputFileText compiled into options.files[]. outputFileText</div>
+            <div class="module builtin css template">(CSS, T) options.files. inputFileText compiled into options.files. outputFileText</div>
             <div class="module builtin copy js css">(JS, CSS, C) files removed from source directory are removed from compiled directory if they exist</div>
           </li>
           <li>
@@ -751,7 +761,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           <li>
             <div class="step">afterCompile</div>
             <div class="module builtin css">(CSS) source directory analyzed to redetermine base files</div>
-            <div class="module builtin template">(T) options.files[]. outputFileText merged into single string and placed into options.files as new file with outputFileName (so will be written)</div>
+            <div class="module builtin template">(T) options.files. outputFileText merged into single string and placed into options.files as new file with outputFileName (so will be written)</div>
           </li>
           <li>
             <div class="step">beforeWrite</div>

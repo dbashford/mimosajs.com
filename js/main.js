@@ -3,6 +3,7 @@
     , $nav = $('.subnav')
     , navTop = $('.subnav').length && $('.subnav').offset().top - 40
     , isFixed = 0
+    , moduleDescriptors = $('.workflow-steps .module');
 
   processScroll()
 
@@ -38,6 +39,26 @@
   }).mouseout(function(){
     doCodeHighlight(this)
   })
+
+  if (moduleDescriptors.length > 0) {
+
+    function showModuleExtension(ext) {
+      $(moduleDescriptors).hide()
+      $(moduleDescriptors).filter('.' + ext).show()
+    }
+
+    $('[name="extension"]').click(function() {
+      showModuleExtension($(this).val())
+    }).attr('checked',false);
+
+    showModuleExtension('js')
+    $('[name="extension"][value="js"]').attr('checked',true)
+
+  }
+
+
+
+
 
 
 }(window.jQuery)
