@@ -73,9 +73,10 @@
     <div class="subnav">
       <ul class="nav nav-pills">
         <li><a href="#commands" title="Module commands">Module Commands</a></li>
-        <li><a href="#create" title="Create a new project">Create Your Own</a></li>
-        <li><a href="#register" title="Watch, compile and serve assets">Registering your Module</a></li>
-        <li><a href="#callback" title="Watch, compile and serve assets">Your Module Callback</a></li>
+        <li><a href="#create" title="Create a new project">Create Module</a></li>
+        <li><a href="#register" title="Register your Module">Module Registration</a></li>
+        <li><a href="#callback" title="Your Module Callback, Where Your Code Gets Called">Module Callback</a></li>
+        <li><a href="#install" title="How to get Mimosa to know about your Module">Module Installing</a></li>
       </ul>
     </div>
   </header>
@@ -188,7 +189,7 @@
     <div class="page-header">
       <h1>
         Install a Module
-        <small><span class="mim">mimosa</span> <span class="command">mod:install</span></small>
+        <small><span class="mim">mimosa</span> <span class="command">mod:install</span> <span class="options">[moduleName]</span></small>
       </h1>
     </div>
     <div class="row">
@@ -202,6 +203,8 @@
         <p>If the module has already been installed, this will update it to the latest version.  If you want to get a specific version of a module, add the version after a @.</p>
 
         <pre>$ mimosa mod:install mimosa-server@0.2.0</pre>
+
+        <p>If you are developing a module and want to use and test it locally without pushing to NPM first, then execute <code class='option'>mod:install</code> without providing a name for the module.  For this to work properly, you will want to be in the same directory as the package.json, which should be the base directory of your module.  Once Mimosa installs your module, Mimosa treats it the same as a module it installed from NPM.</p>
 
       </div>
 
@@ -849,6 +852,27 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
       <li><code class="options">options</code>: An object that contains information about the asset(s)/extension currently being processed. Inside the options object is a 'files' array that is created early in the workflow. The array contains a list of file objects that are being processed. At different steps of the a Mimosa workflow, those file objects are populated with the inputFileName, the outputFileName, the inputFileText, the outputFileText and some flags to indicate if the asset is a vendor asset, etc. The outputFileText is populated during the <code class="options">compile</code> step.</li>
       <li><code class="options">next</code>: a workflow callback. This callback must be called when your module has finished processing. It tells Mimosa to execute the next step in the workflow. If for some reason your module decides that processing for the current asset/build step needs to stop, the callback can be called passing false. Ex: <code class="options">next(false)</code>. In most cases you do not want to short circuit the workflow.</li>
     </ol>
+
+    <div class="page-header" id="callback">
+      <h1>
+        Installing Your Module
+        <small><span class="options">You've coded it up, now what?'</span></small>
+      </h1>
+    </div>
+
+    <p>So you coded your callbacks, you implemented all the configuration related functions, you know which workflow steps you want your stuff to execute, so how do you let Mimosa know your module exists?  And then how do you make your module available for the world to use?</p>
+
+    <h2>During Development</h2>
+
+    <p>This one is easy.  The <code class="options">mimosa mod:install</code> command handles installing local modules inside Mimosa.  From inside your root module directory, the directory with the <code class="options">package.json</code> file, execute <code class="options">mimosa mod:install</code>.  Once that is done, modify the mimosa-config of a project you are using.  Uncomment/change the modules array to include the name of your module.  Fire up Mimosa and test your module out!</p>
+
+    <h2>Publishing to NPM</h2>
+
+    <p>This one is also easy if you are familiar with <a href="http://npmjs.org/">NPM</a>.  A simple <code class="options">npm publish</code> from the root of your module will install your module to NPM so that anyone can get access to it.  Once it is in NPM, commands like <code class="options">mod:install</code> and <code class="options">mod:search</code> will be able to find it.</p>
+
+    <p>If you have never published to NPM before, then spend a few minutes reading the <a href="https://npmjs.org/doc/developers.html">developer docs</a>.  Just a few simple steps and you are ready to publish.</p>
+
+
   </section>
 
 
