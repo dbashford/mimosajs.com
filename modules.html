@@ -82,9 +82,7 @@
     </div>
   </header>
 
-
-
-  <section class="command-list" id="commands">
+  <section class="command-list">
     <div class="page-header" id="overview">
       <h1>
         What is a Module? <small><span class="options">Mimosa is the car, modules let you drive</span></small>
@@ -95,9 +93,11 @@
 
     <p>A Mimosa module is a node.js project that, when installed inside Mimosa, can be used as part of Mimosa's workflow. Mimosa is able to use a module because modules implement a simple interface that Mimosa can access.</p>
 
-    <p>There's a strong chance that what you need can be created as a new module.  Modules include themselves in a Mimosa workflow to perform their task, and in some cases all you need to do is add the name of the module you want to your configuration and start Mimosa. Someday there's even a chance that functionality you want to perform resides in an existing module. You just need to track it down.</p>
+    <p>There's a strong chance that what you need can be created as a new module.  Modules include themselves in a Mimosa workflow to perform their task, and in some cases all you need to do is add the name of the module you want to your configuration and start Mimosa. Mimosa self-installs modules it comes across but does not already have installed.</p>
 
-    <div class="page-header">
+    <p>Modules were introduced on Nov 1, during beta, so don't expect a flourishing ecosystem just yet.  But someday there's a chance that the functionality you want to perform will reside in an existing module. You just need to track it down.  And Mimosa can help you there too.  Read on!</p>
+
+    <div class="page-header" id="commands">
       <h1>
         List Installed Modules
         <small><span class="mim">mimosa</span> <span class="command">mod:list</span> <span class="options">[-v/--verbose]</span></small>
