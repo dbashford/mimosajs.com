@@ -44,6 +44,9 @@
             <li class="">
               <a href="./compilers.html">Compilers</a>
             </li>
+            <li  class="">
+              <a href="./modules.html">Extend: Modules</a>
+            </li>
             <li class="">
               <a href="./server.html">Serve</a>
             </li>
@@ -117,13 +120,18 @@
           </div>
 <pre># require:
   # verify:
-    # enabled: true</pre>
+    # enabled: true
+  # optimize :
+    # inferConfig:true
+    # overrides: {}</pre>
 
         </div>
       </div>
       <p> You can turn off path verification using the configuration above.  Just set enabled to <code class="option">false</code>. For information about how Mimosa uses RequireJS to optimize your application, check out the <a href="file:///Users/dbashford/mygithub/mimosajs.com/optimization.html">Optimization</a> tab.</p>
 
       <p>Path verification is always disabled for vendor assets, that is, assets located inside a <code class="option">vendor</code> directory.  Vendor assets often use creative means to turn themselves into AMD modules that prove hard to verify.  That said, if you choose to place vendor assets outside a vendor folder, Mimosa is coded to handle some of the methods vendor assets are AMDed.  But you may see Mimosa complain that some of your vendor assets are throwing errors or are not properly wrapped.</p>
+
+      <p>Mimosa's RequireJS support comes courtesy of the <code class="option">mimosa-require</code> module, which is a default Mimosa module and comes with Mimosa when it is installed.   As such, it belongs to a codebase apart from the core of Mimosa, and it behaves according to the rules of any <a href="./modules.html">Mimosa module</a>, so it can be removed and added at any time.</p>
 
     </section>
     <section id="lint">
@@ -136,6 +144,8 @@
       <div class="row">
         <div class="span8">
           <p>To 'lint' your code is to check it for common mistakes or variances from the idiom. Mimosa will automatically lint all of the CSS and JavaScript it moves from your source directories to your compiled directories. Any errors or warnings that come out of that linting will be printed to the console but will not stop or fail the compilation. Inside the <code class="option">mimosa-config</code> is the snippet to the right which controls the linting. As with all of the default config, this is entirely commented out as the defaults are already enforced.</p>
+
+          <p>Mimosa's Linting support comes courtesy of the <code class="option">mimosa-lint</code> module, which is a default Mimosa module and comes with Mimosa when it is installed.  As such, it belongs to a codebase apart from the core of Mimosa, and it behaves according to the rules of any <a href="./modules.html">Mimosa module</a>, so it can be removed and added at any time.</p>
 
           <h2>Linting Compiled Assets</h2>
 

@@ -44,6 +44,9 @@
             <li class="">
               <a href="./compilers.html">Compilers</a>
             </li>
+            <li  class="">
+              <a href="./modules.html">Extend: Modules</a>
+            </li>
             <li class="active">
               <a href="./server.html">Serve</a>
             </li>
@@ -88,10 +91,12 @@
       </div>
     </section>
 
-    <h2>No server necessary</h2>
-    <p>With <code class="option">mimosa watch</code> you don't need to use Mimosa to serve up your assets.  You might have a server already.  You might be running Derby, Sinatra, Spring MVC, whatever it might be, you might have serving your assets covered.  <code class="option">mimosa watch</code> is good with that.  It'll run the lifecycle, compile your code, lint it, write it, and let you handle it from there.</p>
+    <p>Mimosa's server support comes courtesy of the <code class="option">mimosa-server</code> module.  As such, it belongs to a codebase apart from the core of Mimosa, and it behaves according to the rules of any <a href="./modules.html">Mimosa module</a>, so it can be removed and added at any time.</p>
 
-    <p><code class="option">mimosa virgin</code> is even less intrusive.  It will not write your code anywhere, it'll just run the lifecycle steps pre-write.  You might have an "asset pipeline" that pulls your assets right out of your source code.</p>
+    <h2>No server necessary</h2>
+    <p>With <code class="option">mimosa watch</code> you don't need to use Mimosa to serve up your assets.  You might have a server already.  You might be running Derby, Sinatra, Spring MVC, whatever it might be, you might have serving your assets covered.  <code class="option">mimosa watch</code> is good with that.  It'll run the workflow, compile your code, lint it, write it, and let you handle it from there.</p>
+
+    <p><code class="option">mimosa virgin</code> is even less intrusive.  It will not write your code anywhere, it'll just run the workflow steps pre-write.  You might have an "asset pipeline" that pulls your assets right out of your source code.</p>
 
     <h2>But if you want one...</h2>
     <p>Toss a <code class="option">-s/--server</code> onto your <code class="option">mimosa watch</code> and Mimosa will invoke a server.  Which server Mimosa invokes depends on what you have in your <code class="option">mimosa-config</code>.  Mimosa could start its own server and point it at your views and assets.  Or Mimosa could start the server it gave you when you ran <code class="option">mimosa new</code>.  Or Mimosa could execute a server you had previously using a simple exports hook.</p>

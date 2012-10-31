@@ -44,6 +44,9 @@
             <li  class="">
               <a href="./compilers.html">Compilers</a>
             </li>
+            <li  class="">
+              <a href="./modules.html">Extend: Modules</a>
+            </li>
             <li class="">
               <a href="./server.html">Serve</a>
             </li>
@@ -70,13 +73,14 @@
     <div class="subnav">
       <ul class="nav nav-pills">
         <li><a href="#config" title="How it all works">Overview</a></li>
-        <li><a href="#watch" title="What to watch and where">Watching</a></li>
-        <li><a href="#compilers" title="Compiler tweaks">Compiler Overrides</a></li>
+        <li><a href="#modules" title="What modules are installed">Modules</a></li>
+        <li><a href="#watch" title="What to watch and where">Watch</a></li>
+        <li><a href="#compilers" title="Compiler tweaks">Compilers</a></li>
         <li><a href="#template" title="Template config">Templates</a></li>
-        <li><a href="#copy" title="What files will Mimosa copy"> Copying</a></li>
+        <li><a href="#copy" title="What files will Mimosa copy">Copy</a></li>
         <li><a href="#server" title="Micro-Templates galore">Server</a></li>
         <li><a href="#require" title="Copy JS/CSS and other assets like images">RequireJS</a></li>
-        <li><a href="#minify" title="Which schtuff to not minify">Minification</a></li>
+        <li><a href="#minify" title="Which schtuff to not minify">Minify</a></li>
         <li><a href="#growl" title="To Growl or not to Growl">Growl</a></li>
         <li><a href="#lint" title="To Lint or not to Lint">Lint</a></li>
       </ul>
@@ -92,11 +96,13 @@
       </div>
     </section>
 
-    <p>When Mimosa starts up, it expects to find a <code class="option">mimosa-config.coffee</code> file in the directory you are in, or in one of the directories above the directory you are in.  The <code class="option">mimosa-config</code> file configures all that Mimosa does.
+    <p>When Mimosa starts up, it expects to find a <code class="option">mimosa-config.coffee</code> or a <code class="option">mimosa-config.js</code> file in the directory you are in, or in one of the directories above the directory you are in.  The <code class="option">mimosa-config</code> file configures all that Mimosa does.
 
     <h2>How to get it?</h2>
 
     <p>There are two ways to be given a config file by Mimosa: when you create a new project with <code class="option">mimosa new</code>, or when you run <code class="option">mimosa config</code>.  For <code class="option">mimosa new</code>, the <code class="option">mimosa-config</code> will be altered to match the selections you made during project creation.  For <code class="option">mimosa config</code> the entire config file is commented out.  </p>
+
+    <p>For both <code class="option">mimosa new</code> and <code class="option">mimosa config</code>, the <code class="option">mimosa-config</code> file you are given is a CoffeeScript file. However, if you are more comfortable with JavaScript, you can convert the file to a <code class="option">.js</code> and Mimosa will find it and use it.  You just have to make sure the file is valid JavaScript.  You'll need to change the CoffeeScript comments (#, ###) to JavaScript comments (//, /*...*/).  And if you start uncommenting some of the configuration, you will have other things to change, like adding curly brackets and commas.</p>
 
     <h2>Wait, it is all commented out?</h2>
 
@@ -110,6 +116,32 @@
 
     <p>But if, for instance, you just don't want your compiled code in a directory named <code class="option">public</code>, you'll want to make sure you uncomment all the right lines.  You have to uncomment all the way back to the root of the config.  Don't just uncomment the <code class="option">compiledDir</code>, uncomment <code class="option">compiledDir</code> and <code class="option">watch</code>.
     </p>
+
+    <section id="watch">
+      <div class="page-header">
+        <h1>
+          Mimosa Modules <small><span class="command">modules</span></small>
+        </h1>
+      </div>
+    </section>
+
+    <div class="row">
+      <div class="span6">
+
+        <h4 class="hi modules">modules</h4>
+
+        <p class="hi modules">The <code class="option">modules</code> array informs Mimosa what Mimosa modules you would like to use for your project.  You may have many Mimosa modules installed, both the ones that come with Mimosa and ones installed on top of Mimosa.  This is where you let Mimosa know which ones you want to use for your project.</p>
+
+      </div>
+      <div class="span6">
+<pre><span class="modules"># modules: ['lint', 'server', 'require', 'minify']:</span></pre>
+      </div>
+    </div>
+
+
+    <p>The defaults represent those modules that come with Mimosa out of the box without any additional installs. You can omit the <code class="option">mimosa-</code> from the name of modules if you wish as Mimosa will assume it.</p>
+
+    <p>If you place a module here that you have not installed into Mimosa or that Mimosa doesn't otherwise know about, Mimosa will attempt to install it for you from NPM. This saves you the extra step of doing a <code class="option">mod:install</code>.</p>
 
     <section id="watch">
       <div class="page-header">

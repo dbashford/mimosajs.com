@@ -44,6 +44,9 @@
             <li class="">
               <a href="./compilers.html">Compilers</a>
             </li>
+            <li  class="">
+              <a href="./modules.html">Extend: Modules</a>
+            </li>
             <li class="">
               <a href="./server.html">Serve</a>
             </li>
@@ -69,12 +72,13 @@
     <p class="lead">Interact with Mimosa via the command line with a large set of commands and options</p>
     <div class="subnav">
       <ul class="nav nav-pills">
+        <li><a href="#module" title="Module commands">Modules</a></li>
         <li><a href="#new" title="Create a new project">New Project</a></li>
         <li><a href="#watch" title="Watch, compile and serve assets">Watch, Compile, Serve</a></li>
         <li><a href="#clean" title="Clean compiled assets">Clean</a></li>
         <li><a href="#build" title="One time asset compilation and optimization">Build</a></li>
         <li><a href="#virgin" title="Compile, lint, feedback, noting else">Just Watch</a></li>
-        <li><a href="#install" title="Grab github project code and stick it where you need it">Install Dependencies</a></li>
+        <li><a href="#import" title="Grab github project code and stick it where you need it">Import Dependencies</a></li>
         <li><a href="#update" title="Update project depedencies">Update</a></li>
         <li><a href="#misc" title="Copy Mimosa config to an existing project">Misc</a></li>
       </ul>
@@ -82,6 +86,17 @@
   </header>
 
   <section class="command-list">
+    <section id="module">
+      <div class="page-header">
+        <h1>
+          Module Commands
+          <small><span class="mim">mimosa</span> <span class="command">mod:[init/install/uninstall/list/search]</span></small>
+        </h1>
+      </div>
+    </section>
+
+    <p>Mimosa's module features have their own set of commands.  Read about them on the <a href="./modules.html">Module's page</a></p>
+
     <section id="new">
       <div class="page-header">
         <h1>
@@ -472,39 +487,39 @@ $ mimosa build -j</pre>
         </div>
       </div>
     </div>
-    <section id="install">
+    <section id="import">
       <div class="page-header">
         <h1>
-          Install Dependencies
-          <small><span class="mim">mimosa</span> <span class="command">install</span> <span class="options">[-n/--noamd]</span></small>
+          Import Dependencies
+          <small><span class="mim">mimosa</span> <span class="command">import</span> <span class="options">[-n/--noamd]</span></small>
         </h1>
       </div>
     </section>
     <div class="row">
       <div class="span6">
-        <h2>install</h2>
+        <h2>import</h2>
 
-        <pre>$ mimosa install [libraryName]</pre>
+        <pre>$ mimosa import [libraryName]</pre>
 
-        <p>The <code class="option">install</code> command will use <a href="https://github.com/volojs/volo">Volo</a> to install dependencies for you. Mimosa will first ask where you want to place the dependency, then it will use Volo to go fetch it from GitHub. Whenever possible, Volo tries to get AMD versions of files so you do not have to wrap them. See the <a href="http://volojs.org/">Volo documentation</a> for more details.</p>
+        <p>The <code class="option">import</code> command will use <a href="https://github.com/volojs/volo">Volo</a> to import dependencies for you. Mimosa will first ask where you want to place the dependency, then it will use Volo to go fetch it from GitHub. Whenever possible, Volo tries to get AMD versions of files so you do not have to wrap them. See the <a href="http://volojs.org/">Volo documentation</a> for more details.</p>
 
-        <pre>$ mimosa install jquery</pre>
+        <pre>$ mimosa import jquery</pre>
 
         <h3>Install Non-AMD dependencies (-n/--noamd)</h3>
 
-        <p>The only Volo option exposed by Mimosa at this time is the ability to turn on and off whether you are looking for an AMD or non-AMD version. By default Mimosa will set the install to AMD. But if you wish a non-AMD version of a library, provide a <code class="option">--noamd</code> flag.</p>
+        <p>The only Volo option exposed by Mimosa at this time is the ability to turn on and off whether you are looking for an AMD or non-AMD version. By default Mimosa will set the import to AMD. But if you wish a non-AMD version of a library, provide a <code class="option">--noamd</code> flag.</p>
 
-        <pre>$ mimosa install backbone --noamd</pre>
+        <pre>$ mimosa import backbone --noamd</pre>
 
       </div>
       <div class="span6 term">
         <div class="inner">
           <p>
-            Davids-MacBook-Pro:foo dbashford$ mimosa install backbone
+            Davids-MacBook-Pro:foo dbashford$ mimosa import backbone
           </p>
 
           <p class="inst">
-            In which directory would you like to install this library?
+            In which directory would you like to import this library?
           </p>
 
           <p>
@@ -520,7 +535,7 @@ $ mimosa build -j</pre>
           </p>
 
           <p>
-            10:47:57 - Beginning install...<br/>
+            10:47:57 - Beginning import...<br/>
             Using github repo "amdjs/backbone" for "backbone"...<br/>
             Downloading: https://raw.github.com/amdjs/backbone/0.9.2/backbone.js<br/>
             Using github repo "jquery/jquery" for "jquery"...<br/>
@@ -596,7 +611,9 @@ $ mimosa build -j</pre>
 
         <pre>$ mimosa config</pre>
 
-        <p>If you've already got a project and want to use Mimosa with it, this command will copy the default configuration into whatever directory you are in. You'll likely have some configuration to update to point Mimosa at your source and compiled directories.  This is also a good way to get <code class="option">mimosa-config</code> updates when they occur.</p>
+        <p>If you've already got a project and want to use Mimosa with it, this command will copy the default <code class="option">mimosa-config.coffee</code> file into whatever directory you are in. You'll likely have some configuration to update to point Mimosa at your source and compiled directories.  This is also a good way to get <code class="option">mimosa-config</code> updates when they occur.</p>
+
+        <p>Mimosa works fine with a JavaScript config, so you are welcome to change the extension of the file to <code class="option">.js</code>.  The only change you will need to make to the default config is to change the CoffeeScript comments (#, ###), to JavaScript comments (//, /*...*/).  Should you start uncommenting some config, you'll have a few other things to do to make the configuration valid JavaScript, like adding curly brackets and commas.</p>
 
       </div>
       <div class="span6 term">

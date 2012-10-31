@@ -44,6 +44,9 @@
             <li class="">
               <a href="./compilers.html">Compilers</a>
             </li>
+            <li  class="">
+              <a href="./modules.html">Extend: Modules</a>
+            </li>
             <li class="">
               <a href="./server.html">Serve</a>
             </li>
@@ -103,6 +106,8 @@
       <h2>1) mimosa config</h2>
 
       <p>Execute <code class="option">mimosa config</code> from the root of your application and Mimosa will place a <code class="option">mimosa-config.coffee</code> file there. This file controls everything Mimosa does. For now its contents will be entirely commented out.</p>
+
+      <p>While Mimosa doesn't currently deliver its config as a JavaScript file, you are welcome to transform the <code class="option">mimosa-config.coffee</code> to JavaScript. Mimosa is fine with that. Just transform the CoffeeScript comments to JavaScript comments. Should you start uncommenting config, you'll have a bit more to do to make the file valid JavaScript.</p>
 
       <h2>2) Tweak the config</h2>
 

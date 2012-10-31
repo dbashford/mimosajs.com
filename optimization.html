@@ -44,6 +44,9 @@
             <li class="">
               <a href="./compilers.html">Compilers</a>
             </li>
+            <li  class="">
+              <a href="./modules.html">Extend: Modules</a>
+            </li>
             <li class="">
               <a href="./server.html">Serve</a>
             </li>
@@ -105,6 +108,8 @@
 
       <p>When your codebase is optimized and pulled together into one file, the RequireJS library is no longer necessary.  Mimosa will wrap your optimized code in <a href="https://github.com/jrburke/almond">Almond</a>, a replacement AMD loader for RequireJS that provides the minimal functionality necessary for your optimized file.</p>
 
+      <p>Mimosa's RequireJS optimization support comes courtesy of the <code class="option">mimosa-require</code> module, which is a default Mimosa module and comes with Mimosa when it is installed.  As such, it belongs to a codebase apart from the core of Mimosa, and it behaves according to the rules of any <a href="./modules.html">Mimosa module</a>, so it can be removed and added at any time.</p>
+
       <h2>Optimizer Default Settings</h2>
 
       <p>Mimosa will infer the following default settings for the r.js optimizer.</p>
@@ -141,6 +146,8 @@
       </div>
 
       <p>For both the <code class="option">build</code> and <code class="option">watch</code> commands, Mimosa provides an <code class="option">--minify</code> flag that will run <a href="https://github.com/mishoo/UglifyJS">Uglify</a> over your compiled JavaScript assets.  You have the ability in the mimosa-config to exclude certain files from this minification using the <code class="option">minify.exclude</code> setting.  By default any file already possessing <code class="option">.min.</code> in the path name will be excluded as it is assumed to already be minified.</p>
+
+      <p>Mimosa's Minification support comes courtesy of the <code class="option">mimosa-minify</code> module, which is a default Mimosa module and comes with Mimosa when it is installed.  As such, it belongs to a codebase apart from the core of Mimosa, and it behaves according to the rules of any <a href="./modules.html">Mimosa module</a>, so it can be removed and added at any time.</p>
 
     </section>
     <section id="minopt">
