@@ -380,7 +380,7 @@ $ mimosa watch [--server] -mo</pre>
       <div class="page-header">
         <h1>
           One Time Asset Build
-          <small><span class="mim">mimosa</span> <span class="command">build</span> <span class="options">[-o/--optimize] [-m/--minify] [-r/--removeCombined] [-j/--jade]</span></small>
+          <small><span class="mim">mimosa</span> <span class="command">build</span> <span class="options">[-o/--optimize] [-m/--minify] [-p/--package] [-r/--removeCombined] [-j/--jade]</span></small>
         </h1>
       </div>
     </section>
@@ -404,7 +404,6 @@ $ mimosa build -o</pre>
         <h3>Minify Assets (-m/--minify)</h3>
 
         <p>If you want to build with minified code, run the <code class='option'>build</code> command with the <code class='option'>--minify</code> flag turned on. Mimosa will use <a href="https://github.com/mishoo/UglifyJS">Uglify</a> to compress your JavaScript files as they are compiled and before they are written.  <code class='option'>--minify</code> has its own setting in the <code class='option'>mimosa-config</code> file for choosing which files to exclude from minification.</p>
-
 
       </div>
       <div class="span6 term">
@@ -437,6 +436,10 @@ $ mimosa build -o</pre>
 $ mimosa build -mo</pre>
 
     <p>Need a bit more control over the minification strategy of your application?  Check the section above under <code class='option'>watch</code> and the <a href="./optimization.html">page on optimization</a> to see the benefit of using <code class='option'>--minify</code> and <code class='option'>--optimize</code> together.
+
+    <h3>Package Application (-p/--package)</h3>
+
+    <p>Provide a <code class="option">--package</code> flag and Mimosa will invoke any packaging modules you have installed.  Mimosa doesn't come with any packaging modules by default, but modules like <a href="https://github.com/dbashford/mimosa-web-package">mimosa-web-package</a> are available and can be added to your application in 5 seconds by simply adding the module name to your <code class="option">mimosa-config</code>.</p>
 
     <h3>Remove Leftover Files (-r/--removeCombined)</h3>
 

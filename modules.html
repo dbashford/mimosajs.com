@@ -73,6 +73,7 @@
     <div class="subnav">
       <ul class="nav nav-pills">
         <li><a href="#overview" title="Module commands">Overview</a></li>
+        <li><a href="#use" title="Using a module">Using a Module</a></li>
         <li><a href="#commands" title="Module commands">Module Commands</a></li>
         <li><a href="#create" title="Create a new project">Create Module</a></li>
         <li><a href="#register" title="Register your Module">Module Registration</a></li>
@@ -96,6 +97,17 @@
     <p>There's a strong chance that what you need can be created as a new module.  Modules include themselves in a Mimosa workflow to perform their task, and in some cases all you need to do is add the name of the module you want to your configuration and start Mimosa. Mimosa self-installs modules it comes across but does not already have installed.</p>
 
     <p>Modules were introduced on Nov 1, during beta, so don't expect a flourishing ecosystem just yet.  But someday there's a chance that the functionality you want to perform will reside in an existing module. You just need to track it down.  And Mimosa can help you there too.  Read on!</p>
+
+    <div class="page-header" id="use">
+      <h1>
+        Using Modules <small><span class="options">takes longer to read about it than do it</span></small>
+      </h1>
+    </div>
+
+    <p>There are two ways to use a module. The first and best way to add a module is to simply add it to the <a href="./configuration.html#modules">modules</a> array in your <code class="option">mimosa-config</code>.  The next time you start up Mimosa, Mimosa will go out, find the module, and install it. So, if you wanted to add the <code class="option">mimosa-web-package</code> module, you'd include <code class="option">web-package</code> in your list of modules (which you may have to uncomment if you are using the default modules).  Run, for instance, <code class="option">mimosa watch</code>, and the first thing Mimosa will do is go fetch <code class="option">mimosa-web-package</code> from NPM.</p>
+
+    <p>A second way is to use the <code class="option">mod:install</code> command discussed further below.  <code class="option">mimosa mod:install mimosa-web-package</code> will install the <code class="option">mimosa-web-package</code> from NPM.  You will still have to add it to any projects you have created though.</p>
+
 
     <div class="page-header" id="commands">
       <h1>
@@ -486,11 +498,16 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
     <br/>
 
     <p>
-      <span class="radio-heading">Modules: </span><input type="radio" name="module" value="builtin"> Mimosa's Built-In Compiler and File Modules
+      <span class="radio-heading">Default Modules: </span><input type="radio" name="module" value="builtin"> Built-In Compiler and File Modules
       <input type="radio" name="module" value="server"> server
       <input type="radio" name="module" value="require"> require
       <input type="radio" name="module" value="minify"> minify
       <input type="radio" name="module" value="lint"> lint
+    </p>
+
+    <p>
+      <span class="radio-heading">External Modules: </span>
+      <input type="radio" name="module" value="webpackage"> <a href="https://github.com/dbashford/mimosa-web-package">web-package</a>
     </p>
 
     <p>
@@ -645,6 +662,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">package</div>
+            <div class="module webpackage not">If package flag used, application is packaged and archive created in dist directory. Output is executable without Mimosa via 'node app.js'.</div>
           </li>
           <li>
             <div class="step">afterPackage</div>
@@ -868,7 +886,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
       <li><code class="options">next</code>: a workflow callback. This callback must be called when your module has finished processing. It tells Mimosa to execute the next step in the workflow. If for some reason your module decides that processing for the current asset/build step needs to stop, the callback can be called passing false. Ex: <code class="options">next(false)</code>. In most cases you do not want to short circuit the workflow.</li>
     </ol>
 
-    <div class="page-header" id="callback">
+    <div class="page-header" id="install">
       <h1>
         Installing Your Module
         <small><span class="options">You've coded it up, now what?</span></small>
