@@ -278,25 +278,25 @@
     <div class="page-header">
        <h1>
          Initialize Your Own Module
-         <small><span class="mim">mimosa</span> <span class="command">mod:init</span> <span class="options">[nameOfModule]</span> <span class="options">[-j/--javascript]</span></small>
+         <small><span class="mim">mimosa</span> <span class="command">mod:init</span> <span class="options">[nameOfModule]</span> <span class="options">[-c/--coffee]</span></small>
        </h1>
      </div>
      <div class="row">
        <div class="span6">
          <h2>mod:init</h2>
 
-         <p>Execute <code class='option'>mod:init</code> and provide the command with a 'mimosa-' prefixed name for your module and Mimosa will create a directory using the name (or use one if it already exists), and place a module skeleton inside.  The skeleton contains heavily documented CoffeeScript code to get you started, docco-generated documentation for that code, and a starter <code class='option'>package.json</code> to get you ready for deploying your module to <a href="https://npmjs.org/">NPM</a>.</p>
+         <p>Execute <code class='option'>mod:init</code> and provide the command with a 'mimosa-' prefixed name for your module and Mimosa will create a directory using the name (or use one if it already exists), and place a module skeleton inside.  The skeleton contains heavily documented JavaScript code to get you started, docco-generated documentation for that code, and a starter <code class='option'>package.json</code> to get you ready for deploying your module to <a href="https://npmjs.org/">NPM</a>.</p>
 
          <p>You'll want to go into the <code class='option'>package.json</code> and change all of the placeholders.  The following sections go into detail about how to create your own module.</p>
 
          <pre>$ mimosa mod:init mimosa-foo</pre>
 
-         <h3>Prefer JavaScript? (-j/--javascript)</h3>
+         <h3>Prefer JavaScript? (-c/--coffee)</h3>
 
-         <p>Add a <code class="option">--javascript</code> flag and Mimosa will give you a JavaScript skeleton instead of the CoffeeScript one.</p>
+         <p>Add a <code class="option">--coffeescript</code> flag and Mimosa will give you a CoffeeScript skeleton instead of the JavaScript one.</p>
 
-         <pre>$ mimosa mod:init -j
-$ mimosa mod:init --javascript</pre>
+         <pre>$ mimosa mod:init -c
+$ mimosa mod:init --coffee</pre>
 
        </div>
 
@@ -503,6 +503,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
       <input type="radio" name="module" value="require"> require
       <input type="radio" name="module" value="minify"> minify
       <input type="radio" name="module" value="lint"> lint
+      <input type="radio" name="module" value="live-reload"> live-reload
     </p>
 
     <p>
@@ -656,6 +657,8 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">afterServer</div>
+            <div class="module live-reload not">Client reload script written to compiledDir if it hasn't been already.</div>
+            <div class="module live-reload not">socket.io set up using user's or Mimosa's server</div>
           </li>
           <li>
             <div class="step">beforePackage</div>
@@ -736,6 +739,8 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           <li>
             <div class="step">afterWrite</div>
             <div class="module require js template">(JS, T) If optimize flag used, base files relating to originally changed file are optimized by r.js</div>
+            <div class="module live-reload not">Client reload script written to compiledDir if it hasn't been already.</div>
+            <div class="module live-reload not">Message sent to connected clients to refresh the page.</div>
           </li>
           <li>
             <div class="step">complete</div>
@@ -798,6 +803,8 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           <li>
             <div class="step">afterWrite</div>
             <div class="module require js template">(JS, T) If optimize flag used, base files relating to originally changed file are optimized by r.js</div>
+            <div class="module live-reload not">Client reload script written to compiledDir if it hasn't been already.</div>
+            <div class="module live-reload not">Message sent to connected clients to refresh the page.</div>
           </li>
           <li>
             <div class="step">complete</div>
@@ -862,6 +869,8 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           <li>
             <div class="step">afterWrite</div>
             <div class="module require js template">(JS, T) If optimize flag used, base files relating to originally changed file are optimized by r.js</div>
+            <div class="module live-reload not">Client reload script written to compiledDir if it hasn't been already.</div>
+            <div class="module live-reload not">Message sent to connected clients to refresh the page.</div>
           </li>
           <li>
             <div class="step">complete</div>

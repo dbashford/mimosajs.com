@@ -204,13 +204,13 @@
         </h1>
       </div>
 
-      <p>The default application you are provided comes built with live reload included. Live reload will immediately reload your web page any time an asset is compiled or one of your views changes. So, for instance, if you change some LESS code, the instant it is compiled, and the compiled .css file is written to your <code class="option">compiledDir</code>, your browser will update and your CSS updates will be displayed.</p>
+      <p>Mimosa provides live reload support by default via the <code class="option">mimosa-live-reload</code> module. Live reload will immediately refresh your page any time an asset is compiled or one of your views changes.</p>
+
+      <p><code class="option">mimosa-live-reload</code> handles CSS and JavaScript assets differently.  For CSS the page does not need a full reload.  The new CSS is re-evaluated without reloading anything other than the CSS. Your page is simply repainted. When JavaScript assets are updated, the entire page refreshes as if you had reloaded the page via the browser.</p>
 
       <p>This sounds like a fairly small nice-to-have feature, but it quickly becomes one of the handiest time savers in your workflow.  Mimosa and Live Reload are often fast enough to get the page reloaded before you have the opportunity to get back over to the browser.</p>
 
-      <p> You have the ability to tweak how the reload works in the <code class="option">server.coffee</code>. The library used for providing the live reload functionality is <a href="https://github.com/Filirom1/watch-connect">watch-connect</a>, and the GitHub page has an explanation of the options you can pass in. By default the reload will fire whenever the code in the <code class="option">watch.compiledDir</code> changes, and whenever the code in the <code class="option">server.views.path</code> directory of the application changes. You have the ability to add more directories, and to exclude files from causing a reload using regexes.</p>
-
-      <p>To perform the live reload, the default application is built to include two extra libraries, including socket.io, to talk to the server and determine when to reload the page. If you wish to turn this off, and thereby not include the two extra files, go into the <code class="option">mimosa-config.coffee</code> file and update <code class="option">server.useReload</code> to <code class="option">false</code>. These two extra files do not get wrapped up by RequireJS whether you are using live reload or not.</p>
+      <p>To perform the live reload, the default application is built to include two extra libraries, including socket.io, to talk to the server and determine when to reload the page. If you wish to turn this off, and thereby not include the two extra files, go into the <code class="option">mimosa-config.coffee</code> file and update <code class="option">liveReload.enabled</code> to <code class="option">false</code>. These two extra files do not get wrapped up by RequireJS whether you are using live reload or not.</p>
 
     </section>
     <section id="notify">

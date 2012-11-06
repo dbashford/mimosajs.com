@@ -134,10 +134,9 @@
 
       </div>
       <div class="span6">
-<pre><span class="modules"># modules: ['lint', 'server', 'require', 'minify']:</span></pre>
+<pre><span class="modules"># modules: ['lint', 'server', 'require', 'minify', 'live-reload']</span></pre>
       </div>
     </div>
-
 
     <p>The defaults represent those modules that come with Mimosa out of the box without any additional installs. You can omit the <code class="option">mimosa-</code> from the name of modules if you wish as Mimosa will assume it.</p>
 
@@ -271,14 +270,10 @@
         <h4 class="hi useDefaultServer server">server.useDefaultServer</h4>
         <p class="hi useDefaultServer server"><code class="option">server.useDefaultServer</code> determines whether Mimosa will start a default server or attempt to use a server in your own code base. When set to <code class="option">true</code>, Mimosa will run its own embedded Express, pointed either at your views or a default views.</p>
 
-        <h4 class="hi useReload server">server.useReload</h4>
-
-
       </div>
       <div class="span6">
 <pre><span class="server"># server:</span>
   <span class="useDefaultServer"># useDefaultServer: false</span>
-  <span class="useReload"># useReload: true</span>
   <span class="path"># path: 'server.coffee'</span>
   <span class="port"># port: 3000</span>
   <span class="base"># base: ''</span>
@@ -288,8 +283,6 @@
     <span class="viewspath"># path: 'views'</span></pre>
       </div>
     </div>
-
-    <p class="hi useReload server">This property determines whether or not Live Reload is enabled. Mimosa strictly controls the enabling of Live Reload for its embedded server. And if you create a project using <code class="option">mimosa new</code>, the delivered project has everything necessary to take advantage of Live Reload, no changes necessary. When Live Reload is enabled, a few javascript files are added to the layout of the dev version of the app. See the <a href="utilities.html#reload">Utilities tab</a> to read more on this functionality.</p>
 
     <h4 class="hi path server">server.path</h4>
     <p class="hi path server">When <code class="option">useDefaultServer</code> is set to <code class="option">false</code>, <code class="option">server.path</code> is the path to your server code. That piece of code must export a <code class="option">startServer</code> method.  Mimosa will pass that method a copy of the mimosa-config, including all the defaults for each setting, and including extra fields inserted by Mimosa upon startup.</p>
@@ -487,6 +480,29 @@
 
     <h4 class="hi rulescss rules lint">lint.rules.css</h4>
     <p class="hi rulescss rules lint">Add your <a href="https://github.com/stubbornella/csslint/wiki/Rules">csslint overrides</a> as key/value pairs underneath this property.</p>
+
+    <section id="lint">
+      <div class="page-header">
+        <h1>
+          Live Reload <small><span class="command">liveReload</span></small>
+        </h1>
+      </div>
+    </section>
+
+    <div class="row">
+      <div class="span6">
+        <h4 class="hi liveReload lrenabled">liveReload.enabled</h4>
+        <p class="hi liveReload lrenabled">This property determines whether or not Live Reload is enabled. When Live Reload is enabled, a few javascript files are added to the layout of the dev version of the app. See the <a href="utilities.html#reload">Utilities tab</a> to read more on this functionality.</p>
+      </div>
+      <div class="span6">
+<pre><span class="liveReload"># liveReload:</span>
+  <span class="lrenabled"># enabled:</span>
+    <span class="additionalDirs"># additionalDirs:["views"]</span></pre>
+      </div>
+    </div>
+
+    <h4 class="hi liveReload additionalDirs">liveReload.additionalDirs</h4>
+    <p class="hi liveReload additionalDirs">A list of additional directories to cause Live Reload to refresh the browser. This is by default set to For instance, by default this is set <code class="option">["views"]</code>, which means a change to anything in the views directory will cause the browser to refresh.</p>
 
   </section>
 
