@@ -210,7 +210,24 @@
 
       <p>This sounds like a fairly small nice-to-have feature, but it quickly becomes one of the handiest time savers in your workflow.  Mimosa and Live Reload are often fast enough to get the page reloaded before you have the opportunity to get back over to the browser.</p>
 
-      <p>To perform the live reload, the default application is built to include two extra libraries, including socket.io, to talk to the server and determine when to reload the page. If you wish to turn this off, and thereby not include the two extra files, go into the <code class="option">mimosa-config.coffee</code> file and update <code class="option">liveReload.enabled</code> to <code class="option">false</code>. These two extra files do not get wrapped up by RequireJS whether you are using live reload or not.</p>
+      <p>If you used <code class="option">mimosa new</code> to create your project, then you will already have what you need to have live reload just work.  If you are enabling it on an existing project, you'll have some minor things to change on both the client and server to use it.</p>
+
+      <h2>Client Scripts</h2>
+
+      <p>For live reload to work, two scripts need to be added to your page.  If you have some sort of dynamic templating for your views, then you'll want to enable the inclusion of the scripts for development work, but have them not included when in production.</p>
+
+      <p>The paths to use for the two scripts are:</p>
+
+      <ul>
+        <li><code class="option">/socket.io/socket.io.js</code>: This is <a href="http://socket.io/">socket.io</a>. This script does not live in your codebase; Mimosa will serve it up for you. socket.io is what allows instant communication of server-side changes to the client. socket.io will emit events on the client that indicate that a JavaScript file has changed, or a CSS file has changed.</li>
+        <li><code class="option">/javascripts/reload-client.js</code>: This is a small piece of code that reacts to events emitted by socket.io. When it hears from socket.io that a piece of CSS has changed, it reloads the CSS.  When it hears that some JavaScript has changed, it refreshes the page.</li>
+      </ul>
+
+      <h2>Server Component</h2>
+
+      <p>If you are using Mimosa to serve up your code, you've got nothing to do. Mimosa is the server, so it takes care of it.</p>
+
+      <p>If you are running your own server and Mimosa is starting it for you, then your <code class="option">startServer</code> function needs to return the http server object. This is the same object returned by <code class="option">require('http').createServer()</code> and by <code class="option">express().listen()</code>.  The <code class="option">mimosa-live-reload</code> module needs access to the server to establish a connection between the socket.io client and the server.</p>
 
     </section>
     <section id="notify">
