@@ -229,6 +229,12 @@
 
       <p>If you are running your own server and Mimosa is starting it for you, then your <code class="option">startServer</code> function needs to return the http server object. This is the same object returned by <code class="option">require('http').createServer()</code> and by <code class="option">express().listen()</code>.  The <code class="option">mimosa-live-reload</code> module needs access to the server to establish a connection between the socket.io client and the server.</p>
 
+      <h2>Already using socket.io?</h2>
+
+      <p>This pertains to those who are using their own server, not Mimosa's.  The <code class="option">mimosa-live-reload</code> module uses socket.io in conjunction with the server you return from the <code class="option">startServer</code> function to provide live reload functionality.  But if you are already using socket.io in your application, Mimosa's use of socket.io will cause problems.</p>
+
+      <p>If you are using socket.io, then you can also pass it back via <code class="option">startServer</code>.  Change the return for <code class="option">startServer</code> so that instead of passing just the server, it passes this JSON object: <code class="option">{server:server, socketio:io} </code>.  The <code class="option">server</code> property is the same server you were returning from <code class="option">startServer</code>, the <code class="option">socketio</code> property is the object returned by <code class="option">socketio.listen(server)</code>.  If you do this, <code class="option">mimosa-live-reload</code> will not create its own socketio connection, instead it will use yours.</p>
+
     </section>
     <section id="notify">
       <div class="page-header">
