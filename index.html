@@ -2,7 +2,7 @@
 <head lang="en">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Mimosa - An Opinionated Browser Development Workflow and Toolkit</title>
+  <title>Mimosa - An Browser Development Toolkit</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="css/bootstrap-responsive.min.css" >
   <link rel="stylesheet" href="css/app.css">
 
-  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
@@ -72,7 +71,7 @@
 <header class="jumbotron masthead">
   <div class="inner">
     <h1>Mimosa</h1>
-    <p>A modern browser development workflow toolkit. Compile. Lint. Optimize. Serve. Loaded with JavaScript, CSS, and micro-templating compilers, goodies like RequireJS support, and built with plugability in mind.</p>
+      <p>A modern browser development toolkit. JavaScript, CSS, and template compilers, linting, optimization, serving, RequireJS support, and Live Reload  built right in. Pluggable for authoring your own functionality.</p>
     <p>
       <a href="https://github.com/dbashford/mimosa" class="btn btn-primary btn-large" onclick="_gaq.push(['_trackEvent', 'Jumbotron actions', 'GitHub Project', 'View project on GitHub']);">Mimosa on GitHub</a>
     </p>
@@ -81,7 +80,7 @@
   <div class="bs-links">
     <ul class="quick-links">
       <li><a href="./started.html">Get Started</a></li>
-      <li><a href="https://github.com/dbashford/mimosa/blob/master/RELEASENOTES.md">Release Notes (v0.5.2beta, Nov 11th)</a></li>
+      <li><a href="https://github.com/dbashford/mimosa/blob/master/RELEASENOTES.md">Release Notes (v0.5.3beta, Nov 13th)</a></li>
       <li><a href="https://github.com/dbashford/mimosa/issues">Submit issues/Suggest features</a></li>
       <li><a href="https://groups.google.com/forum/#!forum/mimosajs">Google Group</a></li>
     </ul>
@@ -103,7 +102,7 @@
 </header>
 
 <div class="marketing">
-  <h1>Positively Jammed</h1>
+  <h1>Features</h1>
   <div class="row">
     <div class="span4">
       <i class="icon-fast-forward"></i>
@@ -211,7 +210,7 @@
       </p>
     </div>
   </div>
-  <h1>We got compilers</h1>
+  <h1>Compilers, Mimosa has them</h1>
   <div class="row">
     <div class="span3">
       <i class="icon-fire"></i>
@@ -259,9 +258,9 @@
       </p>
     </div>
   </div>
-  <h1>Like RequireJS?</h1>
+  <h1>AMD? RequireJS? CommonJS?</h1>
   <div class="row">
-    <div class="span4">
+    <div class="span3">
       <i class="icon-barcode"></i>
       <h3>Dependency Checking</h3>
       <p>
@@ -270,15 +269,15 @@
         exist, or have a circular dependency.
       </p>
     </div>
-    <div class="span4">
+    <div class="span3">
       <i class="icon-shopping-cart"></i>
-      <h3>Shim, Map, Plugins, Paths</h3>
+      <h3>Shim, Map, Plugin, Path</h3>
       <p>
         Yep, yep, yep, yep. It'll check those too. Paths themselves, shims,
         shim dependencies, map modules and map paths, and plugin paths.
       </p>
     </div>
-    <div class="span4">
+    <div class="span3">
       <i class="icon-resize-small"></i>
       <h3>Optimization</h3>
       <p>
@@ -289,8 +288,18 @@
         a thing.
       </p>
     </div>
+    <div class="span3">
+      <i class="icon-resize-small"></i>
+      <h3>Also with CommonJS!</h3>
+      <p>
+        Using a Mimosa module, you can code using the CommonJS format and
+        still utilize the offerings of RequireJS, like like path aliasing and
+        mapping, and Mimosa's AMD/RequireJS support, like path verification
+        and application optimization.
+      </p>
+    </div>
   </div>
-  <h1>Bend Mimosa to your will</h1>
+  <h1>Bend Mimosa to Your Will</h1>
   <div class="row">
     <div class="span4">
       <i class="icon-gift"></i>

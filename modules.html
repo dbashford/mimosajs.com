@@ -73,12 +73,13 @@
     <div class="subnav">
       <ul class="nav nav-pills">
         <li><a href="#overview" title="Module commands">Overview</a></li>
-        <li><a href="#use" title="Using a module">Using a Module</a></li>
-        <li><a href="#commands" title="Module commands">Module Commands</a></li>
+        <li><a href="#list" title="Module commands">Modules List</a></li>
+        <li><a href="#use" title="Using a module">Module Usage</a></li>
+        <li><a href="#commands" title="Module commands">Commands</a></li>
         <li><a href="#create" title="Create a new project">Create Module</a></li>
         <li><a href="#register" title="Register your Module">Module Registration</a></li>
         <li><a href="#callback" title="Your Module Callback, Where Your Code Gets Called">Module Callback</a></li>
-        <li><a href="#install" title="How to get Mimosa to know about your Module">Module Installing</a></li>
+        <li><a href="#install" title="How to get Mimosa to know about your Module">Installing</a></li>
       </ul>
     </div>
   </header>
@@ -98,13 +99,71 @@
 
     <p>Modules were introduced on Nov 1, during beta, so don't expect a flourishing ecosystem just yet.  But someday there's a chance that the functionality you want to perform will reside in an existing module. You just need to track it down.  And Mimosa can help you there too.  Read on!</p>
 
+    <div class="page-header" id="list">
+      <h1>
+        Modules List <small><span class="options">small list for now, make it bigger, build your own!</span></small>
+      </h1>
+    </div>
+
+    <p>Below is the list of modules, both default (come with Mimosa) and external, along with a short description and a link to more information.</p>
+
+    <br/>
+
+
+    <table class="table table-striped table-bordered table-condensed">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Default?</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="./utilities.html#lint">lint</a></td>
+          <td>&#x2713;</td>
+          <td>CSS and JS linting/hinting</td>
+        </tr>
+        <tr>
+          <td><a href="./utilities.html#requirejs">require</a></td>
+          <td>&#x2713;</td>
+          <td>AMD/RequireJS support including optimization</td>
+        </tr>
+        <tr>
+          <td><a href="./server.html">server</a></td>
+          <td>&#x2713;</td>
+          <td>Mimosa-based hosting and managing user hosting</td>
+        </tr>
+        <tr>
+          <td><a href="./utilities.html#reload">live-reload</a></td>
+          <td>&#x2713;</td>
+          <td>Application reloads when your code does</td>
+        </tr>
+        <tr>
+          <td><a href="./optimization.html#min">minify</a></td>
+          <td>&#x2713;</td>
+          <td>Minification of JavaScript assets</td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/dbashford/mimosa-web-package">web-package</a></td>
+          <td>&#x2717;</td>
+          <td>Packaging of node-based user server for deployment</td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/dbashford/mimosa-require-commonjs">require-commonjs</a></td>
+          <td>&#x2717;</td>
+          <td>CommonJS support via AMD/RequireJS</td>
+        </tr>
+      </tbody>
+    </table>
+
     <div class="page-header" id="use">
       <h1>
         Using Modules <small><span class="options">takes longer to read about it than do it</span></small>
       </h1>
     </div>
 
-    <p>There are two ways to use a module. The first and best way to add a module is to simply add it to the <a href="./configuration.html#modules">modules</a> array in your <code class="option">mimosa-config</code>.  The next time you start up Mimosa, Mimosa will go out, find the module, and install it. So, if you wanted to add the <code class="option">mimosa-web-package</code> module, you'd include <code class="option">web-package</code> in your list of modules (which you may have to uncomment if you are using the default modules).  Run, for instance, <code class="option">mimosa watch</code>, and the first thing Mimosa will do is go fetch <code class="option">mimosa-web-package</code> from NPM.</p>
+    <p>There are two ways to use a module. The first and best way to add a module is to simply add it to the <a href="./configuration.html#modules">modules</a> array in your <code class="option">mimosa-config</code>.  The next time you start up Mimosa, Mimosa will to NPM, find the module, and install it. So, if you wanted to add the <code class="option">mimosa-web-package</code> module, you'd include <code class="option">web-package</code> in your list of modules (which you may have to uncomment if you are using the default modules).  Run, for instance, <code class="option">mimosa watch</code>, and the first thing Mimosa will do is go fetch <code class="option">mimosa-web-package</code> from NPM.</p>
 
     <p>A second way is to use the <code class="option">mod:install</code> command discussed further below.  <code class="option">mimosa mod:install mimosa-web-package</code> will install the <code class="option">mimosa-web-package</code> from NPM.  You will still have to add it to any projects you have created though.</p>
 
@@ -509,6 +568,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
     <p>
       <span class="radio-heading">External Modules: </span>
       <input type="radio" name="module" value="webpackage"> <a href="https://github.com/dbashford/mimosa-web-package">web-package</a>
+      <input type="radio" name="module" value="requirecommonjs"> <a href="https://github.com/dbashford/mimosa-require-commonjs">require-commonjs</a>
     </p>
 
     <p>
@@ -551,12 +611,13 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">afterCompile</div>
+            <div class="module requirecommonjs copy js">(JS, C) For JS and copied JS, options.files. outputFileText is wrapped in RequireJS' CommonJS wrapper.</div>
             <div class="module lint copy">(C) For copied (not compiled) CSS files, options.files. outputFileText is linted, errors printed to console</div>
             <div class="module lint copy js">(JS, C) For JS and copied JS, options.files. outputFileText is linted, errors printed to console</div>
-            <div class="module require js">(JS) javascript dependencies in options.files. outputFileText registered with module for future validation</div>
           </li>
           <li>
             <div class="step">betweenCompileWrite</div>
+            <div class="module require js">(JS) javascript dependencies in options.files. outputFileText registered with module for future validation</div>
           </li>
           <li>
             <div class="step">beforeWrite</div>
@@ -609,10 +670,10 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
             <div class="module builtin template">(T) compiled templates merged into single file, result added as new options.files entry</div>
             <div class="module builtin template">(T) vendor template library read and added to options.files</div>
             <div class="module lint css">(CSS) For compiled CSS files, options.files. outputFileText is linted, errors printed to console</div>
-            <div class="module require template">(T) javascript dependencies in options.files. outputFileText registered with module for future validation</div>
           </li>
           <li>
             <div class="step">betweenCompileWrite</div>
+            <div class="module require template">(T) javascript dependencies in options.files. outputFileText registered with module for future validation</div>
           </li>
           <li>
             <div class="step">beforeWrite</div>
@@ -719,14 +780,15 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">afterCompile</div>
+            <div class="module requirecommonjs copy js">(JS, C) For JS and copied JS, options.files. outputFileText is wrapped in RequireJS' CommonJS wrapper.</div>
             <div class="module builtin template">(T) options.files. outputFileText merged into single string and placed into options.files as new file with outputFileName (so will be written)</div>
             <div class="module builtin template">(T) vendor template library name and file text added to options.files</div>
             <div class="module lint css copy">(CSS, C) options.files. outputFileText is linted, errors printed to console</div>
             <div class="module lint copy js">(JS, C) For JS and copied JS, options.files. outputFileText is linted, errors printed to console</div>
-            <div class="module require template js">(JS, T) javascript dependencies in options.files. outputFileText registered with module for future validation</div>
           </li>
           <li>
             <div class="step">betweenCompileWrite</div>
+            <div class="module require template js">(JS, T) javascript dependencies in options.files. outputFileText registered with module for future validation</div>
           </li>
           <li>
             <div class="step">beforeWrite</div>
@@ -782,15 +844,16 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">afterCompile</div>
+            <div class="module requirecommonjs copy js">(JS, C) For JS and copied JS, options.files. outputFileText is wrapped in RequireJS' CommonJS wrapper.</div>
             <div class="module builtin css">(CSS) source directory analyzed to redetermine base files</div>
             <div class="module builtin template">(T) options.files. outputFileText merged into single string and placed into options.files as new file with outputFileName (so will be written)</div>
             <div class="module builtin template">(T) vendor template library name and file text added to options.files</div>
             <div class="module lint css copy">(CSS, C) options.files. outputFileText is linted, errors printed to console</div>
             <div class="module lint copy js">(JS, C) For JS and copied JS, options.files. outputFileText is linted, errors printed to console</div>
-            <div class="module require template js">(JS, T) javascript dependencies in options.files. outputFileText registered with module for future validation</div>
           </li>
           <li>
             <div class="step">betweenCompileWrite</div>
+            <div class="module require template js">(JS, T) javascript dependencies in options.files. outputFileText registered with module for future validation</div>
           </li>
           <li>
             <div class="step">beforeWrite</div>
