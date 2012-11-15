@@ -154,6 +154,11 @@
           <td>&#x2717;</td>
           <td>CommonJS support via AMD/RequireJS</td>
         </tr>
+        <tr>
+          <td><a href="https://github.com/dbashford/mimosa-combine">combine</a></td>
+          <td>&#x2717;</td>
+          <td>Combine all non-binary files in a folder into a single file</td>
+        </tr>
       </tbody>
     </table>
 
@@ -309,7 +314,7 @@
     <div class="page-header">
       <h1>
         Uninstall a Module
-        <small><span class="mim">mimosa</span> <span class="command">mod:uninstall</span></small>
+        <small><span class="mim">mimosa</span> <span class="command">mod:uninstall</span> <span class="options">[nameOfModule]</span></small>
       </h1>
     </div>
     <div class="row">
@@ -367,6 +372,40 @@ $ mimosa mod:init --coffee</pre>
              <span class="inst">10:06:59 - Module skeleton successfully placed in mimosa-foo directory. The first thing you'll want to do is go into mimosa-foo/package.json and replace the placeholders.</span> <br/><br/>
 
              Davids-MacBook-Pro:mimosaplay dbashford$
+           </p>
+         </div>
+       </div>
+     </div>
+
+     <div class="page-header">
+       <h1>
+         Get Module Configuration
+         <small><span class="mim">mimosa</span> <span class="command">mod:config</span> <span class="options">[nameOfModule]</span></small>
+       </h1>
+     </div>
+     <div class="row">
+       <div class="span6">
+         <h2>mod:config</h2>
+
+         <p>Execute <code class='option'>mod:config</code> to have Mimosa write to the console the configuration placeholder for a module. This is useful when you add a new module to an existing project and want to easily get the configuration to paste into the <code class='option'>mimosa-config</code>.</p>
+
+         <pre>$ mimosa mod:config server</pre>
+
+       </div>
+
+       <div class="span6 term">
+         <div class="inner">
+           <p>
+             Davids-MacBook-Pro:foo dbashford$ mimosa mod:config live-reload
+             <br/><br/><br/>
+
+             <span class="inst"># liveReload:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Configuration for live-reload<br/>
+                &nbsp;&nbsp;# enabled:true&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Whether or not live-reload is enabled<br/>
+                &nbsp;&nbsp;# additionalDirs:["views"]&nbsp;&nbsp;&nbsp;# Additional directories outside the watch.compiledDir<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# that you would like to have trigger a page refresh,<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# like, by default, static views</span> <br/><br/><br/>
+
+             Davids-MacBook-Pro:foo dbashford$
            </p>
          </div>
        </div>
@@ -569,6 +608,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
       <span class="radio-heading">External Modules: </span>
       <input type="radio" name="module" value="webpackage"> <a href="https://github.com/dbashford/mimosa-web-package">web-package</a>
       <input type="radio" name="module" value="requirecommonjs"> <a href="https://github.com/dbashford/mimosa-require-commonjs">require-commonjs</a>
+      <input type="radio" name="module" value="combine"> <a href="https://github.com/dbashford/mimosa-combine">combine</a>
     </p>
 
     <p>
@@ -697,6 +737,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
         <ul>
           <li>
             <div class="step">init</div>
+            <div class="module combine not">For all combination groups, the output file is created based on the folders to be merged.</div>
           </li>
           <li>
             <div class="step">beforeOptimize</div>
@@ -803,6 +844,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
             <div class="module require js template">(JS, T) If optimize flag used, base files relating to originally changed file are optimized by r.js</div>
             <div class="module live-reload not">Client reload script written to compiledDir if it hasn't been already.</div>
             <div class="module live-reload not">Message sent to connected clients to refresh the page.</div>
+            <div class="module combine not">If the changed file belongs to any folder to be combined, that folder is combined.</div>
           </li>
           <li>
             <div class="step">complete</div>
@@ -868,6 +910,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
             <div class="module require js template">(JS, T) If optimize flag used, base files relating to originally changed file are optimized by r.js</div>
             <div class="module live-reload not">Client reload script written to compiledDir if it hasn't been already.</div>
             <div class="module live-reload not">Message sent to connected clients to refresh the page.</div>
+            <div class="module combine not">If the changed file belongs to any folder to be combined, that folder is combined.</div>
           </li>
           <li>
             <div class="step">complete</div>
@@ -934,6 +977,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
             <div class="module require js template">(JS, T) If optimize flag used, base files relating to originally changed file are optimized by r.js</div>
             <div class="module live-reload not">Client reload script written to compiledDir if it hasn't been already.</div>
             <div class="module live-reload not">Message sent to connected clients to refresh the page.</div>
+            <div class="module combine not">If the changed file belongs to any folder to be combined, that folder is combined.</div>
           </li>
           <li>
             <div class="step">complete</div>
