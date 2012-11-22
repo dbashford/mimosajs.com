@@ -135,6 +135,17 @@
 
       <p>Also use <code class="option">require.optimize.inferConfig:false</code> if you choose to have your configuration settings in script tags in an HTML file, or in any other file that does not compile to JavaScript. For now, Mimosa is only able to make inferences for configs in JavaScript files. If your configuration (and <code class="option">require</code>/<code class="option">requirejs</code> method calls) are in script tags on an HTML page, Mimosa will not find any modules to compile for optimization and therefore will not run optimization, so you'll need to provide your own configuration in <code class="option">overrides</code> and set <code class="option">inferConfig</code> to <code class="option">false</code>.</p>
 
+      <h2>Programmatically Take Control of the Optimizer with Modules</h2>
+
+      <p>Mimosa can't know all the intricacies of your codebase.  It can make a lot of educated guesses and put together a really good base r.js config, but you may find you need to make some complicated alterations to the r.js config. If you use <code class="option">overrides</code> you can statically change the r.js configuration, but that isn't always ideal. If you use <code class="option">require.optimize.inferConfig:false</code> then you lose all of the smarts Mimosa puts into building a r.js config for you and you are entirely on your own.</p>
+
+      <p>Ideally you can both take advantage of the work Mimosa puts into building the r.js config, and dynamically alter it as well. Just as Mimosa builds the config based on the files that have changed, ideally you can change the config on-the-fly based on the nature of your codebase.</p>
+
+      <p>Mimosa's building of the inferred r.js config, and the execution of the r.js optimization are pulled apart in two separate steps in Mimosa's workflows. Config building executes during the <code class="option">beforeOptimize</code> step, and execution during the <code class="option">optimize</code> step.  This means a module of your own building can programmatically and dynamically alter the Mimosa-prepared r.js configs before r.js execution occurs.</p>
+
+      <p>For instance, maybe you have files you want to include in the r.js execution that are not pulled in as dependencies by r.js, maybe all .txt files via the <a href="https://github.com/requirejs/text">requirejs text plugin</a>, and rather than listing them one by one in the overrides, you want to dynamically have them added so you don't have to maintain the list. You could create a module that executes during the <code class="option">beforeOptimize</code> step, but after the configs have been built.  In that module you can scan your codebase for .txt files and push them onto the r.js config <code class="option">include</code> array.</p>
+
+      <p>Doing this gives you both the smarts Mimosa provides, and the intelligence Mimosa can't provide by way of your own module.  To get you started building such a module, check out the long-named example module <a href="https://github.com/dbashford/mimosa-requirebuild-textplugin-include">mimosa-requirebuild-textplugin-include</a> which performs just the task mentioned above.</p>
 
     </section>
     <section id="min">
@@ -160,7 +171,7 @@
 
       <p>For either the <code class="option">build</code> or <code class="option">watch</code> commands, using the <code class="option">--minify</code> and <code class="option">--optimize</code> flags together gives you increased control over the optimization workflow.</p>
 
-      <p>The r.js optimizer by itself is often good enough to handle minifying, compressing and pulling your modules into single files; however, the occasional file does not take kindly to being run through Uglify and will be broken when compressed. The r.js optimizer is all or none, you cannot choose to omit a file that isn't being compressed correctly. So if your application doesn't run because of errors in Uglifying, you are forced to inject other steps into your project's life cycle to both use the optimizer and have minified files.</p>
+      <p>The r.js optimizer by itself is often good enough to handle minifying, compressing and pulling your modules into single files; however, the occasional file does not take kindly to being run through Uglify and will be broken when compressed. The r.js optimizer is all or none, you cannot choose to omit a file that isn't being compressed correctly. So if your application doesn't run because of errors in Uglifying, you are forced to inject other steps into your project's workflow to both use the optimizer and have minified files.</p>
 
       <p>When both minifying and optimizing, r.js minification is turned off. Specifically the <code class="option">optimize</code> setting of r.js is set to <code class="option">none</code>. The optimizer is still used to pull all of your application's files together into the same file and wrap it in Almond. But Mimosa will Uglify your files itself first, before calling the optimizer, and Mimosa gives you the opportunity to not Uglify whatever files are not making it through Uglifying in working order.</p>
 

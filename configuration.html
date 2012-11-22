@@ -159,7 +159,7 @@
 
         <h4 class="hi sourceDir watch">watch.sourceDir</h4>
 
-        <p class="hi sourceDir watch">The <code class="option">sourceDir</code> property is the path, relative to the <code class="option">mimosa-config</code>, where your assets are located. This is the directory Mimosa will watch for changes to kick off the compiler workflow.</p>
+        <p class="hi sourceDir watch">The <code class="option">sourceDir</code> property is the path, either relative to the <code class="option">mimosa-config</code> or absolute, where your assets are located. This is the directory Mimosa will watch for changes to kick off the compiler workflow.</p>
 
       </div>
       <div class="span6">
@@ -167,21 +167,21 @@
   <span class="sourceDir"># sourceDir: "assets"</span>
   <span class="compiledDir"># compiledDir: "public"</span>
   <span class="javascriptDir"># javascriptDir: "javascripts"</span>
-  <span class="exclude"># exclude: ["[/\\\\]\\.\\w+$"]</span>
+  <span class="exclude"># exclude: [/[/\\]\.\w+$/]</span>
   <span class="throttle"># throttle: 0</span></pre>
       </div>
     </div>
 
     <h4 class="hi compiledDir watch">watch.compiledDir</h4>
 
-    <p class="hi compiledDir watch">The <code class="option">compiledDir</code> property is the path, relative to the <code class="option">mimosa-config</code>, where your compiled assets will be delivered. If your <code class="option">compiledDir</code> does not exist, Mimosa will create it for you. Mimosa will mimic the same folder/directory structure in the <code class="option">compiledDir</code> that it finds in the <code class="option">sourceDir</code></p>
+    <p class="hi compiledDir watch">The <code class="option">compiledDir</code> property is the path, relative to the <code class="option">mimosa-config</code> or absolute, where your compiled assets will be delivered. If your <code class="option">compiledDir</code> does not exist, Mimosa will create it for you. Mimosa will mimic the same folder/directory structure in the <code class="option">compiledDir</code> that it finds in the <code class="option">sourceDir</code></p>
 
     <h4 class="hi javascriptDir javascript compilers">watch.javascriptDir</h4>
     <p class="hi javascriptDir javascript compilers">Location of the JavaScript code inside the <code class="option">watch.sourceDir</code> directory and therefore also the location of the compiled JavaScript in the <code class="option">watch.compiledDir</code>.</p>
 
     <h4 class="hi exclude watch">watch.exclude</h4>
 
-    <p class="hi exclude watch">The <code class="option">exclude</code> property is an array of strings. When one of the strings is present in a file found in your <code class="option">sourceDir</code>, Mimosa will ignore the file. By default this property is set such that all dotFiles (.gitignore, .DS_Store, .foo) are ignored.</p>
+    <p class="hi exclude watch">The <code class="option">exclude</code> property is an array of strings and/or regexs that match paths to exclude from processing. Path strings can be relative to the <code class="option">sourceDir</code> or absolute. When a path string or a regex matches a file path, Mimosa will ignore the file. By default this property is set such that all dotFiles (.gitignore, .DS_Store, .foo) are ignored.</p>
 
     <h4 class="hi throttle watch">watch.throttle</h4>
 
@@ -285,7 +285,7 @@
     </div>
 
     <h4 class="hi path server">server.path</h4>
-    <p class="hi path server">When <code class="option">useDefaultServer</code> is set to <code class="option">false</code>, <code class="option">server.path</code> is the path to your server code. That piece of code must export a <code class="option">startServer</code> method.  Mimosa will pass that method a copy of the mimosa-config, including all the defaults for each setting, and including extra fields inserted by Mimosa upon startup.</p>
+    <p class="hi path server">When <code class="option">useDefaultServer</code> is set to <code class="option">false</code>, <code class="option">server.path</code> is the path to your server code. The path can be relative to the root of the application or absolute. The server code at <code class="option">server.path</code> must export a <code class="option">startServer</code> method.  Mimosa will pass that method a copy of the <code class="option">mimosa-config</code>, including all the defaults for each setting, and including extra fields inserted by Mimosa upon startup.</p>
 
     <h4 class="hi port server">server.port</h4>
     <p class="hi port server">The port on which Mimosa starts the server.</p>
@@ -303,7 +303,7 @@
     <p class="hi viewsextension views server">Extension of your server views.</p>
 
     <h4 class="hi viewspath views server">server.views.path</h4>
-    <p class="hi viewspath views server">The path to your server views.</p>
+    <p class="hi viewspath views server">The path to your server views, either relative to the root of the project or absolute.</p>
 
     <section id="require">
       <div class="page-header">
@@ -361,12 +361,12 @@
       </div>
       <div class="span6">
 <pre><span class="minify"># minify:</span>
-  <span class="exclude"># exclude:["\.min\."]</span></pre>
+  <span class="exclude"># exclude:[/\.min\./]</span></pre>
       </div>
     </div>
 
     <h4 class="hi exclude minify">minify.exclude</h4>
-    <p class="hi exclude minify"><code class="option">minify.exclude</code> contains a list of regexes Mimosa will use to exclude files from minification.  Any file possessing ".min." in its name, like jquery.min.js, is assumed to already be minified so it will be ignored by default. If you have other files that you'd like to exempt from minification, override this property and include them.</p>
+    <p class="hi exclude minify"><code class="option">minify.exclude</code> contains an array of regexs and/or strings that match paths to exclude from minification. String paths can be either relative to the <code class="option">watch.compiledDir</code> or absolute. Any file possessing ".min." in its name, like jquery.min.js, is assumed to already be minified so it will be ignored by default.</p>
 
     <section id="growl">
       <div class="page-header">
@@ -496,13 +496,13 @@
       </div>
       <div class="span6">
 <pre><span class="liveReload"># liveReload:</span>
-  <span class="lrenabled"># enabled:</span>
-    <span class="additionalDirs"># additionalDirs:["views"]</span></pre>
+  <span class="lrenabled"># enabled: true</span>
+  <span class="additionalDirs"># additionalDirs:["views"]</span></pre>
       </div>
     </div>
 
     <h4 class="hi liveReload additionalDirs">liveReload.additionalDirs</h4>
-    <p class="hi liveReload additionalDirs">A list of additional directories to cause Live Reload to refresh the browser. This is by default set to For instance, by default this is set <code class="option">["views"]</code>, which means a change to anything in the views directory will cause the browser to refresh.</p>
+    <p class="hi liveReload additionalDirs">A list of additional directories to cause Live Reload to refresh the browser. Paths in the array can be absolute or relative to the root of the project. By default this is set to <code class="option">["views"]</code>, which means a change to anything in the views directory will cause the browser to refresh. </p>
 
   </section>
 

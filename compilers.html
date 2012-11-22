@@ -195,6 +195,11 @@
           <td>tmpl, lodash</td>
         </tr>
         <tr>
+          <td><a href="https://github.com/visionmedia/ejs">EJS</a></td>
+          <td>ejs</td>
+          <td>ejs</td>
+        </tr>
+        <tr>
           <td>Plain HTML</td>
           <td>html</td>
           <td>template</td>
@@ -383,6 +388,10 @@
                <td>Lodash</td>
                <td>lodash</td>
              </tr>
+             <tr>
+               <td>EJS</td>
+               <td>ejs</td>
+             </tr>
            </tbody>
          </table>
       </p>
@@ -450,6 +459,14 @@
       <pre>var html = templates.example({})</pre>
 
       <p>Mimosa keeps an AMD wrapped version of Lodash that it writes to <code class="option">assets/javascripts/vendor/lodash.js</code> directory as part of compilation, so there is no need to include the library yourself.
+
+      <h2>Embedded JavaScript Templates (EJS) <small><span class="mim">ejs</span> <span class="command">["ejs"]</span></small></h2>
+
+      <p>To access an <a href="https://github.com/visionmedia/ejs">EJS</a> template originating from a file named "example.ejs", do this...</p>
+
+      <pre>var html = templates.example({}, filters, escape)</pre>
+
+      <p>Mimosa keeps an AMD wrapped version of EJS' filters that it writes to <code class="option">assets/javascripts/vendor/ejs-filters.js</code> directory as part of compilation. Mimosa's compiled EJS file will use those filters, but you can override them with custom filters if need be.</p>
 
       <h2>HTML <small><span class="mim">html</span> <span class="command">["template"]</span></small></h2>
 

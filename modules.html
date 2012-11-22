@@ -159,6 +159,11 @@
           <td>&#x2717;</td>
           <td>Combine all non-binary files in a folder into a single file</td>
         </tr>
+        <tr>
+          <td><a href="https://github.com/dbashford/mimosa-server-combine">server-reload</a></td>
+          <td>&#x2717;</td>
+          <td>Restart a node server when server assets change</td>
+        </tr>
       </tbody>
     </table>
 
@@ -609,6 +614,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
       <input type="radio" name="module" value="webpackage"> <a href="https://github.com/dbashford/mimosa-web-package">web-package</a>
       <input type="radio" name="module" value="requirecommonjs"> <a href="https://github.com/dbashford/mimosa-require-commonjs">require-commonjs</a>
       <input type="radio" name="module" value="combine"> <a href="https://github.com/dbashford/mimosa-combine">combine</a>
+      <input type="radio" name="module" value="serverreload"> <a href="https://github.com/dbashford/mimosa-server-reload">server-reload</a>
     </p>
 
     <p>
@@ -742,6 +748,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           <li>
             <div class="step">beforeOptimize</div>
             <div class="module require not">Require module performs codebase path verification for all registered files (templates and js)</div>
+            <div class="module require not">If optimize flag used, r.js run configs generated for project.</div>
           </li>
           <li>
             <div class="step">optimize</div>
@@ -761,6 +768,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
             <div class="step">afterServer</div>
             <div class="module live-reload not">Client reload script written to compiledDir if it hasn't been already.</div>
             <div class="module live-reload not">socket.io set up using user's or Mimosa's server</div>
+            <div class="module serverreload not">configured folders are watched so when changed server can be restarted</div>
           </li>
           <li>
             <div class="step">beforePackage</div>
@@ -841,10 +849,23 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">afterWrite</div>
-            <div class="module require js template">(JS, T) If optimize flag used, base files relating to originally changed file are optimized by r.js</div>
             <div class="module live-reload not">Client reload script written to compiledDir if it hasn't been already.</div>
             <div class="module live-reload not">Message sent to connected clients to refresh the page.</div>
             <div class="module combine not">If the changed file belongs to any folder to be combined, that folder is combined.</div>
+          </li>
+          <li>
+            <div class="step">betweenWriteOptimize</div>
+          </li>
+          <li>
+            <div class="step">beforeOptimize</div>
+            <div class="module require js template">(JS, T) If optimize flag used, r.js run configs are generated for base files relating to originally changed file.</div>
+          </li>
+          <li>
+            <div class="step">optimize</div>
+            <div class="module require js template">(JS, T) If optimize flag used, for all run configs, r.js optimizer is run.</div>
+          </li>
+          <li>
+            <div class="step">afterOptimize</div>
           </li>
           <li>
             <div class="step">complete</div>
@@ -907,10 +928,23 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">afterWrite</div>
-            <div class="module require js template">(JS, T) If optimize flag used, base files relating to originally changed file are optimized by r.js</div>
             <div class="module live-reload not">Client reload script written to compiledDir if it hasn't been already.</div>
             <div class="module live-reload not">Message sent to connected clients to refresh the page.</div>
             <div class="module combine not">If the changed file belongs to any folder to be combined, that folder is combined.</div>
+          </li>
+          <li>
+            <div class="step">betweenWriteOptimize</div>
+          </li>
+          <li>
+            <div class="step">beforeOptimize</div>
+            <div class="module require js template">(JS, T) If optimize flag used, r.js run configs are generated for base files relating to originally changed file.</div>
+          </li>
+          <li>
+            <div class="step">optimize</div>
+            <div class="module require js template">(JS, T) If optimize flag used, for all run configs, r.js optimizer is run.</div>
+          </li>
+          <li>
+            <div class="step">afterOptimize</div>
           </li>
           <li>
             <div class="step">complete</div>
@@ -974,10 +1008,23 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">afterWrite</div>
-            <div class="module require js template">(JS, T) If optimize flag used, base files relating to originally changed file are optimized by r.js</div>
             <div class="module live-reload not">Client reload script written to compiledDir if it hasn't been already.</div>
             <div class="module live-reload not">Message sent to connected clients to refresh the page.</div>
             <div class="module combine not">If the changed file belongs to any folder to be combined, that folder is combined.</div>
+          </li>
+          <li>
+            <div class="step">betweenWriteOptimize</div>
+          </li>
+          <li>
+            <div class="step">beforeOptimize</div>
+            <div class="module require js template">(JS, T) If optimize flag used, r.js run configs are generated for base files relating to originally changed file.</div>
+          </li>
+          <li>
+            <div class="step">optimize</div>
+            <div class="module require js template">(JS, T) If optimize flag used, for all run configs, r.js optimizer is run.</div>
+          </li>
+          <li>
+            <div class="step">afterOptimize</div>
           </li>
           <li>
             <div class="step">complete</div>
