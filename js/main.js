@@ -5,7 +5,9 @@
     , isFixed = 0
     , moduleDescriptors = $('.workflow-steps .module')
     , chosenModuleExtension = 'js'
-    , chosenModule = 'builtin';
+    , chosenModule = 'builtin'
+    , workflowButtons = $('#workflow-toggles button')
+    , workflowDetails = $('.workflow-steps');
 
   processScroll()
 
@@ -46,8 +48,14 @@
 
     function showModule() {
       $(moduleDescriptors).hide();
-      console.log(chosenModuleExtension, chosenModule)
       $(moduleDescriptors).filter('.' + chosenModuleExtension + '.' + chosenModule).show();
+
+      $.each(workflowButtons, function(i, button) {
+        var type = $(button).attr('data-type');
+        var num = $('div[data-type=' + type + ']').find('.' + chosenModuleExtension + '.' + chosenModule).length;
+        $(button).find('.count').html(num);
+      })
+
     }
 
     showModule()
@@ -63,5 +71,13 @@
     }).attr('checked',false).filter('[value="' + chosenModule + '"]').attr('checked',true);
 
   }
+
+  $(workflowButtons).click(function() {
+    $(workflowButtons).removeClass('active');
+    $(this).addClass('active');
+    var type = $(this).attr('data-type');
+    $(workflowDetails).hide();
+    $('div[data-type=' + type + ']').show()
+  });
 
 }(window.jQuery)
