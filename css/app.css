@@ -93,6 +93,10 @@ h2 {
     text-shadow: 1px 1px #fff;
 }
 
+.masthead p {
+  padding:0px 100px;
+}
+
 .inner {
   border-radius: 0px 0px 10px 10px;
   background-color:#e6e6e6;
@@ -222,6 +226,11 @@ i {
   /* Masthead (home page jumbotron) */
   .masthead {
     padding-top: 0;
+
+  }
+
+  .masthead p {
+    padding:0px;
   }
 
   .inner {
@@ -266,7 +275,6 @@ i {
       line-height: 20px;
   }
 
-
 }
 
 
@@ -279,6 +287,10 @@ i {
   .jumbotron p {
     margin-right: 0;
     margin-left: 0;
+  }
+
+  .masthead p {
+    padding:0px 20px;
   }
 
 }
@@ -294,6 +306,10 @@ i {
   /* Scale down the jumbotron content */
   .jumbotron h1 {
     font-size: 64px;
+  }
+
+  .masthead p {
+    padding:0px 30px;
   }
 
 }
