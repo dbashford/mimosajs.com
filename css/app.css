@@ -34,11 +34,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h3 {
-  font-size:20px;
+  font-size:18px;
 }
 
 h2 {
-  font-size:22px;
+  font-size:20px;
 }
 
 .navbar .nav > li > a {
@@ -47,7 +47,7 @@ h2 {
 
 .main {
     background-color: white;
-    border-radius: 0 0 20px 20px;
+    border-radius: 0 0 10px 10px;
     box-shadow: 1px 1px 9px #333333;
     margin-bottom: 50px;
     margin-top: 40px;
@@ -62,25 +62,26 @@ h2 {
     margin-bottom: 18px;
 }
 .jumbotron h1 {
-    font-size: 81px;
+    font-size: 72px;
     font-weight: bold;
     letter-spacing: -1px;
     line-height: 1;
     margin-bottom: 9px;
-    text-shadow: 2px 2px #fff;
+    text-shadow: 1px 1px #fff;
 }
 
 .jumbotron .btn-large {
-    border-radius: 6px 6px 6px 6px;
+    border-radius: 4px;
     font-size: 20px;
     font-weight: normal;
-    margin-right: 10px;
-    padding: 14px 24px;
+    margin: 10px 10px 0px 0;
+    padding: 10px 20px;
     color:white;
+    margin-top:10px;
 }
 
 .masthead p {
-    font-size: 30px;
+    font-size: 28px;
     line-height: 36px;
     margin-left: 5%;
     margin-right: 5%;
@@ -88,18 +89,18 @@ h2 {
 
 .jumbotron p {
     font-weight: 300;
-    margin-bottom: 18px;
-    text-shadow: 2px 2px #fff;
+    margin: 20px 0;
+    text-shadow: 1px 1px #fff;
 }
 
 .inner {
-  border-radius: 0px 0px 15px 15px;
+  border-radius: 0px 0px 10px 10px;
   background-color:#e6e6e6;
-  padding: 25px 8px;
+  padding: 25px 8px 15px 8px;
 }
 
 .marketing h1, .marketing h2, .marketing h3 {
-  text-shadow: 1px 1px 2px #999;
+  text-shadow: 1px 1px #DDD;
 }
 
 .marketing {
@@ -116,8 +117,9 @@ h2 {
 
 .marketing p {
   background-color: #E6E6E6;
-  border-radius: 10px 10px 10px 10px;
-  padding: 5px;
+  border-radius: 5px;
+  padding: 12px;
+  margin-top:5px;
 }
 
 /* Quick links
@@ -149,9 +151,9 @@ h2 {
 }
 
 .marketing h1 {
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 300;
-  margin: 35px 0 15px;
+  margin: 35px 0 20px;
   text-align: center;
 }
 
@@ -166,7 +168,7 @@ i {
 }
 
 .span4 i {
-  margin-top: 13px;
+  margin-top: 9px;
 }
 
 .checkitout {
@@ -202,7 +204,7 @@ i {
     margin-right: 0;
   }
   .jumbotron h1 {
-    font-size: 34px !important;
+    font-size: 30px !important;
     margin-right: 0;
   }
   .jumbotron p {
@@ -261,7 +263,7 @@ i {
 
   h2 {
       font-size: 20px;
-      line-height: 22px;
+      line-height: 20px;
   }
 
 
@@ -272,7 +274,7 @@ i {
 
   /* Scale down the jumbotron content */
   .jumbotron h1 {
-    font-size: 54px;
+    font-size: 48px;
   }
   .jumbotron p {
     margin-right: 0;
@@ -291,7 +293,7 @@ i {
 
   /* Scale down the jumbotron content */
   .jumbotron h1 {
-    font-size: 72px;
+    font-size: 64px;
   }
 
 }
@@ -471,7 +473,7 @@ i {
 }
 
 .command-list .command {
-  color:red;
+  color:firebrick;
 }
 
 .command-list .options {
@@ -480,7 +482,7 @@ i {
 
 .command-list h2 {
   margin-bottom:15px;
-  color:red;
+  color:firebrick;
 }
 
 .command-list h3 {
@@ -596,7 +598,7 @@ i {
   list-style-type:none;
   margin-left:0px;
   border: 1px solid #E5E5E5;
-  border-radius: 4px 4px 4px 4px;
+  border-radius: 4px;
 }
 
 .workflow-steps ul > li:first-child > div {
