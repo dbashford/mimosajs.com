@@ -111,80 +111,35 @@
          Use Mimosa's command line to build out a skeleton app that
          is ready to go with your desired meta-languages, a bit of
          sample code, and an server too! No additional installs or plugins
-         needed to get everything Mimosa has to offer.
+         needed to get started.
       </p>
     </div>
     <div class="span4">
       <i class="icon-file"></i>
-      <h2>Watch Assets</h2>
+      <h2>Watch And Serve Assets</h2>
       <p>
-        Everything happens when you save your code. Mimosa will keep track
-        of your assets and when you save something, kick off all sorts of
-        awesome.
+        Mimosa will keep track of your assets and when you save something,
+        kick off all sorts of awesome. Mimosa will also optionally serve
+        assets for you, or invoke a node server so that you only need a single
+        process running to watch and serve.
       </p>
     </div>
     <div class="span4">
-      <i class="icon-ok"></i>
-      <h2>Immediate Feedback</h2>
-      <p>
-        Code doesn't compile?  You'll find out right away. When code breaks
-        Mimosa will write big angry messages to the console and use Growl if
-        you've got it installed.
-      </p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="span3">
-      <i class="icon-signal"></i>
-      <h2>Asset Serving</h2>
-      <p>
-        Mimosa will serve your assets for you if you'd like, or it will invoke
-        your Express server (or the Express server it gave you) so that you
-        only need a single process running to watch and serve.
-      </p>
-    </div>
-    <div class="span3">
       <i class="icon-list"></i>
-      <h2>Convention First</h2>
+      <h2>Convention + Configuration</h2>
       <p>
-        Mimosa's configuration starts empty.  Sane defaults keep you coding
-        instead of figuring out config.  Mimosa comes with a set of built-in
-        conventions, and if you stick with those conventions you may never
-        look at or update the configuration.
-      </p>
-    </div>
-    <div class="span3">
-      <i class="icon-random"></i>
-      <h2>Configuration Second</h2>
-      <p>
+        Mimosa's configuration starts empty. Sane defaults keep you coding
+        instead of figuring out config. If you stick close to Mimosa's
+        conventions you may never look at or update the configuration, but
         Mimosa is heavily configurable if you find yourself needing to vary
-        away from convention, or have your own conventions.
-      </p>
-    </div>
-    <div class="span3">
-      <i class="icon-arrow-down"></i>
-      <h2>Import Libraries</h2>
-      <p>
-        Mimosa wraps basic <a href="https://github.com/volojs/volo">Volo</a>
-        add functionality to allow you to easily import known
-        GitHub dependencies right to the directory you want them.
+        away from its convention.
       </p>
     </div>
   </div>
   <div class="row">
-    <div class="span3">
-      <i class="icon-refresh"></i>
-      <h3>Live Reload</h3>
-      <p>
-        Both the server built into Mimosa and the one it provides you on
-        project creation come with Live Reload ready to go.  When a web asset
-        is compiled or a server template is changed, your browser updates
-        immediately.
-      </p>
-    </div>
     <div class="span3">
       <i class="icon-retweet"></i>
-      <h3>Optimize + minify, later</h3>
+      <h3>Optimize + minify</h3>
       <p>
         Have the best of both worlds. Develop with unminified, uncompressed,
         individual assets. Flip a switch and develop with minified and
@@ -193,12 +148,22 @@
       </p>
     </div>
     <div class="span3">
-      <i class="icon-resize-small"></i>
-      <h3>Gzipped, Cache-Busted</h3>
+      <i class="icon-ok"></i>
+      <h3>Immediate Feedback</h3>
       <p>
-        All your assets will be gzipped, keeping load times as fast as
-        possible, and cache-busted, saving you from dealing with nagging
-        browser cache issues.
+        Code doesn't compile?  You'll find out right away. When code breaks
+        Mimosa will write big angry messages to the console and use Growl if
+        you've got it installed.
+      </p>
+    </div>
+    <div class="span3">
+      <i class="icon-refresh"></i>
+      <h3>Live Reload</h3>
+      <p>
+        Both the server built into Mimosa and the one it provides you on
+        project creation come with Live Reload ready to go.  When a web asset
+        is compiled or a server template is changed, your browser updates
+        immediately.
       </p>
     </div>
     <div class="span3">
@@ -260,26 +225,19 @@
   </div>
   <h1>AMD? RequireJS? CommonJS?</h1>
   <div class="row">
-    <div class="span3">
+    <div class="span4">
       <i class="icon-barcode"></i>
-      <h3>Dependency Checking</h3>
+      <h2>Dependency Checking</h2>
       <p>
         Mimosa will keep track of your dependency graph and alert you right
         away if you've mis-typed a path, referred to something that doesn't
-        exist, or have a circular dependency.
+        exist, or have a circular dependency. It will also keep tabs on your
+        shims, maps and plugin paths.
       </p>
     </div>
-    <div class="span3">
-      <i class="icon-shopping-cart"></i>
-      <h3>Shim, Map, Plugin, Path</h3>
-      <p>
-        Yep, yep, yep, yep. It'll check those too. Paths themselves, shims,
-        shim dependencies, map modules and map paths, and plugin paths.
-      </p>
-    </div>
-    <div class="span3">
+    <div class="span4">
       <i class="icon-resize-small"></i>
-      <h3>Optimization</h3>
+      <h2>Optimization</h2>
       <p>
         If you use RequireJS, you probably know about <a
         href="http://requirejs.org/docs/optimization.html">the optimizer</a>.
@@ -288,9 +246,9 @@
         a thing.
       </p>
     </div>
-    <div class="span3">
+    <div class="span4">
       <i class="icon-resize-small"></i>
-      <h3>Also with CommonJS!</h3>
+      <h2>Also with CommonJS!</h2>
       <p>
         Using a Mimosa module, you can code using the CommonJS format and
         still utilize the offerings of RequireJS, like like path aliasing and
@@ -303,7 +261,7 @@
   <div class="row">
     <div class="span4">
       <i class="icon-gift"></i>
-      <h3>Pluggable</h3>
+      <h2>Pluggable</h2>
       <p>
         Mimosa is modular, and makes it easy to plug in external modules to
         your application and asset workflow.  The list of external modules is
@@ -313,7 +271,7 @@
     </div>
     <div class="span4">
       <i class="icon-search"></i>
-      <h3>Discover Modules</h3>
+      <h2>Discover Modules</h2>
       <p>
         Mimosa doesn't do what you need?  Maybe someone else built a module to
         do it. Use Mimosa's module commands to discover plugins in NPM,
@@ -323,7 +281,7 @@
     </div>
     <div class="span4">
       <i class="icon-off"></i>
-      <h3>Jumpstart Module Development</h3>
+      <h2>Jumpstart Module Development</h2>
       <p>
         Interested in writing your own module? Mimosa's will get you started
         with some heavily commented module skeleton code. Wrap your head

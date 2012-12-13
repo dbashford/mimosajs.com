@@ -122,7 +122,7 @@ h2 {
 .marketing p {
   background-color: #E6E6E6;
   border-radius: 5px;
-  padding: 12px;
+  padding: 15px;
   margin-top:5px;
 }
 
@@ -157,7 +157,7 @@ h2 {
 .marketing h1 {
   font-size: 36px;
   font-weight: 300;
-  margin: 35px 0 20px;
+  margin: 35px 0 35px;
   text-align: center;
 }
 
@@ -172,8 +172,13 @@ i {
 }
 
 .span4 i {
+  margin-top: 13px;
+}
+
+.span3 i {
   margin-top: 9px;
 }
+
 
 .checkitout {
   text-align:center;
