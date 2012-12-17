@@ -89,11 +89,11 @@
         </h1>
       </div>
       <h2>1) node.js</h2>
-      <p>Mimosa is written in <a href="http://nodejs.org/">node.js</a> and you'll need to have it installed.  You'll want to <a href="http://nodejs.org/download/">download and install</a> the latest and greatest version.  Anything over 8.0 will do.  The node.js install comes with the <a href="https://npmjs.org/">Node Package Manager (npm)</a>.</p>
+      <p>Mimosa is written in <a href="http://nodejs.org/">node.js</a> and that needs to be installed. <a href="http://nodejs.org/download/">Download and install</a> anything over version 0.8.0. The node.js install comes with the <a href="https://npmjs.org/">Node Package Manager (npm)</a>.</p>
       <h2>2) mimosa</h2>
       <p>Use npm to install Mimosa.</p>
       <pre>$ npm install -g mimosa</pre>
-      <p>The <code class="option">-g</code> flag installs Mimosa globally so it can be run from the command line anywhere.  You may need to use sudo to install this depending on the setup of your system.</p>
+      <p>The <code class="option">-g</code> flag installs Mimosa globally so it can be run from the command line anywhere.  You may need to use sudo to install this depending on your system's setup.</p>
     </section>
     <section id="exist">
       <div class="page-header">
@@ -103,29 +103,27 @@
         </h1>
       </div>
 
-      <h2>1) mimosa config</h2>
+      <h2>1) Get the config</h2>
 
-      <p>Execute <code class="option">mimosa config</code> from the root of your application and Mimosa will place a <code class="option">mimosa-config.coffee</code> file there. This file controls everything Mimosa does. For now its contents will be entirely commented out.</p>
-
-      <p>While Mimosa doesn't currently deliver its config as a JavaScript file, you are welcome to transform the <code class="option">mimosa-config.coffee</code> to JavaScript. Mimosa is fine with that. Just transform the CoffeeScript comments to JavaScript comments. Should you start uncommenting config, you'll have a bit more to do to make the file valid JavaScript.</p>
+      <p>From the command line, type <code class="option">mimosa config</code> and Mimosa will generate a <code class="option">mimosa-config.coffee</code> file in the current directory. This file controls everything Mimosa does. For now its contents will be commented out and all of Mimosa's defaults will be in effect. While Mimosa doesn't currently deliver its config as a JavaScript file, you are welcome to transform the <code class="option">mimosa-config.coffee</code> to JavaScript.</p>
 
       <h2>2) Tweak the config</h2>
 
-      <p>From here its a matter of either changing your codebase around a little to match Mimosa's defaults, or changing Mimosa's config to work with your setup. The <code class="option">mimosa-config</code> is self-documenting. So all you need to understand each config setting is inside the file. But you can also breeze through the <a href="./configuration.html">configuration options</a> on the site to understand all that you have control over.</p>
+      <p>Place the <code class="option">mimosa-config</code> at the root of a project. Either change the project's codebase to match Mimosa's defaults, or change the <code class="option">mimosa-config</code> to work with the project. The <code class="option">mimosa-config</code> is self-documenting. Each config setting is explained inside the file. All of the <a href="./configuration.html">configuration options</a> are documented on the site as well.</p>
 
-      <p>The most important settings in the config, to get you started, are inside the top <code class="option">watch</code> setting.  Make sure that <code class="option">sourceDir</code>, <code class="option">compiledDir</code>, and <code class="option">javascriptDir</code> all point to the right place in your codebase.</p>
+      <p>The most important settings in the config, to get you started, are inside the top <code class="option">watch</code> setting.  Make sure that <code class="option">sourceDir</code>, <code class="option">compiledDir</code>, and <code class="option">javascriptDir</code> all point to the right place in the project.</p>
 
       <h2>3) Fire it up</h2>
 
-      <p>Execute <code class="option">mimosa watch</code> and Mimosa will start keeping track of your assets and do its thing when you change them.  Mimosa will tell you if you've done anything wrong, or if it can't find the important things it needs to find.</p>
+      <p>Execute <code class="option">mimosa watch</code> and Mimosa will build and watch projects assets. Mimosa will generate errors if something is wrong with the config.</p>
 
       <h2>4) Next steps?</h2>
 
       <ul>
         <li>Get familiar with Mimosa's <a href="./commands.html">commands</a></li>
-        <li>Writing plain CSS or JS?  Not using templating?  Browse the list of <a href="./compilers.html">compilers</a> to see what your options are there.</li>
-        <li>Check out how Mimosa can help <a href="./server.html#mimosas">serve your assets</a> or <a href="./server.html#yours">start your server</a>.</li>
-        <li>Learn how Mimosa can <a href="./optimization.html">optimize</a> your code.</li>
+        <li>Writing plain CSS or JS?  Not using templating?  Browse the list of <a href="./compilers.html">compilers</a> to see what the options are.</li>
+        <li>See how Mimosa can help <a href="./server.html#mimosas">serve assets</a> or <a href="./server.html#yours">start a server</a>.</li>
+        <li>Learn about Mimosa's <a href="./optimization.html">optimization</a> options.</li>
         <li>Having trouble? Hit the <a href="https://groups.google.com/forum/#!forum/mimosajs">Google group</a> to find a solution.</li>
       </ul>
 
@@ -140,11 +138,11 @@
 
       <h2>1) Create a new application</h2>
 
-      <p>Navigate to a directory within which you want to place your application and use <code class="option">mimosa new</code> to create an app.</p>
+      <p>Inside the desired folder, create an app by executing <code class="option">mimosa new</code>.</p>
 
       <pre>$ mimosa new nameOfApplicationHere</pre>
 
-      <p>Follow the prompts and choose the meta-language, server, and server view technologies you'd like to use.  If you aren't sure which ones to choose, that's perfect.  Mimosa is a great tool to learn them.  For now you can go with the ones marked with an asterisk as they are Mimosa favorites.</p>
+      <p>Follow the prompts and choose the desired meta-language, server, and server view technologies. If you aren't sure which ones to choose, that's perfect. Mimosa is a great tool to learn them. For now go with the ones marked with an asterisk as they are Mimosa favorites.</p>
 
       <h2>2) Start the server</h2>
 
@@ -152,15 +150,11 @@
 
       <pre>$ mimosa watch --server</pre>
 
-      <p>In your browser navigate to <a href="http://localhost:3000">http://localhost:3000</a> to see the sample app. Mimosa will watch the assets directory of your new project and compile the changes you make over to the public directory. The web app serves up the assets in the public directory.</p>
+      <p>Navigate to <a href="http://localhost:3000">http://localhost:3000</a> in a browser to see the sample app. Mimosa will watch the assets directory of the project and compile changed files to the public directory. The web app serves assets in the public directory.</p>
 
       <h2>3) Start Coding</h2>
 
-      <p>You are ready to go! So that you have a few examples to get you started, Mimosa has delivered you a bare bones web app with some pieces of working code using your chosen technologies.</p>
-
-      <p>Head over to the <a href="./commands.html">Commands</a> tab to see how to interact with Mimosa, and figure out all it can do for you.</p>
-
-      <p>If you want to play around with something meatier than the codebase that <code class="option">mimosa new</code> delivers, try out a demo app.
+      <p>All set! To get the project started, Mimosa has delivered a bare bones web app with some code using the chosen technologies. Head over to the <a href="./commands.html">Commands</a> tab to learn how to interact with Mimosa. If you want to play around with something meatier than the codebase that <code class="option">mimosa new</code> delivers, try out a demo app.
 
     </section>
     <section id="demoapps" class="demoapps">
@@ -170,9 +164,9 @@
         </h1>
       </div>
 
-      <p>Before starting your own application, play around with someone else's!  Download the source from GitHub and use Mimosa's command line interface to play with the code and get comfy with both how Mimosa works and with the technologies inside the demo apps.</p>
+      <p>Before creating your own app, play around with someone else's!  Download an app from GitHub and use Mimosa's command line interface to play with the code and get comfortable with Mimosa and the technologies inside the demo apps.</p>
 
-      <p>As more demo apps are built, they'll get added here.  If you put a little something together using Mimosa let us know so we can add it to the list!  Either <a href="https://github.com/dbashford/mimosajs.com/issues">open an issue</a> or shoot a message to @mimosajs.</p>
+      <p>As more demo apps are built, they'll get added here.  If you put a little something together using Mimosa let us know so we can add it to the list! Either <a href="https://github.com/dbashford/mimosajs.com/issues">open an issue</a> or shoot a message to @mimosajs.</p>
       <ul>
         <li>
           <h2><a href="https://github.com/dbashford/AngularFunMimosa">AngularFun</a> <small>A mid-sized CoffeeScript, LESS, Stylus, AngularJS, Bootstrap application.</small></h2>

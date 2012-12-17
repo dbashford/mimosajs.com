@@ -90,12 +90,12 @@
       <div class="page-header">
         <h1>
           Module Commands
-          <small><span class="mim">mimosa</span> <span class="command">mod:[init/install/uninstall/list/search]</span></small>
+          <small><span class="mim">mimosa</span> <span class="command">mod:[init/install/uninstall/list/search/config]</span></small>
         </h1>
       </div>
     </section>
 
-    <p>Mimosa's module features have their own set of commands.  Read about them on the <a href="./modules.html">Module's page</a>.</p>
+    <p>Mimosa's module features have their own set of commands prefixed with <code class='option'>mod:</code>.  Read about them on the <a href="./modules.html">Module's page</a>.</p>
 
     <section id="new">
       <div class="page-header">
@@ -109,25 +109,23 @@
       <div class="span6">
         <h2>new</h2>
 
-        <p>The best way to get started with Mimosa is to use it to create a new application/project structure for you. Create a new project like so:</p>
+        <p>The best way to get started with Mimosa is to use it to create a new application/project structure.</p>
 
         <pre>$ mimosa new nameOfApplicationHere</pre>
 
-        <p>This will kick off a series of prompts that will allow you to pick out the meta-languages, templating library, server, and server templater you'd like to use. When you've finished picking, Mimosa will create a directory at your current location using the name provided as the name of the directory. Inside that directory Mimosa will populate an application skeleton inside an asset directory. The skeleton will include JavaScript, CSS, and micro-template web assets for the selections you made.</p>
+        <p>The <code class='option'>new</code> command will kick off a series of prompts to choose meta-languages, a templating library, a server, and a server templater. Mimosa will then create a directory using the name provided. Inside that directory Mimosa will populate an application skeleton. The <code class='option'>assets</code> directory will contain some example code and a group of vendor scripts, like require.js, as well as CSS and micro-template assets for the chosen selections.</p>
 
-        <p>If you chose to have a server stack of your own, it will also include the bare essentials for a base <a href="http://expressjs.com/">Express</a> application, including  a simple <a href="http://expressjs.com/guide.html#routing">router</a> and a file that will be used by Mimosa to get Express started. That code will be also be delivered in the meta-language of your choice.</p>
+        <p>If a server was chosen, Mimosa will include the bare essentials for an <a href="http://expressjs.com/">Express</a> application, including a simple <a href="http://expressjs.com/guide.html#routing">router</a> and a file Mimosa will use to start Express. That code will be delivered in the chosen meta-language.</p>
 
-        <p>Lastly, you will be given a starter group of views for an index page in the view templating language you chose.</p>
+        <p>Lastly, Mimosa will provide some starter views for an index page in the chosen view templating language.</p>
 
-        <p>If you chose to not have a server of your own, Mimosa will serve your assets for you.  Mimosa provides some configuration options for its embedded server to make not having your own server a little less painful than it would be otherwise.</p>
+        <p>If no server is chosen, Mimosa can handle serving assets. Mimosa provides some configuration options for an embedded Express server so not having a server is a little less painful than it would be otherwise.</p>
 
-        <p>The assets directory has some example code to get you started, and has a group of vendor scripts, like require.js.</p>
-
-        <p>The created directory will also contain the configuration file for Mimosa. Almost everything inside of it is commented out, but all the options and explanations for each option are present. The only things that will not be commented out will changes to the server config if you chose something other than the defaults.</p>
+        <p>The project directory will also contain Mimosa's configuration file. Almost everything inside of it is commented out, but all the options and explanations for each option are present. The only config not commented out will be changes to the server config if something other than the defaults was chosen.</p>
 
         <h3>Pick the defaults (-d/--defaults)</h3>
 
-        <p>Should you be happy with the defaults (CoffeeScript, Handlebars,  Stylus, Express, Jade) you can bypass the prompts by providing a <code class="option">--defaults</code> flag.</p>
+        <p>Should Mimosa's defaults (CoffeeScript, Handlebars,  Stylus, Express, Jade) suffice, the prompts can be bypassed by providing a <code class="option">--defaults</code> flag.</p>
 
         <pre>$ mimosa new nameOfApplicationHere --defaults
 $ mimosa new nameOfApplicationHere -d</pre>
@@ -152,6 +150,7 @@ $ mimosa new nameOfApplicationHere -d</pre>
             2) Iced CoffeeScript - http://maxtaco.github.com/coffee-script/<br/>
             3) LiveScript - http://gkz.github.com/LiveScript/<br/>
             4) None (Raw JavaScript)<br/>
+            5) TypeScript - http://www.typescriptlang.org<br/>
             : 1
           </p>
 
@@ -181,14 +180,15 @@ $ mimosa new nameOfApplicationHere -d</pre>
 
           <p>
             1) (*) Dust - https://github.com/linkedin/dustjs/<br/>
-            2) (*) Handlebars - http://handlebarsjs.com/<br/>
-            3) Hogan - http://twitter.github.com/hogan.js/<br/>
-            4) HTML - Just Plain HTML Snippets, no compiling<br/>
-            5) Jade - http://jade-lang.com/<br/>
-            6) LoDash - http://lodash.com/docs#template<br/>
-            7) None (No Templating)<br/>
-            8) Underscore - http://underscorejs.org/#template<br/>
-            : 3
+            2) Embedded JavaScript Templates (EJS) - https://github.com/visionmedia/ejs<br/>
+            3) (*) Handlebars - http://handlebarsjs.com/<br/>
+            4) Hogan - http://twitter.github.com/hogan.js/<br/>
+            5) HTML - Just Plain HTML Snippets, no compiling<br/>
+            6) Jade - http://jade-lang.com/<br/>
+            7) LoDash - http://lodash.com/docs#template<br/>
+            8) None (No Templating)<br/>
+            9) Underscore - http://underscorejs.org/#template<br/>
+            : 4
           </p>
 
           <p class="fb">
@@ -218,6 +218,7 @@ $ mimosa new nameOfApplicationHere -d</pre>
             2) Hogan - http://twitter.github.com/hogan.js/<br/>
             3) Plain HTML<br/>
             4) Embedded JavaScript Templates (EJS) - https://github.com/visionmedia/ejs<br/>
+            5) Handlebars - http://handlebarsjs.com/</br>
           </p>
 
           <p class="fb">
@@ -247,19 +248,21 @@ $ mimosa new nameOfApplicationHere -d</pre>
       <div class="span6">
         <h2>watch</h2>
 
-        <p>Mimosa will watch the configured <code class='option'>watch.sourceDir</code>, by default the <code class='option'>assets</code> directory. When files are added, updated, or deleted, the configured compilers will execute Mimosa's workflow and keep the <code class='option'>watch.compiledDir</code> updated with compiled/copied assets.</p>
-
-        <p>To start watching, execute:</p>
+        <p>Mimosa will watch the configured <code class='option'>watch.sourceDir</code>, which is by default the <code class='option'>assets</code> directory. When files are added, updated, or deleted, Mimosa's workflows will start and execute the registered Mimosa module code, including the compiling and copying of code.</p>
 
         <pre>$ mimosa watch</pre>
 
-        <p>When Mimosa starts up, it registers files in your <code class='option'>sourceDir</code> all at once. If you have a very large number of files, 1000 images to copy over for instance, Mimosa may open enough files to cause <a href="http://lists.apple.com/archives/darwin-kernel/2005/Mar/msg00002.html">EMFILE</a> issues. This means that Mimosa has opened up too many files at one time, more files than your system allows to be open at once.</p>
+        <h3>Serve Assets (-s/--server)</h3>
 
-        <p>To combat this, the <code class='option'>watch</code> config has a <code class='option'>throttle</code> property. <code class='option'>throttle</code> is the number of files Mimosa should handle every 100 milliseconds during the initial Mimosa startup and for subsequent file additions. For instance, if you set the number to 200, and if you have 1000 files, when Mimosa starts up it will process them in 5 chunks of 200, spaced 100 milliseconds apart. It will do the same if, after Mimosa has started, you add 1000 files with a single copy/paste.</p>
+        <p>If need to serve assets, start Mimosa with the <code class='option'>server</code> flag.</p>
 
-        <p>You may still run into EMFILE issues after setting throttle, and it might take some playing around with the number to get things just right.</p>
+        <pre>$ mimosa watch --server
+    $ mimosa watch -s</pre>
 
-        <p>The default for <code class='option'>throttle</code> is 0. When <code class='option'>throttle</code> is set to 0, throttling is disabled and all files are processed immediately.</p>
+        <p>By default, Mimosa will run a piece of code located at <code class='option'>server.path</code>. If Mimosa was used to create the project, and a server was chosen, a <code class='option'>server.coffee (.iced/.js/.ls)</code> file will be at the project's root. Mimosa will run the <code class='option'>startServer</code> function in this file and pass it the full <code class='option'>mimosa-config</code>.</p>
+
+        <p>Mimosa's embedded (non-extendable) Express server can be used by changing the <code class='option'>server.useDefaultServer</code> configuration to <code class='option'>true</code>. If no server was chosen during project creation, this setting will be set.</p>
+
       </div>
 
       <div class="span6 term">
@@ -284,56 +287,38 @@ $ mimosa new nameOfApplicationHere -d</pre>
       </div>
     </div>
 
-    <h3>Serve Assets (-s/--server)</h3>
-
-    <p>If you are not already running a server, and you need to serve your assets up, start Mimosa with the server flag.</p>
-
-    <pre>$ mimosa watch --server
-$ mimosa watch -s</pre>
-
-    <p>By default, this will look for and run a piece of code located at <code class='option'>server.path</code>. If you used the Mimosa command line to build your new project, and you chose to have a server of your own, you will have a <code class='option'>server.coffee (.iced/.js/.ls)</code> at the root of your file structure that will start up an Express app. Mimosa will run the <code class='option'>startServer</code> method in this file and pass it the full <code class='option'>mimosa-config</code>. You can leave this file as is if you are simply serving up assets, but this gives you the opportunity to build out a much larger app, with numerous routes and views, should that be your goal.</p>
-
-    <p>You can change to using an embedded default (non-extendable) Express server by changing the <code class='option'>server.useDefaultServer</code> configuration to <code class='option'>true</code>. If you chose to not have a server during project creation this setting will have already been changed for you.</p>
-
     <h3>Clean Compiled Assets First (-c/--clean)</h3>
 
-    <p>Use the <code class='option'>--clean</code> flag to clean out the compiled directory before watching starts. This has the effect of forcing a recompile and recopy of all of your assets.</p>
+    <p>Use the <code class='option'>--clean</code> flag to clean out the compiled directory before watching starts. This forces a recompile and recopy of all assets.</p>
+
+    <pre>$ mimosa watch --clean
+$ mimosa watch -c</pre>
 
     <h3>Serve Optimized Assets (-o/--optimize)</h3>
 
-    <p>Start Mimosa watching with the <code class='option'>--optimize</code> flag turned on and Mimosa will run the <a href="https://github.com/jrburke/r.js/">r.js optimizer</a> on start-up and with every javascript file change. So when you point at either the Express or default server's base URL with optimize flagged, you will be served the result of RequireJS's optimization, packaged with <a href="https://github.com/jrburke/almond">Almond</a>.</p>
+    <p>Start <code class='option'>mimosa watch</code> with the <code class='option'>--optimize</code> flag turned on and Mimosa will optimize the codebase on start-up and with every file change. See the <a href="./optimization.html">optimization</a> tab to read more about Mimosa's default optimization options.</p>
 
-    <p>When <code class='option'>--optimize</code> is turned on, Mimosa will also minify your CSS.</p>
-
-    <p>To start up with optimization turned on, execute the following:</p>
-
-    <pre>$ mimosa watch [--server] --optimize
-$ mimosa watch [--server] -o</pre>
+    <pre>$ mimosa watch --optimize
+$ mimosa watch -o</pre>
 
     <h3>Minify Assets (-m/--minify)</h3>
 
-    <p>Start Mimosa watching with the <code class='option'>--minify</code> flag turned on and Mimosa will use <a href="https://github.com/mishoo/UglifyJS">Uglify</a> to compress your JavaScript files as they are compiled and before they are written.  <code class='option'>--minify</code> has its own setting in the <code class='option'>mimosa-config</code> file for choosing which files to exclude from minification.</p>
+    <p>Start <code class='option'>mimosa watch</code> with the <code class='option'>--minify</code> flag turned on and Mimosa will, by default, use <a href="https://github.com/mishoo/UglifyJS2">Uglify2</a> to compress JavaScript files after they are compiled and before they are written.</p>
 
-    <p>To start up with minification turned on, execute the following:</p>
-
-    <pre>$ mimosa watch [--server] --minify
-$ mimosa watch [--server] -m</pre>
+    <pre>$ mimosa watch --minify
+$ mimosa watch -m</pre>
 
     <h3>Minify and Optimize Assets (-mo/--minify --optimize)</h3>
 
-    <pre>$ mimosa watch [--server] --minify --optimize
-$ mimosa watch [--server] -mo</pre>
+    <pre>$ mimosa watch --minify --optimize
+$ mimosa watch -mo</pre>
 
-    <p>When combined, the <code class='option'>--minify</code> and <code class='option'>--optimize</code> options give you more control over the minification strategy of your application.  The <a href="https://github.com/jrburke/r.js/">r.js optimizer</a>  by itself is often good enough to handle minifying, compressing and pulling your modules into single files; however, the occasional file does not take kindly to being run through Uglify and will be broken when compressed.  The RequireJS optimizer is all or none, you cannot choose to omit a file that isn't being compressed correctly. So if your application doesn't run because of errors in Uglifying, you are forced to inject other steps into your project's life cycle to use both the optimizer and have minified files.
-
-    <p>When <code class='option'>--minify</code> and <code class='option'>--optimize</code> are used together, r.js minification is turned off and the r.js optimizer is just used to pull all of your application's files together into the same file.  Mimosa will Uglify your files itself first, before calling the optimizer, and Mimosa gives you the opportunity to not Uglify whatever files are not making it through Uglifying in working order.</p>
-
-    <p>Head over to the <a href="./optimization.html">Optimization tab</a> to learn more about Mimosa optimization options</a>
+      <p>When combined, the <code class='option'>--minify</code> and <code class='option'>--optimize</code> options provide more control over the application's minification strategy. Check out the <a href="./optimization.html#minopt">Minify + Optimize section of the Optimization tab</a> to learn more.</a>
 
     <section id="clean">
       <div class="page-header">
         <h1>
-          Clean Compiled Assets
+          Clean Project
           <small><span class="mim">mimosa</span> <span class="command">clean</span> <span class="options">[-f/--force]</span></small>
         </h1>
       </div>
@@ -342,15 +327,15 @@ $ mimosa watch [--server] -mo</pre>
       <div class="span6">
         <h2>clean</h2>
 
-        <p>This command will wipe out any file from the <code class="option">compiledDir</code> that is currently in the <code class="option">sourceDir</code>. Any assets in the <code class="option">compiledDir</code> that are not in the <code class="option">sourceDir</code> are left alone in case they were placed there purposefully. Mimosa makes a pass to clean out the files, and once done, it makes a pass to clean out any directories that are now empty.</p>
+        <p><code class="option">mimosa clean</code> will wipe out any file from the <code class="option">compiledDir</code> that is currently in the <code class="option">sourceDir</code>. Any assets in the <code class="option">compiledDir</code> that are not in the <code class="option">sourceDir</code> are left alone in case they were placed there purposefully. Mimosa makes a pass to clean out the files, and once done, it makes a pass to clean out any directories that are now empty.</p>
 
         <pre>$ mimosa clean</pre>
 
         <h3>Force Asset Deletion (-f/--force)</h3>
 
-        <p>Because the clean command will not remove anything in your <code class="option">compiledDir</code> that isn't in your <code class="option">sourceDir</code>, Mimosa may leave behind code that has been renamed.  If <code class="option">mimosa watch</code> is running and you delete or rename a file, Mimosa cleans out the compiled version of that file, but if Mimosa is not running and you delete or remove a file, Mimosa has no way of knowing the files left behind are safe for cleaning. </p>
+        <p>Because the clean command will not remove anything in <code class="option">compiledDir</code> that isn't in <code class="option">sourceDir</code>, Mimosa may leave behind code. If <code class="option">mimosa watch</code> is running and a file is deleted or renamed, Mimosa cleans out the compiled version of that file, but if Mimosa is not running and a file is deleted or removed, Mimosa has no way of knowing the files left behind are safe for cleaning. </p>
 
-        <p>Enter the <code class="option">--force</code> flag.  When included, the <code class="option">--force</code> flag will remove the entire compiled directory and all of its contents, no questions asked.</p>
+        <p>When included, the <code class="option">--force</code> flag will remove the entire compiled directory and all of its contents, no questions asked.</p>
 
       </div>
       <div class="span6 term">
@@ -379,8 +364,8 @@ $ mimosa watch [--server] -mo</pre>
     <section id="build">
       <div class="page-header">
         <h1>
-          One Time Asset Build
-          <small><span class="mim">mimosa</span> <span class="command">build</span> <span class="options">[-o/--optimize] [-m/--minify] [-p/--package] [-r/--removeCombined] [-j/--jade]</span></small>
+          Project Build
+          <small><span class="mim">mimosa</span> <span class="command">build</span> <span class="options">[-o/--optimize] [-m/--minify] [-p/--package]</span></small>
         </h1>
       </div>
     </section>
@@ -388,22 +373,24 @@ $ mimosa watch [--server] -mo</pre>
       <div class="span6">
         <h2>build</h2>
 
-        <p>If you want to compile a set of assets, and you don't want to start up a watching process to do it, you can use Mimosa's <code class="option">build</code> command.</p>
+        <p>Use <code class="option">mimosa build</code> to make one pass through the project to compile assets without starting up a watch. This command will compile any assets that need compiling, deliver the results to the public directory, and then exit. <code class="option">mimosa build</code> is also used when creating deployable versions of a project. This command also executes a clean before it does anything, so it builds a clean version of the application.</p>
 
         <pre>$ mimosa build</pre>
 
-        <p>This will run through your assets and compile any that need compiling, deliver the results to the public directory, and then exit.</p>
+        <p></p>
 
         <h3>Optimized Build (-o/--optimize)</h3>
 
-        <p>If you want to build and generate optimized output, provide an <code class="option">--optimize</code> flag. This will compile all the assets, create the <a href="https://github.com/jrburke/r.js/">r.js optimized</a> files, and minify your compiled CSS.</p>
+        <p>If you want to build and generate optimized output, provide an <code class="option">--optimize</code> flag. See the <a href="./optimization.html">Optimization page</a> for more information.</p>
 
         <pre>$ mimosa build --optimize
 $ mimosa build -o</pre>
 
         <h3>Minify Assets (-m/--minify)</h3>
 
-        <p>If you want to build with minified code, run the <code class='option'>build</code> command with the <code class='option'>--minify</code> flag turned on. Mimosa will use <a href="https://github.com/mishoo/UglifyJS">Uglify</a> to compress your JavaScript files as they are compiled and before they are written.  <code class='option'>--minify</code> has its own setting in the <code class='option'>mimosa-config</code> file for choosing which files to exclude from minification.</p>
+        <p>To build with minified code, run the <code class='option'>build</code> command with the <code class='option'>--minify</code> flag turned on. Mimosa will use <a href="https://github.com/mishoo/UglifyJS2">Uglify2</a> to compress JavaScript files as they are compiled and before they are written.</p>
+
+        <h3>Minify and Optimize Assets (-mo/--minify --optimize)</h3>
 
       </div>
       <div class="span6 term">
@@ -430,34 +417,16 @@ $ mimosa build -o</pre>
       </div>
     </div>
 
-   <h3>Minify and Optimize Assets (-mo/--minify --optimize)</h3>
-
     <pre>$ mimosa build --minify --optimize
 $ mimosa build -mo</pre>
 
-    <p>Need a bit more control over the minification strategy of your application?  Check the section above under <code class='option'>watch</code> and the <a href="./optimization.html">page on optimization</a> to see the benefit of using <code class='option'>--minify</code> and <code class='option'>--optimize</code> together.
+    <p>Need a bit more control over a project's minification strategy?  See the <a href="./optimization.html">page on optimization</a> to see the benefit of using <code class='option'>--minify</code> and <code class='option'>--optimize</code> together.</p>
 
     <h3>Package Application (-p/--package)</h3>
 
-    <p>Provide a <code class="option">--package</code> flag and Mimosa will invoke any packaging modules you have installed.  Mimosa doesn't come with any packaging modules by default, but modules like <a href="https://github.com/dbashford/mimosa-web-package">mimosa-web-package</a> are available and can be added to your application in 5 seconds by simply adding the module name to your <code class="option">mimosa-config</code>.</p>
+    <p>Provide a <code class="option">--package</code> flag and Mimosa will invoke any installed packaging modules. Mimosa doesn't come with any packaging modules by default, but modules like <a href="https://github.com/dbashford/mimosa-web-package">mimosa-web-package</a> are available and can be added to an application by simply adding the module name to the <code class="option">mimosa-config</code> <code class="option">modules</code> array.</p>
 
-    <h3>Remove Leftover Files (-r/--removeCombined)</h3>
 
-    <p>When used in conjunction with <code class="option">--optimize</code> the <code class="option">--removeCombined</code> flag will clean up after the optimization. If, when the optimization is complete, you only want the combined optimized files left behind, this is the flag for you. This flag is a simple pass-through to the <a href="https://github.com/jrburke/r.js/blob/master/build/example.build.js#L244">r.js optimizer</a>, which takes a <code class="option">removeCombined</code> flag of its own.</p>
-
-    <p>The <code class="option">--removeCombined</code> flag must be used with the <code class="option">--optimize</code> flag or Mimosa will error out.</p>
-
-    <pre>$ mimosa build --optimize --removeCombined
-$ mimosa build -or</pre>
-
-   <h3>Compile the Provided Jade Template (-j/--jade)</h3>
-
-    <p>Should you not be deploying a node/Express app, the <code class="option">--jade</code> flag will compile an .html version of the <code class="option">index.jade</code> that Mimosa provides with its new command. The <code class="option">--jade</code> flag will attempt to compile the <code class="option">index.jade</code> file by feeding the template production level settings. <code class="option">cachebust</code> will be turned off. <code class="option">reload</code> set to <code class="option">false</code>. <code class="option">optimize</code> will be set to <code class="option">true</code> if you also provide the optimize flag.</p>
-
-    <p>If the index.jade file is changed to take different variables, or removed or renamed, the jade compilation will fail with warnings explaining the failures. This makes this flag somewhat inflexible and if that causes problems for enough folks then some flexibility can be built in.  Just <a href="https://github.com/dbashford/mimosa/issues">file an issue!</a></p>
-
-    <pre>$ mimosa build --jade
-$ mimosa build -j</pre>
     <section id="virgin">
       <div class="page-header">
         <h1>
@@ -474,7 +443,7 @@ $ mimosa build -j</pre>
 
         <pre>$ mimosa virgin</pre>
 
-        <p>This command is just the watching, compiling, linting and notifications. No server, no optimizations, no writing the output. Use this if you've already got an application framework, you don't need files served, and you don't need optimizations. But you do want to know if something doesn't compile before you reload the page, and you do want to introduce linting to your workflow.</p>
+        <p><code class="option">mimosa virgin</code> includes just the watching, compiling, linting and notifications. No server, no optimizations, no writing the output. Use this if you've already got an application framework and don't need files served or optimizations, but you want to know if something doesn't compile immediately, and you want to introduce linting to your workflow.</p>
 
       </div>
       <div class="span6 term">
@@ -504,13 +473,13 @@ $ mimosa build -j</pre>
 
         <pre>$ mimosa import [libraryName]</pre>
 
-        <p>The <code class="option">import</code> command will use <a href="https://github.com/volojs/volo">Volo</a> to import dependencies for you. Mimosa will first ask where you want to place the dependency, then it will use Volo to go fetch it from GitHub. Whenever possible, Volo tries to get AMD versions of files so you do not have to wrap them. See the <a href="http://volojs.org/">Volo documentation</a> for more details.</p>
+        <p>The <code class="option">import</code> command will use <a href="https://github.com/volojs/volo">Volo</a> to import dependencies. Mimosa will first ask where to place the dependency, then it will use Volo to go fetch it from GitHub. Whenever possible, Volo tries to get AMD versions of files so they do not need to be wrapped. See the <a href="http://volojs.org/">Volo documentation</a> for more details.</p>
 
         <pre>$ mimosa import jquery</pre>
 
         <h3>Install Non-AMD dependencies (-n/--noamd)</h3>
 
-        <p>The only Volo option exposed by Mimosa at this time is the ability to turn on and off whether you are looking for an AMD or non-AMD version. By default Mimosa will set the import to AMD. But if you wish a non-AMD version of a library, provide a <code class="option">--noamd</code> flag.</p>
+        <p>The only Volo option exposed by Mimosa at this time is the ability to turn on and off whether to look for AMD or non-AMD libraries. AMD is the default. If you wish a non-AMD version of a library, provide a <code class="option">--noamd</code> flag.</p>
 
         <pre>$ mimosa import backbone --noamd</pre>
 
@@ -570,15 +539,13 @@ $ mimosa build -j</pre>
       <div class="span6">
         <h2>update</h2>
 
-        <P>The <code class="option">update</code> command isn't used to update Mimosa itself.  If you are attempting to get a new version of Mimosa, then what you want to do is <code class="option">npm install mimosa -g</code>.  The <code class="option">update</code> command is used to update the <code class="option">package.json</code> for your Mimosa managed projects.</p>
+        <P>The <code class="option">update</code> command isn't used to update Mimosa itself.  (If a new version of Mimosa is desired, execute <code class="option">npm install mimosa -g</code>.) The <code class="option">update</code> command is used to update the <code class="option">package.json</code> for Mimosa managed projects.</p>
 
-        <p>If you installed an application using the <code class="option">new</code> command, you will want to keep your application up to date with the Mimosa skeleton as it evolves and advances.</p>
-
-        <p>Use the <code class="option">update</code> command to update the node packages that Mimosa installed inside your application when it was created and to get any new libraries it has included. This command saves you the trouble of needing to keep track of versions of libraries yourself and ensures you'll keep up to date with the versions Mimosa uses.</p>
+        <p>If an application is installed using the <code class="option">new</code> command, the application may fall out of date with the Mimosa skeleton as it evolves and advances. Use the <code class="option">update</code> command to update the node packages that Mimosa installed inside an application when it was created and to get any new libraries Mimosa now includes.</p>
 
         <p>Mimosa will not attempt to update any of the other assets it delivers (routes, example skeleton files, etc) because many of them may have significantly changed from when they were created.</p>
 
-        <p>Mimosa will first run <code class="option">npm uninstall</code> for each of the skeleton libraries already in place in your project, and then it will follow up with an <code class="option">npm install</code> on each removed library and each new library that wasn't there originally.</p>
+        <p>Mimosa will first run <code class="option">npm uninstall</code> for each of the skeleton libraries already in place. Then it will <code class="option">npm install</code> each removed library and each new library that wasn't there originally.</p>
 
         <pre>$ mimosa update</pre>
 
@@ -616,9 +583,7 @@ $ mimosa build -j</pre>
 
         <pre>$ mimosa config</pre>
 
-        <p>If you've already got a project and want to use Mimosa with it, this command will copy the default <code class="option">mimosa-config.coffee</code> file into whatever directory you are in. You'll likely have some configuration to update to point Mimosa at your source and compiled directories.  This is also a good way to get <code class="option">mimosa-config</code> updates when they occur.</p>
-
-        <p>Mimosa works fine with a JavaScript config, so you are welcome to change the extension of the file to <code class="option">.js</code>.  The only change you will need to make to the default config is to change the CoffeeScript comments (#, ###), to JavaScript comments (//, /*...*/).  Should you start uncommenting some config, you'll have a few other things to do to make the configuration valid JavaScript, like adding curly brackets and commas.</p>
+        <p>To use an Mimosa with an existing project, use this command to copy the default <code class="option">mimosa-config.coffee</code> file into the current directory. Some configuration will likely need to be updated for the project. Using this command to generate a <code class="option">mimosa-config</code> is also a good way to get <code class="option">mimosa-config</code> updates when they occur.</p>
 
       </div>
       <div class="span6 term">
@@ -635,7 +600,7 @@ $ mimosa build -j</pre>
       <div class="span6">
         <h3>-h/--help</h3>
 
-        <p>Mimosa includes extensive help documentation on the command line for each of the commands. Give them a peek if you can't remember an option or can't remember what a command does. Use <code class="option">--help</code> or <code class="option">-h</code> to bring up help. </p>
+        <p>Mimosa includes extensive help documentation for each command. Use <code class="option">--help</code> or <code class="option">-h</code> to bring up help. </p>
 
         <pre>$ mimosa --help
 $ mimosa new --help

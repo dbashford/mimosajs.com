@@ -9,7 +9,6 @@
   <title>Optimization - Mimosa</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <link rel="stylesheet" href="css/main.css"> -->
   <link rel="stylesheet" href="css/bootstrap.min.css" >
   <link rel="stylesheet" href="css/bootstrap-responsive.min.css" >
   <link rel="stylesheet" href="css/app.css">
@@ -89,11 +88,11 @@
           <small><span class="options" title="O no!">zip it up, flip it, compress it down</span></small>
         </h1>
       </div>
-      <p>In the normal course of development (in a pre <a href="http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/">source maps</a> world) you want to have your assets loaded individually rather than in one merged file.  And you certainly don't want your assets minified or mangled. This all makes for easier debugging.</p>
+      <p>In the normal course of development (in a pre <a href="http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/">source maps</a> world) assets are best loaded individually rather than in one merged file. And assets definitely should not be minified or mangled. This all makes for easier debugging.</p>
 
-      <p>But when you take your application to production, you want to include all the performance improvements that come with merging, optimizing, and minifying your assets. For both the <code class="option">build</code> and <code class="option">watch</code> commands, Mimosa provides <code class="option">--optimize</code> and <code class="option">--minify</code> flags that combine to provide you both the ability to fully optimize your application, and to have a bit of control over what gets optimized.</p>
+      <p>But when an application is taken to production, all the performance improvements that come with merging, optimizing, and minifying assets should be included. For both the <code class="option">build</code> and <code class="option">watch</code> commands, Mimosa provides <code class="option">--optimize</code> and <code class="option">--minify</code> flags that combine to provide both the ability to fully optimize an application, and to have a more control over what gets optimized.</p>
 
-      <p>Mimosa uses the <a href="https://github.com/jrburke/r.js/">r.js optimizer</a> which is perfect for optimizing RequireJS applications. Underneath the hood, that optimizer is using <a href="https://github.com/mishoo/UglifyJS">Uglify</a> to shrink your codebase down as tiny as possible. Mimosa bundles Uglify too, and can use it to individually shrink your assets.  And Mimosa's Uglify and the r.js optimizer can be combined to provide more fine-grained control of your minification strategy.</p>
+      <p>Using the <code class="option">mimosa-require</code> module that comes with Mimosa by default, Mimosa uses the <a href="https://github.com/jrburke/r.js/">r.js optimizer</a> which is perfect for optimizing RequireJS applications. Underneath the hood, that optimizer is using <a href="https://github.com/mishoo/UglifyJS">Uglify</a> to shrink a codebase down as tiny as possible. Mimosa bundles Uglify2, and can use it to individually shrink assets. And Mimosa's Uglify and the r.js optimizer can be combined to provide more fine-grained control of a minification strategy.</p>
 
     </section>
     <section id="require">
@@ -104,11 +103,11 @@
         </h1>
       </div>
 
-      <p>For both the <code class="option">build</code> and <code class="option">watch</code> commands, Mimosa provides an <code class="option">--optimize</code> flag that will turn on optimization.  Mimosa wraps the <a href="https://github.com/jrburke/r.js/">r.js optimizer</a> and runs it with a default configuration gleaned from the setup of your application.</p>
+      <p>For both the <code class="option">build</code> and <code class="option">watch</code> commands, Mimosa provides an <code class="option">--optimize</code> flag that will turn on optimization.  Mimosa wraps the <a href="https://github.com/jrburke/r.js/">r.js optimizer</a> and runs it with a default configuration gleaned from the setup of the application.</p>
 
-      <p>When your codebase is optimized and pulled together into one file, the RequireJS library is no longer necessary.  Mimosa will wrap your optimized code in <a href="https://github.com/jrburke/almond">Almond</a>, a replacement AMD loader for RequireJS that provides the minimal functionality necessary for your optimized file.</p>
+      <p>When a codebase is optimized and pulled together into one file, the RequireJS library is no longer necessary. Mimosa will wrap r.js optimized code in <a href="https://github.com/jrburke/almond">Almond</a>, a replacement AMD loader for RequireJS that provides the minimal functionality necessary for optimized files.</p>
 
-      <p>Mimosa's RequireJS optimization support comes courtesy of the <code class="option">mimosa-require</code> module, which is a default Mimosa module and comes with Mimosa when it is installed.  As such, it belongs to a codebase apart from the core of Mimosa, and it behaves according to the rules of any <a href="./modules.html">Mimosa module</a>, so it can be removed and added at any time.</p>
+      <p>Mimosa's RequireJS optimization support comes courtesy of the <code class="option">mimosa-require</code> module, a default Mimosa module that comes with Mimosa when it is installed.</p>
 
       <h2>Optimizer Default Settings</h2>
 
@@ -116,7 +115,7 @@
 
       <ul>
         <li><code class="option">baseUrl</code>: set by combining the mimosa-config <code class="option">watch.compiledDir</code> with the <code class="option">compilers.javascript.directory</code></li>
-        <li><code class="option">out</code>: optimized files are output into the <code class="option">watch.compiled</code> + <code class="option">compilers.javascript.directory</code> in a file that is your main module name + <code class="option">-built.js</code></li>
+        <li><code class="option">out</code>: optimized files are output into the <code class="option">watch.compiled</code> + <code class="option">compilers.javascript.directory</code> in a file that is the main module name + <code class="option">-built.js</code></li>
         <li><code class="option">mainConfigFile</code>: set to the file path of the main module</li>
         <li><code class="option">findNestedDependencies</code>: <code class="option">true</code></li>
         <li><code class="option">wrap</code>: <code class="option">true</code></li>
@@ -125,27 +124,25 @@
         <li><code class="option">name</code>: set to <code class="option">almond</code></li>
       </ul>
 
-      <p>These settings will package up each individual module you have into its own optimized file wrapped with Almond.</p>
+      <p>These settings will package up each individual module into its own optimized file wrapped with Almond.</p>
 
       <h2>Overriding and Including Additional Optimizer Settings</h2>
 
-      <p>You can include any of the other RequireJS <a href="http://requirejs.org/docs/optimization.html#options">optimizer configuration options</a> in the mimosa-config. Simply uncomment the <code class="option">require.optimize.overrides</code> setting and toss your settings in there. You can both override and remove settings. If you want to override a Mimosa setting, just put it in the <code class="option">overrides</code>. If you want a Mimosa default setting removed, set it to <code class="option">null</code>. For instance setting <code class="option">mainConfigFile: null</code> will blank out that setting and it will not be passed to the optimizer.</p>
+      <p>Any of the other RequireJS <a href="http://requirejs.org/docs/optimization.html#options">optimizer configuration options</a> can be included in the mimosa-config. Just uncomment the <code class="option">require.optimize.overrides</code> setting and include those settings there. Settings can be both overridden and removed. To override a Mimosa setting, put the override in <code class="option">overrides</code>. To remove a default setting, set it to <code class="option">null</code>. For instance setting <code class="option">mainConfigFile: null</code> will blank out that setting and not pass it to the optimizer.</p>
 
-      <p>You can also choose to not have Mimosa infer anything and to go entirely with your own configuration. Set <code class="option">require.optimize.inferConfig</code> to false and Mimosa will run r.js with only the settings you give it.</p>
+      <p>Mimosa can also be configured to not infer anything and to go entirely with a custom config. Set <code class="option">require.optimize.inferConfig</code> to false and Mimosa will run r.js with only the settings provided in <code class="option">require.optimize.overrides</code>.</p>
 
-      <p>Also use <code class="option">require.optimize.inferConfig:false</code> if you choose to have your configuration settings in script tags in an HTML file, or in any other file that does not compile to JavaScript. For now, Mimosa is only able to make inferences for configs in JavaScript files. If your configuration (and <code class="option">require</code>/<code class="option">requirejs</code> method calls) are in script tags on an HTML page, Mimosa will not find any modules to compile for optimization and therefore will not run optimization, so you'll need to provide your own configuration in <code class="option">overrides</code> and set <code class="option">inferConfig</code> to <code class="option">false</code>.</p>
+      <p>Also use <code class="option">require.optimize.inferConfig:false</code> if configuration settings are in script tags in an HTML file, or in any other file that does not compile to JavaScript. For now, Mimosa is only able to make inferences for configs in JavaScript files. If a config (and <code class="option">require</code>/<code class="option">requirejs</code> method calls) are in script tags on an HTML page, Mimosa will not find any modules to compile for optimization and therefore will not run optimization, so a custom configuration will need to be provided in <code class="option">overrides</code> with <code class="option">inferConfig</code> set to <code class="option">false</code>.</p>
 
       <h2>Programmatically Take Control of the Optimizer with Modules</h2>
 
-      <p>Mimosa can't know all the intricacies of your codebase.  It can make a lot of educated guesses and put together a really good base r.js config, but you may find you need to make some complicated alterations to the r.js config. If you use <code class="option">overrides</code> you can statically change the r.js configuration, but that isn't always ideal. If you use <code class="option">require.optimize.inferConfig:false</code> then you lose all of the smarts Mimosa puts into building a r.js config for you and you are entirely on your own.</p>
+      <p>Mimosa can't know all the intricacies of a project.  It can make a lot of educated guesses and put together a really good base r.js config, but there are times when complicated alterations must be made to the r.js config. <code class="option">overrides</code> allows static changes to the r.js configuration, but that isn't always ideal. <code class="option">require.optimize.inferConfig:false</code> loses all of the smarts Mimosa puts into building a r.js config. Ideally a project can take advantage of the work Mimosa puts into building the r.js config, and dynamically alter it as well.</p>
 
-      <p>Ideally you can both take advantage of the work Mimosa puts into building the r.js config, and dynamically alter it as well. Just as Mimosa builds the config based on the files that have changed, ideally you can change the config on-the-fly based on the nature of your codebase.</p>
+      <p>Mimosa's building of the inferred r.js config, and the execution of the r.js optimization are pulled apart in two separate steps in Mimosa's workflows. Config building executes during the <code class="option">beforeOptimize</code> step, and execution during the <code class="option">optimize</code> step. This means a custom module can programmatically and dynamically alter the Mimosa-prepared r.js configs before r.js execution occurs.</p>
 
-      <p>Mimosa's building of the inferred r.js config, and the execution of the r.js optimization are pulled apart in two separate steps in Mimosa's workflows. Config building executes during the <code class="option">beforeOptimize</code> step, and execution during the <code class="option">optimize</code> step.  This means a module of your own building can programmatically and dynamically alter the Mimosa-prepared r.js configs before r.js execution occurs.</p>
+      <p>For instance, maybe there are files to include in the r.js execution that are not pulled in as dependencies by r.js, maybe all .html files via the <a href="https://github.com/requirejs/text">requirejs text plugin</a>, and rather than listing them one by one in the overrides, they could be dynamically added so a list need not be maintained. A module could do this, executing during the <code class="option">beforeOptimize</code> step, but after the configs have been built.  In that module the codebase could be scanned for .html files and push them onto the r.js config <code class="option">include</code> array.</p>
 
-      <p>For instance, maybe you have files you want to include in the r.js execution that are not pulled in as dependencies by r.js, maybe all .txt files via the <a href="https://github.com/requirejs/text">requirejs text plugin</a>, and rather than listing them one by one in the overrides, you want to dynamically have them added so you don't have to maintain the list. You could create a module that executes during the <code class="option">beforeOptimize</code> step, but after the configs have been built.  In that module you can scan your codebase for .txt files and push them onto the r.js config <code class="option">include</code> array.</p>
-
-      <p>Doing this gives you both the smarts Mimosa provides, and the intelligence Mimosa can't provide by way of your own module.  To get you started building such a module, check out the long-named example module <a href="https://github.com/dbashford/mimosa-requirebuild-textplugin-include">mimosa-requirebuild-textplugin-include</a> which performs just the task mentioned above.</p>
+      <p>Doing this provides both Mimosa's smarts, and the intelligence Mimosa can't provide by way of a custom module.  To get started building such a module, check out the long-named example module <a href="https://github.com/dbashford/mimosa-requirebuild-textplugin-include">mimosa-requirebuild-textplugin-include</a> which performs just the task mentioned above.</p>
 
     </section>
     <section id="min">
@@ -156,9 +153,9 @@
         </h1>
       </div>
 
-      <p>For both the <code class="option">build</code> and <code class="option">watch</code> commands, Mimosa provides an <code class="option">--minify</code> flag that will run <a href="https://github.com/mishoo/UglifyJS">Uglify</a> over your compiled JavaScript assets.  You have the ability in the mimosa-config to exclude certain files from this minification using the <code class="option">minify.exclude</code> setting.  By default any file already possessing <code class="option">.min.</code> in the path name will be excluded as it is assumed to already be minified.</p>
+      <p>For both the <code class="option">build</code> and <code class="option">watch</code> commands, Mimosa provides an <code class="option">--minify</code> flag that will run <a href="https://github.com/mishoo/UglifyJS2">Uglify2</a> over JavaScript assets. The mimosa-config provides the ability to exclude certain files from this minification using the <code class="option">minify.exclude</code> setting. By default any file already possessing <code class="option">.min.</code> in the path name will be excluded as it is assumed to already be minified.</p>
 
-      <p>Mimosa's Minification support comes courtesy of the <code class="option">mimosa-minify</code> module, which is a default Mimosa module and comes with Mimosa when it is installed.  As such, it belongs to a codebase apart from the core of Mimosa, and it behaves according to the rules of any <a href="./modules.html">Mimosa module</a>, so it can be removed and added at any time.</p>
+      <p>Mimosa's Minification support comes courtesy of the <code class="option">mimosa-minify</code> module, a default Mimosa module that comes with Mimosa when it is installed.</p>
 
     </section>
     <section id="minopt">
@@ -169,11 +166,11 @@
         </h1>
       </div>
 
-      <p>For either the <code class="option">build</code> or <code class="option">watch</code> commands, using the <code class="option">--minify</code> and <code class="option">--optimize</code> flags together gives you increased control over the optimization workflow.</p>
+      <p>For either the <code class="option">build</code> or <code class="option">watch</code> commands, using the <code class="option">--minify</code> and <code class="option">--optimize</code> flags together provides increased control over the optimization workflow.</p>
 
-      <p>The r.js optimizer by itself is often good enough to handle minifying, compressing and pulling your modules into single files; however, the occasional file does not take kindly to being run through Uglify and will be broken when compressed. The r.js optimizer is all or none, you cannot choose to omit a file that isn't being compressed correctly. So if your application doesn't run because of errors in Uglifying, you are forced to inject other steps into your project's workflow to both use the optimizer and have minified files.</p>
+      <p>The r.js optimizer by itself is often good enough to handle minifying, compressing and pulling modules into single files; however, the occasional file does not take kindly to being run through Uglify and will be broken when compressed. The r.js optimizer is all or none. It does not allow choose to omit a file from compression if it is not compressing correctly.</p>
 
-      <p>When both minifying and optimizing, r.js minification is turned off. Specifically the <code class="option">optimize</code> setting of r.js is set to <code class="option">none</code>. The optimizer is still used to pull all of your application's files together into the same file and wrap it in Almond. But Mimosa will Uglify your files itself first, before calling the optimizer, and Mimosa gives you the opportunity to not Uglify whatever files are not making it through Uglifying in working order.</p>
+      <p>When both minifying and optimizing, r.js minification is turned off. Specifically the <code class="option">optimize</code> setting of r.js is set to <code class="option">none</code>. The optimizer is still used to pull all of an application's files together into the same file and wrap it in Almond. But Mimosa will Uglify files first, before calling the optimizer, and Mimosa provides the opportunity to not Uglify whatever files are not making it through Uglifying in working order.</p>
 
       <p>The <a href="https://github.com/dbashford/AngularFunMimosa">AngularFunMimosa</a> demo project is a perfect example of a project that benefits from this functionality. <a href="https://github.com/dbashford/AngularFunMimosa/commit/1816016a3444ab960dd79c2f65b63c6bf9fdc488#L1L9">This commit</a> from that project shows the effect of the minify+optimize feature being added to Mimosa. Previously optimization was turned off via Mimosa's r.js overrides, because when r.js Uglified the code, it also broke the application. When this Mimosa feature was added, the r.js override was removed, and the file that was not surviving Uglifying, <code class='option'>main.js</code>, was simply omitted from minification.  What comes out the other side is a fully r.js optimized and zipped up file that is fully compressed with the exception of the file that cannot be minified.</p>
 
@@ -185,7 +182,7 @@
           <small><span class="options">it gets minified too</span></small>
         </h1>
       </div>
-      <p>When the <code class="option">--optimize</code> flag is used, Mimosa will minify all of your compiled CSS files. And that about covers that.</p>
+      <p>When the <code class="option">--optimize</code> flag is used, Mimosa will minify CSS files too. And that about covers that.</p>
     </section>
   </section>
 

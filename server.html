@@ -91,17 +91,17 @@
       </div>
     </section>
 
-    <p>Mimosa's server support comes courtesy of the <code class="option">mimosa-server</code> module.  As such, it belongs to a codebase apart from the core of Mimosa, and it behaves according to the rules of any <a href="./modules.html">Mimosa module</a>, so it can be removed and added at any time.</p>
+    <p>Mimosa's server support comes courtesy of the <code class="option">mimosa-server</code> module. As such, it belongs to a codebase apart from the Mimosa core, and it behaves according to the rules of any <a href="./modules.html">Mimosa module</a>, so it can be removed and added.</p>
 
     <h2>No server necessary</h2>
-    <p>With <code class="option">mimosa watch</code> you don't need to use Mimosa to serve up your assets.  You might have a server already.  You might be running Derby, Sinatra, Spring MVC, whatever it might be, you might have serving your assets covered.  <code class="option">mimosa watch</code> is good with that.  It'll run the workflow, compile your code, lint it, write it, and let you handle it from there.</p>
+    <p>With <code class="option">mimosa watch</code> Mimosa does not need to serve assets. A project might have a server already. <code class="option">mimosa watch</code> is good with that. It'll run the workflow, compile code, lint it, write it, and stop there.</p>
 
-    <p><code class="option">mimosa virgin</code> is even less intrusive.  It will not write your code anywhere, it'll just run the workflow steps pre-write.  You might have an "asset pipeline" that pulls your assets right out of your source code.</p>
+    <p><code class="option">mimosa virgin</code> is even less intrusive. It will not write anything, it'll just run the workflow steps pre-write.</p>
 
     <h2>But if you want one...</h2>
-    <p>Toss a <code class="option">-s/--server</code> onto your <code class="option">mimosa watch</code> and Mimosa will invoke a server.  Which server Mimosa invokes depends on what you have in your <code class="option">mimosa-config</code>.  Mimosa could start its own server and point it at your views and assets.  Or Mimosa could start the server it gave you when you ran <code class="option">mimosa new</code>.  Or Mimosa could execute a server you had previously using a simple exports hook.</p>
+    <p>Toss a <code class="option">-s/--server</code> onto <code class="option">mimosa watch</code> and Mimosa will invoke a server. Which server Mimosa invokes depends on what is in the <code class="option">mimosa-config</code>. Mimosa could start its own embedded Express server and point it at a project's views and assets. Or Mimosa could start the server provided by <code class="option">mimosa new</code>. Or Mimosa could execute an existing server using a simple exports hook.</p>
 
-    <p>All options are nodejs-based.  Mimosa does not have the ability to start your Rails server or your Tomcat.</p>
+    <p>All options are nodejs-based. Mimosa does not have the ability to start your Rails server or your Tomcat.</p>
 
     <section id="new">
       <div class="page-header">
@@ -114,13 +114,13 @@
 
     <h2>Server</h2>
 
-    <p><code class="option">mimosa new</code> will give you the option to have a server of your own or to have Mimosa serve up your application.  If you choose not to have a server of your own, Mimosa will not deliver any sort of server code.</p>
+    <p><code class="option">mimosa new</code> provides the option to have a server or to use Mimosa's embedded server. If no server is chosen, Mimosa will not deliver any sort of server code.</p>
 
-    <p>If you choose the Express option, you will be given a single file, written in the JavaScript meta-language you chose during the <code class="option">mimosa new</code> prompting (<code class="option">server.coffee</code>, for example), that Mimosa will use to start your server. You will also be given a simple router, also in the JavaScript meta-language you chose.</p>
+    <p>If the Express option is chosen, Mimosa will provide a single file, written in the chosen JavaScript meta-language, that Mimosa will use to start your server. Mimosa also provides a simple router, also in the JavaScript meta-language you chose.</p>
 
     <h2>Views</h2>
 
-    <p><code class="option">mimosa new</code> will give you the option to select the server view technology you would like to use.  You can use plain HTML if you wish, or any of a number of dynamic templating options. Mimosa does not allow you to choose to have no views. Depending on the technology you choose, you will get one or two view templates for your starter app.</p>
+    <p><code class="option">mimosa new</code> provides the option to select a server view technology. Plain HTML is an option as well as a number of dynamic templating technologies. Depending on the technology chosen, Mimosa will provide one or two view templates for the starter app.</p>
 
     <section id="mimosas">
       <div class="page-header">
@@ -131,17 +131,9 @@
       </div>
     </section>
 
-    <p>Mimosa comes bundled with its own Express server.  If you have <code class="option">server.useDefaultServer</code> set to <code class="option">true</code> in your <code class="option">mimosa-config</code>, then when you run <code class="option">mimosa watch</code> with the <code class="option">--server</code> flag, Mimosa will run its embedded server. When running Mimosa's Express, all of the settings in the <code class="option">server</code> portion of the <code class="option">mimosa-config</code> become very important.</p>
+    <p>Mimosa comes bundled with its own Express server. If <code class="option">server.useDefaultServer</code> is set to <code class="option">true</code> in the <code class="option">mimosa-config</code>, then when <code class="option">mimosa watch</code> is run with the <code class="option">--server</code> flag, Mimosa will run its embedded server. When running Mimosa's Express, all of the settings in the <code class="option">server</code> portion of the <code class="option">mimosa-config</code> become very important. See the <a href="./configuration.html#server">server configuration details</a> to learn more.</p>
 
-    <ul>
-      <li><code class="option">server.port</code> is used to determine which port to start the server on.  It defaults to 3000.</li>
-      <li><code class="option">server.base</code> will host your application behind a given path.  It defaults to blank, so your application will be available via localhost, but if you were, for instance, to provide 'app' instead, your index page would be available at localhost/app.</li>
-      <li><code class="option">server.views.compileWith</code> lets Mimosa know what kind of views you have.</li>
-      <li><code class="option">server.views.extension</code> informs Mimosa's Express which files to register your <code class="option">server.views.compileWith</code> against. This gives you the chance to use "html" as an extension for all your views if you wish.</li>
-      <li><code class="option">server.views.path</code> points Mimosa to the location of your views.</li>
-    </ul>
-
-    <p>Mimosa's Express will do a few things for you in addition to serving up your application.  Assuming <code class="option">liveReload.enabled</code> is set to <code class="option">true</code> (default), you'll have Live Reload functionality for your codebase.  Mimosa will reload your browser whenever a file in <code class="option">liveReload.enabled.additionalDirs</code> (default 'views') or <code class="option">config.watch.compiledDir</code> (default 'public') changes. Mimosa will also serve up your static assets gzipped.</p>
+    <p>Mimosa's Express will do a few things in addition to serving up an application. Assuming <code class="option">liveReload.enabled</code> is set to <code class="option">true</code> (default), Live Reload will be used. Mimosa will reload the browser whenever a file in <code class="option">liveReload.enabled.additionalDirs</code> (default 'views') or <code class="option">config.watch.compiledDir</code> (default 'public') changes. Mimosa will also serve static assets gzipped.</p>
 
     <section id="yours">
       <div class="page-header">
@@ -152,11 +144,11 @@
       </div>
     </section>
 
-    <p>If you've got a moderately complex app, you may want the flexibility of having your own server. Delivering you an Express server is the <code class="option">mimosa new</code> default. If <code class="option">server.useDefaultServer</code> is set to <code class="option">false</code>, Mimosa will look for a piece of node.js code located at <code class="option">server.path</code>, and execute the <code class="option">startServer</code> function of that code (so that function must be exported). That function will be passed the entire resolved and enriched <code class="option">mimosa-config</code> for use within your server.</p>
+    <p>Mimosa can start a nodejs based server. If <code class="option">server.useDefaultServer</code> is set to <code class="option">false</code>, Mimosa will look for a piece of node.js code located at <code class="option">server.path</code>, and execute the <code class="option">startServer</code> function of that code (so that function must be exported). That function will be passed the entire resolved and enriched <code class="option">mimosa-config</code>.</p>
 
-    <p>To take advantage of Mimosa's live reload functionality, the <code class="option">startServer</code> function should return the server object returned by Express's <code class="option">app.listen()</code> function call. If you are using socket.io, then you'll need to change the return so that both your project and Mimosa can use the same socket.io connection.  See the <a href="./utilities.html#reload">Live Reload section</a> on the Utilities page for more details.</p>
+    <p>To take advantage of Mimosa's live reload functionality, the <code class="option">startServer</code> function should return the server object returned by Express's <code class="option">app.listen()</code> function call. If you are using socket.io, then the function should also return the socket.io object. See the <a href="./utilities.html#reload">Live Reload section</a> on the Utilities page for more details.</p>
 
-    <p>The server code delivered by <code class="option">mimosa new</code> will use all of the configuration from the <code class="option">mimosa-config</code> <code class="option">server</code> block. You could easily choose to remove the usage of the <code class="option">mimosa-config</code> entries from the delivered code. For instance, in the following code, all of the bolded entries could be replaced with their actual values, but this of course means Mimosa will be less capable of controlling behavior of your app.</p>
+    <p>The server code delivered by <code class="option">mimosa new</code> will use all of the configuration from the <code class="option">mimosa-config</code> <code class="option">server</code> block. The use of the <code class="option">mimosa-config</code> entries could be removed from the delivered code. For instance, in the following code, all of the bolded entries could be replaced with their actual values, but this of course means Mimosa will be less capable of controlling behavior an app.</p>
 
 <pre>app.configure ->
   app.set 'port', <b>config.server.port</b>
@@ -173,23 +165,26 @@
       </div>
     </section>
 
-    <p>As with the server code delivered to you, the view code and routes are built to be flexible enough to work in several scenarios.  You may wish to remove some conditionals, or to hard-code some properties where it makes sense. You may not need the flexibility.</p>
+    <p>As with the server code Mimosa delivers, the view code and routes are built to be flexible enough to work in several scenarios. Some conditionals and <code class="option">mimosa-config</code> properties can be replaced or hard-coded. The code may not need that level of complexity.</p>
 
-    <p>Mimosa uses <a href="https://github.com/visionmedia/consolidate.js">consolidate</a>, both internally and within the delivered Express, to easily toggle between different view templating libraries. If you choose to have your own server, consolidate will be installed in your project. Also installed will be the library for the templating library you choose.</p>
+    <p>Mimosa uses <a href="https://github.com/visionmedia/consolidate.js">consolidate</a>, both internally and within the delivered Express, to easily toggle between different view templating libraries. Also installed will be the library for the chosen templating library.</p>
 
-    <p>Each of the client libraries has a string that you would use to configure <code class="option">server.views.compileWith</code> to determine which view technology will be used, and each library has a default extension. When you chose one of the client libraries during <code class="option">mimosa new</code>, Mimosa will modify the <code class="option">mimosa-config</code> with these values. The <code class="option">server.views.compileWith</code> values are listed below next to the name of each technology. The default extensions are listed as well.</p>
+    <p><code class="option">server.views.compileWith</code> can be configured to use one of the available libraries, and each library has a default extension. When a client library is chosen during <code class="option">mimosa new</code>, Mimosa will modify the <code class="option">mimosa-config</code> with these values. The <code class="option">server.views.compileWith</code> values are listed below next to the name of each technology. The default extensions are listed as well.</p>
 
     <h2>Jade <small><span class="mim">jade</span> <span class="command">.jade</span></small></h2>
-    <p><a href="http://jade-lang.com/">Jade</a> is the default server templating language. The project that <code class="option">mimosa new</code> gives you will include simple layout and index pages.</p>
+    <p><a href="http://jade-lang.com/">Jade</a> is available. The project that <code class="option">mimosa new</code> delivers will include simple layout and index pages.</p>
 
     <h2>EJS <small><span class="mim">ejs</span> <span class="command">.ejs</span></small></h2>
-    <p><a href="https://github.com/visionmedia/ejs">EJS</a> is also available, and <code class="option">mimosa new</code> delivers you a single <code class="option">index.ejs</code> file.</p>
+    <p><a href="https://github.com/visionmedia/ejs">EJS</a> is also available, and <code class="option">mimosa new</code> delivers a single <code class="option">index.ejs</code> file.</p>
 
     <h2>Hogan <small><span class="mim">hogan</span> <span class="command">.hjs</span></small></h2>
-    <p><a href="https://github.com/visionmedia/ejs">Hogan</a> is available, and <code class="option">mimosa new</code> delivers you a single <code class="option">index.hjs</code> file.</p>
+    <p><a href="https://github.com/visionmedia/ejs">Hogan</a> is available, and <code class="option">mimosa new</code> delivers a single <code class="option">index.hjs</code> file.</p>
+
+    <h2>Handlebars <small><span class="mim">handlebars</span> <span class="command">.hbs</span></small></h2>
+    <p><a href="http://handlebarsjs.com/">Handlebars</a> is available, and <code class="option">mimosa new</code> delivers a single <code class="option">index.hbs</code> file.</p>
 
     <h2>HTML <small><span class="mim">html</span> <span class="command">.html</span></small></h2>
-    <p>You can choose to code plain HTML templates on the server too.  Mimosa actually uses <a href="https://github.com/visionmedia/ejs">EJS</a> behind the scenes (see above), as EJS allows you to code plain HTML pages.  To accommodate the fact that plain HTML isn't dynamic, if you choose to use plain HTML templating, <code class="option">mimosa new</code> will give you two templates, one each for when you are running with and without the <code class="option">optimize</code> flag.  The Express routes know how to toggle between the two.  Also, the delivered server has a switch in its options for Live Reload that will allow plain HTML pages to work just fine, so not having that dynamic toggle in your view will not cause any trouble.</p>
+    <p>Plain HTML templates can be chosen too. Mimosa uses <a href="https://github.com/visionmedia/ejs">EJS</a> behind the scenes (see above), as EJS allows plain HTML pages. To accommodate the fact that plain HTML isn't dynamic, if plain HTML templating is chosen, <code class="option">mimosa new</code> provides two templates, one each for running with and without the <code class="option">optimize</code> flag. The Express routes know how to toggle between the two. Also, the delivered server has a switch in its options for Live Reload that will allow plain HTML pages to work just fine, so not having that dynamic toggle in a view will not cause any trouble.</p>
 
   </section>
 
