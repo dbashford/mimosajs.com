@@ -240,7 +240,7 @@ $ mimosa new nameOfApplicationHere -d</pre>
       <div class="page-header">
         <h1>
           Watch, Compile, Serve
-          <small><span class="mim">mimosa</span> <span class="command">watch</span> <span class="options">[-s/--server] [-c/--clean] [-o/--optimize] [-m/--minify]</span></small>
+          <small><span class="mim">mimosa</span> <span class="command">watch</span> <span class="options">[-s/--server] [-c/--clean] [-d/--delete] [-o/--optimize] [-m/--minify]</span></small>
         </h1>
       </div>
     </section>
@@ -293,6 +293,13 @@ $ mimosa new nameOfApplicationHere -d</pre>
 
     <pre>$ mimosa watch --clean
 $ mimosa watch -c</pre>
+
+    <h3>Delete Compiled Directory First (-d/--delete)</h3>
+
+    <p>More drastic than the clean flag, the  <code class='option'>--delete</code> flag will remove the compiled directory entirely. This is the same as the <code class='option'>--force</code> option for the <code class='option'>clean</code> command below. More details about the difference between cleaning and deleting below.</p>
+
+    <pre>$ mimosa watch --delete
+$ mimosa watch -d</pre>
 
     <h3>Serve Optimized Assets (-o/--optimize)</h3>
 

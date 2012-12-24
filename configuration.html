@@ -73,6 +73,7 @@
     <div class="subnav">
       <ul class="nav nav-pills">
         <li><a href="#config" title="How it all works">Overview</a></li>
+        <li><a href="#version" title="Enforce a Mimosa version">Version</a></li>
         <li><a href="#modules" title="What modules are installed">Modules</a></li>
         <li><a href="#watch" title="What to watch and where">Watch</a></li>
         <li><a href="#compilers" title="Compiler tweaks">Compilers</a></li>
@@ -117,6 +118,31 @@
     <p>But if, for instance, you just don't want compiled code in a directory named <code class="option">public</code>, make sure to uncomment the right lines all the way back to the root of the config. Don't just uncomment the <code class="option">compiledDir</code>, uncomment <code class="option">compiledDir</code> and <code class="option">watch</code>.
     </p>
 
+    <section id="version">
+      <div class="page-header">
+        <h1>
+          Mimosa Version <small><span class="command">minMimosaVersion</span></small>
+        </h1>
+      </div>
+    </section>
+
+    <div class="row">
+      <div class="span6">
+
+        <h4 class="hi minMimosaVersion">minMimosaVersion</h4>
+
+        <p class="hi minMimosaVersion">The <code class="option">minMimosaVersion</code> setting allows the enforcing of a minimum allowed Mimosa version in order to start Mimosa with the given project. If a user has version <code class="option">0.7.0</code> installed, and the <code class="option">minMimosaVersion</code> is set to <code class="option">0.7.1</code>, then when Mimosa is started, it will write an error to the log and exit. Until the version problem is cleared up, Mimosa will not start.</p>
+
+      </div>
+      <div class="span6">
+<pre><span class="modules"># minMimosaVersion: null</span></pre>
+      </div>
+    </div>
+
+    <p class="hi minMimosaVersion">When set to <code class="option">null</code>, which is the default, Mimosa will not perform any version checks.</p>
+
+    <p class="hi minMimosaVersion">This is useful on project teams, when, for example, features of a newly released Mimosa are used, and the team wants to enforce that everyone upgrade their Mimosa.</p>
+
     <section id="modules">
       <div class="page-header">
         <h1>
@@ -138,9 +164,9 @@
       </div>
     </div>
 
-    <p>If a module is included that is not installed, Mimosa will attempt to install it from NPM. This saves the extra step of doing a <code class="option">mod:install</code>.</p>
+    <p class="hi modules">If a module is included that is not installed, Mimosa will attempt to install it from NPM. This saves the extra step of doing a <code class="option">mod:install</code>.</p>
 
-    <p>Also, this config allows for installing specific versions of modules. If a new module is added by name only, Mimosa installs the latest version. If a version if provided, Mimosa will install that specific version. The syntax for installing specific versions is <code class="option">moduleName@moduleVersion</code>, for example <code class="option">web-package@0.2.0</code>. Versions can be changed and toggled at will. Because Mimosa installs modules on startup, different versions of a module can be used per project and incur only the cost of the time it takes to run the install when you switch between projects.</p>
+    <p class="hi modules">Also, this config allows for installing specific versions of modules. If a new module is added by name only, Mimosa installs the latest version. If a version if provided, Mimosa will install that specific version. The syntax for installing specific versions is <code class="option">moduleName@moduleVersion</code>, for example <code class="option">web-package@0.2.0</code>. Versions can be changed and toggled at will. Because Mimosa installs modules on startup, different versions of a module can be used per project and incur only the cost of the time it takes to run the install when you switch between projects.</p>
 
     <section id="watch">
       <div class="page-header">
