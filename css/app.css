@@ -649,3 +649,13 @@ i {
   border-radius:12px;
   margin-left:10px
 }
+
+
+.quicklist {
+  list-style: none;
+  margin-left:0;
+}
+
+.quicklist li {
+  margin-bottom:5px;
+}
