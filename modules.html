@@ -479,7 +479,7 @@ $ mimosa mod:init --coffee</pre>
     <p>The arguments passed in are:</p>
     <ul>
       <li><code class='option'>program</code>: A <a href="https://github.com/visionmedia/commander.js/">commander</a> <code class='option'>program</code> object. Use this object to register commands, help text, flags, and the command's callback.</li>
-      <li><code class='option'>retrieveConfig</code>: A function that a module can use to get the full <code class='option'>mimosa-config</code> should it be needed. This function takes a callback as a parameter. That callback is passed the full config.</p>
+      <li><code class='option'>retrieveConfig</code>: A callback function that a module can use to execute a Mimosa <code class='option'>clean</code> and <code class='option'>build</code> and get the full <code class='option'>mimosa-config</code> should it be needed. This function takes two parameters, a flag to indicate if a build should be run before executing the command, and a callback function to execute the command module's code. That callback is passed the full <code class='option'>mimosa-config</code>.</p>
     </ul>
 
     <p>The <a href="https://github.com/dbashford/mimosa-volo/blob/master/index.coffee">mimosa-volo</a> module is a good example module for how to add a command to Mimosa.  It adds an <code class='option'>import</code> command and makes use of the <code class='option'>mimosa-config</code> during execution.</p>
@@ -1218,11 +1218,9 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
       </h1>
     </div>
 
-    <p>
-
     <p>A command module has a very simple interface. A module that intends to implement a new command needs to implement and export a <code class='option'>registerCommand</code> function. That function takes a <a href="https://github.com/visionmedia/commander.js/">commander</a> <code class='option'>program</code> object for registering the command, the flags, the help text and a callback.</p>
 
-    <p>If a function needs access to the <code class='option'>mimosa-config</code>, it can get it using the second parameter passed to <code class='option'>registerCommand</code>. The second parameter, a <code class='option'>retrieveConfig</code> function, takes a callback when executed. That callback is passed the full <code class='option'>mimosa-config</code>.</p>
+    <p>If a function needs access to execute a <code class='option'>build</code> before running, or needs the <code class='option'>mimosa-config</code>, it can get accomplish those things using the second parameter passed to <code class='option'>registerCommand</code>. The second parameter, a <code class='option'>retrieveConfig</code> function, takes a flag indicating if a build is needed, and a callback. That callback should contain the command module's code, and it is passed the full <code class='option'>mimosa-config</code>.</p>
 
     <div class="page-header" id="install">
       <h1>
