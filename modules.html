@@ -93,9 +93,9 @@
 
     <p>So maybe Mimosa doesn't come with exactly what you need out of the box.  Maybe you want to use a different linter, or you want to kick off your testing suite on every file save. A module can probably help.</p>
 
-    <p>A Mimosa module is a node.js project that, when installed inside Mimosa, can be used as part of a Mimosa workflow. Mimosa is able to use a module because modules implement a simple interface Mimosa can access.</p>
+    <p>A Mimosa module is a node.js project that, when installed inside Mimosa, can be used as part of a Mimosa workflow or introduce a new Mimosa command. Mimosa is able to use a module because modules implement a simple interface Mimosa can access.</p>
 
-    <p>There's a strong chance what you need can be created as a new module. Modules include themselves in a Mimosa workflow to perform their task. In most cases all that is required to install a module is to include the module's name in the Mimosa configuration. Mimosa self-installs modules it comes across but does not already know about.</p>
+    <p>There's a strong chance what you need can be created as a new module. In most cases all that is required to install a module is to include the module's name in the Mimosa configuration. Mimosa self-installs modules it comes across but does not already know about.</p>
 
     <div class="page-header" id="list">
       <h1>
@@ -179,8 +179,12 @@
           <td>Copy your server templates into static HTML as part of a build.</td>
         </tr>
         <tr>
-          <td><a href="https://github.com/dbashford/https://github.com/dbashford/mimosa-requirebuild-textplugin-include">requirebuild-textplugin-include</a></td>
+          <td><a href="https://github.com/dbashford/mimosa-requirebuild-textplugin-include">requirebuild-textplugin-include</a></td>
           <td>Both an example module for modifying the r.js configuration dynamically, and a functional module that will include files attached to the text plugin to r.js runs.</td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/dbashford/mimosa-volo">volo</a></td>
+          <td>Introduces a <code class="option">import</code> command that wraps <a href="https://github.com/volojs/volo">Volo</a> functionality.  Comprises the <code class="option">import</code> command that came bundled with Mimosa pre 0.7.2.</td>
         </tr>
       </tbody>
     </table>
@@ -191,11 +195,13 @@
       </h1>
     </div>
 
-    <p>There are two ways to install a module. The first and best way is to add it to the <a href="./configuration.html#modules">modules</a> array in the <code class="option">mimosa-config</code>. The next time Mimosa is started it will install the module from NPM. To add the <code class="option">mimosa-web-package</code> module, include <code class="option">web-package</code> in the uncommented <a href="./configuration.html#modules">modules</a> config. Run, for instance, <code class="option">mimosa watch</code>, and the first thing Mimosa will do is go fetch <code class="option">mimosa-web-package</code> from NPM.</p>
+    <p>There are two ways to install a module. The first way is to add it to the <a href="./configuration.html#modules">modules</a> array in the <code class="option">mimosa-config</code>. The next time Mimosa is started it will install the module from NPM. To add the <code class="option">mimosa-web-package</code> module, include <code class="option">web-package</code> in the uncommented <a href="./configuration.html#modules">modules</a> config. Run, for instance, <code class="option">mimosa watch</code>, and the first thing Mimosa will do is go fetch <code class="option">mimosa-web-package</code> from NPM.</p>
 
     <p>To install a specific version of a module, to, for instance, ensure everyone on a project stays on the same version, add a <code class="option">@</code> followed by the version after the module name. Ex: <code class="option">web-package@0.1.0</code>.</p>
 
     <p>A second installation method is the <code class="option">mod:install</code> command discussed further below. <code class="option">mimosa mod:install mimosa-web-package</code> will install <code class="option">mimosa-web-package</code> from NPM. The module will still need to be added to any projects that need to use it.</p>
+
+    <p>If using a module that introduces a new Mimosa command, it is best to use the <code class="option">mod:install</code> method for installation. If installed within Mimosa, modules that add commands do not need to be added to a project's list of modules to be used.</p>
 
     <div class="page-header" id="commands">
       <h1>
@@ -464,7 +470,19 @@ $ mimosa mod:init --coffee</pre>
 
     <h2>Mimosa module interface</h2>
 
-    <p>At different times, Mimosa will attempt to execute four different functions in a module.  All of the functions are optional.</p>
+    <p>At different times, Mimosa will attempt to execute five different functions in a module.  All of the functions are optional.</p>
+
+    <h3>registerCommand(program, retrieveConfig)</h3>
+
+    <p>The <code class='option'>registerCommand</code> function is self-explanatory. This function is used to register new Mimosa commands.</p>
+
+    <p>The arguments passed in are:</p>
+    <ul>
+      <li><code class='option'>program</code>: A <a href="https://github.com/visionmedia/commander.js/">commander</a> <code class='option'>program</code> object. Use this object to register commands, help text, flags, and the command's callback.</li>
+      <li><code class='option'>retrieveConfig</code>: A function that a module can use to get the full <code class='option'>mimosa-config</code> should it be needed. This function takes a callback as a parameter. That callback is passed the full config.</p>
+    </ul>
+
+    <p>The <a href="https://github.com/dbashford/mimosa-volo/blob/master/index.coffee">mimosa-volo</a> module is a good example module for how to add a command to Mimosa.  It adds an <code class='option'>import</code> command and makes use of the <code class='option'>mimosa-config</code> during execution.</p>
 
     <h3>defaults()</h3>
     <p>A module's <code class='option'>defaults</code> function is called when Mimosa starts up and is used to assemble the configuration used by Mimosa.  <code class='option'>defaults</code> should return a JavaScript object that is the default configuration for the module. That default configuration is merged with the user provided configuration to establish the full <code class='option'>mimosa-config</code>.</p>
@@ -547,12 +565,12 @@ exports.validate = (config) ->
 
     <div class="page-header" id="register">
       <h1>
-        Registering A Module with Mimosa
+        Registering A Workflow Module
         <small><span class="options">control when code gets called</span></small>
       </h1>
     </div>
 
-    <p>As mentioned in the previous section, a module should implement a <code class='option'>registration</code> function that Mimosa calls when it starts up. When Mimosa calls the module's <code class='option'>registration</code> function, Mimosa passes the enriched <code class='option'>mimosa-config</code> and a <code class='option'>register</code> callback.  The <code class='option'>register</code> callback is what a module uses to inform Mimosa what function in the module to call and under what circumstances to call it.  The <code class='option'>register</code> function takes the following four parameters:</p>
+    <p>As mentioned in a previous section, a module should implement a <code class='option'>registration</code> function that Mimosa calls when it starts up. When Mimosa calls the module's <code class='option'>registration</code> function, Mimosa passes the enriched <code class='option'>mimosa-config</code> and a <code class='option'>register</code> callback.  The <code class='option'>register</code> callback is what a module uses to inform Mimosa what function in the module to call and under what circumstances to call it.  The <code class='option'>register</code> function takes the following four parameters:</p>
 
     <ol>
       <li>A list of workflows, an array of strings. Pick one-to-many workflows depending on the sort of task the module accomplishes. Possible values: buildFile, buildExtension, postBuild, add, update, remove, preClean, cleanFile, postClean. These are explained below.</li>
@@ -1178,7 +1196,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
 
     <div class="page-header" id="callback">
       <h1>
-        Your Module Callback
+          Your Workflow Module Callback
         <small><span class="options">when the rubber hits the code</span></small>
       </h1>
     </div>
@@ -1192,6 +1210,19 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
       <li><code class="options">options</code>: An object containing information about the asset(s)/extension currently being processed. At different steps of the a Mimosa workflow the options object will contain various important pieces of information. One of the first steps a module developer should take when developing a new module is to <code class="options">console.log</code> the content of the options object to see what sort of information is available at their desired workflow and workflow step.</li>
       <li><code class="options">next</code>: a workflow callback. This callback must be called when a module has finished processing. It tells Mimosa to execute the next step in the workflow. If for some reason a module decides that processing for the current asset/build step needs to stop, the callback can be called passing false. Ex: <code class="options">next(false)</code>. In most cases the workflow should not be ended prematurely.</li>
     </ol>
+
+    <div class="page-header" id="register">
+      <h1>
+        Registering A Command Module
+        <small><span class="options">add brand new commands</span></small>
+      </h1>
+    </div>
+
+    <p>
+
+    <p>A command module has a very simple interface. A module that intends to implement a new command needs to implement and export a <code class='option'>registerCommand</code> function. That function takes a <a href="https://github.com/visionmedia/commander.js/">commander</a> <code class='option'>program</code> object for registering the command, the flags, the help text and a callback.</p>
+
+    <p>If a function needs access to the <code class='option'>mimosa-config</code>, it can get it using the second parameter passed to <code class='option'>registerCommand</code>. The second parameter, a <code class='option'>retrieveConfig</code> function, takes a callback when executed. That callback is passed the full <code class='option'>mimosa-config</code>.</p>
 
     <div class="page-header" id="install">
       <h1>

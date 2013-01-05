@@ -78,8 +78,7 @@
         <li><a href="#clean" title="Clean compiled assets">Clean</a></li>
         <li><a href="#build" title="One time asset compilation and optimization">Build</a></li>
         <li><a href="#virgin" title="Compile, lint, feedback, noting else">Just Watch</a></li>
-        <li><a href="#import" title="Grab github project code and stick it where you need it">Import Dependencies</a></li>
-        <li><a href="#update" title="Update project depedencies">Update</a></li>
+        <li><a href="#update" title="Update project depedencies">Refresh Dependencies</a></li>
         <li><a href="#misc" title="Copy Mimosa config to an existing project">Misc</a></li>
       </ul>
     </div>
@@ -103,8 +102,7 @@
       <li><code class='option'>$ mimosa clean</code> cleans the Mimosa generated assets.</li>
       <li><code class='option'>$ mimosa build</code> builds a project.</li>
       <li><code class='option'>$ mimosa virgin</code> writes no output, but performs build and compiles.</li>
-      <li><code class='option'>$ mimosa import</code> wraps Volo for importing library files from GitHub.</li>
-      <li><code class='option'>$ mimosa update</code> updates Mimosa projects with latest node modules and versions.</li>
+      <li><code class='option'>$ mimosa refresh</code> updates Mimosa projects with latest node modules and versions.</li>
       <li><code class='option'>$ mimosa config</code> writes an entirely commented out configuration file.</li>
     </ul>
 
@@ -492,79 +490,13 @@ $ mimosa build -mo</pre>
         </div>
       </div>
     </div>
-    <section id="import">
-      <div class="page-header">
-        <h1>
-          Import Dependencies
-          <small><span class="mim">mimosa</span> <span class="command">import</span> <span class="options">[-n/--noamd]</span></small>
-        </h1>
-      </div>
-    </section>
-    <div class="row">
-      <div class="span6">
-        <h2>import</h2>
 
-        <pre>$ mimosa import [libraryName]</pre>
 
-        <p>The <code class="option">import</code> command will use <a href="https://github.com/volojs/volo">Volo</a> to import dependencies. Mimosa will first ask where to place the dependency, then it will use Volo to go fetch it from GitHub. Whenever possible, Volo tries to get AMD versions of files so they do not need to be wrapped. See the <a href="http://volojs.org/">Volo documentation</a> for more details.</p>
-
-        <pre>$ mimosa import jquery</pre>
-
-        <h3>Install Non-AMD dependencies (-n/--noamd)</h3>
-
-        <p>The only Volo option exposed by Mimosa at this time is the ability to turn on and off whether to look for AMD or non-AMD libraries. AMD is the default. If you wish a non-AMD version of a library, provide a <code class="option">--noamd</code> flag.</p>
-
-        <pre>$ mimosa import backbone --noamd</pre>
-
-      </div>
-      <div class="span6 term">
-        <div class="inner">
-          <p>
-            Davids-MacBook-Pro:foo dbashford$ mimosa import backbone
-          </p>
-
-          <p class="inst">
-            In which directory would you like to import this library?
-          </p>
-
-          <p>
-            1) javascripts<br/>
-            2) javascripts/app<br/>
-            3) javascripts/app/template<br/>
-            4) javascripts/vendor<br/>
-            : 4
-          </p>
-
-          <p class="fb">
-            You chose javascripts/vendor.
-          </p>
-
-          <p>
-            10:47:57 - Beginning import...<br/>
-            Using github repo "amdjs/backbone" for "backbone"...<br/>
-            Downloading: https://raw.github.com/amdjs/backbone/0.9.2/backbone.js<br/>
-            Using github repo "jquery/jquery" for "jquery"...<br/>
-            Downloading: http://code.jquery.com/jquery-1.8.0.js<br/>
-            Using github repo "amdjs/underscore" for "underscore"...<br/>
-            Downloading: https://nodeload.github.com/amdjs/underscore/zipball/1.3.3<br/>
-            10:48:09 -
-            <span class="inst">Installed github:jquery/jquery/1.8.0 at javascripts/vendor/jquery.js</span><br/>
-            <span class="inst">AMD dependency name: vendor/jquery</span><br/>
-            <span class="inst">Installed github:amdjs/underscore/1.3.3 at javascripts/vendor/underscore.js</span><br/>
-            <span class="inst">AMD dependency name: vendor/underscore</span><br/>
-            <span class="inst">Installed github:amdjs/backbone/0.9.2 at javascripts/vendor/backbone.js</span><br/>
-            <span class="inst">AMD dependency name: vendor/backbone</span><br/>
-            <span class="inst">Install Complete!</span><br/>
-            Davids-MacBook-Pro:foo dbashford$
-          </p>
-        </div>
-      </div>
-    </div>
     <section id="update">
       <div class="page-header">
         <h1>
-          Update Project Dependencies
-          <small><span class="mim">mimosa</span> <span class="command">update</span></small>
+          Refresh Project Dependencies
+          <small><span class="mim">mimosa</span> <span class="command">refresh</span></small>
         </h1>
       </div>
     </section>
@@ -572,21 +504,21 @@ $ mimosa build -mo</pre>
       <div class="span6">
         <h2>update</h2>
 
-        <P>The <code class="option">update</code> command isn't used to update Mimosa itself.  (If a new version of Mimosa is desired, execute <code class="option">npm install mimosa -g</code>.) The <code class="option">update</code> command is used to update the <code class="option">package.json</code> for Mimosa managed projects.</p>
+        <P>The <code class="option">refresh</code> command isn't used to update Mimosa itself.  (If a new version of Mimosa is desired, execute <code class="option">npm install mimosa -g</code>.) The <code class="option">refresh</code> command is used to update the <code class="option">package.json</code> for Mimosa managed projects.</p>
 
-        <p>If an application is installed using the <code class="option">new</code> command, the application may fall out of date with the Mimosa skeleton as it evolves and advances. Use the <code class="option">update</code> command to update the node packages that Mimosa installed inside an application when it was created and to get any new libraries Mimosa now includes.</p>
+        <p>If an application is installed using the <code class="option">new</code> command, the application may fall out of date with the Mimosa skeleton as it evolves and advances. Use the <code class="option">refresh</code> command to update the node packages that Mimosa installed inside an application when it was created and to get any new libraries Mimosa now includes.</p>
 
         <p>Mimosa will not attempt to update any of the other assets it delivers (routes, example skeleton files, etc) because many of them may have significantly changed from when they were created.</p>
 
         <p>Mimosa will first run <code class="option">npm uninstall</code> for each of the skeleton libraries already in place. Then it will <code class="option">npm install</code> each removed library and each new library that wasn't there originally.</p>
 
-        <pre>$ mimosa update</pre>
+        <pre>$ mimosa refresh</pre>
 
       </div>
       <div class="span6 term">
         <div class="inner">
           <p>
-            Davids-MacBook-Pro:foo dbashford$ mimosa update<br/>
+            Davids-MacBook-Pro:foo dbashford$ mimosa refresh<br/>
             13:57:15 - Un-installing node package. express:3.0.0rc4<br/>
             13:57:15 - Un-installing node package. jade:0.27.3<br/>
             13:57:15 - Un-installing node package. watch-connect:0.3.4<br/>
