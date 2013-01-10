@@ -160,6 +160,7 @@
 
         <div class="span4">
 <pre># lint:
+  # exclude:[]
   # compiled:
     # javascript:true
     # css:true
@@ -170,6 +171,7 @@
     # javascript: false
     # css: false
   # rules:
+    # jshintrc: ".jshintrc"
     # js:
       # plusplus: true
     # css:
@@ -185,7 +187,13 @@
 
       <h2>Lint Rules</h2>
 
-      <p>The <code class="option">rules</code> block is where linting rules for each of the linting tools is overridden or changed. Example overrides are provided in the default configuration. Those are examples, they are not actually overrides.</p>
+      <p>The <code class="option">rules</code> block is where linting rules for each of the linting tools are overridden or changed. Example overrides are provided in the default configuration. Those are examples, they are not actually overrides.</p>
+
+      <p>For CoffeeScript and IcedCoffeeScript some jshint rules are turned off by default. Those compilers output JavaScript that violates jshint and there is nothing that can be done other than turn the rules off. So when compiling those files, Mimosa will turn off the following rules by default:</p>
+
+      <pre>boss: true
+eqnull: true
+shadow: true</pre>
 
       <h2>JSHint, CSSLint</h2>
 
@@ -228,13 +236,17 @@
 
       <p>If Mimosa is serving assets, there is nothing to do on the server.</p>
 
-      <p>If running a node server that Mimosa is starting, then the <code class="option">startServer</code> function needs to return the http server object. This is the same object returned by <code class="option">require('http').createServer()</code> and by <code class="option">express().listen()</code>. The <code class="option">mimosa-live-reload</code> module needs access to the server to establish a connection between the socket.io client and the server.</p>
+      <p>If running a node server that Mimosa is starting, then the callback that Mimosa passes <code class="option">startServer</code> needs to be passed the http server object. This is the same object returned by <code class="option">require('http').createServer()</code> and by <code class="option">express().listen()</code>. The <code class="option">mimosa-live-reload</code> module needs access to the server to establish a connection between the socket.io client and the server.</p>
 
       <h2>Already using socket.io?</h2>
 
-      <p>This pertains to those who are using their own server, not Mimosa's.  The <code class="option">mimosa-live-reload</code> module uses socket.io in conjunction with the server returned from the <code class="option">startServer</code> function to provide live reload functionality. But socket.io is already being used, Mimosa's use of socket.io will cause problems.</p>
+      <p>This pertains to those who are using their own server, not Mimosa's.  The <code class="option">mimosa-live-reload</code> module uses socket.io in conjunction with the server passed to the <code class="option">startServer</code> callback function to provide live reload functionality. But if socket.io is already being used, Mimosa's use of socket.io will cause problems.</p>
 
-      <p>If socket.io is already being used, then you can also pass it back via <code class="option">startServer</code>.  Change the return for <code class="option">startServer</code> so that instead of passing just the server, it passes this object: <code class="option">{server:server, socketio:io} </code>.  The <code class="option">server</code> property is the same server  already returned from <code class="option">startServer</code>, the <code class="option">socketio</code> property is the object returned by <code class="option">socketio.listen(server)</code>. If this object is provided, <code class="option">mimosa-live-reload</code> will not create its own socketio connection, and instead use the existing one.</p>
+      <p>If socket.io is already being used, then it must also be given to the callback function executed at the end of <code class="option">startServer</code>. The first parameter passed to the callback should be the server, and the second should be the object returned by <code class="option">socketio.listen(server)</code>. If this object is provided, <code class="option">mimosa-live-reload</code> will not create its own socketio connection, and instead use the existing one.</p>
+
+      <h2>How about Live Reload for Your Server?</h2>
+
+      <p>Via an <a href="https://github.com/dbashford/mimosa-server-reload">external module</a> you can restart your server anytime certain files change.  This is yet another time saver.</p>
 
     </section>
     <section id="notify">

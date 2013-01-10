@@ -487,65 +487,62 @@ $ mimosa mod:init --coffee</pre>
     <h3>defaults()</h3>
     <p>A module's <code class='option'>defaults</code> function is called when Mimosa starts up and is used to assemble the configuration used by Mimosa.  <code class='option'>defaults</code> should return a JavaScript object that is the default configuration for the module. That default configuration is merged with the user provided configuration to establish the full <code class='option'>mimosa-config</code>.</p>
 
-    <pre>exports.defaults = ->
-  minify:
-    exclude:["\\.min\\."]</pre>
+    <pre>exports.defaults = function() {
+  return {
+    minify: {
+      exclude: [/\.min\./]
+    }
+  };
+};</pre>
 
     <p>If a module doesn't have its own configuration, then this function does not need to be implemented.</p>
 
     <h3>placeholder()</h3>
     <p>A module's <code class='option'>placeholder</code> function is called when Mimosa is building the <code class='option'>mimosa-config.coffee</code> file that is delivered to a user during both the <code class='option'>mimosa new</code> and <code class='option'>mimosa config</code> commands. Use this function to return a string that shows what the module's configuration is and then explains each setting.</p>
 
-    <pre>exports.placeholder = ->
-  """
-  \t
-    # minify:                   # Configuration for non-require minification/compression via uglify
-                                 # using the --minify flag.
-      # exclude:[\\.min\\.]     # List of regexes to exclude files when running minification.
-                                 # Any path with ".min." in its name, like jquery.min.js, is assumed to
-                                 # already be minified and is ignored by default. Override this property
-                                 # if you have other files that you'd like to exempt from minification.
-  """</pre>
+    <pre>exports.placeholder = function() {
+  return "\t\n\n"+
+         "  # minify:                    # Configuration for non-require minification/compression via uglify\n" +
+         "                               # using the --minify flag.\n" +
+         "    # exclude:[/\\.min\\./]     # List of regexes to exclude files when running minification.\n" +
+         "                               # Any path with \".min.\" in its name, like jquery.min.js, is assumed to\n" +
+         "                               # already be minified and is ignored by default. Override this property\n" +
+         "                               # if you have other files that you'd like to exempt from minification.";
+};</pre>
 
     <p>If a module doesn't have its own configuration, then this function does not need to be implemented.</p>
 
-    <h3>validate(mimosaConfig)</h3>
+    <h3>validate(mimosaConfig, validators)</h3>
     <p>A module's <code class='option'>validate</code> function is called when Mimosa starts up and after Mimosa has put together the full <code class='option'>mimosa-config</code>. That full config is passed to the validate method of all modules and each module has the opportunity to ensure that the config settings are valid. This method should return an array of strings. Each string represents an error that the module has found with the config. If a module return any errors, Mimosa will print the errors and exit to give the user a chance to update the config.</p>
+
+    <p>The <code class='option'>validate</code> function is also passed, as the second parameter, an object containing a collection of validation and utility functions. The best way to learn what those functions are is to <a href="https://github.com/dbashford/mimosa/blob/master/lib/util/validators.coffee">check the source</a>.
 
     <p>If there are no errors, return an empty array. If there is no config to validate, then do not implement the method.</p>
 
     <p>This method is also the last opportunity to edit the module's configuration. After this method is called, the configuration is completely locked down and cannot be edited. For example, a module may take a list of regexs and turn them into a single RegExp object.</p>
 
     <pre>
-exports.validate = (config) ->
-  errors = []
-  if config.minify?
-    if typeof config.minify is "object" and not Array.isArray(config.minify)
+exports.validate = function(config, validators) {
+  var errors = [];
+  if validators.ifExistsIsObject(errors, "minify config", config.minify) {
+    if validators.ifExistsIsArray(errors, "minify.exclude", config.minify.exclude) {
+      var exls = config.minify.exclude;
+      for (var _i = 0, _len = exls.length; _i < _len; _i++) {
+        var ex = exls[_i];
+        if (typeof ex !== "string") {
+          errors.push("minify.exclude must be an array of strings");
+          break;
+        }
+      }
+    }
+  }
 
-      if config.minify.exclude?
-        if Array.isArray(config.minify.exclude)
-          regexes = []
-          newExclude = []
-          for exclude in config.minify.exclude
-            if typeof exclude is "string"
-              newExclude.push __determinePath exclude, config.watch.compiledDir
-            else if exclude instanceof RegExp
-              regexes.push exclude.source
-            else
-              errors.push "minify.exclude must be an array of strings and/or regexes."
-              break
+  if (errors.length === 0 && config.minify.exclude && config.minify.exclude.length > 0) {
+    config.minify.exclude = new RegExp(config.minify.exclude.join("|"), "i");
+  }
 
-          if regexes.length > 0
-            config.minify.excludeRegex = new RegExp regexes.join("|"), "i"
-
-          config.minify.exclude = newExclude
-        else
-          errors.push "minify.exclude must be an array."
-
-    else
-      errors.push "minify configuration must be an object."
-
-  errors</pre>
+  return errors;
+};</pre>
 
     <h3>registration(mimosaConfig, register)</h3>
 

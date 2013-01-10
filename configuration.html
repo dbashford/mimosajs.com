@@ -311,7 +311,7 @@
     </div>
 
     <h4 class="hi path server">server.path</h4>
-    <p class="hi path server">When <code class="option">useDefaultServer</code> is set to <code class="option">false</code>, <code class="option">server.path</code> is the path to the server code. The path can be relative to the root of the application or absolute. The server code at <code class="option">server.path</code> must export a <code class="option">startServer</code> method.  Mimosa will pass that method a copy of the <code class="option">mimosa-config</code>, including all the defaults for each setting, and including extra fields inserted by Mimosa upon startup.</p>
+    <p class="hi path server">When <code class="option">useDefaultServer</code> is set to <code class="option">false</code>, <code class="option">server.path</code> is the path to the server code. The path can be relative to the root of the application or absolute. The server code at <code class="option">server.path</code> must export a <code class="option">startServer</code> function.  Mimosa will pass that method a copy of the <code class="option">mimosa-config</code>, including all the defaults for each setting and including extra fields inserted by Mimosa upon startup. <code class="option">startServer</code> will also be passed a callback that it must execute when complete.</p>
 
     <h4 class="hi port server">server.port</h4>
     <p class="hi port server">The port on which Mimosa starts the server.</p>
@@ -452,6 +452,9 @@
         <h4 class="hi lint">lint</h4>
         <p class="hi lint">Settings for CSS and JS linting/hinting, including what files should be linted and rule overrides to use when running linting. For more on linting, see the <a href="./utilities.html#lint">Utilities tab</a>.</p>
 
+        <h4 class="hi lintexclude lint">lint.exclude</h4>
+        <p class="hi lintexclude lint">Files to exclude from linting. This setting is an array and can be comprised of strings or regexes. Strings are paths that can be relative to the <code class="option">watch.compiledDir</code> or absolute.</p>
+
         <h4 class="hi compiled lint">lint.compiled</h4>
         <p class="hi compiled lint">Settings for assets Mimosa has compiled, like CoffeeScript or Stylus.</p>
 
@@ -468,6 +471,7 @@
       </div>
       <div class="span6">
 <pre><span class="lint"># lint:</span>
+  <span class="lintexclude"># exclude:[]</span>
   <span class="compiled"># compiled:</span>
     <span class="compiledjavascript"># javascript:true</span>
     <span class="compiledcss"># css:true</span>
@@ -478,6 +482,7 @@
     <span class="vendorjavascript"># javascript: false</span>
     <span class="vendorcss"># css: false</span>
   <span class="rules"># rules:</span>
+    <span class="rulesjavascript"># jshintrc: ".jshintrc"</span>
     <span class="rulesjavascript"># javascript:</span>
     <span class="rulescss"># css:</span></pre>
       </div>
@@ -500,6 +505,9 @@
 
     <h4 class="hi rules lint">lint.rules</h4>
     <p class="hi rules lint">All hints/lints come with default rules built in.  Override those with this setting.</p>
+
+    <h4 class="hi jshintrc rules lint">lint.rules.jshintrc</h4>
+    <p class="hi jshintrc rules lint">Location of a .jshintrc file if one exists. Mimosa will look up the file structure in an attempt to find this file, eventually stopping at the file system root.</p>
 
     <h4 class="hi rulesjavascript rules lint">lint.rules.javascript</h4>
     <p class="hi rulesjavascript rules lint">Add  <a href="http://www.jshint.com/options/">jshint overrides</a> as key/value pairs underneath this property.</p>

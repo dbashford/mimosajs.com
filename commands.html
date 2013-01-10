@@ -103,12 +103,9 @@
       <li><code class='option'>$ mimosa build</code> builds a project.</li>
       <li><code class='option'>$ mimosa virgin</code> writes no output, but performs build and compiles.</li>
       <li><code class='option'>$ mimosa refresh</code> updates Mimosa projects with latest node modules and versions.</li>
-      <li><code class='option'>$ mimosa config</code> writes an entirely commented out configuration file.</li>
+      <li><code class='option'>$ mimosa config</code> writes an entirely commented out configuration file for all modules currently installed.</li>
+      <li><code class='option'>--debug</code> and <code class='option'>--help</code> are available for all commands.</li>
     </ul>
-
-
-    <p></p>
-
 
     <section id="module">
       <div class="page-header">
@@ -283,7 +280,7 @@ $ mimosa new nameOfApplicationHere -d</pre>
         <pre>$ mimosa watch --server
     $ mimosa watch -s</pre>
 
-        <p>By default, Mimosa will run a piece of code located at <code class='option'>server.path</code>. If Mimosa was used to create the project, and a server was chosen, a <code class='option'>server.coffee (.iced/.js/.ls)</code> file will be at the project's root. Mimosa will run the <code class='option'>startServer</code> function in this file and pass it the full <code class='option'>mimosa-config</code>.</p>
+        <p>By default, Mimosa will run a piece of code located at <code class='option'>server.path</code>. If Mimosa was used to create the project, and a server was chosen, a <code class='option'>server.coffee (.iced/.js/.ls)</code> file will be at the project's root. Mimosa will run the <code class='option'>startServer</code> function in this file and pass it the full <code class='option'>mimosa-config</code> and a callback function that must be executed.</p>
 
         <p>Mimosa's embedded (non-extendable) Express server can be used by changing the <code class='option'>server.useDefaultServer</code> configuration to <code class='option'>true</code>. If no server was chosen during project creation, this setting will be set.</p>
 
