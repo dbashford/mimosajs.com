@@ -135,6 +135,8 @@
 
     <p>Mimosa's Express will do a few things in addition to serving up an application. Assuming <code class="option">liveReload.enabled</code> is set to <code class="option">true</code> (default), Live Reload will be used. Mimosa will reload the browser whenever a file in <code class="option">liveReload.enabled.additionalDirs</code> (default 'views') or <code class="option">config.watch.compiledDir</code> (default 'public') changes. Mimosa will also serve static assets gzipped.</p>
 
+    <p>The embedded Express server is configured to automatically route every request to the app that doesn't result in an asset being returned.  For instance, if a complex web app has <code class="option">pushState</code> style routing, like <code class="option">/account/1/item/2/comment/4</code>, when that URL is loaded, Mimosa's embedded server has no problem handling it.</p>
+
     <section id="yours">
       <div class="page-header">
         <h1>
