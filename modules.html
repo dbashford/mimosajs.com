@@ -1181,11 +1181,12 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           <li>
             <div class="step">init</div>
             <div class="module not importsource">Imported source files/folders are cleaned up from destination directories.</div>
+            <div class="module not importsource">Empty destination directories are cleaned up.</div>
           </li>
           <li>
             <div class="step">complete</div>
             <div class="module not builtin">Miscellaneous files are cleaned up (-built files, compiled server templates). Empty watch.compiledDir folders are cleaned up.</div>
-            <div class="module not importsource">Empty destination directories are cleaned up.</div>
+
           </li>
         </ul>
       </div>
