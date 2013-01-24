@@ -246,16 +246,34 @@
       <div class="span6">
         <h4 class="hi outputFileName template">template.outputFileName</h4>
         <p class="hi outputFileName template">The path of the file all templates are compiled into. The path is relative to <code class="option">watch.javascriptDir</code>. If multiple templating languages are being used, instead of being a single string, this setting should be a map of Mimosa template compiler name to file path.  Like <code class="option">hogan:"hogan-templates", dust:"dust-templates"</code>. See the <a href="./compilers.html#mt">compilers tab</a> for more info.</p>
+
+        <h4 class="hi helperFiles template">template.helperFiles</h4>
+        <p class="hi helperFiles template">Only relevant for Handlebars templates. An array of paths from <code class="option">watch.javascriptDir</code> to the files containing handlebars helper registrations. The default can be left alone if there are no helpers.</p>
+
       </div>
       <div class="span6">
 <pre><span class="template">template:</span>
   <span class="outputFileName">outputFileName: "templates"</span>
-  <span class="helperFiles">helperFiles: ["app/template/handlebars-helpers"]</span></pre>
+  <span class="helperFiles">helperFiles: ["app/template/handlebars-helpers"]</span>
+
+-- OR --
+
+<span class="template2">template:</span>
+  <span class="outputFiles">outputFiles</span>: [{
+    <span class="folder">folder:""</span>
+    <span class="outputFileName2">outputFileName:""</span>
+  }]</pre>
       </div>
     </div>
 
-    <h4 class="hi helperFiles template">template.helperFiles</h4>
-    <p class="hi helperFiles template">Only relevant for Handlebars templates. An array of paths from <code class="option">watch.javascriptDir</code> to the files containing handlebars helper registrations. The default can be left alone if there are no helpers.</p>
+    <h4 class="hi outputFiles template2">template.outputFiles</h4>
+    <p class="hi outputFiles template2">An alternate configuration, <code class="option">template.outputFiles</code> allows for writing several compiled template files. This is ideal when using compiled templates across multiple pages as opposed to a single page web app. <code class="option">template.outputFiles</code> and <code class="option">template.outputFileName</code> cannot both be used at the same time.</p>
+
+    <h4 class="hi folder outputFiles template2">template.outputFiles[].folder</h4>
+    <p class="hi folder outputFiles template2">All of the templates contained inside <code class="option">folder</code> are compiled and bundled together. It is recursive, so any templates inside sub-folders are included as well.  <code class="option">folder</code> is relative to <code class="option">watch.javascriptDir</code> and must exist. If left a blank string, the folder used will be <code class="option">watch.javascriptDir</code>.</p>
+
+    <h4 class="hi outputFileName2 outputFiles template2">template.outputFiles[].outputFileName</h4>
+    <p class="hi outputFileName2 outputFiles template2"><code class="option">template.outputFiles[].outputFileName</code> is identical to <code class="option">template.outputFileName</code> except it is scoped in this case to just the folder specified by the <code class="option">folder</code> property. There is no default, so this property must be provided.</p>
 
     <section id="copy">
       <div class="page-header">

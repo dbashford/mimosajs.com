@@ -362,11 +362,11 @@
           Micro-Template Compilers
         </h1>
       </div>
-      <p>Listed below are the different micro-templating libraries bulit into Mimosa. For performance reasons, templates should be pre-compild on the server rather than the browser, and Mimosa will pre-compile templates. As with the CSS and JavaScript meta-languages, micro-templates will be compiled when saved.</p>
+      <p>Listed below are the different micro-templating libraries built into Mimosa. For performance reasons, templates should be pre-compiled on the server rather than the browser, and Mimosa will pre-compile templates. As with the CSS and JavaScript meta-languages, micro-templates will be compiled when saved.</p>
 
-      <p>In all cases, the resulting compiled templates will be merged into a single file for use in the client. Within that file will be source information to allow for easily tracking errors back to specific files. The name and location of that single file is configurable <code class="option">(compilers.template.outputFileName)</code>, but by default it is kept at <code class="option">javascripts/templates.js</code>. Use of the templates in this file differs per library, see below.</p>
+      <p>By default  the resulting compiled templates will be merged into a single file for use in the client (see <a href="#ov">Output Variations</a> below for other options). Within that file will be source information to allow for easily tracking errors back to specific files. The name and location of that single file is configurable <code class="option">(compilers.template.outputFileName)</code>, but by default it is kept at <code class="option">javascripts/templates.js</code>. Use of the templates in this file differs per library, see below.</p>
 
-      <p>For each templating langauge, the injected javascript file provides a JavaScript object of templates, keyed by the template file name. Despite what directory a template is in, each template needs to have a unique name.  Should this be violated, Mimosa will warn of template collision issues.</p>
+      <p>For each templating language, the injected javascript file provides a JavaScript object of templates, keyed by the template file name. Despite what directory a template is in, each template needs to have a unique name.  Should this be violated, Mimosa will warn of template collision issues.</p>
 
       <p>Most of the libraries require a client side version to run the compiled templates. Mimosa will handle including that library in your project. It will place an AMD wrapped version of the library inside the <code class="option">watch.javascriptDir</code>/<code class="option">vendor</code> library and reference it from the compiled template file. If a library that matches Mimosa's name for the library exists, Mimosa will not overwrite that file. Also, if a requirejs path alias is set up pointing at the library, like <code class="option">underscore:"vendor/underscore"</code>, Mimosa will use the path. The following are the names of the libraries Mimosa places in <code class="option">watch.javascriptDir</code>/<code class="option">vendor</code> directory.</p>
 
@@ -411,7 +411,11 @@
          </table>
       </p>
 
+      <h2 id="ov">Output Variations</h2>
+
       <p>As with the CSS and JavaScript compilers, multiple templating libraries can be used at once, but to do so properly, there is some additional config Mimosa needs. Mimosa bundles all templates into the same file, but templates from different libraries don't belong in the same file. So if multiple libraries are being used, provide Mimosa, via the <code class="option">mimosa-config</code>, a map/hash of compiler name to output file name with the <code class="option">template.outputFileName</code> config property. The <code class="option">mimosa-config</code> includes a commented out example.</p>
+
+      <p>Also, the <code class="option">mimosa-config</code> can be altered to build multiple compiled template output files. If a single-page web app is being built, then a single template file is ideal and Mimosa's defaults can be left alone. But if a site has multiple pages, then ideally Mimosa should build a template file per page. Instead of using <code class="option">template.outputFileName</code>, use the <code class="option">template.outputFiles</code> array.  Each element in the array has a <code class="option">folder</code> and an <code class="option">outputFileName</code>. <code class="option">outputFiles[].outputFileName</code> is identical to <code class="option">template.outputFileName</code> except that is has no default and must be provided.  <code class="option">folder</code> specifies which folder of templates should be bundled together.  Every template contained in the folder structure under <code class="option">folder</code> will be compiled and concatenated into the output file. The <code class="option">mimosa-config</code> also includes a commented out example for this configuration.</p>
 
       <p>Next to the name of each micro-templater below is the Mimosa name and the list of default extensions Mimosa recognizes.</p>
 
