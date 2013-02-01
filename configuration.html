@@ -292,7 +292,7 @@
       </div>
       <div class="span6">
 <pre><span class="copy"># copy:</span>
-    <span class="copyextensions"># extensions: ["js","css","png","jpg","jpeg","gif","html","eot","svg","ttf","woff","otf","yaml","kml","ico","htc","htm"]</span></pre>
+    <span class="copyextensions"># extensions: ["js","css","png","jpg","jpeg","gif","html","eot","svg","ttf","woff","otf","yaml","kml","ico","htc","htm","json","txt","xml","xsd"]</span></pre>
       </div>
     </div>
 
@@ -387,7 +387,7 @@
     <p class="hi inferConfig optimize require">Mimosa infers many r.js optimizer settings. Set <code class="option">inferConfig</code> to <code class="option">false</code> to make Mimosa not do that. Check out the <a href="./optimization.html#require">Optimization tab</a> to see what inferences Mimosa makes for r.js execution.</p>
 
     <h4 class="hi overrides optimize require">require.optimize.overrides</h4>
-    <p class="hi overrides optimize require">Used to make tweaks to the r.js configuration for asset optimization, uncomment this line and add the <a href="http://requirejs.org/docs/optimization.html#options">r.js config</a> as new parameters inside the <code class="option">require.optimize.overrides</code> object. To just unset a Mimosa defaults, set the property to null.</p>
+    <p class="hi overrides optimize require">Used to make tweaks to the r.js configuration for asset optimization, uncomment this line and add the <a href="http://requirejs.org/docs/optimization.html#options">r.js config</a> as new parameters inside the <code class="option">require.optimize.overrides</code> object. To just unset a Mimosa defaults, set the property to null.  <code class="option">require.optimize.overrides</code> can also be a function. That function is passed the full inferred r.js config for the module being optimized. This provides the opportunity to amplify the inferred config rather than just replace it.</p>
 
     <section id="minify">
       <div class="page-header">

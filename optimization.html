@@ -122,13 +122,16 @@
         <li><code class="option">include</code>: set to the name of the module being compiled</li>
         <li><code class="option">insertRequire</code>: set to the name of the module being compiled</li>
         <li><code class="option">name</code>: set to <code class="option">almond</code></li>
+        <li><code class="option">logLevel</code>: set to <code class="option">3</code> which is the r.js error logging level</li>
       </ul>
 
       <p>These settings will package up each individual module into its own optimized file wrapped with Almond.</p>
 
       <h2>Overriding and Including Additional Optimizer Settings</h2>
 
-      <p>Any of the other RequireJS <a href="http://requirejs.org/docs/optimization.html#options">optimizer configuration options</a> can be included in the mimosa-config. Just uncomment the <code class="option">require.optimize.overrides</code> setting and include those settings there. Settings can be both overridden and removed. To override a Mimosa setting, put the override in <code class="option">overrides</code>. To remove a default setting, set it to <code class="option">null</code>. For instance setting <code class="option">mainConfigFile: null</code> will blank out that setting and not pass it to the optimizer.</p>
+      <p>Any of the other RequireJS <a href="http://requirejs.org/docs/optimization.html#options">optimizer configuration options</a> can be included in the mimosa-config. Just uncomment the <code class="option">require.optimize.overrides</code> setting and include those settings there. Settings can be both overridden and removed. To override a Mimosa setting, put the override in <code class="option">overrides</code>. To remove a default setting, set it to <code class="option">null</code>.</p>
+
+      <p><code class="option">require.optimize.overrides</code> can also be configured as a function. That function is passed the full inferred r.js config for the module being optimized. This provides the opportunity to amplify the inferred config rather than just replace it.</p>
 
       <p>Mimosa can also be configured to not infer anything and to go entirely with a custom config. Set <code class="option">require.optimize.inferConfig</code> to false and Mimosa will run r.js with only the settings provided in <code class="option">require.optimize.overrides</code>.</p>
 
@@ -187,8 +190,6 @@
       <p>When the <code class="option">--optimize</code> flag is used, Mimosa will minify CSS files too. And that about covers that.</p>
     </section>
   </section>
-
-
 
 </div>
 
