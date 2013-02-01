@@ -76,6 +76,8 @@
         <li><a href="#min" title="Keep your assets nice and small">Minify</a></li>
         <li><a href="#minopt" title="both is good">Minify + Optimize</a></li>
         <li><a href="#css" title="Minify your CSS too">CSS</a></li>
+        <li><a href="#combine" title="Have more combining to do?">More Combining?</a></li>
+
       </ul>
     </div>
   </header>
@@ -189,6 +191,19 @@
       </div>
       <p>When the <code class="option">--optimize</code> flag is used, Mimosa will minify CSS files too. And that about covers that.</p>
     </section>
+
+    <section id="combine">
+      <div class="page-header">
+        <h1>
+          Need More Combining?
+          <small><span class="options">we've got a module for that</span></small>
+        </h1>
+      </div>
+      <p>The external <a href="https://github.com/dbashford/mimosa-combine">mimosa-combine module</a> can be used to do things like pull compiled or vendor CSS files together...or anything really. All mimosa-combine wants is a folder to merge and a place to put the result, but it also allows assets to be excluded and an order to be provided.</p>
+
+      <p>Just tack the string <code class="option">"combine"</code> onto the <code class="option">mimosa-config</code> <code class="option">modules</code> array and Mimosa will fetch the module for immediate use.</p>
+    </section>
+
   </section>
 
 </div>
