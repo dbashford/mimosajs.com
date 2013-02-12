@@ -263,7 +263,7 @@ $ mimosa new nameOfApplicationHere -d</pre>
       <div class="page-header">
         <h1>
           Watch, Compile, Serve
-          <small><span class="mim">mimosa</span> <span class="command">watch</span> <span class="options">[-s/--server] [-c/--clean] [-d/--delete] [-o/--optimize] [-m/--minify]</span></small>
+          <small><span class="mim">mimosa</span> <span class="command">watch</span> <span class="options">[-s/--server] [-c/--clean] [-d/--delete] [-o/--optimize] [-m/--minify] [-P/--profile]</span></small>
         </h1>
       </div>
     </section>
@@ -343,13 +343,21 @@ $ mimosa watch -m</pre>
     <pre>$ mimosa watch --minify --optimize
 $ mimosa watch -mo</pre>
 
-      <p>When combined, the <code class='option'>--minify</code> and <code class='option'>--optimize</code> options provide more control over the application's minification strategy. Check out the <a href="./optimization.html#minopt">Minify + Optimize section of the Optimization tab</a> to learn more.</a>
+    <p>When combined, the <code class='option'>--minify</code> and <code class='option'>--optimize</code> options provide more control over the application's minification strategy. Check out the <a href="./optimization.html#minopt">Minify + Optimize section of the Optimization tab</a> to learn more.</a>
+
+    <h3>Use a Profile (-P/--profile)</h3>
+
+    <p>Follow the <code class='option'>--profile</code> flag with the name of a profile, and Mimosa will use that profile to override the <code class='option'>mimosa-config</code> contained in the profile. See the <a href="./utilities.html#profiles">profiles section</a> of the Utilities page for more information on profiles.</p>
+
+    <pre>$ mimosa watch --profile nameOfProfile
+$ mimosa watch -P nameOfProfile</pre>
+
 
     <section id="clean">
       <div class="page-header">
         <h1>
           Clean Project
-          <small><span class="mim">mimosa</span> <span class="command">clean</span> <span class="options">[-f/--force]</span></small>
+          <small><span class="mim">mimosa</span> <span class="command">clean</span> <span class="options">[-f/--force] [-P/--profile]</span> </small>
         </h1>
       </div>
     </section>
@@ -366,6 +374,13 @@ $ mimosa watch -mo</pre>
         <p>Because the clean command will not remove anything in <code class="option">compiledDir</code> that isn't in <code class="option">sourceDir</code>, Mimosa may leave behind code. If <code class="option">mimosa watch</code> is running and a file is deleted or renamed, Mimosa cleans out the compiled version of that file, but if Mimosa is not running and a file is deleted or removed, Mimosa has no way of knowing the files left behind are safe for cleaning. </p>
 
         <p>When included, the <code class="option">--force</code> flag will remove the entire compiled directory and all of its contents, no questions asked.</p>
+
+        <h3>Use a Profile (-P/--profile)</h3>
+
+        <p>Follow the <code class='option'>--profile</code> flag with the name of a profile, and Mimosa will use that profile to override the <code class='option'>mimosa-config</code> contained in the profile. See the <a href="./utilities.html#profiles">profiles section</a> of the Utilities page for more information on profiles.</p>
+
+        <pre>$ mimosa clean --profile nameOfProfile
+$ mimosa clean -P nameOfProfile</pre>
 
       </div>
       <div class="span6 term">
@@ -395,7 +410,7 @@ $ mimosa watch -mo</pre>
       <div class="page-header">
         <h1>
           Project Build
-          <small><span class="mim">mimosa</span> <span class="command">build</span> <span class="options">[-o/--optimize] [-m/--minify] [-p/--package]</span></small>
+          <small><span class="mim">mimosa</span> <span class="command">build</span> <span class="options">[-o/--optimize] [-m/--minify] [-p/--package] [-P/--profile]</span></small>
         </h1>
       </div>
     </section>
@@ -454,12 +469,19 @@ $ mimosa build -mo</pre>
 
     <p>Provide a <code class="option">--package</code> flag and Mimosa will invoke any installed packaging modules. Mimosa doesn't come with any packaging modules by default, but modules like <a href="https://github.com/dbashford/mimosa-web-package">mimosa-web-package</a> are available and can be added to an application by simply adding the module name to the <code class="option">mimosa-config</code> <code class="option">modules</code> array.</p>
 
+    <h3>Use a Profile (-P/--profile)</h3>
+
+    <p>Follow the <code class='option'>--profile</code> flag with the name of a profile, and Mimosa will use that profile to override the <code class='option'>mimosa-config</code> contained in the profile. See the <a href="./utilities.html#profiles">profiles section</a> of the Utilities page for more information on profiles.</p>
+
+    <pre>$ mimosa build --profile nameOfProfile
+$ mimosa build -P nameOfProfile</pre>
+
 
     <section id="virgin">
       <div class="page-header">
         <h1>
           Just Watch, Nothing Else
-          <small><span class="mim">mimosa</span> <span class="command">virgin</span></small>
+          <small><span class="mim">mimosa</span> <span class="command">virgin</span> <span class="options">[-P/--profile]</span></small>
         </h1>
       </div>
     </section>
@@ -488,6 +510,12 @@ $ mimosa build -mo</pre>
       </div>
     </div>
 
+    <h3>Use a Profile (-P/--profile)</h3>
+
+    <p>Follow the <code class='option'>--profile</code> flag with the name of a profile, and Mimosa will use that profile to override the <code class='option'>mimosa-config</code> contained in the profile. See the <a href="./utilities.html#profiles">profiles section</a> of the Utilities page for more information on profiles.</p>
+
+    <pre>$ mimosa virgin --profile nameOfProfile
+$ mimosa virgin -P nameOfProfile</pre>
 
     <section id="update">
       <div class="page-header">

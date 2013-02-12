@@ -222,7 +222,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>js, css, png, jpg, jpeg, gif, html, eot, svg, ttf, woff, otf, yaml, kml, ico, htc, htm</td>
+          <td>js, css, png, jpg, jpeg, gif, html, eot, svg, ttf, woff, otf, yaml, kml, ico, htc, htm, json, txt, xml, xsd</td>
         </tr>
       </tbody>
     </table>
@@ -304,7 +304,7 @@
       <p><a href=" http://gkz.github.com/LiveScript/">LiveScript</a> is available as an option for those that enjoy some functional hotness and squiggly arrows.</p>
 
       <h2>TypeScript <small><span class="mim">typescript</span> <span class="command">['ts']</span></small></h2>
-      <p>Like the idea of typed JavaScript, then <a href=" http://www.typescriptlang.org/">TypeScript</a> might be for you.</p>
+      <p>Like the idea of typed JavaScript? <a href=" http://www.typescriptlang.org/">TypeScript</a> might be for you.</p>
 
       <p>TypeScript has a small bit of its own configuration that isn't documented elsewhere.</p>
 
@@ -313,7 +313,7 @@
 
       <p>The <code class="option">module</code> config is used to set how TypeScript will wrap compiled TypeScript. The default is <code class="option">null</code>, which will not wrap the compiled code. Other options are <code class="option">amd</code> and <code class="option">commonjs</code> which will wrap compiled code as expected for each.</p>
 
-      <p>TypeScript support is new with version 0.7.0 of Mimosa, and it is experimental. Feedback from TypeScripters would be huge. What flags and features should be available? Also, the code provided by <code class="option">mimosa new</code> is not even close to being idiomatic TypeScript. <a href="https://github.com/dbashford/MimosaTypeScript">Lend a hand in fixing it</a>?
+      <p>TypeScript support was new with version 0.7.0 of Mimosa, and it is experimental. Feedback from TypeScripters would be huge. What flags and features should be available? Also, the code provided by <code class="option">mimosa new</code> is not even close to being idiomatic TypeScript. <a href="https://github.com/dbashford/MimosaTypeScript">Lend a hand in fixing it</a>?
 
     </section>
     <section id="css">
@@ -362,11 +362,10 @@
           Micro-Template Compilers
         </h1>
       </div>
-      <p>Listed below are the different micro-templating libraries built into Mimosa. For performance reasons, templates should be pre-compiled on the server rather than the browser, and Mimosa will pre-compile templates. As with the CSS and JavaScript meta-languages, micro-templates will be compiled when saved.</p>
 
-      <p>By default  the resulting compiled templates will be merged into a single file for use in the client (see <a href="#ov">Output Variations</a> below for other options). Within that file will be source information to allow for easily tracking errors back to specific files. The name and location of that single file is configurable <code class="option">(compilers.template.outputFileName)</code>, but by default it is kept at <code class="option">javascripts/templates.js</code>. Use of the templates in this file differs per library, see below.</p>
+      <p>Listed below are the different micro-templating libraries built into Mimosa. For performance reasons, templates should be pre-compiled on the server rather than the browser. Mimosa pre-compiles templates. As with the CSS and JavaScript meta-languages, micro-templates will be compiled when saved. Based on its configuration, Mimosa will create one-to-many compiled template files. See <a href="#ov">Output Variations</a> below for the output options.</p>
 
-      <p>For each templating language, the injected javascript file provides a JavaScript object of templates, keyed by the template file name. Despite what directory a template is in, each template needs to have a unique name.  Should this be violated, Mimosa will warn of template collision issues.</p>
+      <p>For each templating language, the compiled template files provide a JavaScript object of templates, keyed by the template file name. Despite what directory a template is in, each template needs to have a unique name.  Should this be violated, Mimosa will warn of template collision issues.</p>
 
       <p>Most of the libraries require a client side version to run the compiled templates. Mimosa will handle including that library in your project. It will place an AMD wrapped version of the library inside the <code class="option">watch.javascriptDir</code>/<code class="option">vendor</code> library and reference it from the compiled template file. If a library that matches Mimosa's name for the library exists, Mimosa will not overwrite that file. Also, if a requirejs path alias is set up pointing at the library, like <code class="option">underscore:"vendor/underscore"</code>, Mimosa will use the path. The following are the names of the libraries Mimosa places in <code class="option">watch.javascriptDir</code>/<code class="option">vendor</code> directory.</p>
 
@@ -413,9 +412,31 @@
 
       <h2 id="ov">Output Variations</h2>
 
-      <p>As with the CSS and JavaScript compilers, multiple templating libraries can be used at once, but to do so properly, there is some additional config Mimosa needs. Mimosa bundles all templates into the same file, but templates from different libraries don't belong in the same file. So if multiple libraries are being used, provide Mimosa, via the <code class="option">mimosa-config</code>, a map/hash of compiler name to output file name with the <code class="option">template.outputFileName</code> config property. The <code class="option">mimosa-config</code> includes a commented out example.</p>
+      <h3>Single Template Output</h3>
 
-      <p>Also, the <code class="option">mimosa-config</code> can be altered to build multiple compiled template output files. If a single-page web app is being built, then a single template file is ideal and Mimosa's defaults can be left alone. But if a site has multiple pages, then ideally Mimosa should build a template file per page. Instead of using <code class="option">template.outputFileName</code>, use the <code class="option">template.outputFiles</code> array.  Each element in the array has a <code class="option">folder</code> and an <code class="option">outputFileName</code>. <code class="option">outputFiles[].outputFileName</code> is identical to <code class="option">template.outputFileName</code> except that is has no default and must be provided.  <code class="option">folder</code> specifies which folder of templates should be bundled together.  Every template contained in the folder structure under <code class="option">folder</code> will be compiled and concatenated into the output file. The <code class="option">mimosa-config</code> also includes a commented out example for this configuration.</p>
+      <p>By default the resulting compiled templates will be merged into a single file for use in the client. The name and location of that single file is configurable <code class="option">(compilers.template.outputFileName)</code>, but by default it is kept at <code class="option">javascripts/templates.js</code>. Use of the templates in this file differs per library, see below.</p>
+
+      <h3>Multiple Template Output</h3>
+
+      <p> If a single-page web app is being built, then a single template file is ideal and Mimosa's defaults can be left alone. But if a site has multiple pages, then ideally Mimosa should build a template file per page.</p>
+
+      <p>The <code class="option">mimosa-config</code> can be altered to build multiple compiled template output files. Instead of using <code class="option">template.outputFileName</code>, use the <code class="option">template.output</code> array.  Each element in the array has a <code class="option">folders</code> array and an <code class="option">outputFileName</code>. <code class="option">output[].outputFileName</code> is identical to <code class="option">template.outputFileName</code> except that is has no default so it must be provided.  <code class="option">folders</code> specifies which folders of templates should be bundled together.  Every template contained in the folder structure under each of the <code class="option">folders</code> will be compiled and concatenated into the output file. The <code class="option">mimosa-config</code> also includes a commented out example for this configuration.</p>
+
+      <p> So, for example, if an app has two pages, "search" and "user", which each have many templates of their own (inside "search" and "user" directories), but that also share common templates from a "shared" folder, that can be configured as follows:</p>
+
+      <pre>template:
+  output: [{
+    folders:["search","shared"]
+    outputFileName: "search_templates"
+  },
+  {
+    folders:["user","shared"]
+    outputFileName: "user_templates"
+  }]</pre>
+
+      <h3>Multiple Template Libraries</h3>
+
+      <p>As with the CSS and JavaScript compilers, multiple templating libraries can be used at once, but to do so properly, there is some additional config Mimosa needs. Mimosa bundles templates into the same file, but templates from different libraries don't belong in the same file. So if multiple libraries are being used, provide Mimosa, via the <code class="option">mimosa-config</code>, a map/hash of compiler name to output file name with the <code class="option">template.outputFileName</code> (or the <code class="option">template.output[].outputFileName</code>) config property. The <code class="option">mimosa-config</code> includes a commented out example.</p>
 
       <p>Next to the name of each micro-templater below is the Mimosa name and the list of default extensions Mimosa recognizes.</p>
 

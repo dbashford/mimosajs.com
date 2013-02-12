@@ -199,27 +199,29 @@
       </h1>
     </div>
 
-    <p>There are three ways to install a module.</p>
-
-    <h2>mimosa-config modules array</h2>
-
-    <p>One way to install a module is to just add it to the <a href="./configuration.html#modules">modules</a> array in the <code class="option">mimosa-config</code> for a project. The next time Mimosa is started for that project it will install the module from NPM. For example, to add the <code class="option">mimosa-web-package</code> module, include <code class="option">web-package</code> in the uncommented <a href="./configuration.html#modules">modules</a> config. Run, for instance, <code class="option">mimosa watch</code>, and the first thing Mimosa will do is go fetch <code class="option">mimosa-web-package</code> from NPM.</p>
+    <p>There are four ways to install a module.</p>
 
     <h2>mimosa mod:install</h2>
 
-    <p>A second installation method is the <code class="option">mod:install</code> command discussed further below. <code class="option">mimosa mod:install mimosa-web-package</code> will install <code class="option">mimosa-web-package</code> from NPM. The module will still need to be added to any projects that need to use it.</p>
+    <p>One way to install a module is the <code class="option">mod:install</code> command discussed further below. <code class="option">mimosa mod:install mimosa-web-package</code> will install <code class="option">mimosa-web-package</code> from NPM. The module will still need to be added to any projects that need to use it.  This command adds the module right into the Mimosa install as if it was installed with Mimosa itself.  This allows Mimosa to draw from it when building a new <code class="option">mimosa-config</code>. If a module is installed inside Mimosa, Mimosa will include that module's configuration snippet inside any generated <code class="option">mimosa-config</code>.</p>
 
     <h2>npm install</h2>
 
-    <p>Use <code class="option">npm install</code> to install any modules into the node_modules scope for your Mimosa install. If Mimosa is installed globally (using the -g flag), use <code class="option">npm install -g</code> for Mimosa modules and Mimosa will discover and use them. If Mimosa is installed locally, do not use <code class="option">-g</code>. Modules installed with <code class="option">mod:install</code> take priority, so if any modules are installed with both <code class="option">npm install</code> and <code class="option">mod:install</code>, the <code class="option">npm install</code> module will be ignored.</p>
+    <p>Use <code class="option">npm install</code> to install any modules into the node_modules scope for your Mimosa install. If Mimosa is installed globally (using the -g flag), use <code class="option">npm install -g mimosa-nameOfModule</code> for Mimosa modules and Mimosa will discover and use them. If Mimosa is installed locally, do not use <code class="option">-g</code>. Modules installed with <code class="option">mod:install</code> take priority, so if any modules are installed with both <code class="option">npm install</code> and <code class="option">mod:install</code>, the <code class="option">npm install</code> module will be ignored.</p>
 
-    <h2>With command modules...</h2>
+    <h2>Project npm install</h2>
 
-    <p>If using a module that introduces a new Mimosa command, it is best to use the <code class="option">mod:install</code> or <code class="option">npm install</code> methods for installation. Modules that add commands are best not used in project modules arrays.</p>
+    <p>Place and install Mimosa modules in the project itself and Mimosa will prioritize those modules above all others.  Either run <code class="option">npm install --save mimosa-nameOfModule</code>, which will update the package.json and install the module, or update the package.json by hand and run npm install.</p>
+
+    <h2>The easiest way: just update the mimosa-config modules array</h2>
+
+    <p>One way to install a module is to just add it to the <a href="./configuration.html#modules">modules</a> array in the <code class="option">mimosa-config</code> for a project. This is a shortcut for  <code class="option">mod:install</code>. The next time Mimosa is started for that project it will install the module directly into Mimosa from NPM. For example, to add the <code class="option">mimosa-web-package</code> module, include <code class="option">web-package</code> in the uncommented <a href="./configuration.html#modules">modules</a> config. Run, for instance, <code class="option">mimosa watch</code>, and the first thing Mimosa will do is go fetch <code class="option">mimosa-web-package</code> from NPM.</p>
+
+    <p>To use a module it needs to be added to the <a href="./configuration.html#modules">modules</a> array anyway, so this shortcut saves the installation step.</p>
 
     <h2>Install specific module version</h2>
 
-    <p>To install a specific version of a module, to, for instance, ensure everyone on a project stays on the same version, add a <code class="option">@</code> followed by the version after the module name. Ex: <code class="option">web-package@0.1.0</code>.</p>
+    <p>To install a specific version of a module, to, for instance, ensure everyone on a project stays on the same version, add a <code class="option">@</code> followed by the version after the module name. Ex: <code class="option">web-package@0.1.0</code>. This is also accomplished using by managing versions in a project's package.json.</p>
 
     <div class="page-header" id="commands">
       <h1>
@@ -801,7 +803,6 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">beforeRead</div>
-            <div class="module builtin template">(T) All templates checked to see if any need compiling, if not, sets options.files to empty array</div>
           </li>
           <li>
             <div class="step">read</div>
@@ -919,7 +920,6 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">beforeRead</div>
-            <div class="module builtin template">(T) All templates checked to see if templates need compiling, if not, sets options.files to empty array</div>
             <div class="module js copy builtin">(JS, C) Determine if file needs to be processed, exit workflow if not</div>
           </li>
           <li>
@@ -997,7 +997,6 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
           </li>
           <li>
             <div class="step">beforeRead</div>
-            <div class="module builtin template">(T) All templates checked to see if templates need compiling, if not, sets options.files to empty array</div>
             <div class="module js copy builtin">(JS, C) Determine if file needs to be processed, if not exit workflow</div>
           </li>
           <li>
