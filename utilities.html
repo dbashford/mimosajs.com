@@ -126,12 +126,14 @@
     # enabled: true
   # optimize :
     # inferConfig:true
-    # overrides: {}</pre>
+    # overrides:</pre>
 
         </div>
       </div>
 
       <p>Path verification is always disabled for vendor assets, that is, assets located inside a <code class="option">vendor</code> directory.  Vendor assets often use creative means to turn themselves into AMD modules that prove hard to verify.  That said, if a vendor asset is placed outside the vendor folder, Mimosa is coded to handle how some of the methods vendor assets are AMDed. But Mimosa may complain that some vendor assets are throwing errors or are not properly wrapped.</p>
+
+      <p>To read more about Mimosa's RequireJS support, head over to the <a href="./optimization.html">Optimization</a> page.</p>
 
       <p>Mimosa's RequireJS support comes from the <code class="option">mimosa-require</code> module, a default Mimosa module that comes installed with Mimosa. For more on modules, see the <a href="./modules.html">Modules</a> page.</p>
 

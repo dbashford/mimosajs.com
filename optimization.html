@@ -107,7 +107,7 @@
 
       <p>For both the <code class="option">build</code> and <code class="option">watch</code> commands, Mimosa provides an <code class="option">--optimize</code> flag that will turn on optimization.  Mimosa wraps the <a href="https://github.com/jrburke/r.js/">r.js optimizer</a> and runs it with a default configuration gleaned from the setup of the application.</p>
 
-      <p>When a codebase is optimized and pulled together into one file, the RequireJS library is no longer necessary. Mimosa will wrap r.js optimized code in <a href="https://github.com/jrburke/almond">Almond</a>, a replacement AMD loader for RequireJS that provides the minimal functionality necessary for optimized files.</p>
+      <p>When a codebase is optimized and pulled together into one file, the RequireJS library is no longer necessary. Mimosa will wrap r.js optimized code in <a href="https://github.com/jrburke/almond">Almond</a>, a replacement AMD loader for RequireJS that provides the minimal functionality necessary for optimized files. (If you are loading modules/resources from a CDN, Almond does not support that. See <a href="https://github.com/dbashford/mimosa/issues/141">this Mimosa issue</a> for help dealing with CDN resources.)</p>
 
       <p>Mimosa's RequireJS optimization support comes courtesy of the <code class="option">mimosa-require</code> module, a default Mimosa module that comes with Mimosa when it is installed.</p>
 
