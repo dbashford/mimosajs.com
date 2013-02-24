@@ -170,7 +170,7 @@
       </thead>
       <tbody>
         <tr>
-          <td><a href="http://handlebarsjs.com/">Handlebars</a></td>
+          <td><a href="http://handlebarsjs.com/">Handlebars</a> + <a href="http://emberjs.com/guides/templates/handlebars-basics/">Ember Handlebars</a></td>
           <td>handlebars</td>
           <td>hbs, handlebars</td>
         </tr>
@@ -414,7 +414,7 @@
 
       <h3>Single Template Output</h3>
 
-      <p>By default the resulting compiled templates will be merged into a single file for use in the client. The name and location of that single file is configurable <code class="option">(compilers.template.outputFileName)</code>, but by default it is kept at <code class="option">javascripts/templates.js</code>. Use of the templates in this file differs per library, see below.</p>
+      <p>By default the resulting compiled templates will be merged into a single AMD-wrapped file for use in the client. The name and location of that single file is configurable <code class="option">(compilers.template.outputFileName)</code>, but by default it is kept at <code class="option">javascripts/templates.js</code>. Use of the templates in this file differs per library, see below.</p>
 
       <h3>Multiple Template Output</h3>
 
@@ -438,6 +438,10 @@
 
       <p>As with the CSS and JavaScript compilers, multiple templating libraries can be used at once, but to do so properly, there is some additional config Mimosa needs. Mimosa bundles templates into the same file, but templates from different libraries don't belong in the same file. So if multiple libraries are being used, provide Mimosa, via the <code class="option">mimosa-config</code>, a map/hash of compiler name to output file name with the <code class="option">template.outputFileName</code> (or the <code class="option">template.output[].outputFileName</code>) config property. The <code class="option">mimosa-config</code> includes a commented out example.</p>
 
+      <h3>Not AMD wrapped</h3>
+
+      <p>For all the options above, Mimosa wraps the compiled templates in an AMD <code class="option">define</code> block. If a project is not using AMD, this would cause problems. At the root of the <code class="option">template</code> config is an <code class="option">amdWrap</code> flag. By default <code class="option">amdWrap</code> is set to <code class="option">true</code>. When set to <code class="option">false</code> Mimosa will not wrap the template output. Mimosa will also not write the AMD-wrapped template client library into the <code class="option">watch.javascriptDir</code>/<code class="option">vendor</code> directory. If going the non-AMD route, the client library must be provided by the project.</p>
+
       <p>Next to the name of each micro-templater below is the Mimosa name and the list of default extensions Mimosa recognizes.</p>
 
       <h2>Handlebars <small><span class="mim">handlebars</span> <span class="command">["hbs", "handlebars"]</span></small></h2>
@@ -447,11 +451,25 @@
 
       <p>...passing in JSON data the template needs to render.</p>
 
-      <p>Handlebars also provides the ability to include reusable helper methods. Those can be coded in any meta-language and should be included inside the <code class="option">compilers.template.helperFiles</code> array.</p>
+      <p>Handlebars also provides the ability to include reusable helper methods. Those can be coded in any meta-language and should be included inside the <code class="option">compilers.template.handlebars.helpers</code> array.</p>
 
       <p>Because all of the templates are compiled together, helpers, <code class="option">{{example-helper}}</code>, are immediately available without any extra work.  Also, partials do not require Handlebars.registerPartial to be called.  The output <code class="option">template.js</code> file is modified to access the entire list of templates when attempting to insert a partial.</p>
 
       <p>Mimosa keeps an AMD wrapped version of Handlebars that it writes to   <code class="option">assets/javascripts/vendor/handlebars.js</code> directory as part of compilation, so there is no need to include the library.</p>
+
+      <h3>Got Ember?</h3>
+
+      <p><a href="http://emberjs.com/">Ember.js</a> uses Handlebars, but its a Handlebars that is Ember specific. Mimosa's includes Ember Handlebars pre-compilation out of the box with minimal config. By default, vanilla Handlebars will compile all of the <code class="option">.hbs</code> and <code class="option">.handlebars</code> files it comes across. To enable Ember Handlebars pre-compilation, use the  <code class="option">template.handlebars </code> config.</p>
+
+      <pre>template:
+  handlebars:
+    ember:
+      enabled:true
+      path:"vendor/ember"</pre>
+
+      <p><code class="option">ember.enabled</code> selects the Ember Handlebars pre-compiler as the compiler that will handle Handlebars templates. <code class="option">path</code> is the AMD location of the Ember library, which defaults to <code class="option">vendor/ember</code>.</p>
+
+      <p>When Ember Handlebars is enabled, Mimosa will not write the AMD version of Handlebars to the public directory as it does with all the other compilers including vanilla Handlebars.</p>
 
       <h2>Dust <small><span class="mim">dust</span> <span class="command">["dust"]</span></small></h2>
 

@@ -131,11 +131,17 @@
       </div>
     </section>
 
-    <p>Mimosa comes bundled with its own Express server. If <code class="option">server.useDefaultServer</code> is set to <code class="option">true</code> in the <code class="option">mimosa-config</code>, then when <code class="option">mimosa watch</code> is run with the <code class="option">--server</code> flag, Mimosa will run its embedded server. When running Mimosa's Express, all of the settings in the <code class="option">server</code> portion of the <code class="option">mimosa-config</code> become very important. See the <a href="./configuration.html#server">server configuration details</a> to learn more.</p>
+    <p>Mimosa comes bundled with its own Express server. If <code class="option">server.defaultServer.enabled</code> is set to <code class="option">true</code> in the <code class="option">mimosa-config</code>, then when <code class="option">mimosa watch</code> is run with the <code class="option">--server</code> flag, Mimosa will run its embedded server. When running Mimosa's Express, all of the settings in the <code class="option">server</code> portion of the <code class="option">mimosa-config</code> become very important. See the <a href="./configuration.html#server">server configuration details</a> to learn more.</p>
 
     <p>Mimosa's Express will do a few things in addition to serving up an application. Assuming <code class="option">liveReload.enabled</code> is set to <code class="option">true</code> (default), Live Reload will be used. Mimosa will reload the browser whenever a file in <code class="option">liveReload.enabled.additionalDirs</code> (default 'views') or <code class="option">config.watch.compiledDir</code> (default 'public') changes. Mimosa will also serve static assets gzipped.</p>
 
-    <p>The embedded Express server is configured to automatically route every request to the app that doesn't result in an asset being returned.  For instance, if a complex web app has <code class="option">pushState</code> style routing, like <code class="option">/account/1/item/2/comment/4</code>, when that URL is loaded, Mimosa's embedded server has no problem handling it.</p>
+    <h2>Routing</h2>
+
+    <p>How Mimosa routes a project's paths depends on the setting for <code class="option">server.defaultServer.onePager</code>.</p>
+
+    <p>When <code class="option">onePager</code> is set to <code class="option">true</code> the embedded Express server is configured to automatically route every request to the application's <code class="option">index</code> view that doesn't result in an asset being returned. For instance given a URL of<code class="option">/account/1/item/2/comment/4</code> Mimosa's embedded server will route the request to the index view and leave the handling of the complex URL to the client code.</p>
+
+    <p>When <code class="option">onePager</code> is set to <code class="option">false</code>, Mimosa will assume simple routes for the application. <code class="option">url:3000/</code> will still route to the <code class="option">index</code> view. But<code class="option">url:3000/foo/</code> will route to the <code class="option">foo</code> view as will <code class="option">url:3000/foo/bar/b az</code>.</p>
 
     <section id="yours">
       <div class="page-header">
@@ -146,7 +152,7 @@
       </div>
     </section>
 
-    <p>Mimosa can start a nodejs based server. If <code class="option">server.useDefaultServer</code> is set to <code class="option">false</code>, Mimosa will look for a piece of node.js code located at <code class="option">server.path</code>, and execute the <code class="option">startServer</code> function of that code (so that function must be exported). That function will be passed the entire resolved and enriched <code class="option">mimosa-config</code>.</p>
+    <p>Mimosa can start a nodejs based server. If <code class="option">server.defaultServer.enabled</code> is set to <code class="option">false</code>, Mimosa will look for a piece of node.js code located at <code class="option">server.path</code>, and execute the <code class="option">startServer</code> function of that code (so that function must be exported). That function will be passed the entire resolved and enriched <code class="option">mimosa-config</code>.</p>
 
     <p>The <code class="option">startServer</code> function is also passed a callback that must be executed for Mimosa to continue through its workflows. If using Mimosa's live reload functionality is being used, the callback should be provided node's http server object as a first parameter.  That happens to be the object returned by Express's <code class="option">app.listen()</code> function. If socket.io is being used, then the callback should be provided the  socket.io object as a second parameter. See the <a href="./utilities.html#reload">Live Reload section</a> on the Utilities page for more details.</p>
 

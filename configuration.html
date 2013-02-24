@@ -135,7 +135,7 @@
 
       </div>
       <div class="span6">
-<pre><span class="modules"># minMimosaVersion: null</span></pre>
+<pre><span class="modules">minMimosaVersion: null</span></pre>
       </div>
     </div>
 
@@ -160,7 +160,7 @@
 
       </div>
       <div class="span6">
-<pre><span class="modules"># modules: ['lint', 'server', 'require', 'minify', 'live-reload']</span></pre>
+<pre><span class="modules">modules: ['lint', 'server', 'require', 'minify', 'live-reload']</span></pre>
       </div>
     </div>
 
@@ -189,12 +189,12 @@
 
       </div>
       <div class="span6">
-<pre><span class="watch"># watch:</span>
-  <span class="sourceDir"># sourceDir: "assets"</span>
-  <span class="compiledDir"># compiledDir: "public"</span>
-  <span class="javascriptDir"># javascriptDir: "javascripts"</span>
-  <span class="exclude"># exclude: [/[/\\](\.|~)[^/\\]+$/]</span>
-  <span class="throttle"># throttle: 0</span></pre>
+<pre><span class="watch">watch:</span>
+  <span class="sourceDir">sourceDir: "assets"</span>
+  <span class="compiledDir">compiledDir: "public"</span>
+  <span class="javascriptDir">javascriptDir: "javascripts"</span>
+  <span class="exclude">exclude: [/[/\\](\.|~)[^/\\]+$/]</span>
+  <span class="throttle">throttle: 0</span></pre>
       </div>
     </div>
 
@@ -244,21 +244,28 @@
 
     <div class="row">
       <div class="span6">
+        <h4 class="hi amdWrap template">template.amdWrap</h4>
+        <p class="hi amdWrap template">By default Mimosa wraps compiled template files in an AMD-compliant <code class="option">define</code> block. When <code class="option">amdWrap</code> is set to <code class="option">false</code> Mimosa will not wrap the compiled template files and will also not write a wrapped client library for the micro-templater of choice.</p>
+
         <h4 class="hi outputFileName template">template.outputFileName</h4>
         <p class="hi outputFileName template">The path of the file all templates are compiled into. The path is relative to <code class="option">watch.javascriptDir</code>. If multiple templating languages are being used, instead of being a single string, this setting should be a map of Mimosa template compiler name to file path.  Like <code class="option">hogan:"hogan-templates", dust:"dust-templates"</code>. See the <a href="./compilers.html#mt">compilers tab</a> for more info.</p>
 
-        <h4 class="hi helperFiles template">template.helperFiles</h4>
-        <p class="hi helperFiles template">Only relevant for Handlebars templates. An array of paths from <code class="option">watch.javascriptDir</code> to the files containing handlebars helper registrations. The default can be left alone if there are no helpers.</p>
+        <h4 class="hi handlebars helpers template">template.handlebars.helpers</h4>
+        <p class="hi handlebars helpers template">Only relevant for Handlebars templates. An array of paths from <code class="option">watch.javascriptDir</code> to the files containing handlebars helper registrations. The default can be left alone if there are no helpers.</p>
 
       </div>
       <div class="span6">
 <pre><span class="template">template:</span>
+  <span class="amdWrap">amdWrap: true</span>
   <span class="outputFileName">outputFileName: "templates"</span>
-  <span class="helperFiles">helperFiles: ["app/template/handlebars-helpers"]</span>
+  <span class="handlebars">handlebars:</span>
+    <span class="helpers">helpers: ["app/template/handlebars-helpers"]</span>
+    <span class="ember">ember:</span>
+      <span class="emberEnabled">enabled:false</span>
+      <span class="emberPath">path:"vendor/ember"</span>
 
--- OR --
+-- OR instead of outputFileName --
 
-<span class="template2">template:</span>
   <span class="output">output</span>: [{
     <span class="folders">folders:[""]</span>
     <span class="outputFileName2">outputFileName:""</span>
@@ -266,14 +273,23 @@
       </div>
     </div>
 
-    <h4 class="hi output template2">template.output</h4>
-    <p class="hi output template2">An alternate configuration, <code class="option">template.output</code> allows for writing several compiled template files. This is ideal when using compiled templates across multiple pages as opposed to a single page web app. <code class="option">template.output</code> and <code class="option">template.outputFileName</code> cannot both be used at the same time.</p>
+    <h4 class="hi handlebars ember template">template.handlebars.ember</h4>
+    <p class="hi handlebars ember template">The configuration block specific to using Handlebars with <a href="http://emberjs.com/">Ember.js</a>.</p>
 
-    <h4 class="hi folders output template2">template.output[].folders</h4>
-    <p class="hi folders output template2">All of the templates contained inside <code class="option">folders</code> are compiled and bundled together. It is recursive, so any templates inside sub-folders are included as well.  <code class="option">folders</code> entries are relative to <code class="option">watch.javascriptDir</code> and must exist. If left a blank string, the folder used will be <code class="option">watch.javascriptDir</code>.</p>
+    <h4 class="hi handlebars ember emberEnabled template">template.handlebars.ember.enabled</h4>
+    <p class="hi handlebars ember emberEnabled template">Whether or not to use the <a href="http://emberjs.com/">Ember.js</a> specific Handlebars compiler. Defaults to not being enabled.</p>
 
-    <h4 class="hi outputFileName2 output template2">template.output[].outputFileName</h4>
-    <p class="hi outputFileName2 output template2"><code class="option">template.output[].outputFileName</code> is identical to <code class="option">template.outputFileName</code> except it is scoped in this case to just the folder specified by the <code class="option">folder</code> property. There is no default, so this property must be provided.</p>
+    <h4 class="hi handlebars ember emberPath template">template.handlebars.ember.path</h4>
+    <p class="hi handlebars ember emberPath template">The AMD path for the client <a href="http://emberjs.com/">Ember.js</a> library. Defaults to <code class="option">vendor/ember</code>. This is used when building the <code class="option">define</code> AMD wrapper for the compiled template files.</p>
+
+    <h4 class="hi output template">template.output</h4>
+    <p class="hi output template">An alternate configuration to <code class="option">template.outputFileName</code>, <code class="option">template.output</code> allows for writing several compiled template files. This is ideal when using compiled templates across multiple pages as opposed to a single page web app. <code class="option">template.output</code> and <code class="option">template.outputFileName</code> cannot both be used at the same time.</p>
+
+    <h4 class="hi folders output template">template.output[].folders</h4>
+    <p class="hi folders output template">All of the templates contained inside <code class="option">folders</code> are compiled and bundled together. It is recursive, so any templates inside sub-folders are included as well.  <code class="option">folders</code> entries are relative to <code class="option">watch.javascriptDir</code> and must exist. If left a blank string, the folder used will be <code class="option">watch.javascriptDir</code>.</p>
+
+    <h4 class="hi outputFileName2 output template">template.output[].outputFileName</h4>
+    <p class="hi outputFileName2 output template"><code class="option">template.output[].outputFileName</code> is identical to <code class="option">template.outputFileName</code> except it is scoped in this case to just the folder specified by the <code class="option">folder</code> property. There is no default, so this property must be provided.</p>
 
     <section id="copy">
       <div class="page-header">
@@ -291,8 +307,8 @@
         <h4 class="hi copyextensions copy">copy.extensions</h4>
       </div>
       <div class="span6">
-<pre><span class="copy"># copy:</span>
-    <span class="copyextensions"># extensions: ["js","css","png","jpg","jpeg","gif","html","eot","svg","ttf","woff","otf","yaml","kml","ico","htc","htm","json","txt","xml","xsd"]</span></pre>
+<pre><span class="copy">copy:</span>
+  <span class="copyextensions">extensions: ["js","css","png","jpg","jpeg","gif","html","eot","svg","ttf","woff","otf","yaml","kml","ico","htc","htm","json","txt","xml","xsd"]</span></pre>
       </div>
     </div>
 
@@ -311,25 +327,33 @@
         <h4 class="hi server">server</h4>
         <p class="hi server">Configuration for embedded and/or delivered server. Many of the settings below are targeted primarily at configuring Mimosa's embedded server. When running a node server, the settings can be either used or ignored. That server can set its own port, for instance, rather than use the port passed by Mimosa. But the server and view code delivered via <code class="option">mimosa new</code> will reference the settings below.</p>
 
-        <h4 class="hi useDefaultServer server">server.useDefaultServer</h4>
-        <p class="hi useDefaultServer server"><code class="option">server.useDefaultServer</code> determines whether Mimosa will start a default server or attempt to use a server in the project. When set to <code class="option">true</code>, Mimosa will run its own embedded Express.</p>
+        <h4 class="hi defaultServer server">server.defaultServer</h4>
+        <p class="hi defaultServer server"><code class="option">server.defaultServer</code> contains configuration for the server inside Mimosa.</p>
+
+        <h4 class="hi defaultServer enabled server">server.defaultServer.enabled</h4>
+        <p class="hi defaultServer enabled server"><code class="option">server.defaultServer.enabled</code> determines whether Mimosa will start a default server or attempt to use a server in the project. When set to <code class="option">true</code>, Mimosa will run its own embedded Express.</p>
 
       </div>
       <div class="span6">
-<pre><span class="server"># server:</span>
-  <span class="useDefaultServer"># useDefaultServer: false</span>
-  <span class="path"># path: 'server.coffee'</span>
-  <span class="port"># port: 3000</span>
-  <span class="base"># base: ''</span>
-  <span class="views"># views:</span>
-    <span class="viewscompileWith"># compileWith: 'jade'</span>
-    <span class="viewsextension"># extension: 'jade'</span>
-    <span class="viewspath"># path: 'views'</span></pre>
+<pre><span class="server">server:</span>
+  <span class="defaultServer">defaultServer:</span>
+    <span class="enabled">enabled: false</span>
+    <span class="onePager">onePager: false</span>
+  <span class="path">path: 'server.coffee'</span>
+  <span class="port">port: 3000</span>
+  <span class="base">base: ''</span>
+  <span class="views">views:</span>
+    <span class="viewscompileWith">compileWith: 'jade'</span>
+    <span class="viewsextension">extension: 'jade'</span>
+    <span class="viewspath">path: 'views'</span></pre>
       </div>
     </div>
 
+    <h4 class="hi defaultServer onePager server">server.defaultServer.onePager</h4>
+    <p class="hi defaultServer onePager server"><code class="option">server.defaultServer.onePager</code> lets Mimosa know if a project is a one or multi page application. This effects how Mimosa's embedded server handles routing. See the <a href="./server.html">server page</a> for more details</p>
+
     <h4 class="hi path server">server.path</h4>
-    <p class="hi path server">When <code class="option">useDefaultServer</code> is set to <code class="option">false</code>, <code class="option">server.path</code> is the path to the server code. The path can be relative to the root of the application or absolute. The server code at <code class="option">server.path</code> must export a <code class="option">startServer</code> function.  Mimosa will pass that method a copy of the <code class="option">mimosa-config</code>, including all the defaults for each setting and including extra fields inserted by Mimosa upon startup. <code class="option">startServer</code> will also be passed a callback that it must execute when complete.</p>
+    <p class="hi path server">When <code class="option">defaultServer.enabled</code> is set to <code class="option">false</code>, <code class="option">server.path</code> is the path to the server code. The path can be relative to the root of the application or absolute. The server code at <code class="option">server.path</code> must export a <code class="option">startServer</code> function.  Mimosa will pass that method a copy of the <code class="option">mimosa-config</code>, including all the defaults for each setting and including extra fields inserted by Mimosa upon startup. <code class="option">startServer</code> will also be passed a callback that it must execute when complete.</p>
 
     <h4 class="hi port server">server.port</h4>
     <p class="hi port server">The port on which Mimosa starts the server.</p>
@@ -373,12 +397,12 @@
 
       </div>
       <div class="span6">
-<pre><span class="require"># require:</span>
-  <span class="verify"># verify:</span>
-    <span class="verifyenabled"># enabled: true</span>
-  <span class="optimize"># optimize :</span>
-    <span class="inferConfig"># inferConfig:true</span>
-    <span class="overrides"># overrides:</span>
+<pre><span class="require">require:</span>
+  <span class="verify">verify:</span>
+    <span class="verifyenabled">enabled: true</span>
+  <span class="optimize">optimize :</span>
+    <span class="inferConfig">inferConfig:true</span>
+    <span class="overrides">overrides:</span>
 </pre>
       </div>
     </div>
@@ -404,8 +428,8 @@
 
       </div>
       <div class="span6">
-<pre><span class="minify"># minify:</span>
-  <span class="exclude"># exclude:[/\.min\./]</span></pre>
+<pre><span class="minify">minify:</span>
+  <span class="exclude">exclude:[/\.min\./]</span></pre>
       </div>
     </div>
 
@@ -432,13 +456,13 @@
 
       </div>
       <div class="span6">
-<pre><span class="growl"># growl:</span>
-  <span class="onStartup"># onStartup: false</span>
-  <span class="onSuccess"># onSuccess:</span>
-    <span class="growljavascript"># javascript: true</span>
-    <span class="growlcss"># css: true</span>
-    <span class="growltemplate"># template: true</span>
-    <span class="growlcopy"># copy: true</span></pre>
+<pre><span class="growl">growl:</span>
+  <span class="onStartup">onStartup: false</span>
+  <span class="onSuccess">onSuccess:</span>
+    <span class="growljavascript">javascript: true</span>
+    <span class="growlcss">css: true</span>
+    <span class="growltemplate">template: true</span>
+    <span class="growlcopy">copy: true</span></pre>
       </div>
     </div>
 
@@ -488,21 +512,21 @@
 
       </div>
       <div class="span6">
-<pre><span class="lint"># lint:</span>
-  <span class="lintexclude"># exclude:[]</span>
-  <span class="compiled"># compiled:</span>
-    <span class="compiledjavascript"># javascript:true</span>
-    <span class="compiledcss"># css:true</span>
-  <span class="copied"># copied:</span>
-    <span class="copiedjavascript"># javascript: true</span>
-    <span class="copiedcss"># css: true</span>
-  <span class="vendor"># vendor:</span>
-    <span class="vendorjavascript"># javascript: false</span>
-    <span class="vendorcss"># css: false</span>
-  <span class="rules"># rules:</span>
-    <span class="rulesjavascript"># jshintrc: ".jshintrc"</span>
-    <span class="rulesjavascript"># javascript:</span>
-    <span class="rulescss"># css:</span></pre>
+<pre><span class="lint">lint:</span>
+  <span class="lintexclude">exclude:[]</span>
+  <span class="compiled">compiled:</span>
+    <span class="compiledjavascript">javascript:true</span>
+    <span class="compiledcss">css:true</span>
+  <span class="copied">copied:</span>
+    <span class="copiedjavascript">javascript: true</span>
+    <span class="copiedcss">css: true</span>
+  <span class="vendor">vendor:</span>
+    <span class="vendorjavascript">javascript: false</span>
+    <span class="vendorcss">css: false</span>
+  <span class="rules">rules:</span>
+    <span class="rulesjavascript">jshintrc: ".jshintrc"</span>
+    <span class="rulesjavascript">javascript:</span>
+    <span class="rulescss">css:</span></pre>
       </div>
     </div>
 
@@ -547,9 +571,9 @@
         <p class="hi liveReload lrenabled">This property determines whether or not Live Reload is enabled. When Live Reload is enabled, a few javascript files are added to the layout of the dev version of the app. See the <a href="utilities.html#reload">Utilities tab</a> to read more on this functionality.</p>
       </div>
       <div class="span6">
-<pre><span class="liveReload"># liveReload:</span>
-  <span class="lrenabled"># enabled: true</span>
-  <span class="additionalDirs"># additionalDirs:["views"]</span></pre>
+<pre><span class="liveReload">liveReload:</span>
+  <span class="lrenabled">enabled: true</span>
+  <span class="additionalDirs">additionalDirs:["views"]</span></pre>
       </div>
     </div>
 

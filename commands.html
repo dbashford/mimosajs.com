@@ -284,7 +284,7 @@ $ mimosa new nameOfApplicationHere -d</pre>
 
         <p>By default, Mimosa will run a piece of code located at <code class='option'>server.path</code>. If Mimosa was used to create the project, and a server was chosen, a <code class='option'>server.coffee (.iced/.js/.ls)</code> file will be at the project's root. Mimosa will run the <code class='option'>startServer</code> function in this file and pass it the full <code class='option'>mimosa-config</code> and a callback function that must be executed.</p>
 
-        <p>Mimosa's embedded (non-extendable) Express server can be used by changing the <code class='option'>server.useDefaultServer</code> configuration to <code class='option'>true</code>. If no server was chosen during project creation, this setting will be set.</p>
+        <p>Mimosa's embedded (non-extendable) Express server can be used by changing the <code class='option'>server.defaultServer.enabled</code> configuration to <code class='option'>true</code>. If no server was chosen during project creation, this setting will be set.</p>
 
       </div>
 
