@@ -175,6 +175,11 @@
           <td>hbs, handlebars</td>
         </tr>
         <tr>
+          <td><a href="http://emblemjs.com/">Emblem</a> + <a href="http://emberjs.com/guides/templates/handlebars-basics/">Ember Emblem</a></td>
+          <td>emblem</td>
+          <td>emblem, embl</td>
+        </tr>
+        <tr>
           <td><a href="https://github.com/linkedin/dustjs/">Dust</a></td>
           <td>dust</td>
           <td>dust</td>
@@ -383,6 +388,10 @@
                <td>handlebars</td>
              </tr>
              <tr>
+               <td>Emblem</td>
+               <td>handlebars</td>
+             </tr>
+             <tr>
                <td>Dust</td>
                <td>dust</td>
              </tr>
@@ -470,6 +479,17 @@
       <p><code class="option">ember.enabled</code> selects the Ember Handlebars pre-compiler as the compiler that will handle Handlebars templates. <code class="option">path</code> is the AMD location of the Ember library, which defaults to <code class="option">vendor/ember</code>.</p>
 
       <p>When Ember Handlebars is enabled, Mimosa will not write the AMD version of Handlebars to the public directory as it does with all the other compilers including vanilla Handlebars.</p>
+
+      <h2>Emblem <small><span class="mim">emblem</span> <span class="command">["emblem", "embl"]</span></small></h2>
+      <p><a href="http://emblemjs.com/">Emblem</a> is available. To access a Emblem template originating from a file named "example.embl"...</p>
+
+      <pre>var html = templates.example({})</pre>
+
+      <p><a href="http://emblemjs.com">Emblem</a> precompiles to the same functions that Handlebars does and from there on using Emblem is the same as using Handlebars. All of the Handlebars documentation above applies (except Emblem does not yet support partials), including...</p>
+
+      <h3>Got Ember?</h3>
+
+      <p>Emblem utilizes the same <code class="option">ember</code> config that Handlebars does, so when <code class="option">handlebars.ember.enabled</code> is set to <code class="option">true</code>, Mimosa will output Ember-compliant Handlebars functions. See the Handlebars documentation above for more details.</p>
 
       <h2>Dust <small><span class="mim">dust</span> <span class="command">["dust"]</span></small></h2>
 
