@@ -133,7 +133,7 @@
 
     <p>Mimosa comes bundled with its own Express server. If <code class="option">server.defaultServer.enabled</code> is set to <code class="option">true</code> in the <code class="option">mimosa-config</code>, then when <code class="option">mimosa watch</code> is run with the <code class="option">--server</code> flag, Mimosa will run its embedded server. When running Mimosa's Express, all of the settings in the <code class="option">server</code> portion of the <code class="option">mimosa-config</code> become very important. See the <a href="./configuration.html#server">server configuration details</a> to learn more.</p>
 
-    <p>Mimosa's Express will do a few things in addition to serving up an application. Assuming <code class="option">liveReload.enabled</code> is set to <code class="option">true</code> (default), Live Reload will be used. Mimosa will reload the browser whenever a file in <code class="option">liveReload.enabled.additionalDirs</code> (default 'views') or <code class="option">config.watch.compiledDir</code> (default 'public') changes. Mimosa will also serve static assets gzipped.</p>
+    <p>Mimosa's Express will do a few things in addition to serving up an application. Assuming <code class="option">liveReload.enabled</code> is set to <code class="option">true</code> (default), Live Reload will be used. Mimosa will reload the browser whenever a file in <code class="option">liveReload.additionalDirs</code> (default 'views') or <code class="option">config.watch.compiledDir</code> (default 'public') changes. Mimosa will also serve static assets gzipped.</p>
 
     <h2>Routing</h2>
 
