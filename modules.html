@@ -201,23 +201,23 @@
 
     <p>There are four ways to install a module.</p>
 
-    <h2>mimosa mod:install</h2>
+    <h2>The easiest way: just update the mimosa-config modules array</h2>
 
-    <p>One way to install a module is the <code class="option">mod:install</code> command discussed further below. <code class="option">mimosa mod:install mimosa-web-package</code> will install <code class="option">mimosa-web-package</code> from NPM. The module will still need to be added to any projects that need to use it.  This command adds the module right into the Mimosa install as if it was installed with Mimosa itself.  This allows Mimosa to draw from it when building a new <code class="option">mimosa-config</code>. If a module is installed inside Mimosa, Mimosa will include that module's configuration snippet inside any generated <code class="option">mimosa-config</code>.</p>
+    <p>One way to install a module is to just add it to the <a href="./configuration.html#modules">modules</a> array in the <code class="option">mimosa-config</code> for a project. This is a shortcut for the project level <code class="option">npm install</code> (covered next). The next time Mimosa is started for that project it will install the module into the Mimosa project from NPM. For example, to add the <code class="option">mimosa-web-package</code> module, include <code class="option">web-package</code> in the uncommented <a href="./configuration.html#modules">modules</a> config. Run, for instance, <code class="option">mimosa watch</code>, and the first thing Mimosa will do is go fetch <code class="option">mimosa-web-package</code> from NPM.</p>
 
-    <h2>npm install</h2>
-
-    <p>Use <code class="option">npm install -g</code> to install any modules into the global node scope. Modules installed with <code class="option">mod:install</code> take priority, so if any modules are installed with both <code class="option">npm install -g</code> and <code class="option">mod:install</code>, the <code class="option">npm install -g</code> module will be ignored.</p>
+    <p>To use a module it needs to be added to the <a href="./configuration.html#modules">modules</a> array anyway, so this shortcut saves the installation step.</p>
 
     <h2>Project npm install</h2>
 
     <p>Place and install Mimosa modules in the project itself and Mimosa will prioritize those modules above all others. Run <code class="option">npm install mimosa-nameOfModule</code> and the module will be installed. Modules installed inside a project take precedence over any modules installed into other scopes.</p>
 
-    <h2>The easiest way: just update the mimosa-config modules array</h2>
+    <h2>mimosa mod:install</h2>
 
-    <p>One way to install a module is to just add it to the <a href="./configuration.html#modules">modules</a> array in the <code class="option">mimosa-config</code> for a project. This is a shortcut for the project level <code class="option">npm install</code>. The next time Mimosa is started for that project it will install the module into the Mimosa project from NPM. For example, to add the <code class="option">mimosa-web-package</code> module, include <code class="option">web-package</code> in the uncommented <a href="./configuration.html#modules">modules</a> config. Run, for instance, <code class="option">mimosa watch</code>, and the first thing Mimosa will do is go fetch <code class="option">mimosa-web-package</code> from NPM.</p>
+    <p>One way to install a module is the <code class="option">mod:install</code> command discussed further below. <code class="option">mimosa mod:install mimosa-web-package</code> will install <code class="option">mimosa-web-package</code> from NPM. The module will still need to be added to any projects that need to use it. This command adds the module right into the Mimosa install as if it was installed with Mimosa itself.  This allows Mimosa to draw from it when building a new <code class="option">mimosa-config</code>. If a module is installed inside Mimosa, Mimosa will include that module's configuration snippet inside any generated <code class="option">mimosa-config</code>.</p>
 
-    <p>To use a module it needs to be added to the <a href="./configuration.html#modules">modules</a> array anyway, so this shortcut saves the installation step.</p>
+    <h2>npm install</h2>
+
+    <p>Use <code class="option">npm install -g</code> to install any modules into the global node scope. Modules installed with <code class="option">mod:install</code> take priority, so if any modules are installed with both <code class="option">npm install -g</code> and <code class="option">mod:install</code>, the <code class="option">npm install -g</code> module will be ignored.</p>
 
     <h2>Install specific module version</h2>
 
