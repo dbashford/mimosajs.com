@@ -3,9 +3,6 @@
     , $nav = $('.subnav')
     , navTop = $('.subnav').length && $('.subnav').offset().top - 40
     , isFixed = 0
-    , moduleDescriptors = $('.workflow-steps .module')
-    , chosenModuleExtension = 'js'
-    , chosenModule = 'builtin'
     , workflowButtons = $('#workflow-toggles button')
     , workflowDetails = $('.workflow-steps');
 
@@ -43,34 +40,6 @@
   }).mouseout(function(){
     doCodeHighlight(this)
   })
-
-  if (moduleDescriptors.length > 0) {
-
-    function showModule() {
-      $(moduleDescriptors).hide();
-      $(moduleDescriptors).filter('.' + chosenModuleExtension + '.' + chosenModule).show();
-
-      $.each(workflowButtons, function(i, button) {
-        var type = $(button).attr('data-type');
-        var num = $('div[data-type=' + type + ']').find('.' + chosenModuleExtension + '.' + chosenModule).length;
-        $(button).find('.count').html(num);
-      })
-
-    }
-
-    showModule()
-
-    $('[name="extension"]').click(function() {
-      chosenModuleExtension = $(this).val();
-      showModule();
-    }).attr('checked',false).filter('[value="' + chosenModuleExtension + '"]').attr('checked',true)
-
-    $('[name="module"]').click(function() {
-      chosenModule = $(this).val();
-      showModule();
-    }).attr('checked',false).filter('[value="' + chosenModule + '"]').attr('checked',true);
-
-  }
 
   $(workflowButtons).click(function() {
     $(workflowButtons).removeClass('active');

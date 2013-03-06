@@ -678,6 +678,404 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
 
     <p>When building a module, a developer needs to decide which step is the right place to execute a module's functionality. For instance, if building a module that will run <a href="http://www.coffeelint.org/">CoffeeLint</a> over CoffeeScript to determine CoffeeScript code quality, then <code class="options">afterRead</code> is probably the best step. If, for instance, <code class="options">beforeRead</code> is used, then Mimosa will have not yet read in the file, and there will be nothing on which to run CoffeeLint.</p>
 
+    <h2>Workflow Type & Step Breakdown</h2>
+
+    <p>Below is the exhaustive list of all of the steps by workflow. Use the radio buttons to toggle between the different default Mimosa modules.</p>
+
+    <br/>
+
+    <div id="workflow-toggles" class="btn-group">
+      <button data-type="build" class="btn span4 active">Build Workflows</button>
+      <button data-type="watch" class="btn span4">Watch Workflows</button>
+      <button data-type="clean" class="btn span4">Clean Workflows</button>
+    </div>
+
+    <br/>
+
+    <div data-type="build" class="row workflow-steps">
+      <div class="span3">
+        <h3>preBuild</h3>
+        <ul>
+          <li>
+            <div class="step">init</div>
+          </li>
+          <li>
+            <div class="step">complete</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="span3">
+        <h3>buildFile</h3>
+        <ul>
+          <li>
+            <div class="step">init</div>
+          </li>
+          <li>
+            <div class="step">beforeRead</div>
+          </li>
+          <li>
+            <div class="step">read</div>
+          </li>
+          <li>
+            <div class="step">afterRead</div>
+          </li>
+          <li>
+            <div class="step">betweenReadCompile</div>
+          </li>
+          <li>
+            <div class="step">beforeCompile</div>
+          </li>
+          <li>
+            <div class="step">compile</div>
+          </li>
+          <li>
+            <div class="step">afterCompile</div>
+          </li>
+          <li>
+            <div class="step">betweenCompileWrite</div>
+          </li>
+          <li>
+            <div class="step">beforeWrite</div>
+          </li>
+          <li>
+            <div class="step">write</div>
+          </li>
+          <li>
+            <div class="step">afterWrite</div>
+          </li>
+          <li>
+            <div class="step">complete</div>
+          </li>
+        </ul>
+      </div>
+      <div class="span3">
+        <h3>buildExtension</h3>
+        <ul>
+          <li>
+            <div class="step">init</div>
+          </li>
+          <li>
+            <div class="step">beforeRead</div>
+          </li>
+          <li>
+            <div class="step">read</div>
+          </li>
+          <li>
+            <div class="step">afterRead</div>
+          </li>
+          <li>
+            <div class="step">betweenReadCompile</div>
+          </li>
+          <li>
+            <div class="step">beforeCompile</div>
+          </li>
+          <li>
+            <div class="step">compile</div>
+          </li>
+          <li>
+            <div class="step">afterCompile</div>
+          </li>
+          <li>
+            <div class="step">betweenCompileWrite</div>
+          </li>
+          <li>
+            <div class="step">beforeWrite</div>
+          </li>
+          <li>
+            <div class="step">write</div>
+          </li>
+          <li>
+            <div class="step">afterWrite</div>
+          </li>
+          <li>
+            <div class="step">complete</div>
+          </li>
+        </ul>
+      </div>
+      <div class="span3">
+        <h3>postBuild</h3>
+        <ul>
+          <li>
+            <div class="step">init</div>
+          </li>
+          <li>
+            <div class="step">beforeOptimize</div>
+          </li>
+          <li>
+            <div class="step">optimize</div>
+          </li>
+          <li>
+            <div class="step">afterOptimize</div>
+          </li>
+          <li>
+            <div class="step">beforeServer</div>
+          </li>
+          <li>
+            <div class="step">server</div>
+          </li>
+          <li>
+            <div class="step">afterServer</div>
+          </li>
+          <li>
+            <div class="step">beforePackage</div>
+          </li>
+          <li>
+            <div class="step">package</div>
+          </li>
+          <li>
+            <div class="step">afterPackage</div>
+          </li>
+          <li>
+            <div class="step">beforeInstall</div>
+          </li>
+          <li>
+            <div class="step">install</div>
+          </li>
+          <li>
+            <div class="step">afterInstall</div>
+          </li>
+          <li>
+            <div class="step">complete</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div data-type="watch" class="row workflow-steps hide">
+      <div class="span4">
+        <h3>add</h3>
+        <ul>
+          <li>
+            <div class="step">init</div>
+          </li>
+          <li>
+            <div class="step">beforeRead</div>
+          </li>
+          <li>
+            <div class="step">read</div>
+          </li>
+          <li>
+            <div class="step">afterRead</div>
+          </li>
+          <li>
+            <div class="step">betweenReadCompile</div>
+          </li>
+          <li>
+            <div class="step">beforeCompile</div>
+          </li>
+          <li>
+            <div class="step">compile</div>
+          </li>
+          <li>
+            <div class="step">afterCompile</div>
+          </li>
+          <li>
+            <div class="step">betweenCompileWrite</div>
+          </li>
+          <li>
+            <div class="step">beforeWrite</div>
+          </li>
+          <li>
+            <div class="step">write</div>
+          </li>
+          <li>
+            <div class="step">afterWrite</div>
+          </li>
+          <li>
+            <div class="step">betweenWriteOptimize</div>
+          </li>
+          <li>
+            <div class="step">beforeOptimize</div>
+          </li>
+          <li>
+            <div class="step">optimize</div>
+          </li>
+          <li>
+            <div class="step">afterOptimize</div>
+          </li>
+          <li>
+            <div class="step">complete</div>
+          </li>
+        </ul>
+      </div>
+      <div class="span4">
+        <h3>update</h3>
+        <ul>
+          <li>
+            <div class="step">init</div>
+          </li>
+          <li>
+            <div class="step">beforeRead</div>
+          </li>
+          <li>
+            <div class="step">read</div>
+          </li>
+          <li>
+            <div class="step">afterRead</div>
+          </li>
+          <li>
+            <div class="step">betweenReadCompile</div>
+          </li>
+          <li>
+            <div class="step">beforeCompile</div>
+          </li>
+          <li>
+            <div class="step">compile</div>
+          </li>
+          <li>
+            <div class="step">afterCompile</div>
+          </li>
+          <li>
+            <div class="step">betweenCompileWrite</div>
+          </li>
+          <li>
+            <div class="step">beforeWrite</div>
+          </li>
+          <li>
+            <div class="step">write</div>
+          </li>
+          <li>
+            <div class="step">afterWrite</div>
+          </li>
+          <li>
+            <div class="step">betweenWriteOptimize</div>
+          </li>
+          <li>
+            <div class="step">beforeOptimize</div>
+          </li>
+          <li>
+            <div class="step">optimize</div>
+          </li>
+          <li>
+            <div class="step">afterOptimize</div>
+          </li>
+          <li>
+            <div class="step">complete</div>
+          </li>
+        </ul>
+      </div>
+      <div class="span4">
+        <h3>remove</h3>
+        <ul>
+          <li>
+            <div class="step">init</div>
+          </li>
+          <li>
+            <div class="step">beforeRead</div>
+          </li>
+          <li>
+            <div class="step">read</div>
+          </li>
+          <li>
+            <div class="step">afterRead</div>
+          </li>
+          <li>
+            <div class="step">beforeDelete</div>
+          </li>
+          <li>
+            <div class="step">delete</div>
+          </li>
+          <li>
+            <div class="step">afterDelete</div>
+          </li>
+          <li>
+            <div class="step">beforeCompile</div>
+          </li>
+          <li>
+            <div class="step">compile</div>
+          </li>
+          <li>
+            <div class="step">afterCompile</div>
+          </li>
+          <li>
+            <div class="step">betweenCompileWrite</div>
+          </li>
+          <li>
+            <div class="step">beforeWrite</div>
+          </li>
+          <li>
+            <div class="step">write</div>
+          </li>
+          <li>
+            <div class="step">afterWrite</div>
+          </li>
+          <li>
+            <div class="step">betweenWriteOptimize</div>
+          </li>
+          <li>
+            <div class="step">beforeOptimize</div>
+          </li>
+          <li>
+            <div class="step">optimize</div>
+          </li>
+          <li>
+            <div class="step">afterOptimize</div>
+          </li>
+          <li>
+            <div class="step">complete</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div data-type="clean" class="row workflow-steps hide">
+      <div class="span4">
+        <h3>preClean</h3>
+        <ul>
+          <li>
+            <div class="step">init</div>
+          </li>
+          <li>
+            <div class="step">complete</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="span4">
+        <h3>cleanFile</h3>
+        <ul>
+          <li>
+            <div class="step">init</div>
+          </li>
+          <li>
+            <div class="step">beforeRead</div>
+          </li>
+          <li>
+            <div class="step">read</div>
+          </li>
+          <li>
+            <div class="step">afterRead</div>
+          </li>
+          <li>
+            <div class="step">beforeDelete</div>
+          </li>
+          <li>
+            <div class="step">delete</div>
+          </li>
+          <li>
+            <div class="step">afterDelete</div>
+          </li>
+          <li>
+            <div class="step">complete</div>
+          </li>
+        </ul>
+      </div>
+      <div class="span4">
+        <h3>postClean</h3>
+        <ul>
+          <li>
+            <div class="step">init</div>
+          </li>
+          <li>
+            <div class="step">complete</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+
     <div class="page-header" id="callback">
       <h1>
           Your Workflow Module Callback
