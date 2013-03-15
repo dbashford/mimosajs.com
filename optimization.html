@@ -125,6 +125,7 @@
         <li><code class="option">insertRequire</code>: set to the name of the module being compiled</li>
         <li><code class="option">name</code>: set to <code class="option">almond</code></li>
         <li><code class="option">logLevel</code>: set to <code class="option">3</code> which is the r.js error logging level</li>
+        <li><code class="option">optimize</code>: set to <code class="option">uglify2</code> unless both the <code class="option">--optimize</code> and <code class="option">--minify</code> flags are used, in which case it is set to <code class="option">none</code></li>
       </ul>
 
       <p>These settings will package up each individual module into its own optimized file wrapped with Almond.</p>
@@ -148,6 +149,10 @@
       <p>For instance, maybe there are files to include in the r.js execution that are not pulled in as dependencies by r.js, maybe all .html files via the <a href="https://github.com/requirejs/text">requirejs text plugin</a>, and rather than listing them one by one in the overrides, they could be dynamically added so a list need not be maintained. A module could do this, executing during the <code class="option">beforeOptimize</code> step, but after the configs have been built.  In that module the codebase could be scanned for .html files and push them onto the r.js config <code class="option">include</code> array.</p>
 
       <p>Doing this provides both Mimosa's smarts, and the intelligence Mimosa can't provide by way of a custom module.  To get started building such a module, check out the long-named example module <a href="https://github.com/dbashford/mimosa-requirebuild-textplugin-include">mimosa-requirebuild-textplugin-include</a> which performs just the task mentioned above.</p>
+
+      <h2>Source Maps During Development</h2>
+
+      <p>When <code class="option">mimosa watch</code> is used with <code class="option">--optimize</code> (and not also <code class="option">--minify</code> which does minification outside of requirejs), Mimosa will generate source maps for easy debugging in browser dev tools. <code class="option">mimosa build</code> does not generate source maps. All cleans performed by various Mimosa tasks will clean up the generated <code class="option">.src</code> and <code class="option">.map</code> files. Because generation of source maps is configured via the r.js config, which can already be overridden in the <code class="option">require</code> config, no additional config settings have been added to change the default behaviors.</p>
 
     </section>
     <section id="min">
