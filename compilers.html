@@ -227,7 +227,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>js, css, png, jpg, jpeg, gif, html, eot, svg, ttf, woff, otf, yaml, kml, ico, htc, htm, json, txt, xml, xsd</td>
+          <td>js, css, png, jpg, jpeg, gif, html, eot, svg, ttf, woff, otf, yaml, kml, ico, htc, htm, json, txt, xml, xsd, map</td>
         </tr>
       </tbody>
     </table>
@@ -300,10 +300,27 @@
       <p>Mimosa currently supports the following JavaScript Meta-Languages.  Next to the name of each is the Mimosa name and the list of default extensions Mimosa recognizes.</p>
 
       <h2>CoffeeScript <small><span class="mim">coffee</span> <span class="command">['coffee']</span></small></h2>
-      <p><a href="http://coffeescript.org/">CoffeeScript</a> is one of Mimosa's compiler, and is a Mimosa favorite. Mimosa will treat files ending in .coffee as CoffeeScript files.</p>
+      <p><a href="http://coffeescript.org/">CoffeeScript</a> is one of Mimosa's compilers, and is a Mimosa favorite as Mimosa itself is coded using CoffeeScript. Mimosa will treat files ending in <code class="option">.coffee</code> as CoffeeScript files.</p>
+
+      <p>By default, during <code class="option">mimosa watch</code> Mimosa will also generate <a href="http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/">source maps</a>. Source maps map lines of compiled JavaScript back to lines of the original CoffeeScript source. So when something breaks in the compiled JavaScript, tools like the Chrome Dev Tools will show you the responsible line of CoffeeScript. The inclusion of source maps eliminates one of the chief concerns with using this particular compiles-to-JavaScript language. Source maps are turned off by default for <code class="option">mimosa build</code>.</p>
+
+      <p>CoffeeScript, by default, wraps compiled JavaScript in a safety wrapper to protect scope. Mimosa turns this wrapping off by compiling <code class="option">bare</code> by default. Mimosa does this because it assumes code is already being wrapped in AMD or CommonJS/AMD functions <code class="option">define</code> or <code class="option">require</code>.</p>
+
+      <p>Mimosa provides the full ability to configure the CoffeeScript compiler via the <code class="option">mimosa-config</code>. Source maps can be turned off, <code class="option">bare</code> compilation can be turned off, and any other flags/settings CoffeeScript exposes to tweak compilation can be added. The following is the default config for the CoffeeScript compiler.</p>
+
+      <pre>coffeescript:
+  sourceMap:true
+  bare:true</pre>
 
       <h2>Iced CoffeeScript <small><span class="mim">iced</span> <span class="command">['iced']</span></small></h2>
       <p><a href="http://maxtaco.github.com/coffee-script/">Iced CoffeeScript</a> is available as an option for folks who want some async sugar in their Coffee.</p>
+
+      <p>Like CoffeeScript, Iced CoffeeScript, by default, wraps compiled JavaScript in a safety wrapper to protect scope. Mimosa turns this wrapping off by compiling <code class="option">bare</code> by default. Mimosa does this because it assumes code is already being wrapped in AMD or CommonJS/AMD functions <code class="option">define</code> or <code class="option">require</code>.</p>
+
+      <p>Mimosa provides the full ability to configure the Iced CoffeeScript compiler via the <code class="option">mimosa-config</code>. <code class="option">bare</code> compilation can be turned off, and any other flags/settings Iced CoffeeScript exposes to tweak compilation can be added. The following is the default config for the Iced CoffeeScript compiler.</p>
+
+      <pre>iced:
+  bare:true</pre>
 
       <h2>LiveScript <small><span class="mim">livescript</span> <span class="command">['ls']</span></small></h2>
       <p><a href=" http://gkz.github.com/LiveScript/">LiveScript</a> is available as an option for those that enjoy some functional hotness and squiggly arrows.</p>
@@ -559,7 +576,7 @@
     <section id="copy">
       <div class="page-header">
         <h1>
-          Copy "Compiler" <small><span class="command">["js", "css", "png", "jpg", "jpeg", "gif", "html", "eot", "svg", "ttf", "woff", "otf", "yaml", "kml", "ico", "htc", "htm", "json", "txt", "xml", "xsd"] </span></small>
+          Copy "Compiler" <small><span class="command">["js", "css", "png", "jpg", "jpeg", "gif", "html", "eot", "svg", "ttf", "woff", "otf", "yaml", "kml", "ico", "htc", "htm", "json", "txt", "xml", "xsd", "map"] </span></small>
         </h1>
       </div>
       <p>Mimosa maintains a list of extensions that it will simply copy from the assets directory to the public directory.  Because of the copy compiler, images, plain JavaScript, CSS will not be left out.</p>
