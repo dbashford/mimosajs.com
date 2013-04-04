@@ -118,7 +118,7 @@
       <ul>
         <li><code class="option">baseUrl</code>: set by combining the mimosa-config <code class="option">watch.compiledDir</code> with the <code class="option">compilers.javascript.directory</code></li>
         <li><code class="option">out</code>: optimized files are output into the <code class="option">watch.compiled</code> + <code class="option">compilers.javascript.directory</code> in a file that is the main module name + <code class="option">-built.js</code></li>
-        <li><code class="option">mainConfigFile</code>: set to the file path of the main module</li>
+        <li><code class="option">mainConfigFile</code>: set to the file path of the main module unless a common config (<code class="option">require.commonConfig</code> setting) is detected.  If a common config is found, <code class="option">mainConfigFile</code> is set to that.</li>
         <li><code class="option">findNestedDependencies</code>: <code class="option">true</code></li>
         <li><code class="option">wrap</code>: <code class="option">true</code></li>
         <li><code class="option">include</code>: set to the name of the module being compiled</li>

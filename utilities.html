@@ -97,19 +97,19 @@
 
           <ul>
              <li>Verify paths when JavaScript successfully compiles. Mimosa will follow relative paths for dependencies, and also use config paths whether they resolve to an actual dependency, <code class="option">jquery: 'vendor/jquery'</code>, or they resolve to a module, <code class="option">moduleX:'a/path/to/module/x'</code>.
+            <li>Detect dependencies embedded within <code class="option">define</code> and <code class="option">require</code> callbacks. i.e. deferred <code class="option">require</code> calls.</li>
             <li>Verify map and shim paths, and keep track of the map config and use it for path verification.</li>
             <li>Notify when paths are broken. An unresolved path is as crucial as a compiler error: code is broken.</li>
             <li>Catch circular dependencies and notify on the console.</li>
-            <li>Catch when a a non-vendor piece of compiled JavaScript isn't wrapped in <code class="option">require</code> or <code class="option">define</code> and notify you on the console.</li>
+            <li>Catch when a non-vendor piece of compiled JavaScript isn't wrapped in <code class="option">require</code> or <code class="option">define</code> and notify you on the console.</li>
             <li>Run RequireJS' optimizer when the <code class="option">optimize</code> flag is enabled for <code class="option">mimosa build</code>, and on every file change for <code class="option">mimosa watch</code>.</li>
             <li>Need no config at all for the optimizer, which takes some time to configure. Mimosa will keep track of dependencies and build a vanilla optimizer configuration.</li>
-            <li>Allow as complex an optimizer as needed be built dynamically via modules.</li>
-            <li>Handle multiple RequireJS modules</li>
-            <li>Only compile those modules that need compiling based on the changed code.</li>
+            <li>For complex r.js configurations, allow modification of pre-built inferred configs rather than needing from-scratch configurations.</li>
+            <li>Handle multi-page applications with multiple modules.</li>
+            <li>Detect and use common RequireJS configuration used across multiple modules</li>
+            <li>Only compile those modules that need compiling based on changed code.</li>
             <li>Bundle optimized JavaScript with <a href="https://github.com/jrburke/almond">Almond</a></li>
           </ul>
-
-          <p>Path verification can be turned off using the configuration shown here.  Set enabled to <code class="option">false</code>. For information about how Mimosa uses RequireJS to optimize your application, check out the <a href="file:///Users/dbashford/mygithub/mimosajs.com/optimization.html">Optimization</a> tab.</p>
 
         </div>
         <div class="span6">
@@ -130,6 +130,8 @@
 
         </div>
       </div>
+
+      <p>Path verification can be turned off using the configuration shown here.  Set enabled to <code class="option">false</code>. For information about how Mimosa uses RequireJS to optimize your application, check out the <a href="file:///Users/dbashford/mygithub/mimosajs.com/optimization.html">Optimization</a> tab.</p>
 
       <p>Path verification is always disabled for vendor assets, that is, assets located inside a <code class="option">vendor</code> directory.  Vendor assets often use creative means to turn themselves into AMD modules that prove hard to verify.  That said, if a vendor asset is placed outside the vendor folder, Mimosa is coded to handle how some of the methods vendor assets are AMDed. But Mimosa may complain that some vendor assets are throwing errors or are not properly wrapped.</p>
 
