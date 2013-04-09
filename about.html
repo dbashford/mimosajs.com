@@ -91,7 +91,39 @@
       </div>
     </section>
 
-    <p>New page...content on the way, if you have any questions, shoot them at @mimosajs.</p>
+    <p>New page...content will be added as I get time.If you have any questions or things you'd like covered, shoot them at @mimosajs.</p>
+
+    <h2>Heroku</h2>
+
+    <p>Want to push your app to Heroku?  Here's a few steps to go from no app to a Heroku app in no time at all. The following assumes you have <a href="https://id.heroku.com/signup/devcenter">signed up</a>, you have the <a href="https://toolbelt.heroku.com/">toolbelt</a> installed, and you have git installed as Heroku deploys code via git.</p>
+
+    <h3>Initial Setup</h3>
+
+    <p>Many of the following tasks only need to be executed once.</p>
+
+    <ol>
+      <li>Execute <code class="option">mimosa new</code> and pick your favorite technologies. You must pick a server.</li>
+      <li>Open the <code class="option">mimosa-config.coffee</code>, uncomment the <code class="option">modules</code> array and add <code class="option">'web-package'</code> to the end of the array.  Note: If you already had <code class="option">web-package</code> installed, you'll want to make sure to upgrade to the latest version. The best way to do that is to change the entry in the <code class="option">modules</code> array to <code class="option">web-package@0.8.0</code>. <code class="option">0.8.0</code> is necessary for maximum Heroku support.</li>
+      <li>Open <code class="option">.gitignore</code> and change <code class="option">/dist</code> to <code class="option"># /dist</code>. This makes the <code class="option">dist</code> directory, which is created by the <code class="option">web package</code> module, something that gets checked in.</li>
+      <li>In the root of the project, create a file named <code class="option">Procfile</code>, no extension.  The content of this file should be one line: <code class="option">web: node dist/app.js</code>. This lets Heroku know how to start your app.</li>
+      <li>Run <code class="option">mimosa build -omp</code>.  This minifies, optimizes and packages up the code.</li>
+      <li>Run <code class="option">heroku login</code> and provide your credentials</li>
+      <li>Run the following git commands: <code class="option">git init</code>, <code class="option">git add .</code>, <code class="option">git commit -m "init"</code></li>
+      <li>Run <code class="option">heroku create</code>, which sets up the remote repo with Heroku</li>
+      <li>Now push your code! <code class="option">git push heroku master</code></li>
+    </ol>
+
+    <p>At the end of the console spam from Heroku will be the URL to your app.</p>
+
+    <h3>After Initial Setup</h3>
+
+    <p>Once you are passed the initial setup, the list of steps shrinks dramatically. Now its just a git repo and you need to build your app.</p>
+
+    <ol>
+      <li>Run <code class="option">mimosa build -omp</code></li>
+      <li><code class="option">git init</code>, <code class="option">git add .</code>, <code class="option">git commit -m "init"</code></li>
+      <li><code class="option">git push heroku master</code></li>
+    </ol>
 
   </section>
 </div>
