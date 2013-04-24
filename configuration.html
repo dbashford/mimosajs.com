@@ -229,6 +229,8 @@
     <div class="row">
       <div class="span6">
 
+        <p>Many compilers have compiler specific configuration that is not listed here.  Checkout the <a href="./compilers.html">Compilers</a> page for more information.</p>
+
         <h4 class="hi compilers extensionOverrides">compilers.extensionOverrides</h4>
         <p class="hi compilers extensionOverrides">The <code class="option">compilers.extensionOverrides</code> config block contains nothing by default. This property allows certain extensions to be processed by a specific compiler. Each Mimosa compiler is already configured to process files with certain extensions, but this configuration allows those extensions to be changed. To use this, map a compiler name to an array of extensions.  For example, <code class="option">extensionOverrides:{coffee: ["coff", "coffee"]}</code> will add the "coff" extension to the already-default "coffee" extension. The <code class="option">compilers.extensionOverrides</code> setting can also be used to turn a compiler off if its behavior isn't desired. If CoffeeScript should not be compiled, the CoffeeScript compiler should be turned off with  <code class="option">extensionOverrides:{coffee: null}</code></p>
 

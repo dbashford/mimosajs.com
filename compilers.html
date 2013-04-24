@@ -373,7 +373,16 @@
       <p>The list of CSS compilers follows. Next to each name is the Mimosa name and the list of default extensions.</p>
 
       <h2>Stylus w/nib <small><span class="mim">stylus</span> <span class="command">["styl"]</span></small></h2>
+
       <p><a href="http://learnboost.github.com/stylus/">Stylus</a> with <a href="http://visionmedia.github.com/nib/">nib</a> is available. Mimosa will look for files ending in .styl and treat them as Stylus files. Stylus is a node library (as is nib), so there is no need to install anything to use it, and Stylus compiles will be speedy.</p>
+
+      <p>Stylus has its own configuration:</p>
+
+      <pre>stylus:
+  use:['nib']</pre>
+
+      <p>This configuration allows for the addition of external Stylus libraries to the compilation of a project's Stylus without needing to include the external libraries' source code in the project.  For each entry in the array, Mimosa will expect that it can find the library installed within the project.  So, for instance, to use this config <code class="option">use:['stylusFoo']</code>, then at some point "stylusFoo" would have had to have been executed via <code class="option">npm install stylusFoo</code>. The exception to this rule is "nib", which comes installed within Mimosa and does not need to be installed in the project.</p>
+
 
       <h2>SASS w/Compass <small><span class="mim">sass</span> <span class="command">["scss", "sass"]</span></small></h2>
       <p><a href="http://sass-lang.com/">SASS</a> w/<a href="http://compass-style.org/">Compass</a> is another Mimosa option.  SASS <a href="http://sass-lang.com/">(install)</a> and Compass <a href="http://compass-style.org/install/">(install)</a> are Ruby gems and there isn't yet a full implementation of them in nodejs, so Mimosa is dependent on those gems being installed. Compass isn't a necessary install, but Mimosa will complain if SASS is used but not installed.</p>
