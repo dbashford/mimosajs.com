@@ -309,6 +309,9 @@ shadow: true</pre>
         </h1>
       </div>
       <p>No forcing a refresh to bypass caching issues. All JavaScript and CSS files are cache-busted during development.</p>
+
+      <p>JavaScript cache-busting is done via the <code class="option">urlArgs</code> parameter with RequireJS.  That can cause some problems if you are doing breakpoint debugging in the client.  You'll want to comment out the <code class="option">urlArgs</code> if you do that kind of debugging.</p>
+
     </section>
 
     <section id="profiles" >
