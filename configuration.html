@@ -251,14 +251,14 @@
 
     <div class="row">
       <div class="span6">
+        <h4 class="hi template">template</h4>
+        <p class="hi template">The object for template configuration. If this is set to <code class="option">null</code> the template compilers are not intantiated. This is a quick and easy way to disable all template compilation, if, for instance, you wanted to add template extensions to be copied rather than be compiled.</p>
+
         <h4 class="hi amdWrap template">template.amdWrap</h4>
         <p class="hi amdWrap template">By default Mimosa wraps compiled template files in an AMD-compliant <code class="option">define</code> block. When <code class="option">amdWrap</code> is set to <code class="option">false</code> Mimosa will not wrap the compiled template files and will also not write a wrapped client library for the micro-templater of choice.</p>
 
         <h4 class="hi outputFileName template">template.outputFileName</h4>
         <p class="hi outputFileName template">The path of the file all templates are compiled into. The path is relative to <code class="option">watch.javascriptDir</code>. If multiple templating languages are being used, instead of being a single string, this setting should be a map of Mimosa template compiler name to file path.  Like <code class="option">hogan:"hogan-templates", dust:"dust-templates"</code>. See the <a href="./compilers.html#mt">compilers tab</a> for more info.</p>
-
-        <h4 class="hi handlebars helpers template">template.handlebars.helpers</h4>
-        <p class="hi handlebars helpers template">Only relevant for Handlebars templates. An array of paths from <code class="option">watch.javascriptDir</code> to the files containing handlebars helper registrations. The default can be left alone if there are no helpers.</p>
 
       </div>
       <div class="span6">
@@ -279,6 +279,9 @@
   }]</pre>
       </div>
     </div>
+
+    <h4 class="hi handlebars helpers template">template.handlebars.helpers</h4>
+    <p class="hi handlebars helpers template">Only relevant for Handlebars templates. An array of paths from <code class="option">watch.javascriptDir</code> to the files containing handlebars helper registrations. The default can be left alone if there are no helpers.</p>
 
     <h4 class="hi handlebars ember template">template.handlebars.ember</h4>
     <p class="hi handlebars ember template">The configuration block specific to using Handlebars with <a href="http://emberjs.com/">Ember.js</a>.</p>
