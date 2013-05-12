@@ -112,7 +112,7 @@
         <tr>
           <td><a href="http://coffeescript.org/">CoffeeScript</a></td>
           <td>coffee</td>
-          <td>coffee</td>
+          <td>coffee, litcoffee</td>
         </tr>
         <tr>
           <td><a href="http://maxtaco.github.com/coffee-script/">Iced CoffeeScript</a></td>
@@ -302,7 +302,7 @@
       </div>
       <p>Mimosa currently supports the following JavaScript Meta-Languages.  Next to the name of each is the Mimosa name and the list of default extensions Mimosa recognizes.</p>
 
-      <h2>CoffeeScript <small><span class="mim">coffee</span> <span class="command">['coffee']</span></small></h2>
+      <h2>CoffeeScript <small><span class="mim">coffee</span> <span class="command">["coffee", "litcoffee"]</span></small></h2>
       <p><a href="http://coffeescript.org/">CoffeeScript</a> is one of Mimosa's compilers, and is a Mimosa favorite as Mimosa itself is coded using CoffeeScript. Mimosa will treat files ending in <code class="option">.coffee</code> as CoffeeScript files.</p>
 
       <p>By default, during <code class="option">mimosa watch</code> Mimosa will also generate <a href="http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/">source maps</a>. Source maps map lines of compiled JavaScript back to lines of the original CoffeeScript source. So when something breaks in the compiled JavaScript, tools like the Chrome Dev Tools will show you the responsible line of CoffeeScript. The inclusion of source maps eliminates one of the chief concerns with using this particular compiles-to-JavaScript language. Source maps are turned off by default for <code class="option">mimosa build</code>.</p>
@@ -313,7 +313,12 @@
 
       <pre>coffeescript:
   sourceMap:true
+  sourceMapExclude: [[/\/spec\//]]
   bare:true</pre>
+
+      <p>The <code class="option">sourceMapExclude</code> property is not a CoffeeScript compiler instruction, but one for Mimosa. Any files paths that match the entries in the<code class="option">sourceMapExclude</code> will not have source maps generated.</p>
+
+      <p>Mimosa will also compile <a href="http://ashkenas.com/literate-coffeescript/">Literate CoffeeScript</a> files if they end with the extension <code class="option">litcoffee</code>.</a>
 
       <h2>Iced CoffeeScript <small><span class="mim">iced</span> <span class="command">['iced']</span></small></h2>
       <p><a href="http://maxtaco.github.com/coffee-script/">Iced CoffeeScript</a> is available as an option for folks who want some async sugar in their Coffee.</p>
