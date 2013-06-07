@@ -327,8 +327,13 @@
 
       <p>Mimosa provides the full ability to configure the Iced CoffeeScript compiler via the <code class="option">mimosa-config</code>. <code class="option">bare</code> compilation can be turned off, and any other flags/settings Iced CoffeeScript exposes to tweak compilation can be added. The following is the default config for the Iced CoffeeScript compiler.</p>
 
+      <p>Iced CoffeeScript files are also compiled without their runtime boilerplate by setting <code class="option">runtime: "none"</code>. That boilerplate looks something like <a href="https://github.com/dbashford/mimosa/blob/master/skeleton/assets/javascripts/vendor/iced.js.iced">this</a>. That boilerplate, if left in, is included in every Iced CoffeeScript file that uses the added async sugar that Iced CoffeeScript provides. The <code class="option">mimosa new</code> Iced CoffeeScript skeleton comes equipped with a better solution. That boilerplate is pulled out into a module and attached to the window so that the compiled Iced CoffeeScript code can use it.</p>
+
+      <p>But, the config is open, so if another solution is preferred, how the Iced CoffeeScript compiler handles the boilerplate can be tweaked.</p>
+
       <pre>iced:
-  bare:true</pre>
+  bare:true
+  runtime:"none"</pre>
 
       <h2>LiveScript <small><span class="mim">livescript</span> <span class="command">['ls']</span></small></h2>
       <p><a href=" http://gkz.github.com/LiveScript/">LiveScript</a> is available as an option for those that enjoy some functional hotness and squiggly arrows.</p>
@@ -513,6 +518,11 @@
       <p><code class="option">ember.enabled</code> selects the Ember Handlebars pre-compiler as the compiler that will handle Handlebars templates. <code class="option">path</code> is the AMD location of the Ember library, which defaults to <code class="option">vendor/ember</code>.</p>
 
       <p>When Ember Handlebars is enabled, Mimosa will not write the AMD version of Handlebars to the public directory as it does with all the other compilers including vanilla Handlebars.</p>
+
+      <h3>Need a Specific Handlebars?</h3>
+
+      <p>The <code class="option">template.handlebars.lib</code> setting allows for providing Mimosa a specific Handlebars version for precompiling Handlebars templates. To provide a Handlebars version it must be <code class="option">npm install</code>ed into your application. Then use the node.js <code class="option">require</code> function to hand it to Mimosa.  Ex: <code class="option">lib: require('handlebars')</code></p>
+
 
       <h2>Emblem <small><span class="mim">emblem</span> <span class="command">["emblem", "embl"]</span></small></h2>
       <p><a href="http://emblemjs.com/">Emblem</a> is available. To access a Emblem template originating from a file named "example.embl"...</p>

@@ -273,6 +273,7 @@
   <span class="amdWrap">amdWrap: true</span>
   <span class="outputFileName">outputFileName: "templates"</span>
   <span class="handlebars">handlebars:</span>
+    <span class="lib">lib:undefined</span>
     <span class="helpers">helpers: ["app/template/handlebars-helpers"]</span>
     <span class="ember">ember:</span>
       <span class="emberEnabled">enabled:false</span>
@@ -292,6 +293,9 @@
 
     <h4 class="hi outputFileName template">template.outputFileName</h4>
     <p class="hi outputFileName template">The path of the file all templates are compiled into. The path is relative to <code class="option">watch.javascriptDir</code>. If multiple templating languages are being used, instead of being a single string, this setting should be a map of Mimosa template compiler name to file path.  Like <code class="option">hogan:"hogan-templates", dust:"dust-templates"</code>. See the <a href="./compilers.html#mt">compilers tab</a> for more info.</p>
+
+    <h4 class="hi handlebars lib template">template.handlebars.lib</h4>
+    <p class="hi handlebars lib template">Only relevant for Handlebars templates. This setting allows for a specific version of the Handlebars compiler to be given to Mimosa to use to compile Handlebars templates. Mimosa comes with a Handlebars compilers, but some <a href="http://emberjs.com/">client-side MVC frameworks</a> can be picky about the version of Handlebars used to precompile templates. To provide a Handlebars version it must be <code class="option">npm install</code>ed into your application. Then use the node.js <code class="option">require</code> function to hand it to Mimosa.  Ex: <code class="option">lib: require('handlebars')</code> </p>
 
     <h4 class="hi handlebars helpers template">template.handlebars.helpers</h4>
     <p class="hi handlebars helpers template">Only relevant for Handlebars templates. An array of paths from <code class="option">watch.javascriptDir</code> to the files containing handlebars helper registrations. The default can be left alone if there are no helpers.</p>
