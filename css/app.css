@@ -506,6 +506,10 @@ i {
   color:firebrick;
 }
 
+.compilers h2 {
+  margin: 15px 0 5px;
+}
+
 .command-list h3 {
   margin:15px 0;
   color:#FF7722;

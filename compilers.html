@@ -213,6 +213,11 @@
           <td>ejs</td>
         </tr>
         <tr>
+          <td><a href="https://github.com/sstephenson/eco">ECO</a></td>
+          <td>eco</td>
+          <td>eco</td>
+        </tr>
+        <tr>
           <td>Plain HTML</td>
           <td>html</td>
           <td>template</td>
@@ -454,6 +459,10 @@
                <td>EJS</td>
                <td>ejs</td>
              </tr>
+             <tr>
+               <td>ECO</td>
+               <td>none</td>
+             </tr>
            </tbody>
          </table>
       </p>
@@ -588,6 +597,14 @@
       <pre>var html = templates.example({}, filters, escape)</pre>
 
       <p>Mimosa keeps an AMD wrapped version of EJS' filters that it writes to <code class="option">assets/javascripts/vendor/ejs-filters.js</code> directory as part of compilation. Mimosa's compiled EJS file will use those filters, but this can be overridden with custom filters.</p>
+
+      <h2>Embedded CoffeeScript Templates (ECO) <small><span class="mim">none</span> <span class="command">["eco"]</span></small></h2>
+
+      <p>To access an <a href="https://github.com/sstephenson/eco">ECO</a> template originating from a file named "example.ejs"...</p>
+
+      <pre>var html = templates.example({})</pre>
+
+      <p>ECO does not have a client library</p>
 
       <h2>HTML <small><span class="mim">html</span> <span class="command">["template"]</span></small></h2>
 
