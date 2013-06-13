@@ -168,6 +168,8 @@
 
       <p>For both the <code class="option">build</code> and <code class="option">watch</code> commands, Mimosa provides an <code class="option">--minify</code> flag that will run <a href="https://github.com/mishoo/UglifyJS2">Uglify2</a> over JavaScript assets. The mimosa-config provides the ability to exclude certain files from this minification using the <code class="option">minify.exclude</code> setting. By default any file already possessing <code class="option">.min.</code> in the path name will be excluded as it is assumed to already be minified.</p>
 
+      <p>If minifying a file that has a sourceMap the minifier will detect the source map and use it to create a new map.  So, for example, CoffeeScript compiled to JavaScript and then minified will have source maps that map the minified code back to the CoffeeScript source.</p>
+
       <p>Mimosa's Minification support comes courtesy of the <code class="option">mimosa-minify</code> module, a default Mimosa module that comes with Mimosa when it is installed.</p>
 
     </section>
