@@ -76,6 +76,7 @@
     <p class="lead">Some common questions answered</p>
     <div class="subnav">
       <ul class="nav nav-pills">
+        <li><a href="#contrib" title="Contribute">Contribute?</a></li>
         <li><a href="#ember" title="Ember.js">Ember.js</a></li>
         <li><a href="#emfile" title="EMFILE">EMFILE</a></li>
         <li><a href="#norequirejs" title="No RequireJS">No RequireJS</a></li>
@@ -96,17 +97,19 @@
       </div>
     </section>
 
+    <h2 id="contrib">Want to Contribute?</h2>
+
+    <ol>
+      <li>Clone the repo. Take care to not clone the repo to same directory where other mimosa modules are cloned.  This will confuse Mimosa when running it a dev space.</li>
+      <li><code class="option">npm link</code> inside the repo to make your dev location available as a global command line option.</li>
+      <li>Hack code, submit pull request!</li>
+      <li>When committing, take care to not accidentally commit/push any unintended <code class="option">package.json</code> changes. If you are both hacking on Mimosa core and on Mimosa modules, you'll notice installing Mimosa modules will update the Mimosa <code class="option">package.json</code>.</li>
+    </ol>
+
+
     <h2 id="ember">Ember.js</h2>
 
     <p>Getting started with Mimosa and with Ember?  Check out the community contributed <a href="https://github.com/emirotin/mimosa-ember">mimosa-ember</a> demo project. The author took a vanilla Mimosa install, Ember-ized it and detailed how to go about doing that step-by-step.</p>
-
-    <section id="faq">
-      <div class="page-header">
-        <h1>
-          FAQ
-        </h1>
-      </div>
-    </section>
 
     <h2 id="emfile">EMFILE Issues</h2>
 
