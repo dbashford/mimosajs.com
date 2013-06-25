@@ -585,7 +585,7 @@ exports.validate = function(config, validators) {
 
     <p>The arguments passed in are:</p>
     <ul>
-      <li><code class='option'>mimosaConfig</code>: The full <code class='option'>mimosa-config</code> including added flags to indicate what sort of Mimosa command is being run (like isForceClean, or isVirgin), and an added list of extensions being used by the application. A developer may decide based on the flags in the config to not register anything, which is fine. In the case of the minification example below, if the isMinify flag isn't turned on then the module doesn't register itself.</li>
+      <li><code class='option'>mimosaConfig</code>: The full <code class='option'>mimosa-config</code> including added flags to indicate what sort of Mimosa command is being run (like isForceClean), and an added list of extensions being used by the application. A developer may decide based on the flags in the config to not register anything, which is fine. In the case of the minification example below, if the isMinify flag isn't turned on then the module doesn't register itself.</li>
       <li><code class='option'>register</code>: This is a function handed to a module as a means to register a module with Mimosa. More information about how to use this register function follows in the next section.</li>
     </ul>
 
@@ -643,7 +643,7 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
 
     <h3>Watch Workflows</h3>
 
-    <p>If <code class="options">mimosa build</code> was executed, then after <code class="options">postBuild</code> is done, Mimosa exits.  If <code class="options">mimosa virgin</code> or <code class="options">mimosa watch</code> is executed, then Mimosa keeps running and monitors the project's codebase for changes. When changes occur, the watch workflows are executed. The watch types are very straight forward.</p>
+    <p>If <code class="options">mimosa build</code> was executed, then after <code class="options">postBuild</code> is done, Mimosa exits.  If <code class="options">mimosa watch</code> is executed, then Mimosa keeps running and monitors the project's codebase for changes. When changes occur, the watch workflows are executed. The watch types are very straight forward.</p>
 
     <p>For watch types no delineation exists between file and extension.  For each type only a single file is processed at a time. So modules like the CSS and micro-templates compilers perform extension-wide tasks based on the single file that was updated.</p>
 

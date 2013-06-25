@@ -99,8 +99,6 @@
     <h2>No server necessary</h2>
     <p>With <code class="option">mimosa watch</code> Mimosa does not need to serve assets. A project might have a server already. <code class="option">mimosa watch</code> is good with that. It'll run the workflow, compile code, lint it, write it, and stop there.</p>
 
-    <p><code class="option">mimosa virgin</code> is even less intrusive. It will not write anything, it'll just run the workflow steps pre-write.</p>
-
     <h2>But if you want one...</h2>
     <p>Toss a <code class="option">-s/--server</code> onto <code class="option">mimosa watch</code> and Mimosa will invoke a server. Which server Mimosa invokes depends on what is in the <code class="option">mimosa-config</code>. Mimosa could start its own embedded Express server and point it at a project's views and assets. Or Mimosa could start the server provided by <code class="option">mimosa new</code>. Or Mimosa could execute an existing server using a simple exports hook.</p>
 

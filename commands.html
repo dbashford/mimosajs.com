@@ -81,7 +81,6 @@
         <li><a href="#watch" title="Watch, compile and serve assets">Watch, Compile, Serve</a></li>
         <li><a href="#clean" title="Clean compiled assets">Clean</a></li>
         <li><a href="#build" title="One time asset compilation and optimization">Build</a></li>
-        <li><a href="#virgin" title="Compile, lint, feedback, noting else">Just Watch</a></li>
         <li><a href="#update" title="Update project depedencies">Refresh Dependencies</a></li>
         <li><a href="#misc" title="Copy Mimosa config to an existing project">Misc</a></li>
       </ul>
@@ -105,7 +104,6 @@
       <li><code class='option'>$ mimosa watch</code> builds a project and continues watching project files to build on-the-fly.</li>
       <li><code class='option'>$ mimosa clean</code> cleans the Mimosa generated assets.</li>
       <li><code class='option'>$ mimosa build</code> builds a project.</li>
-      <li><code class='option'>$ mimosa virgin</code> writes no output, but performs build and compiles.</li>
       <li><code class='option'>$ mimosa refresh</code> updates Mimosa projects with latest node modules and versions.</li>
       <li><code class='option'>$ mimosa config</code> writes an entirely commented out configuration file for all modules currently installed.</li>
       <li><code class='option'>--debug</code> and <code class='option'>--help</code> are available for all commands.</li>
@@ -482,48 +480,12 @@ $ mimosa build -mo</pre>
 $ mimosa build -P nameOfProfile</pre>
 
 
-    <section id="virgin">
-      <div class="page-header">
-        <h1>
-          Just Watch, Nothing Else (DEPRECATED)
-          <small><span class="mim">mimosa</span> <span class="command">virgin</span> <span class="options">[-P/--profile]</span></small>
-        </h1>
-      </div>
-    </section>
-
-    <p>NOTE: this command will be removed (sacrificed?) in an upcoming release of Mimosa unless you <a href="https://github.com/dbashford/mimosa/issues/198">fight</a> for it.</p>
-
-    <div class="row">
-      <div class="span6">
-        <h2>virgin</h2>
-
-        <p>Because, after all, a virgin mimosa is just orange juice.</p>
-
-        <pre>$ mimosa virgin</pre>
-
-        <p><code class="option">mimosa virgin</code> includes just the watching, compiling, linting and notifications. No server, no optimizations, no writing the output. Use this if you've already got an application framework and don't need files served or optimizations, but you want to know if something doesn't compile immediately, and you want to introduce linting to your workflow.</p>
-
-      </div>
-      <div class="span6 term">
-        <div class="inner">
-          <p>
-            Davids-MacBook-Pro:foo dbashford$ mimosa virgin<br/>
-            10:19:56 - Watching /Users/dbashford/mim/foo/assets<br/>
-            <span class="inst">13:50:52 - Compiled/copied [[ /Users/dbashford/mimosaplay/foo/public/javascripts/main.js ]]</span><br/>
-            <span class="inst">13:50:52 - Compiled/copied [[ /Users/dbashford/mimosaplay/foo/public/javascripts/app/example-view.js ]]</span><br/>
-            <span class="inst">13:50:52 - Compiled/copied [[ /Users/dbashford/mimosaplay/foo/public/stylesheets/style.css ]]</span><br/>
-            <span class="inst">13:50:52 - All templates compiled successfully.</span><br/>
-          </p>
-        </div>
-      </div>
-    </div>
-
     <h3>Use a Profile (-P/--profile)</h3>
 
     <p>Follow the <code class='option'>--profile</code> flag with the name of a profile, and Mimosa will use that profile to override the <code class='option'>mimosa-config</code> contained in the profile. See the <a href="./utilities.html#profiles">profiles section</a> of the Utilities page for more information on profiles.</p>
 
-    <pre>$ mimosa virgin --profile nameOfProfile
-$ mimosa virgin -P nameOfProfile</pre>
+    <pre>$ mimosa watch --profile nameOfProfile
+$ mimosa watch -P nameOfProfile</pre>
 
     <section id="update">
       <div class="page-header">
