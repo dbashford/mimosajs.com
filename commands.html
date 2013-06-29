@@ -81,7 +81,6 @@
         <li><a href="#watch" title="Watch, compile and serve assets">Watch, Compile, Serve</a></li>
         <li><a href="#clean" title="Clean compiled assets">Clean</a></li>
         <li><a href="#build" title="One time asset compilation and optimization">Build</a></li>
-        <li><a href="#update" title="Update project depedencies">Refresh Dependencies</a></li>
         <li><a href="#misc" title="Copy Mimosa config to an existing project">Misc</a></li>
       </ul>
     </div>
@@ -104,7 +103,6 @@
       <li><code class='option'>$ mimosa watch</code> builds a project and continues watching project files to build on-the-fly.</li>
       <li><code class='option'>$ mimosa clean</code> cleans the Mimosa generated assets.</li>
       <li><code class='option'>$ mimosa build</code> builds a project.</li>
-      <li><code class='option'>$ mimosa refresh</code> updates Mimosa projects with latest node modules and versions.</li>
       <li><code class='option'>$ mimosa config</code> writes an entirely commented out configuration file for all modules currently installed.</li>
       <li><code class='option'>--debug</code> and <code class='option'>--help</code> are available for all commands.</li>
     </ul>
@@ -487,52 +485,7 @@ $ mimosa build -P nameOfProfile</pre>
     <pre>$ mimosa watch --profile nameOfProfile
 $ mimosa watch -P nameOfProfile</pre>
 
-    <section id="update">
-      <div class="page-header">
-        <h1>
-          Refresh Project Dependencies (DEPRECATED)
-          <small><span class="mim">mimosa</span> <span class="command">refresh</span></small>
-        </h1>
-      </div>
-    </section>
 
-    <p>NOTE: this command will self destruct in a few releases unless you <a href="https://github.com/dbashford/mimosa/issues/198">go here</a> and ask for it to not be removed from Mimosa.</p>
-
-    <div class="row">
-      <div class="span6">
-        <h2>refresh</h2>
-
-        <P>The <code class="option">refresh</code> command isn't used to update Mimosa itself.  (If a new version of Mimosa is desired, execute <code class="option">npm install mimosa -g</code>.) The <code class="option">refresh</code> command is used to update the <code class="option">package.json</code> for Mimosa managed projects.</p>
-
-        <p>If an application is installed using the <code class="option">new</code> command, the application may fall out of date with the Mimosa skeleton as it evolves and advances. Use the <code class="option">refresh</code> command to update the node packages that Mimosa installed inside an application when it was created and to get any new libraries Mimosa now includes.</p>
-
-        <p>Mimosa will not attempt to update any of the other assets it delivers (routes, example skeleton files, etc) because many of them may have significantly changed from when they were created.</p>
-
-        <p>Mimosa will first run <code class="option">npm uninstall</code> for each of the skeleton libraries already in place. Then it will <code class="option">npm install</code> each removed library and each new library that wasn't there originally.</p>
-
-        <pre>$ mimosa refresh</pre>
-
-      </div>
-      <div class="span6 term">
-        <div class="inner">
-          <p>
-            Davids-MacBook-Pro:foo dbashford$ mimosa refresh<br/>
-            13:57:15 - Un-installing node package. express:3.0.0rc4<br/>
-            13:57:15 - Un-installing node package. jade:0.27.3<br/>
-            13:57:15 - Un-installing node package. watch-connect:0.3.4<br/>
-            13:57:15 - Un-installing node package. consolidate:0.4.0<br/>
-            <span class="inst">13:57:16 - Uninstall successful</span><br/>
-            13:57:16 - Installing node package: express:3.0.0rc4<br/>
-            13:57:16 - Installing node package: jade:0.27.3<br/>
-            13:57:16 - Installing node package: watch-connect:0.3.4<br/>
-            13:57:16 - Installing node package: consolidate:0.4.0<br/>
-            <span class="inst">13:57:20 - Install successful</span><br/>
-            <span class="inst">13:57:20 - Finished.  You are all up to date!</span><br/>
-            Davids-MacBook-Pro:foo dbashford$
-          </p>
-        </div>
-      </div>
-    </div>
     <section id="misc">
       <div class="page-header">
         <h1>
