@@ -550,7 +550,7 @@ $ mimosa mod:init --coffee</pre>
     <h3>validate(mimosaConfig, validators)</h3>
     <p>A module's <code class='option'>validate</code> function is called when Mimosa starts up and after Mimosa has put together the full <code class='option'>mimosa-config</code>. That full config is passed to the validate method of all modules and each module has the opportunity to ensure that the config settings are valid. This method should return an array of strings. Each string represents an error that the module has found with the config. If a module return any errors, Mimosa will print the errors and exit to give the user a chance to update the config.</p>
 
-    <p>The <code class='option'>validate</code> function is also passed, as the second parameter, an object containing a collection of validation and utility functions. The best way to learn what those functions are is to <a href="https://github.com/dbashford/mimosa/blob/master/lib/util/validators.coffee">check the source</a>.
+    <p>The <code class='option'>validate</code> function is also passed, as the second parameter, an object containing a collection of validation and utility functions. The best way to learn what those functions are is to <a href="https://github.com/dbashford/mimosa/blob/master/src/util/validators.coffee">check the source</a>.
 
     <p>If there are no errors, return an empty array. If there is no config to validate, then do not implement the method.</p>
 
