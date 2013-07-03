@@ -323,7 +323,7 @@
 
       <pre>coffeescript:
   sourceMap:true
-  sourceMapExclude: [[/\/spec\//]]
+  sourceMapExclude: [/\/specs?\//, /_spec.js$/]
   bare:true</pre>
 
       <p>The <code class="option">sourceMapExclude</code> property is not a CoffeeScript compiler instruction, but one for Mimosa. Any files paths that match the entries in the<code class="option">sourceMapExclude</code> will not have source maps generated.</p>
