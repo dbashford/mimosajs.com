@@ -591,8 +591,12 @@ i {
   margin-left: 0;
 }
 
+.demoapps h2 {
+  line-height:20px;
+}
+
 .term .help {
-  padding-left:20px;
+  padding-left:22px;
 }
 
 .help .command {
