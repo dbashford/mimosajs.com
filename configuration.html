@@ -413,6 +413,9 @@
         <h4 class="hi require">require</h4>
         <p class="hi require">Mimosa's configuration for AMD/RequireJS path verification and the r.js optimizer.</p>
 
+        <h4 class="hi verify exclude">require.exclude</h4>
+        <p class="hi verify exclude">The <code class="option">exclude</code> setting is an array of either string paths (absolute or relative) or regexes that when matching a file will keep that file from being processed by the  <code class="option">require</code> module. This can be used to keep files from being considered main modules to be used for processing if <code class="option">require</code> infers incorrectly.</p>
+
         <h4 class="hi require commonConfig">require.commonConfig</h4>
         <p class="hi require commonConfig">Location of common RequireJS configuration that is used across multiple pages/modules. See the <a href="https://github.com/requirejs/example-multipage/tree/master/www/js">RequireJS multi-page application example</a> on GitHub for an example of using common configuration.</p>
 
@@ -422,6 +425,7 @@
       </div>
       <div class="span6">
 <pre><span class="require">require:</span>
+  <span class="commonConfig">exclude:[]</span>
   <span class="commonConfig">commonConfig:"common"</span>
   <span class="verify">verify:</span>
     <span class="verifyenabled">enabled: true</span>
