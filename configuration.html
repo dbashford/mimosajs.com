@@ -75,10 +75,10 @@
     <p class="lead">The keys to the kingdom, when Mimosa's defaults aren't quite cutting it</p>
     <div class="subnav">
       <ul class="nav nav-pills">
-        <li><a href="#config" title="How it all works">Overview</a></li>
         <li><a href="#version" title="Enforce a Mimosa version">Version</a></li>
         <li><a href="#modules" title="What modules are installed">Modules</a></li>
         <li><a href="#watch" title="What to watch and where">Watch</a></li>
+        <li><a href="#vendor" title="Where the vendor scripts are">Vendor</a></li>
         <li><a href="#compilers" title="Compiler tweaks">Compilers</a></li>
         <li><a href="#templates" title="Template config">Templates</a></li>
         <li><a href="#copy" title="What files will Mimosa copy">Copy</a></li>
@@ -217,6 +217,31 @@
     <h4 class="hi throttle watch">watch.throttle</h4>
 
     <p class="hi throttle watch">The <code class="option">throttle</code> property represents how many files Mimosa will process every 100 milliseconds. Setting this property will slow down processing of file additions. This is necessary for very large projects with thousands of files. Mimosa processes them so fast that it quickly hits a system's open file limit. When this setting is set to 0, no throttling will take place. But if there are hundreds of files and EMFILE issues occur, play with the throttle. It may take a few minutes to get the throttle setting right, so that Mimosa is still processing files quickly, but not so quickly it crashes.</p>
+
+    <section id="vendor">
+      <div class="page-header">
+        <h1>
+          Vendor Scripts <small><span class="command">vendor</span></small>
+        </h1>
+      </div>
+    </section>
+
+    <div class="row">
+      <div class="span6">
+
+        <h4 class="hi vendor javascripts">vendor.javascripts</h4>
+        <p class="hi vendor javascripts">The location, relative to the <code class="option">watch.sourceDir</code>, of the vendor scripts.</p>
+
+        <h4 class="hi vendor stylesheets">vendor.stylesheets</h4>
+        <p class="hi vendor stylesheets">The location, relative to the <code class="option">watch.sourceDir</code>, of the vendor stylesheets.</p>
+
+      </div>
+      <div class="span6">
+<pre><span class="vendor">vendor:</span>
+  <span class="javascripts">javascripts: "javascripts/vendor"</span>
+  <span class="stylesheets">stylesheets: "stylesheets/vendor"</span></pre>
+      </div>
+    </div>
 
     <section id="compilers">
       <div class="page-header">

@@ -125,6 +125,8 @@
             </div>
           </div>
 <pre># require:
+  # exclude:[]
+  # commonConfig:"common"
   # verify:
     # enabled: true
   # optimize :
@@ -273,7 +275,9 @@ shadow: true</pre>
 
           <p>If <a href="http://growl.info/">Growl</a> is installed and turned on, a Growl notification will be created for each failed or successful asset compile. In the event Growl gets too spammy, Growl notifications can be turned off for successful compiles. Growl has its own setting in Mimosa, the defaults are to the right.</p>
 
-          <p>If  <a href="./commands.html#clean">clean</a> in run on a project and then <a href="./commands.html#watch">watche</a> is started, Mimosa will compile every asset. If there are dozens or hundreds of assets, Growl notifications may not be desirable for each successful compile during startup. Startup success notifications are off by default, but can be turned on by uncommenting the config and setting the <code class="option">growl.onStartup</code> flag to true.</p>
+          <p>If  <a href="./commands.html#clean">clean</a> in run on a project and then <a href="./commands.html#watch">watch</a> is started, Mimosa will compile every asset. If there are dozens or hundreds of assets, Growl notifications may not be desirable for each successful compile during startup. Startup success notifications are off by default, but can be turned on by uncommenting the config and setting the <code class="option">growl.onStartup</code> flag to true.</p>
+
+          <p>To allow Mimosa to use Growl, an extra library needs to be installed. For details on installation on your system, check out the <a href="https://github.com/visionmedia/node-growl#install">node-growl</a> page.</a>
 
         </div>
         <div class="span4">
