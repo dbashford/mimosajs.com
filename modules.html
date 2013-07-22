@@ -75,14 +75,11 @@
     <p class="lead">Extend Mimosa's default functionality, and publish your own extensions</p>
     <div class="subnav">
       <ul class="nav nav-pills">
-        <li><a href="#overview" title="Module commands">Overview</a></li>
-        <li><a href="#list" title="Module commands">List</a></li>
+        <li><a href="#list" title="Module commands">Module List</a></li>
         <li><a href="#use" title="Installing a module">Module Install and Usage</a></li>
         <li><a href="#commands" title="Module commands">Commands</a></li>
-        <li><a href="#create" title="Create a new project">Create</a></li>
-        <li><a href="#register" title="Register your Module">Register</a></li>
-        <li><a href="#callback" title="Your Module Callback, Where Your Code Gets Called">Module Callback</a></li>
-        <li><a href="#install" title="How to get Mimosa to know about your Module">Installing Your Module</a></li>
+        <li><a href="#create" title="Create a new project">Create Your Own - Summary</a></li>
+        <li><a href="#details" title="Create a new project">Create Your Own - Details</a></li>
       </ul>
     </div>
   </header>
@@ -94,9 +91,7 @@
       </h1>
     </div>
 
-    <p>So maybe Mimosa doesn't come with exactly what you need out of the box.  Maybe you want to use a different linter, or you want to kick off your testing suite on every file save. A module can probably help.</p>
-
-    <p>A Mimosa module is a node.js project that, when installed inside Mimosa, can be used as part of a Mimosa workflow or introduce a new Mimosa command. Mimosa is able to use a module because modules implement a simple interface Mimosa can access.</p>
+    <p>A Mimosa module is a node.js project that, when installed inside Mimosa, can be used as part of Mimosa's workflows. Mimosa is able to use a module because modules implement a simple interface Mimosa can access.</p>
 
     <p>There's a strong chance what you need can be created as a new module. In most cases all that is required to install a module is to include the module's name in the Mimosa configuration. Mimosa self-installs modules it comes across but does not already know about.</p>
 
@@ -244,15 +239,15 @@
       </h1>
     </div>
 
-    <p>There are four ways to install a module.</p>
+    <p>There are several ways to install a module.</p>
 
-    <h2>The easiest way: just update the mimosa-config modules array</h2>
+    <h2>The Easiest Way: add the module name to the mimosa-config modules array</h2>
 
     <p>One way to install a module is to just add it to the <a href="./configuration.html#modules">modules</a> array in the <code class="option">mimosa-config</code> for a project. This is a shortcut for the project level <code class="option">npm install</code> (covered next). The next time Mimosa is started for that project it will install the module into the Mimosa project from NPM. For example, to add the <code class="option">mimosa-web-package</code> module, include <code class="option">web-package</code> in the uncommented <a href="./configuration.html#modules">modules</a> config. Run, for instance, <code class="option">mimosa watch</code>, and the first thing Mimosa will do is go fetch <code class="option">mimosa-web-package</code> from NPM.</p>
 
     <p>To use a module it needs to be added to the <a href="./configuration.html#modules">modules</a> array anyway, so this shortcut saves the installation step.</p>
 
-    <h2>Project npm install</h2>
+    <h2>npm install</h2>
 
     <p>Place and install Mimosa modules in the project itself and Mimosa will prioritize those modules above all others. Run <code class="option">npm install mimosa-nameOfModule</code> and the module will be installed. Modules installed inside a project take precedence over any modules installed into other scopes.</p>
 
@@ -260,13 +255,13 @@
 
     <p>One way to install a module is the <code class="option">mod:install</code> command discussed further below. <code class="option">mimosa mod:install mimosa-web-package</code> will install <code class="option">mimosa-web-package</code> from NPM. The module will still need to be added to any projects that need to use it. This command adds the module right into the Mimosa install as if it was installed with Mimosa itself.  This allows Mimosa to draw from it when building a new <code class="option">mimosa-config</code>. If a module is installed inside Mimosa, Mimosa will include that module's configuration snippet inside any generated <code class="option">mimosa-config</code>.</p>
 
-    <h2>npm install</h2>
+    <h2>npm install -g</h2>
 
     <p>Use <code class="option">npm install -g</code> to install any modules into the global node scope. Modules installed with <code class="option">mod:install</code> take priority, so if any modules are installed with both <code class="option">npm install -g</code> and <code class="option">mod:install</code>, the <code class="option">npm install -g</code> module will be ignored.</p>
 
     <h2>Install specific module version</h2>
 
-    <p>To install a specific version of a module, to, for instance, ensure everyone on a project stays on the same version, add a <code class="option">@</code> followed by the version after the module name. Ex: <code class="option">web-package@0.1.0</code>. This is also accomplished using by managing versions in a project's package.json.</p>
+    <p>To install a specific version of a module, to, for instance, ensure everyone on a project stays on the same version, add a <code class="option">@</code> followed by the version after the module name. Ex: <code class="option">web-package@0.1.0</code>. This is also accomplished by managing versions in a project's package.json.</p>
 
     <div class="page-header" id="commands">
       <h1>
@@ -509,17 +504,74 @@ $ mimosa mod:init --coffee</pre>
 
     <div class="page-header" id="create">
       <h1>
-        Create Your Own Module
+        Create Your Own Module: Summarized
         <small><span class="options">getting off the ground</span></small>
+      </h1>
+    </div>
+
+    <p>The best way to figure out how to create a module is to look at an existing one. The <a href="https://github.com/dbashford/mimosa-minify/blob/master/src/index.coffee">mimosa-minify</a> module is a simple module to understand: it exists to minify CSS and JavaScript.</p>
+
+    <p>At the bottom of the <a href="https://github.com/dbashford/mimosa-minify/blob/master/src/index.coffee#L6-L10">index file</a> is the <code class="option">module.exports</code> object. That object defines the module interface.</p>
+
+    <pre>module.exports =
+  registration: registration
+  defaults: config.defaults
+  placeholder: config.placeholder
+  validate: config.validate</pre>
+
+    <p>Working from the bottom up:</p>
+
+    <ul>
+      <li><code class="option">validate</code> is optional, but if it exists it is called to validate a user's configuration. The <a href="https://github.com/dbashford/mimosa-minify/blob/master/src/config.coffee#L23">mimosa-minify validate</a> is small. One thing it does is verify that the mimosa-config's <code class="option">minify</code> object is an <code class="option">object</code>. If it wasn't <code class="option">validate</code> would return an error, Mimosa would not start, and the error message would be displayed.</li>
+      <li><code class="option">placeholder</code>, also optional, is how the commented out mimosa-config placeholder text is provided. <a href="https://github.com/dbashford/mimosa-minify/blob/master/src/config.coffee#L7-L19">mimosa-minify's placeholder</a> contains text explaining each configuration parameter.</li>
+      <li><code class="option">defaults</code>, again optional, is how the module lets Mimosa know its default configuration. <a href="https://github.com/dbashford/mimosa-minify/blob/master/src/config.coffee#L3-L5">mimosa-minify's defaults</a> returns a simple object.</li>
+      <li><code class="option">registration</code> is how a module informs Mimosa what code to call and when.</li>
+    </ul>
+
+    <p>Lets break down a single line of <a href="https://github.com/dbashford/mimosa-minify/blob/master/src/plugin.coffee#L10-L18">mimosa-minify's registration</a>.
+
+    <pre>register(['add','update','buildFile'],'beforeWrite', _minifyJS, e.javascript)</pre>
+
+    <ul>
+      <li><code class="option">register</code> is a function provided by Mimosa to execute the registration.</li>
+      <li>The entries in the <code class="option">['add','update','buildFile']</code> array are Mimosa workflows. mimosa-minify needs to be invoked to minify JavaScript when a JavaScript file is built (when Mimosa starts), added (after it starts), or updated.</li>
+      <li><code class="option">'beforeWrite'</code> indicates what workflow step to call the module's code. In this case right before a file is written its text needs to be minified.</li>
+      <li><code class="option">_minifyJS</code> is the function to invoke.</li>
+      <li><code class="option">e.javascript</code> indicates the function should only be called for JavaScript based extensions (like .js and .coffee).</li>
+    </ul>
+
+    <p>Lets look at the first few lines of the <a href="https://github.com/dbashford/mimosa-minify/blob/master/src/plugin.coffee#L66-L68">_minifyJS</a> function (converted to JavaScript).</p>
+
+    <pre>var _minifyJS = function (config, options, next) {
+  var hasFiles = options.files && options.files.length > 0
+  if (!hasFiles) {
+    return next()
+  }
+  ...</pre>
+
+    <p>Functions called during Mimosa's workflows are handed three objects.</p>
+
+    <ul>
+      <li>The resolved mimosa-config, including the configuration for the module being invoked.</li>
+      <li>An <code class="option">options</code> object which contains the variable information regarding the current files being processed.</li>
+      <li>A <code class="option">next</code> callback which informs Mimosa it can continue on to the next step in the workflow.</li>
+    </ul>
+
+    <p>The <code class="option">options</code> object contains a <code class="option">files</code> array which contains references to the file(s) being processed including their file path and file text. The code above does a check to see if there are any files to process.  If there isn't, there is nothing to minify, so it calls the <code class="option">next</code> callback and exits.</p>
+
+    <p>Finally, how does one pass information along? The mimosa-minify module doesn't write anything, it just <a href="https://github.com/dbashford/mimosa-minify/blob/master/src/plugin.coffee#L86">minifies text</a> that is already available in the <code class="option">files</code> array and then <a href="https://github.com/dbashford/mimosa-minify/blob/master/src/plugin.coffee#L87">stores the result on the file object itself</a>.</p>
+
+    <p>Hopefully that is a simple starter to get you going building your own module. Exhaustive details follow.</p>
+
+    <div class="page-header" id="details">
+      <h1>
+        Create Your Own Module: The Details
       </h1>
     </div>
 
     <h2>Where to start?</h2>
 
     <p>Mimosa can help module development get off the ground with a module skeleton. Discussed above, the <code class='option'>mod:init</code> command will create a module skeleton. The only hard and fast rule with Mimosa modules is that when they are created they must be prefixed with 'mimosa-'. This makes them easy to find if someone else wants to use them, but also differentiates Mimosa's modules from all of the libraries both in <a href="https://npmjs.org/">NPM</a> and inside Mimosa.</p>
-
-    <p>One great place to start, if you want to skip reading and get right to code, is to check out some existing modules, like <a href="https://github.com/dbashford/mimosa-lint">mimosa-lint</a>
- and <a href="https://github.com/dbashford/mimosa-minify">mimosa-minify</a>.</p>
 
     <h2>What does mod:init give me?</h2>
 
@@ -724,10 +776,6 @@ register ['add','update','buildExtension'], 'beforeWrite',  _minifyJS,  [e.templ
     <p>When building a module, a developer needs to decide which step is the right place to execute a module's functionality. For instance, if building a module that will run <a href="http://www.coffeelint.org/">CoffeeLint</a> over CoffeeScript to determine CoffeeScript code quality, then <code class="options">afterRead</code> is probably the best step. If, for instance, <code class="options">beforeRead</code> is used, then Mimosa will have not yet read in the file, and there will be nothing on which to run CoffeeLint.</p>
 
     <h2>Workflow Type & Step Breakdown</h2>
-
-    <p>Below is the exhaustive list of all of the steps by workflow. Use the radio buttons to toggle between the different default Mimosa modules.</p>
-
-    <br/>
 
     <div id="workflow-toggles" class="btn-group">
       <button data-type="build" class="btn span4 active">Build Workflows</button>
