@@ -499,14 +499,15 @@ $ mimosa watch -P nameOfProfile</pre>
 
         <pre>$ mimosa config</pre>
 
-        <p>To use an Mimosa with an existing project, use this command to copy the default <code class="option">mimosa-config.coffee</code> file into the current directory. Some configuration will likely need to be updated for the project. Using this command to generate a <code class="option">mimosa-config</code> is also a good way to get <code class="option">mimosa-config</code> updates when they occur.</p>
+        <p>To use Mimosa with an existing project, use this command to copy the default <code class="option">mimosa-config.coffee</code> file into the current directory. Some configuration will likely need to be updated for the project. This command will also create a <code class="option">mimosa-config.defaults.coffee</code>. This will allow modifications to occur to the <code class="option">mimosa-config</code> whie keeping the defaults file for reference.</p>
 
       </div>
       <div class="span6 term">
         <div class="inner">
           <p>
             Davids-MacBook-Pro:bar dbashford$ mimosa config<br/>
-            <span class="inst">10:41:34 - Copied default config file into current directory.</span><br/>
+            <span class="inst">17:28:45 - Copied mimosa-config.defaults.coffee into current directory.</span><br/>
+            <span class="inst">17:28:45 - Copied mimosa-config.coffee into current directory.</span><br/>
             Davids-MacBook-Pro:bar dbashford$
           </p>
         </div>
