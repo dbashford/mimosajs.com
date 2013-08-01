@@ -574,6 +574,10 @@
 
       <p>Emblem utilizes the same <code class="option">ember</code> config that Handlebars does, so when <code class="option">handlebars.ember.enabled</code> is set to <code class="option">true</code>, Mimosa will output Ember-compliant Handlebars functions. See the Handlebars documentation above for more details.</p>
 
+      <h3>Need a Specific Emblem?</h3>
+
+      <p>The <code class="option">template.emblem.lib</code> setting allows for providing Mimosa a specific Emblem version for precompiling Emblem templates. To provide a Emblem version it must be <code class="option">npm install</code>ed into your application. Then use the node.js <code class="option">require</code> function to hand it to Mimosa.  Ex: <code class="option">lib: require('emblem')</code></p>
+
       <h2>Dust <small><span class="mim">dust</span> <span class="command">["dust"]</span></small></h2>
 
       <p>To access a <a href="https://github.com/linkedin/dustjs/">Dust</a> template originating from a file named "example.dust"...</p>
