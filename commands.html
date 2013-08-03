@@ -81,6 +81,7 @@
         <li><a href="#watch" title="Watch, compile and serve assets">Watch, Compile, Serve</a></li>
         <li><a href="#clean" title="Clean compiled assets">Clean</a></li>
         <li><a href="#build" title="One time asset compilation and optimization">Build</a></li>
+        <li><a href="#skel" title="Interact with Mimosa's skeletons">Skeletons</a></li>
         <li><a href="#misc" title="Copy Mimosa config to an existing project">Misc</a></li>
       </ul>
     </div>
@@ -411,7 +412,7 @@ $ mimosa clean -P nameOfProfile</pre>
       <div class="page-header">
         <h1>
           Project Build
-          <small><span class="mim">mimosa</span> <span class="command">build</span> <span class="options">[-o/--optimize] [-m/--minify] [-p/--package] [-P/--profile]</span></small>
+          <small><span class="mim">mimosa</span> <span class="command">build</span> <span class="options">[-o/--optimize] [-m/--minify] [-p/--package] [-i/--install] [-P/--profile]</span></small>
         </h1>
       </div>
     </section>
@@ -422,8 +423,6 @@ $ mimosa clean -P nameOfProfile</pre>
         <p>Use <code class="option">mimosa build</code> to make one pass through the project to compile assets without starting up a watch. This command will compile any assets that need compiling, deliver the results to the public directory, and then exit. <code class="option">mimosa build</code> is also used when creating deployable versions of a project. This command also executes a clean before it does anything, so it builds a clean version of the application.</p>
 
         <pre>$ mimosa build</pre>
-
-        <p></p>
 
         <h3>Optimized Build (-o/--optimize)</h3>
 
@@ -470,6 +469,10 @@ $ mimosa build -mo</pre>
 
     <p>Provide a <code class="option">--package</code> flag and Mimosa will invoke any installed packaging modules. Mimosa doesn't come with any packaging modules by default, but modules like <a href="https://github.com/dbashford/mimosa-web-package">mimosa-web-package</a> are available and can be added to an application by simply adding the module name to the <code class="option">mimosa-config</code> <code class="option">modules</code> array.</p>
 
+    <h3>Install Application (-i/--install)</h3>
+
+    <p>Provide a <code class="option">--install</code> flag and Mimosa will invoke any configured install modules. Mimosa doesn't come with any installation modules, but this paves the way for those sorts of modules to be written and attached to this flag.</p>
+
     <h3>Use a Profile (-P/--profile)</h3>
 
     <p>Follow the <code class='option'>--profile</code> flag with the name of a profile, and Mimosa will use that profile to override the <code class='option'>mimosa-config</code> contained in the profile. See the <a href="./utilities.html#profiles">profiles section</a> of the Utilities page for more information on profiles.</p>
@@ -477,14 +480,24 @@ $ mimosa build -mo</pre>
     <pre>$ mimosa build --profile nameOfProfile
 $ mimosa build -P nameOfProfile</pre>
 
+    <section id="skel">
+      <div class="page-header">
+        <h1>
+          Skeleton Commands
+          <small><span class="mim">mimosa</span> <span class="command">skel:new</span>, <span class="command">skel:search</span>, <span class="command">skel:list</span></small>
+        </h1>
+      </div>
+    </section>
 
-    <h3>Use a Profile (-P/--profile)</h3>
+    <p>Skeletons are starter apps that include things like MVC libraries (Backbone or Angular), CSS libraries (Bootstrap or Foundation), boilerplate assets, a notional file structure and possibly integration with things like Bower or Testem. Mimosa is admittedly very light on skeletons at the moment. About that...</p>
 
-    <p>Follow the <code class='option'>--profile</code> flag with the name of a profile, and Mimosa will use that profile to override the <code class='option'>mimosa-config</code> contained in the profile. See the <a href="./utilities.html#profiles">profiles section</a> of the Utilities page for more information on profiles.</p>
+    <p><span style="font-weight:bold">Mimosa needs skeletons!</span> <a href="https://github.com/dbashford/skelmimosa#contribute">Learn how to contribute!</a></p>
 
-    <pre>$ mimosa watch --profile nameOfProfile
-$ mimosa watch -P nameOfProfile</pre>
+    <p>As of version <code class="option">0.14.6</code>, Mimosa's skeleton module is a default Mimosa module and its three commands are immediately available.</p>
 
+    <p><h2>skel:new [nameOfSkeleton] [directory]</h2> This command will install the named skeleton in the directory provided. If the directory is not provided, it will install the skeleton in the current directory.</p>
+    <p><h2>skel:search [searchTerm]</h2> This command will search the registry for any skeletons possessing the searchTerm as a keyword.</p>
+    <p><h2>skel:list</h2> This command will list all skeletons.</p>
 
     <section id="misc">
       <div class="page-header">
@@ -499,14 +512,14 @@ $ mimosa watch -P nameOfProfile</pre>
 
         <pre>$ mimosa config</pre>
 
-        <p>To use Mimosa with an existing project, use this command to copy the default <code class="option">mimosa-config.coffee</code> file into the current directory. Some configuration will likely need to be updated for the project. This command will also create a <code class="option">mimosa-config.defaults.coffee</code>. This will allow modifications to occur to the <code class="option">mimosa-config</code> whie keeping the defaults file for reference.</p>
+        <p>To use Mimosa with an existing project, use this command to copy the default <code class="option">mimosa-config.coffee</code> file into the current directory. Some configuration will likely need to be updated for the project. This command will also create a <code class="option">mimosa-config-commented.coffee</code>. This will allow modifications to occur to the <code class="option">mimosa-config</code> while keeping the defaults file for reference.</p>
 
       </div>
       <div class="span6 term">
         <div class="inner">
           <p>
             Davids-MacBook-Pro:bar dbashford$ mimosa config<br/>
-            <span class="inst">17:28:45 - Copied mimosa-config.defaults.coffee into current directory.</span><br/>
+            <span class="inst">17:28:45 - Copied mimosa-config-commented.coffee into current directory.</span><br/>
             <span class="inst">17:28:45 - Copied mimosa-config.coffee into current directory.</span><br/>
             Davids-MacBook-Pro:bar dbashford$
           </p>

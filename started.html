@@ -76,15 +76,17 @@
     <div class="subnav">
       <ul class="nav nav-pills">
         <li><a href="#install" title="Create a new project">Install Mimosa</a></li>
+        <li><a href="#demoapps" title="Use a demo app">Demo Apps</a></li>
+
         <li><a href="#exist" title="Get started right now">Quick Start - Existing App</a></li>
         <li><a href="#new" title="Get started right now">Quick Start - New App</a></li>
-        <li><a href="#demoapps" title="Use a demo app">Demo Apps</a></li>
-        <li><a href="#skel" title="Try a skeleton">Skeletons</a></li>
+        <li><a href="#skeletons" title="Try a skeleton">Skeletons</a></li>
       </ul>
     </div>
   </header>
 
   <section class="command-list">
+
     <section id="install">
       <div class="page-header">
         <h1>
@@ -99,9 +101,44 @@
       <pre>$ npm install -g mimosa</pre>
       <p>The <code class="option">-g</code> flag installs Mimosa globally so it can be run from the command line anywhere.  You may need to use sudo to install this depending on your system's setup.</p>
       <p>If you need to install a specific version of Mimosa for compatibility reasons, then add the version to the end of the command.</p>
-      <pre>$ npm install -g mimosa@0.9.0</pre>
+      <pre>$ npm install -g mimosa@0.14.0</pre>
 
     </section>
+
+    <section id="demoapps" class="demoapps">
+       <div class="page-header">
+         <h1>
+           Demo Applications
+         </h1>
+       </div>
+
+       <p>Before creating your own app, play around with someone else's!  Download an app from GitHub and use Mimosa's command line interface to play with the code and get comfortable with Mimosa and the technologies inside the demo apps.</p>
+
+       <p>As more demo apps are built, they'll get added here.  If you put a little something together using Mimosa let us know so we can add it to the list! Either <a href="https://github.com/dbashford/mimosajs.com/issues">open an issue</a> or shoot a message to @mimosajs.</p>
+       <ul>
+         <li>
+           <h2><a href="https://github.com/dbashford/MimosaTestem">MimosaTestem</a> <small>A small CoffeeScript, Stylus, Handlebars app will a full Mimosa-managed Testem/Mocha/Sinon/Chai test suite.</small></h2>
+         </li>
+         <li>
+           <h2><a href="https://github.com/dbashford/AngularFunMimosa">AngularFun</a> <small>A mid-sized CoffeeScript, LESS, Stylus, Angular.js, Bootstrap application.</small></h2>
+         </li>
+         <li>
+           <h2><a href="https://github.com/dbashford/AngularFunMimosaCommonJS">AngularFunCommonJS</a> <small>Same as the AngularFun project, but utilizing a mixture of both AMD and CommonJS code.</small></h2>
+         </li>
+         <li>
+           <h2><a href="https://github.com/dbashford/mimosa-ember-emblem-templates">MimosaEmberEmblem</a> <small>A small Ember.js project utilizing Emblem for templating. Also: CoffeeScript, Jade, Express.</small></h2>
+         </li>
+         <li>
+           <h2><a href="https://github.com/emirotin/mimosa-ember">MimosaEmber</a> <small>The Mimosa starter app but Ember-ized. CoffeeScript, Emblem, SASS, Jade, Express.</small></h2>
+         </li>
+         <li>
+           <h2><a href="https://github.com/breathe/mimosa-peepcode">MimosaEmberPeepcode</a> <small>The Peepcode Ember example. Bower, Testem, Ember.js, Emblem, CoffeeScript, Foundation, Stylus, Express and Jade.</small></h2>
+         </li>
+
+       </ul>
+     </section>
+
+
     <section id="exist">
       <div class="page-header">
         <h1>
@@ -168,40 +205,8 @@
       <p>All set! To get the project started, Mimosa has delivered a bare bones web app with some code using the chosen technologies. Head over to the <a href="./commands.html">Commands</a> tab to learn how to interact with Mimosa. If you want to play around with something meatier than the codebase that <code class="option">mimosa new</code> delivers, try out a demo app.
 
     </section>
-    <section id="demoapps" class="demoapps">
-      <div class="page-header">
-        <h1>
-          Demo Applications
-        </h1>
-      </div>
 
-      <p>Before creating your own app, play around with someone else's!  Download an app from GitHub and use Mimosa's command line interface to play with the code and get comfortable with Mimosa and the technologies inside the demo apps.</p>
-
-      <p>As more demo apps are built, they'll get added here.  If you put a little something together using Mimosa let us know so we can add it to the list! Either <a href="https://github.com/dbashford/mimosajs.com/issues">open an issue</a> or shoot a message to @mimosajs.</p>
-      <ul>
-        <li>
-          <h2><a href="https://github.com/dbashford/MimosaTestem">MimosaTestem</a> <small>A small CoffeeScript, Stylus, Handlebars app will a full Mimosa-managed Testem/Mocha/Sinon/Chai test suite.</small></h2>
-        </li>
-        <li>
-          <h2><a href="https://github.com/dbashford/AngularFunMimosa">AngularFun</a> <small>A mid-sized CoffeeScript, LESS, Stylus, Angular.js, Bootstrap application.</small></h2>
-        </li>
-        <li>
-          <h2><a href="https://github.com/dbashford/AngularFunMimosaCommonJS">AngularFunCommonJS</a> <small>Same as the AngularFun project, but utilizing a mixture of both AMD and CommonJS code.</small></h2>
-        </li>
-        <li>
-          <h2><a href="https://github.com/dbashford/mimosa-ember-emblem-templates">MimosaEmberEmblem</a> <small>A small Ember.js project utilizing Emblem for templating. Also: CoffeeScript, Jade, Express.</small></h2>
-        </li>
-        <li>
-          <h2><a href="https://github.com/emirotin/mimosa-ember">MimosaEmber</a> <small>The Mimosa starter app but Ember-ized. CoffeeScript, Emblem, SASS, Jade, Express.</small></h2>
-        </li>
-        <li>
-          <h2><a href="https://github.com/breathe/mimosa-peepcode">MimosaEmberPeepcode</a> <small>The Peepcode Ember example. Bower, Testem, Ember.js, Emblem, CoffeeScript, Foundation, Stylus, Express and Jade.</small></h2>
-        </li>
-
-      </ul>
-    </section>
-
-    <section id="demoapps" class="demoapps">
+    <section id="skeletons" class="demoapps">
       <div class="page-header">
         <h1>
           Pre-Built Skeletons
