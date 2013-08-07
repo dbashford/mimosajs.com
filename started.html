@@ -77,10 +77,9 @@
       <ul class="nav nav-pills">
         <li><a href="#install" title="Create a new project">Install Mimosa</a></li>
         <li><a href="#demoapps" title="Use a demo app">Demo Apps</a></li>
-
-        <li><a href="#exist" title="Get started right now">Quick Start - Existing App</a></li>
-        <li><a href="#new" title="Get started right now">Quick Start - New App</a></li>
         <li><a href="#skeletons" title="Try a skeleton">Skeletons</a></li>
+        <li><a href="#nonexist" title="Get started right now">Quick Start - New App</a></li>
+        <li><a href="#exist" title="Get started right now">Quick Start - Existing App</a></li>
       </ul>
     </div>
   </header>
@@ -105,10 +104,25 @@
 
     </section>
 
+    <div class="page-header">
+      <h1>
+        Where to Start with Development?
+      </h1>
+    </div>
+
+    <p>You've got four choices, all detailed below:</p>
+
+    <ul>
+      <li>Start by cloning/downloading a demo application if you want something meaty.</li>
+      <li>Use one of Mimosa's application skeletons if you just want a little boilerplate, some client libraries and some sample code.</li>
+      <li>Start with a fresh Mimosa generated scaffold.</li>
+      <li>Hook up your existing application.</li>
+    </ul>
+
     <section id="demoapps" class="demoapps">
        <div class="page-header">
          <h1>
-           Demo Applications
+           Demo Applications <small><span class="options">great way to learn Mimosa</span></small>
          </h1>
        </div>
 
@@ -139,42 +153,21 @@
      </section>
 
 
-    <section id="exist">
-      <div class="page-header">
-        <h1>
-          Quick Start - Existing App
-          <small><span class="options">easy to wire up</span></small>
-        </h1>
-      </div>
+     <section id="skeletons" class="demoapps">
+       <div class="page-header">
+         <h1>
+           Pre-Built Skeletons <small><span class="options">just some starter structure and libraries</span></small>
+         </h1>
+       </div>
 
-      <p>If you want to use Mimosa with an existing app, this is the place to start.</p>
+       <p>Mimosa has a growing list of skeletons. From the command line execute <code class="option">mimosa skel:list</code> to get a list of pre-built skeletons. Follow the instructions to install one of your choosing!</p>
 
-      <h2>1) Get the config</h2>
+       <p>Mimosa needs more skeletons! Check out the <a href="https://github.com/dbashford/mimosa-skeleton">documentation</a> and whip something up real quick using the technologies you love so that others can benefit.</p>
 
-      <p>From the command line, type <code class="option">mimosa config</code> and Mimosa will generate a <code class="option">mimosa-config.coffee</code> file in the current directory. This file controls everything Mimosa does. For now its contents will be commented out and all of Mimosa's defaults will be in effect. While Mimosa doesn't currently deliver its config as a JavaScript file, you are welcome to transform the <code class="option">mimosa-config.coffee</code> to JavaScript.</p>
+     </section>
 
-      <h2>2) Tweak the config</h2>
 
-      <p>Place the <code class="option">mimosa-config</code> at the root of a project. Either change the project's codebase to match Mimosa's defaults, or change the <code class="option">mimosa-config</code> to work with the project. The <code class="option">mimosa-config</code> is self-documenting. Each config setting is explained inside the file. All of the <a href="./configuration.html">configuration options</a> are documented on the site as well.</p>
-
-      <p>The most important settings in the config, to get you started, are inside the top <code class="option">watch</code> setting.  Make sure that <code class="option">sourceDir</code>, <code class="option">compiledDir</code>, and <code class="option">javascriptDir</code> all point to the right place in the project.</p>
-
-      <h2>3) Fire it up</h2>
-
-      <p>Execute <code class="option">mimosa watch</code> and Mimosa will build and watch project assets. Mimosa will generate errors if something is wrong with the config.</p>
-
-      <h2>4) Next steps?</h2>
-
-      <ul>
-        <li>Get familiar with Mimosa's <a href="./commands.html">commands</a></li>
-        <li>Browse the list of <a href="./compilers.html">compilers</a>.</li>
-        <li>See how Mimosa can help <a href="./server.html#mimosas">serve assets</a> or <a href="./server.html#yours">start a server</a>.</li>
-        <li>Learn about Mimosa's <a href="./optimization.html">optimization</a> options.</li>
-        <li>Having trouble? Hit the <a href="https://groups.google.com/forum/#!forum/mimosajs">Google group</a> to find a solution.</li>
-      </ul>
-
-    </section>
-    <section id="exist">
+    <section id="nonexist">
       <div class="page-header">
         <h1>
           Quick Start - New App
@@ -206,16 +199,40 @@
 
     </section>
 
-    <section id="skeletons" class="demoapps">
-      <div class="page-header">
-        <h1>
-          Pre-Built Skeletons
-        </h1>
-      </div>
+    <section id="exist">
+       <div class="page-header">
+         <h1>
+           Quick Start - Existing App
+           <small><span class="options">easy to wire up</span></small>
+         </h1>
+       </div>
 
-      <p>Mimosa needs skeletons.  Check out the <a href="https://github.com/dbashford/mimosa-skeleton">documentation</a> and whip something up real quick using the technologies you love so that others can benefit.</p>
+       <p>If you want to use Mimosa with an existing app, this is the place to start.</p>
 
-    </section>
+       <h2>1) Get the config</h2>
+
+       <p>From the command line, type <code class="option">mimosa config</code> and Mimosa will generate a <code class="option">mimosa-config.coffee</code> file in the current directory. This file controls everything Mimosa does. For now its contents will be commented out and all of Mimosa's defaults will be in effect. While Mimosa doesn't currently deliver its config as a JavaScript file, you are welcome to transform the <code class="option">mimosa-config.coffee</code> to JavaScript.</p>
+
+       <h2>2) Tweak the config</h2>
+
+       <p>Place the <code class="option">mimosa-config</code> at the root of a project. Either change the project's codebase to match Mimosa's defaults, or change the <code class="option">mimosa-config</code> to work with the project. The <code class="option">mimosa-config</code> is self-documenting. Each config setting is explained inside the file. All of the <a href="./configuration.html">configuration options</a> are documented on the site as well.</p>
+
+       <p>The most important settings in the config, to get you started, are inside the top <code class="option">watch</code> setting.  Make sure that <code class="option">sourceDir</code>, <code class="option">compiledDir</code>, and <code class="option">javascriptDir</code> all point to the right place in the project.</p>
+
+       <h2>3) Fire it up</h2>
+
+       <p>Execute <code class="option">mimosa watch</code> and Mimosa will build and watch project assets. Mimosa will generate errors if something is wrong with the config.</p>
+
+       <h2>4) Next steps?</h2>
+
+       <ul>
+         <li>Get familiar with Mimosa's <a href="./commands.html">commands</a></li>
+         <li>Browse the list of <a href="./compilers.html">compilers</a>.</li>
+         <li>See how Mimosa can help <a href="./server.html#mimosas">serve assets</a> or <a href="./server.html#yours">start a server</a>.</li>
+         <li>Learn about Mimosa's <a href="./optimization.html">optimization</a> options.</li>
+         <li>Having trouble? Hit the <a href="https://groups.google.com/forum/#!forum/mimosajs">Google group</a> to find a solution.</li>
+       </ul>
+     </section>
 
   </section>
 
