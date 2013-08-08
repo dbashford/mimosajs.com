@@ -76,6 +76,7 @@
     <p class="lead">Some common questions answered</p>
     <div class="subnav">
       <ul class="nav nav-pills">
+        <li><a href="#cpu" title="Contribute">CPU Burn</a></li>
         <li><a href="#contrib" title="Contribute">Contribute?</a></li>
         <li><a href="#ember" title="Ember.js">Ember.js</a></li>
         <li><a href="#emfile" title="EMFILE">EMFILE</a></li>
@@ -96,6 +97,11 @@
         </h1>
       </div>
     </section>
+
+    <h2 id="contrib">CPU running hot?</h2>
+
+    <p>If you have a lot of files, or are using multiple watchers (like mimosa + mimosa-import-source), you might find your CPU pegged and things bogging down. mimosa-import-source has intervals you can provide it to keep it from polling the file system too often.  Also, you can make a few changes to Mimosa after install to keep things humming.  For details, check out the <a href="https://github.com/dbashford/mimosa/issues/179">GitHub issue</a> where this was discussed</p>
+
 
     <h2 id="contrib">Want to Contribute?</h2>
 
