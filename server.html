@@ -165,7 +165,7 @@
   app.engine <b>config.server.views.extension</b>, engines[<b>config.server.views.compileWith</b>]
   app.set 'view engine', <b>config.server.views.extension</b></pre>
 
-    <section id="yours">
+    <section id="views">
       <div class="page-header">
         <h1>
           Server Views
@@ -191,6 +191,9 @@
 
     <h2>Handlebars <small><span class="mim">handlebars</span> <span class="command">.hbs</span></small></h2>
     <p><a href="http://handlebarsjs.com/">Handlebars</a> is available, and <code class="option">mimosa new</code> delivers a single <code class="option">index.hbs</code> file.</p>
+
+    <h2>Dust <small><span class="mim">dust</span> <span class="command">.dust</span></small></h2>
+    <p><a href="http://linkedin.github.io/dustjs/">Dust</a> is available, and <code class="option">mimosa new</code> delivers a single <code class="option">index.dust</code> file.</p>
 
     <h2>HTML <small><span class="mim">html</span> <span class="command">.html</span></small></h2>
     <p>Plain HTML templates can be chosen too. Mimosa uses <a href="https://github.com/visionmedia/ejs">EJS</a> behind the scenes (see above), as EJS allows plain HTML pages. To accommodate the fact that plain HTML isn't dynamic, if plain HTML templating is chosen, <code class="option">mimosa new</code> provides two templates, one each for running with and without the <code class="option">optimize</code> flag. The Express routes know how to toggle between the two. Also, the delivered server has a switch in its options for Live Reload that will allow plain HTML pages to work just fine, so not having that dynamic toggle in a view will not cause any trouble.</p>
