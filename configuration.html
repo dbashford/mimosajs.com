@@ -190,6 +190,10 @@
 
         <p class="hi sourceDir watch">The <code class="option">sourceDir</code> property is the path, either relative to the <code class="option">mimosa-config</code> or absolute, where assets are located. This is the directory Mimosa will watch for changes to kick off the compiler workflow.</p>
 
+        <h4 class="hi compiledDir watch">watch.compiledDir</h4>
+
+        <p class="hi compiledDir watch">The <code class="option">compiledDir</code> property is the path, relative to the <code class="option">mimosa-config</code> or absolute, where compiled assets will be delivered. If the <code class="option">compiledDir</code> does not exist, Mimosa will create it. Mimosa will mimic the same folder/directory structure in the <code class="option">compiledDir</code> that it finds in the <code class="option">sourceDir</code></p>
+
       </div>
       <div class="span6">
 <pre><span class="watch">watch:</span>
@@ -197,13 +201,12 @@
   <span class="compiledDir">compiledDir: "public"</span>
   <span class="javascriptDir">javascriptDir: "javascripts"</span>
   <span class="exclude">exclude: [/[/\\](\.|~)[^/\\]+$/]</span>
-  <span class="throttle">throttle: 0</span></pre>
+  <span class="throttle">throttle: 0</span>
+  <span class="polling">usePolling: true</span>
+  <span class="interval">interval: 100</span>
+  <span class="binary">binaryInterval: 300</span></pre>
       </div>
     </div>
-
-    <h4 class="hi compiledDir watch">watch.compiledDir</h4>
-
-    <p class="hi compiledDir watch">The <code class="option">compiledDir</code> property is the path, relative to the <code class="option">mimosa-config</code> or absolute, where compiled assets will be delivered. If the <code class="option">compiledDir</code> does not exist, Mimosa will create it. Mimosa will mimic the same folder/directory structure in the <code class="option">compiledDir</code> that it finds in the <code class="option">sourceDir</code></p>
 
     <h4 class="hi javascriptDir javascript compilers">watch.javascriptDir</h4>
     <p class="hi javascriptDir javascript compilers">Location of the JavaScript code inside the <code class="option">watch.sourceDir</code> directory and therefore also the location of the compiled JavaScript in the <code class="option">watch.compiledDir</code>. Note that there is not a <code class="option">watch.stylesheetsDir</code>. Mimosa does not need to know where CSS is placed, so the directory containing CSS can be named anything.</p>
@@ -216,7 +219,19 @@
 
     <h4 class="hi throttle watch">watch.throttle</h4>
 
-    <p class="hi throttle watch">The <code class="option">throttle</code> property represents how many files Mimosa will process every 100 milliseconds. Setting this property will slow down processing of file additions. This is necessary for very large projects with thousands of files. Mimosa processes them so fast that it quickly hits a system's open file limit. When this setting is set to 0, no throttling will take place. But if there are hundreds of files and EMFILE issues occur, play with the throttle. It may take a few minutes to get the throttle setting right, so that Mimosa is still processing files quickly, but not so quickly it crashes.</p>
+    <p class="hi throttle watch">The <code class="option">throttle</code> property represents how many files Mimosa will process every 100 milliseconds. Setting this property will slow down processing of file additions. This is necessary for very large projects with thousands of files. Mimosa processes them so fast that it quickly hits a system's open file limit. When this setting is set to 0, no throttling will take place. But if there are hundreds of files and EMFILE issues occur, play with the throttle. It may take a few minutes to get the throttle setting right, so that Mimosa is still processing files quickly, but not so quickly it crashes. NOTE: If<code class="option">usePolling</code> is set to  <code class="option">false</code>, this setting has no effect.</p>
+
+    <h4 class="hi polling watch">watch.usePolling</h4>
+
+    <p class="hi polling watch">DO NOT turn <code class="option">usePolling</code> off if you are on a *nix, you will crash with EMFILE issues. Windows users, read on: The <code class="option">usePolling</code> setting determines whether or not system polling is the method by which Mimosa keeps track of project assets. Polling on large applications with many hundreds of files may cause Mimosa/node to eat up a lot of CPU. The first settings to play with are the intervals below, to see if you can slow the polling down to an amount that is satisfactory to use but that also doesn't eat up the CPU. Turning <code class="option">usePolling</code> to false is a last option.</p>
+
+    <h4 class="hi interval watch">watch.interval</h4>
+
+    <p class="hi interval watch">The <code class="option">interval</code> setting, when <code class="option">usePolling</code> is set to <code class="option">true</code>, determines how frequent polling occurs for non-binary files. Tweak this number if you are having CPU issues.</p>
+
+    <h4 class="hi binary watch">watch.binaryInterval</h4>
+
+    <p class="hi binary watch">The <code class="option">binaryInterval</code> setting, when <code class="option">usePolling</code> is set to <code class="option">true</code>, determines how frequent polling occurs for binary files. Tweak this number if you are having CPU issues.</p>
 
     <section id="vendor">
       <div class="page-header">

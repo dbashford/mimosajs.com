@@ -88,8 +88,6 @@
 
   <section class="command-list">
 
-    <br/>
-
     <section id="faq">
       <div class="page-header">
         <h1>
@@ -100,8 +98,11 @@
 
     <h2 id="contrib">CPU running hot?</h2>
 
-    <p>If you have a lot of files, or are using multiple watchers (like mimosa + mimosa-import-source), you might find your CPU pegged and things bogging down. mimosa-import-source has intervals you can provide it to keep it from polling the file system too often.  Also, you can make a few changes to Mimosa after install to keep things humming.  For details, check out the <a href="https://github.com/dbashford/mimosa/issues/179">GitHub issue</a> where this was discussed</p>
+    <p>If you have a lot of files, or are using multiple watchers (like mimosa + mimosa-import-source), you might find your CPU pegged and things bogging down. Both mimosa core (<code class="option">watch</code> settings) and mimosa-import-source have intervals you can provide it to keep it from polling the file system too often. For details, check out the <a href="https://github.com/dbashford/mimosa/issues/179">GitHub issue</a> where this was discussed.</p>
 
+    <p>Windows Users: You can also try turn off polling altogether by turning <code class="option">usePolling</code> to false. This might be the best option if you have truly enormous projects.</p>
+
+    <p>*Nix users: Do not turn off polling.</p>
 
     <h2 id="contrib">Want to Contribute?</h2>
 
